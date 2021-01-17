@@ -1,18 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers;
+require_once ('paths/home.php');
 
-Route::get('/', function () {
-    return view('screens.home');
-});
+require_once ('paths/register.php');
 
-Route::get('/register', function(){
-    return view('screens.register');
-})->name('register');
+require_once ('paths/login.php');
 
-Route::get('/register/confirm', function(){
-    return view('screens.register_confirmation');
-})->name('register.confirmation');
-
-Route::post('/register', [Controllers\UserAuthController::class, 'register']);
+require_once ('paths/email_verification.php');
