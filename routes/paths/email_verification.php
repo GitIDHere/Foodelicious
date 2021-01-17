@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers;
+use \App\Http\Controllers\Auth as Controllers;
 
 /**
  * Route to verify the user's email address after they click on the verify link

@@ -6,4 +6,6 @@ require_once ('paths/register.php');
 
 require_once ('paths/login.php');
 
+require_once ('paths/password_reset.php');
+
 require_once ('paths/email_verification.php');

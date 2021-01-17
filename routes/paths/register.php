@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers;
+use \App\Http\Controllers\Auth as Controllers;
 
 /**
  * Show the registration form
