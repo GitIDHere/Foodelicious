@@ -14,6 +14,11 @@
                 </ul>
             </div>
         @endif
+
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" class="@error('username') is-invalid @enderror" value="user{{rand(0, 999)}}" >
+        <br/><br/>
+        
         {{--value="{{ old('email') }}"--}}
         <label for="email">Email</label>
         <input id="email" name="email" type="text" class="@error('email') is-invalid @enderror" value="email-{{rand(0, 999)}}@gmail.com" >

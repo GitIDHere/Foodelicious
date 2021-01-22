@@ -4,19 +4,24 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
-use App\Services\UserService;
-use Illuminate\Auth\Events\Registered;
+use App\Models\User;
+use App\Services\UserRegisterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class UserRegisterController extends Controller
 {
-    private $userService;
     
-    public function __construct(UserService $userService)
+    /**
+     * @var UserRegisterService 
+     */
+    private $userRegisterService;
+    
+    
+    public function __construct(UserRegisterService $userRegisterService)
     {
-        $this->userService = $userService;
+        $this->userRegisterService = $userRegisterService;
     }
 
     
@@ -66,22 +71,20 @@ class UserRegisterController extends Controller
      */
     public function register(RegisterRequest $request)
     {
+        $username = $request->get('username');
         $email = $request->get('email');
         $password = $request->get('password');
         $rememberMe = $request->get('remember_me') ? true : false;
         
-        try {
-            $user = $this->userService->register($email, $password);
-            
-            // Dispatch event to send verification email
-            event(new Registered($user));
-            
+        $user = $this->userRegisterService->registerUser($email, $password, $username);
+        
+        if ($user instanceof User)
+        {
             Auth::login($user, $rememberMe);
-            
             return Redirect::route('verification.notice');
-        } 
-        catch(\Exception $exception) {
-            return back()->withInput();
+        }
+        else {
+            return back()->withInput();   
         }
     }
     

@@ -9,6 +9,9 @@ class UserService
     
     
     /**
+     * Register a user
+     * 
+     * @param $username
      * @param $email
      * @param $password
      * @return mixed
