@@ -3,65 +3,108 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Mail\PasswordReset;
-use App\Models\User;
+use App\Services\Auth\PasswordResetService;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 
 class PasswordResetController extends Controller
 {
     
+    private $passwordResetService;
     
     
+    public function __construct(PasswordResetService $passwordResetService)
+    {
+        $this->passwordResetService = $passwordResetService;
+    }
     
     
+    /**
+     * Method: POST
+     * 
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function sendPasswordResetEmail(Request $request)
     {
         $request->validate([
             'email' => 'required|email',
         ]);
         
-        // Create a User Service class
-        // Check if the user is active
-        // Send email to reset password
-        // Signed URL
-        // Confirm password before submitting form
-        // Log that a password reset request was requested
-        // Show message if user not found
+        $email = $request->only('email');
         
-        $email = $request->get('email');
+        Password::sendResetLink($email);
         
-        // Check if a user exists for the email supplied
-        $user = User::where('email', '=', $email)->first();
-        
-        if ($user)
-        {
-            // Create a function in Users to get the username from UserProfile
-            $passwordResetEmail = new PasswordReset();
-            Mail::to($request->user())->send($passwordResetEmail);
-        }
-        else {
-            // Show error
-        }
-
+        // Returning a success always because we don't want
+        // user to know if email exists in DB or not  
+        return back()->with(['status' => 'success']);
     }
     
     
+    /**
+     * Method: GET
+     * 
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function showPasswordResetForm(Request $request, $token, $email)
+    {
+        // Check if the token has expired
+        $isTokenValid = $this->passwordResetService->isTokenValid($token, $email);
+                
+        if ($isTokenValid)
+        {
+            return view('screens.auth.password.password_reset', [
+                'token' => $token,
+                'email' => $email
+            ]);   
+        } else {
+            return redirect()
+                ->route('forgot_password.show')
+                ->withErrors('Password request token has expired');
+        }
+    }
     
     
+    /**
+     * Method: POST
+     * 
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:3|max:25|confirmed' 
+        ]);
+        
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) use ($request) 
+            {
+                // Set the new password. Using `forceFill()` because `password` is mass assignment protected
+                $user->forceFill([
+                    'password' => Hash::make($password)
+                ])->save();
+            
+                $user->setRememberToken(Str::random(60));
+            
+                event(new PasswordReset($user));
+            }
+        );
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        if ($status == Password::PASSWORD_RESET)
+        {
+            return redirect()->route('login.show')->with('status', $status);
+        } else {
+            return back()->withErrors('Invalid request');   
+        }
+    }
     
     
 }

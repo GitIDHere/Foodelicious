@@ -39,7 +39,7 @@ class UserRegisterController extends Controller
             return Redirect::route('home');
         }
         else {
-            return view('screens.register_confirmation');
+            return view('screens.auth.register_confirmation');
         }
     }
     

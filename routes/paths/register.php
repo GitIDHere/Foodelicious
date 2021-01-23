@@ -7,7 +7,7 @@ use \App\Http\Controllers\Auth as Controllers;
  * Show the registration form
  */
 Route::get('/register', function(){
-    return view('screens.register');
+    return view('screens.auth.register');
 })
 ->middleware(['guest'])
 ->name('register.show');

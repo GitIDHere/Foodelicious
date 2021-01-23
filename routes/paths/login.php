@@ -8,7 +8,7 @@ use \App\Http\Controllers\Auth as Controllers;
 
 
 Route::get('/login', function(){
-    return view('screens.login');    
+    return view('screens.auth.login');    
 })
 ->middleware(['guest'])
 ->name('login.show')

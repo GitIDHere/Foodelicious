@@ -41,12 +41,16 @@ class Email extends Mailable
     /**
      * Set tokens on the email. $token has to be a public property on the Email
      * 
-     * @param $token
+     * @param array $tokens
      * @param $value
      */
-    public function setToken($token, $value) {
-        if (property_exists($this, $token)){
-            $this->$token = $value;
+    public function setTokens(array $tokens) 
+    {
+        foreach($tokens as $token => $value)
+        {
+            if (property_exists($this, $token)){
+                $this->$token = $value;
+            }   
         }
     }
     
