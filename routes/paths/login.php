@@ -14,6 +14,12 @@ Route::get('/login', function(){
 ->name('login.show')
 ;
 
+
+Route::post('/login', [Controllers\UserLoginController::class, 'login'])
+->middleware(['throttle:5,1'])
+->name('login.submit')
+;
+
 Route::get('/logout', [Controllers\UserLoginController::class, 'logout'])
     ->name('logout');
     

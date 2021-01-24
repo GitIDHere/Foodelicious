@@ -13,6 +13,7 @@
         <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     </head>
     <body>
+        <a href="{{route('home')}}">Home</a>
         @yield('content')
     </body>
 </html>

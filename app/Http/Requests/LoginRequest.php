@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class RegisterRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,8 @@ class RegisterRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        // Only allow users who aren't logged in
+        return Auth::check() == false;
     }
 
     /**
@@ -24,11 +26,9 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|string|max:20|min:3|unique:user_profiles,username',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|bail|max:25|min:3|confirmed',
-            'password_confirmation ' => 'max:25|min:3',
-            'remember_me' => 'nullable|boolean',
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|min:3|max:25',
+            'remember_me' => 'boolean|nullable',
         ];
     }
     
@@ -37,7 +37,8 @@ class RegisterRequest extends FormRequest
         return [
             'email.required' => 'Email is required',
             'password.required' => 'Password is required',
-            'password.confirmed' => 'Please make sure the confirmation password matched your password.',
+            'email.unique' => 'Invalid login details',
+            'remember_me.boolean' => 'Please check that the details are correct',
         ];
     }
 }
