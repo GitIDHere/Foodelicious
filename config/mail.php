@@ -84,8 +84,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'support@myjourney.com'),
-        'name' => env('MAIL_FROM_NAME', 'MyJourney Team'),
+        'address' => env('MAIL_FROM_ADDRESS', 'support@foodelicious.com'),
+        'name' => env('MAIL_FROM_NAME', 'Foodelicious Team'),
     ],
 
     /*

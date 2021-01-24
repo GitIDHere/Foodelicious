@@ -34,7 +34,7 @@ class Email extends Mailable
     public function __construct($recipientName)
     {
         $this->recipientName = $recipientName;
-        $this->signOff = env('MAIL_FROM_NAME', 'MyJourney Team');
+        $this->signOff = env('MAIL_FROM_NAME', 'Foodelicious Team');
     }
     
     
