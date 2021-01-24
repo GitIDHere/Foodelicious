@@ -10,4 +10,8 @@
     
     <a href="{{route('forgot_password.show')}}">Forgot password</a>
     
+    @auth
+        <a href="{{route('forgot_password.show')}}">Add recipes</a>    
+    @endauth
+    
 @endsection
