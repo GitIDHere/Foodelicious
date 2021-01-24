@@ -26,7 +26,8 @@ class CreateUserProfilesTable extends Migration
                 ->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->cascadeOnDelete();
+                ->cascadeOnDelete()
+            ;
         });
     }
 
