@@ -23,23 +23,6 @@ class UserRegisterController extends Controller
     {
         $this->userRegisterService = $userRegisterService;
     }
-
-    
-    /**
-     * Method: GET
-     * 
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function showForm(Request $request)
-    {
-        if (Auth::check()) {
-            return Redirect::route('home');
-        }
-        else {
-            return view('screens.register');
-        }
-    }
     
     
     /**
@@ -56,7 +39,7 @@ class UserRegisterController extends Controller
             return Redirect::route('home');
         }
         else {
-            return view('screens.register_confirmation');
+            return view('screens.auth.register_confirmation');
         }
     }
     

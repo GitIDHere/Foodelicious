@@ -8,6 +8,6 @@
     
     <a href="{{route('logout')}}">Logout</a>
     
-    <a href="{{route('password_reset.show')}}">Reset password</a>
+    <a href="{{route('forgot_password.show')}}">Forgot password</a>
     
 @endsection

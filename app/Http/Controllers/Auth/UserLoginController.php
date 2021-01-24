@@ -14,23 +14,6 @@ class UserLoginController extends Controller
         
     }
     
-    /**
-     * Method: GET
-     * 
-     * Show the login form
-     * 
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
-     */
-    public function show()
-    {
-        // Do not show the login page if the user is already logged in
-        if (Auth::check() == false) {
-            return view('screens.login');    
-        } else {
-            return Redirect::route('home');
-        }
-    }
-    
     
     /**
      * Method: GET
