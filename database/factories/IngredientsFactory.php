@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Ingredients;
+use App\Models\Ingredient;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class IngredientsFactory extends Factory
@@ -12,7 +12,7 @@ class IngredientsFactory extends Factory
      *
      * @var string
      */
-    protected $model = Ingredients::class;
+    protected $model = Ingredient::class;
 
     
     /**

@@ -13,7 +13,7 @@ class CreateRecipeIngredientPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('recipe_ingredient_pivot', function (Blueprint $table) 
+        Schema::create('ingredient_recipe', function (Blueprint $table) 
         {
             $table->unsignedBigInteger('recipe_id')->index();
             $table->unsignedBigInteger('ingredient_id')->index();
@@ -41,6 +41,6 @@ class CreateRecipeIngredientPivotTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recipe_ingredient_pivot');
+        Schema::dropIfExists('ingredient_recipe');
     }
 }

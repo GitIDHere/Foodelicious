@@ -20,7 +20,7 @@ class IngredientSeeder extends CustomSeeder
         {
             DB::table('ingredients')->insert([
                 'name' => $ingredient,
-                'created_at' => $faker->unixTime(),
+                'created_at' => $faker->dateTime,
             ]);
         }
     }
