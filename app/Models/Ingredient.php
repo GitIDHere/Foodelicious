@@ -14,11 +14,4 @@ class Ingredient extends Model
     ];
     
     
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function recipes()
-    {
-        return $this->belongsToMany(Recipe::class);
-    }    
 }

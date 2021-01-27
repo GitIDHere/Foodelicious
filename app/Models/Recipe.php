@@ -18,6 +18,7 @@ class Recipe extends Model
         'servings',
         'utensils',
         'prep_directions',
+        'ingredients',
     ];
     
     
@@ -29,10 +30,5 @@ class Recipe extends Model
         return $this->belongsTo(UserProfile::class);
     }
     
-    
-    public function ingredients()
-    {
-        return $this->belongsToMany(Ingredient::class);
-    }
     
 }

@@ -9,12 +9,12 @@ Route::middleware(['auth'])->group(function()
     Route::get('/new-recipe', function(){
         return view('screens.recipe.new_recipe');
     })
-    ->name('recipe.new.show')
+    ->name('new_recipe.show')
     ;
     
     
     Route::post('/new-recipe', [Controllers\RecipeController::class, 'createRecipe'])
-    ->name('recipe.new.submit')
+    ->name('new_recipe.submit')
     ;    
     
 });

@@ -9,3 +9,5 @@ require_once ('paths/auth/login.php');
 require_once ('paths/auth/password_reset.php');
 
 require_once ('paths/auth/email_verification.php');
+
+require_once ('paths/recipes.php');
