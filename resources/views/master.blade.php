@@ -9,8 +9,11 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
+        <!-- JS -->
+        <script src="{{ mix('js/app.js') }}"></script>
+        
         <!-- Styles -->
-        <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
         <a href="{{route('home')}}">Home</a>
