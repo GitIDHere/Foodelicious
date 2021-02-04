@@ -1,7 +1,5 @@
 require('./bootstrap');
 
-require('jquery');
+window.$ = jQuery;
 
 Tagify = require('@yaireo/tagify/dist/jQuery.tagify.min');
-
-require('./scripts/ingredient_tags');

@@ -18,7 +18,12 @@ mix
     .autoload({
         jquery: ['$', 'jQuery'],
     })
+    .extract([
+        'jquery',
+        'Tagify'
+    ])
     .js('resources/js/app.js', 'public/js')
+    .copy('resources/js/scripts/**/*.js', 'public/js')
     .version()
 ;
 
