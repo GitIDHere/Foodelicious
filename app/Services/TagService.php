@@ -2,21 +2,18 @@
 
 namespace App\Services;
 
-use App\Models\Ingredient;
-
-class IngredientService
+class TagService
 {
-    
     /**
      * @param $term
      * @return array
      */
-    public function getListByTerm($term)
+    public function getListByTerm($table, $field, $term)
     {
         if (!empty($term) && is_string($term))
         {
-            return Ingredient::where('name', 'LIKE', $term.'%')
-                ->orderBy('name')
+            return $table::where($field, 'LIKE', $term.'%')
+                ->orderBy($field)
                 ->take(5)
                 ->get()
                 ->toArray()

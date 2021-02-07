@@ -15,4 +15,4 @@ use \App\Http\Controllers\API as APIControllers;
 |
 */
 
-require_once ('paths/api/ingredients.php');
+require_once ('paths/api/tag_lists.php');
