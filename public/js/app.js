@@ -16,7 +16,7 @@
 
             if( $input.data("tagify") ) // don't continue if already "tagified"
                 return this;
-
+            
             settings.isJQueryPlugin = true;
             tagify = new Tagify($input[0], settings);
             $input.data("tagify", tagify);

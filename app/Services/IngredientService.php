@@ -6,16 +6,22 @@ use App\Models\Ingredient;
 
 class IngredientService
 {
+    
     /**
      * @param $term
-     * @return mixed
-     */    
+     * @return array
+     */
     public function getListByTerm($term)
     {
-        return Ingredient::where('name', 'LIKE', '%'.$term.'%')
-            ->orderBy('name')
-            ->take(5)
-            ->get()
-        ;
+        if (!empty($term) && is_string($term))
+        {
+            return Ingredient::where('name', 'LIKE', $term.'%')
+                ->orderBy('name')
+                ->take(5)
+                ->get()
+                ->toArray()
+                ;   
+        }
+        return [];
     }
 }

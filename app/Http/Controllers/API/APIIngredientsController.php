@@ -33,7 +33,7 @@ class APIIngredientsController extends Controller
     public function getList(Request $request)
     {
         $validated = $request->validate([
-            'term' => 'required|string|min:1|max:150',
+            'term' => 'nullable|string|max:150',
         ]);
         
         $term = $request->get('term');
@@ -41,9 +41,9 @@ class APIIngredientsController extends Controller
         $ingredientCollection = $this->ingredientService->getListByTerm($term);
         
         $ingredientList = [];
-        foreach ($ingredientCollection->toArray() as $ingredient)
+        foreach ($ingredientCollection as $ingredient)
         {
-            $ingredientList[$ingredient['id']] = $ingredient['name'];
+            $ingredientList[] = $ingredient['name'];
         }
         return APIResponse::make(200, $ingredientList);
     }
