@@ -11,7 +11,11 @@
     <a href="{{route('forgot_password.show')}}">Forgot password</a>
     
     @auth
-        <a href="{{route('forgot_password.show')}}">Add recipes</a>    
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <a href="{{route('new_recipe.show')}}">Add recipes</a>    
     @endauth
     
 @endsection

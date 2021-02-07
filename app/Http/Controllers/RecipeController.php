@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RecipeCreateRequest;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
@@ -14,9 +15,9 @@ class RecipeController extends Controller
     }
     
     
-    public function createRecipe(Request $request)
+    public function createRecipe(RecipeCreateRequest $request)
     {
-        dd("Recipe submitted");
+        dd($request->all());
     }
     
     
