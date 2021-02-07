@@ -22,7 +22,7 @@ class CreateRecipesTable extends Migration
             $table->json('directions');
             $table->string('cook_time', 50);
             $table->smallInteger('servings');
-            $table->text('utensils');
+            $table->json('utensils');
             $table->text('prep_directions');
             $table->json('ingredients');
             $table->timestamps();

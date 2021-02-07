@@ -1,16 +1,51 @@
 @extends('master')
 
 @section('page_scripts')
-    <script src="{{mix('js/ingredient_tags.js')}}"></script>
+    <script src="{{mix('js/recipe_tags.js')}}"></script>
 @endsection
 
 @section('content')
     
+    @if ($errors->any())
+        <div class="errors">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    
     <form method="POST" action="{{ route('new_recipe.submit')  }}">
         @csrf
         
-        <input id="ingredients" name='tags' class='some_class_name' placeholder='Ingredients'>    
+        <input id="recipe-title" type="text" name="title" placeholder="Title" value="First recipe" />
+        <br/><br/>
+        
+        <label for="recipe-desc">Description</label>
+        <textarea id="recipe-desc" name="description">This is a recipe that I want to save</textarea>
+        <br/><br/>
 
+        <input id="recipe-directions" type="text" name="directions" placeholder="Direction (JSON)" value="" />
+        <br/><br/>
+        
+        <input id="recipe-cook_time" type="text" name="cook_time" placeholder="Cook time" value="01:33" />
+        <br/><br/>
+        
+        <input id="recipe-servings" type="text" name="servings" placeholder="Servings" value="2" />
+        <br/><br/>
+
+        <input id="recipe-utensils" type="text" name="utensils" placeholder="Utensils" value="{{old('utensils')}}" />
+        <br/><br/>
+
+        <input id="recipe-prep" type="text" name="prep" placeholder="Preperations" value="boil water. Cut carrots into cubes" />
+        <br/><br/>
+        
+        <input id="recipe-ingredients" name='ingredients' class='some_class_name' value="{{old('ingredients')}}" placeholder='Ingredients'>
+        <br/><br/>
+        
+        <input type="submit" />
+        
     </form>
     
 @endsection
