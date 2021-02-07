@@ -30,5 +30,14 @@ class Recipe extends Model
         return $this->belongsTo(UserProfile::class);
     }
     
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function files()
+    {
+        return $this
+            ->belongsToMany(File::class, 'recipe_images', 'recipe_id', 'file_id')
+            ->using(RecipeImages::class);
+    }
     
 }

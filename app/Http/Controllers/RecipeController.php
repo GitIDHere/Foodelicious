@@ -17,7 +17,7 @@ class RecipeController extends Controller
     
     public function createRecipe(RecipeCreateRequest $request)
     {
-        dd($request->all());
+        
     }
     
     

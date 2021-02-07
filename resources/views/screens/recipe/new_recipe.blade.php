@@ -16,7 +16,7 @@
         </div>
     @endif
     
-    <form method="POST" action="{{ route('new_recipe.submit')  }}">
+    <form method="POST" action="{{ route('new_recipe.submit') }}" enctype="multipart/form-data">
         @csrf
         
         <input id="recipe-title" type="text" name="title" placeholder="Title" value="First recipe" />
@@ -35,13 +35,16 @@
         <input id="recipe-servings" type="text" name="servings" placeholder="Servings" value="2" />
         <br/><br/>
 
-        <input id="recipe-utensils" type="text" name="utensils" placeholder="Utensils" value="{{old('utensils')}}" />
+        <input id="recipe-utensils" type="text" name="utensils" placeholder="Utensils" value="spoon,{{old('utensils')}}" />
         <br/><br/>
 
         <input id="recipe-prep" type="text" name="prep" placeholder="Preperations" value="boil water. Cut carrots into cubes" />
         <br/><br/>
         
-        <input id="recipe-ingredients" name='ingredients' class='some_class_name' value="{{old('ingredients')}}" placeholder='Ingredients'>
+        <input id="recipe-ingredients" name='ingredients' class='some_class_name' value="chocolate,{{old('ingredients')}}" placeholder='Ingredients'>
+        <br/><br/>
+        
+        <input id="recipe-photos" type="file" name="photos[]" multiple="multiple" accept=".jpg,.png,.jpeg"/>
         <br/><br/>
         
         <input type="submit" />

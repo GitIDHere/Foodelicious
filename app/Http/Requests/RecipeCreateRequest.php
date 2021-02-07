@@ -33,6 +33,8 @@ class RecipeCreateRequest extends FormRequest
             'utensils' => 'required|json',
             'prep' => 'required|string|max:10000',
             'ingredients' => 'required|json',
+            'photos' => 'nullable',
+            'photos.*' => 'mimes:jpeg,jpg,png|max:2048',
         ];
     }
 }

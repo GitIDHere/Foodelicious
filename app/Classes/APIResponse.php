@@ -26,12 +26,14 @@ class APIResponse
     /**
      * @param $code
      * @param $content
+     * @param $message
      * @return \Illuminate\Http\JsonResponse|object
      */
-    public static function make($code, $content)
+    public static function make($code, $content, $message = '')
     {
         $baseContent = self::getBaseContent($code);
-        $baseContent['response'] = $content;
+        $baseContent['data'] = $content;
+        $baseContent['message'] = $message;
         return response()
             ->json($baseContent)
             ->setStatusCode($code);

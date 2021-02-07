@@ -32,9 +32,9 @@ $(function()
             apiCallback(term)
                 .then(function(resp)
                 {
-                    if (resp.response !== undefined)
+                    if (resp.data !== undefined)
                     {
-                        let itemList = resp.response;
+                        let itemList = resp.data;
 
                         tagifyObj.settings.whitelist.splice(0, itemList.length, ...itemList);
 
