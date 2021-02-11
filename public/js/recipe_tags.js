@@ -1,10 +1,16 @@
 $(function()
 {
     let utensilInput = document.querySelector('#recipe-utensils');
-    let utensilTagify = new Tagify(utensilInput, {whitelist: []});
+    let utensilTagify = new Tagify(utensilInput, {
+        whitelist: [],
+        originalInputValueFormat: valuesArr => JSON.stringify(valuesArr.map(item => item.value))
+    });
     
     let ingredientInput = document.querySelector('#recipe-ingredients');
-    let ingTagify = new Tagify(ingredientInput, {whitelist: []});
+    let ingTagify = new Tagify(ingredientInput, {
+        whitelist: [],
+        originalInputValueFormat: valuesArr => JSON.stringify(valuesArr.map(item => item.value))
+    });
     
     let controller = null;
     let apiCallTimer = null;
