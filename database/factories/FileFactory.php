@@ -24,7 +24,7 @@ class FileFactory extends Factory
         
         return [
             'name' => $this->faker->word .'.png',
-            'uri' => $this->faker->imageUrl(200, 200),
+            'path' => $this->faker->imageUrl(200, 200),
         ];
     }
 }

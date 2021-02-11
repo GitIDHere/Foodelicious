@@ -13,7 +13,7 @@ class File extends Model
     
     protected $fillable = [
         'name',
-        'uri'
+        'path'
     ];
     
     

@@ -5,7 +5,7 @@ namespace App\Exceptions\Custom;
 use Exception;
 use Throwable;
 
-class CreateFailedException extends Exception
+class CreateModelFailedException extends Exception
 {
     public function __construct($message="Failed to create item", $code = 422, Throwable $previous = null)
     {

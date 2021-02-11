@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RecipeCreateRequest;
+use App\Services\RecipePhotoService;
 use App\Services\RecipeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,12 +11,12 @@ use Illuminate\Support\Facades\Auth;
 class RecipeController extends Controller
 {
     
-    private $recipeService;
+    private $recipePhotoService;
     
     
-    public function __construct(RecipeService $recipeService)
+    public function __construct(RecipePhotoService $recipePhotoService)
     {
-        $this->recipeService = $recipeService;
+        $this->recipePhotoService = $recipePhotoService;
     }
     
     
@@ -37,9 +38,49 @@ class RecipeController extends Controller
         $user = Auth::user();
         $userProfile = $user->userProfile;
 
-        $this->recipeService->addEntry($userProfile, $recipeFields);
+        if ($userProfile) 
+        {
+            $files = $request->files->all();
+            
+            $vals = $this->recipePhotoService->saveFiles($files);
+            dd($vals);
+            //$recipe = $userProfile->recipes()->create($recipeFields);
+            
+            
+        } 
+        else {
+            // Error
+        }
+        
     }
     
     
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

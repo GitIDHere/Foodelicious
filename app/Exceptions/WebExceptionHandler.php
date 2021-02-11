@@ -11,7 +11,7 @@ use Throwable;
 class WebExceptionHandler extends Handler
 {
     protected $customExceptions = [
-        \App\Exceptions\Custom\CreateFailedException::class => [
+        \App\Exceptions\Custom\CreateModelFailedException::class => [
             QueryException::class
         ]  
     ];

@@ -38,7 +38,7 @@
         <input id="recipe-utensils" type="text" name="utensils" placeholder="Utensils" value="spoon,{{old('utensils')}}" />
         <br/><br/>
 
-        <input id="recipe-prep" type="text" name="prep" placeholder="Preperations" value="boil water. Cut carrots into cubes" />
+        <input id="recipe-prep" type="text" name="prep_directions" placeholder="Preperations" value="boil water. Cut carrots into cubes" />
         <br/><br/>
         
         <input id="recipe-ingredients" name='ingredients' class='some_class_name' value="chocolate,{{old('ingredients')}}" placeholder='Ingredients'>
