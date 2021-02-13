@@ -2,35 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\RecipeCreated;
 use App\Http\Requests\RecipeCreateRequest;
-use App\Services\RecipePhotoService;
+use App\Services\RecipeService;
 use Illuminate\Support\Facades\Auth;
 
 class RecipeController extends Controller
 {
     
-    private $recipePhotoService;
+    private $recipeService;
     
     
-    public function __construct(RecipePhotoService $recipePhotoService)
+    public function __construct(RecipeService $recipeService)
     {
-        $this->recipePhotoService = $recipePhotoService;
+        $this->recipeService = $recipeService;
     }
     
     
     public function createRecipe(RecipeCreateRequest $request)
     {
-        /*
-         * - Save the recipe
-         * - Save the JSON correctly
-         * - Save the files
-         * - Attach the files to the recipe
-         * - Return response message
-         *  - Test with failure scenario.
-         *  - Show errors
-         * - Send an event
-         */
-    
         $recipeFields = $request->all();
     
         $user = Auth::user();
@@ -38,23 +28,24 @@ class RecipeController extends Controller
 
         if ($userProfile) 
         {
-            $recipe = $userProfile->recipes()->create($recipeFields);
+            $files = $request->files->all();
+            $recipe = $this->recipeService->createRecipe($userProfile, $recipeFields, $files['photos']);
             
             if ($recipe) 
             {
-                $files = $request->files->all();
-                $savedFiles = $this->recipePhotoService->saveFiles($files['photos']);
+                // Send event
+                RecipeCreated::dispatch($recipe);
                 
-                if (!empty($savedFiles)) 
-                {
-                    $recipe->files()->attach($savedFiles);    
-                }
+                return redirect()->route('my_recipes')->with(['success' => 'Recipe added!']);       
+            } 
+            else {
+                return back()->withErrors(['Failed to create recipe']);
             }
         } 
         else {
             // Error
+            return redirect()->route('login.show')->withErrors(['User profile not found.']);
         }
-        
     }
     
     

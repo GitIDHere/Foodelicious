@@ -6,16 +6,21 @@ use \App\Http\Controllers as Controllers;
 
 Route::middleware(['auth'])->group(function()
 {
-    Route::get('/new-recipe', function(){
+    Route::get('/recipes/new', function(){
         return view('screens.recipe.new_recipe');
     })
     ->name('new_recipe.show')
     ;
     
-    
-    Route::post('/new-recipe', [Controllers\RecipeController::class, 'createRecipe'])
+    Route::post('/recipes/new', [Controllers\RecipeController::class, 'createRecipe'])
     ->name('new_recipe.submit')
     ;    
+    
+    
+    
+    
+    
+    
     
 });
 
