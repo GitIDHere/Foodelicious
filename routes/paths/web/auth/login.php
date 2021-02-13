@@ -4,9 +4,6 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Auth as Controllers;
 
 
-
-
-
 Route::get('/login', function(){
     return view('screens.auth.login');    
 })
@@ -23,17 +20,3 @@ Route::post('/login', [Controllers\UserLoginController::class, 'login'])
 Route::get('/logout', [Controllers\UserLoginController::class, 'logout'])
     ->name('logout');
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -23,4 +23,4 @@ Route::post('/register', [Controllers\UserRegisterController::class, 'register']
  */
 Route::get('/register/confirm', [Controllers\UserRegisterController::class, 'confirmation'])
 ->middleware(['auth'])
-->name('verification.notice');
+->name('register.confirmation');

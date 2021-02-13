@@ -63,8 +63,8 @@ class UserRegisterController extends Controller
         
         if ($user instanceof User)
         {
-            Auth::login($user, $rememberMe);
-            return Redirect::route('verification.notice');
+            //Auth::login($user, $rememberMe);
+            return Redirect::route('register.confirmation');
         }
         else {
             return back()->withInput();   

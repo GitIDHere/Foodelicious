@@ -13,6 +13,6 @@ class HttpNotFoundException extends Exception
     }
     
     public function redirectTo() {
-        return redirect()->route('page_404');
+        return redirect()->route('404_page');
     }
 }
