@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RecipeCreateRequest;
 use App\Services\RecipePhotoService;
-use App\Services\RecipeService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RecipeController extends Controller
@@ -40,13 +38,18 @@ class RecipeController extends Controller
 
         if ($userProfile) 
         {
-            $files = $request->files->all();
+            $recipe = $userProfile->recipes()->create($recipeFields);
             
-            $vals = $this->recipePhotoService->saveFiles($files);
-            dd($vals);
-            //$recipe = $userProfile->recipes()->create($recipeFields);
-            
-            
+            if ($recipe) 
+            {
+                $files = $request->files->all();
+                $savedFiles = $this->recipePhotoService->saveFiles($files['photos']);
+                
+                if (!empty($savedFiles)) 
+                {
+                    $recipe->files()->attach($savedFiles);    
+                }
+            }
         } 
         else {
             // Error
@@ -57,27 +60,6 @@ class RecipeController extends Controller
     
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

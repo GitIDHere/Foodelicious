@@ -4,6 +4,7 @@ namespace App\Services;
 
 
 
+use Illuminate\Database\Eloquent;
 use Illuminate\Http\File;
 use App\Models\File as AppFile;
 use Illuminate\Http\UploadedFile;
@@ -45,12 +46,11 @@ class PhotoService
     /**
      * @param UploadedFile[] $files
      * @param array $customNames
-     * @return array
+     * @return Eloquent\Collection
      */
     public function saveFiles($files, $customNames = [])
     {
-        // name => Models\File
-        $savedFiles = [];
+        $savedFiles = new Eloquent\Collection();
         
         foreach($files as $fileIndex => $file) 
         {
@@ -66,21 +66,21 @@ class PhotoService
                     // Check if the file needs custom name
                      if (isset($customNames[$fileIndex]) && !empty($customNames[$fileIndex])) 
                      {
-                        $fileName = $customNames[$fileIndex];
-                        $path = Storage::putFileAs($this->baseFilePath, new File($file->getPathname()), $fileName, $this->visibility);
+                         $fileName = $customNames[$fileIndex];
+                         $path = Storage::putFileAs($this->baseFilePath, new File($file->getPathname()), $fileName, $this->visibility);
                      } 
                      else {
-                        $path = Storage::putFile($this->baseFilePath, new File($file->getPathname()), $this->visibility);    
+                         $path = Storage::putFile($this->baseFilePath, new File($file->getPathname()), $this->visibility);    
                      }
                      
                      if ($path) 
                      {
                         $fileName = basename($path);
-                            
-                         $savedFiles[$fileName] = AppFile::create([
+                        
+                        $savedFiles->add(AppFile::create([
                              'name' => $fileName,
                              'path' => $path
-                         ]);
+                         ]));
                      }
                 }
             }
