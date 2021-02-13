@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
-class UserRoutes
+class UserRoute
 {
     /**
      * Check if the user trying to access a path with a username prefix belongs to the Auth::user

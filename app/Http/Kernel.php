@@ -3,7 +3,8 @@
 namespace App\Http;
 
 use App\Http\Middleware\AcceptJSONHeader;
-use App\Http\Middleware\UserRoutes;
+use App\Http\Middleware\URLParameters;
+use App\Http\Middleware\UserRoute;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -66,6 +67,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         
-        'user.routes' => UserRoutes::class
+        'user.routes' => UserRoute::class,
+        'url.parameters' => URLParameters::class,
     ];
 }
