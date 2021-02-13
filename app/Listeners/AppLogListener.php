@@ -32,7 +32,6 @@ class AppLogListener
      */
     public function handle(MessageLogged $messageLogged)
     {
-        ;
         $httpReferrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
         $ip = \request()->getClientIp();
         $ua = \request()->userAgent();

@@ -1,5 +1,7 @@
 <?php
 
+require_once ('paths/web/general.php');
+
 require_once ('paths/web/home.php');
 
 require_once ('paths/web/auth/register.php');

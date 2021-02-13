@@ -2,18 +2,22 @@
 
 namespace App\Exceptions;
 
-use App\Exceptions\Custom\GenericException;
+use App\Exceptions;
+use App\Models\AppLog;
 use Illuminate\Database\QueryException;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class WebExceptionHandler extends Handler
 {
+    
     protected $customExceptions = [
-        \App\Exceptions\Custom\CreateModelFailedException::class => [
+        Exceptions\Custom\CreateModelFailedException::class => [
             QueryException::class
-        ]  
+        ],
+        Exceptions\Custom\HttpNotFoundException::class => [
+            NotFoundHttpException::class
+        ]
     ];
     
     /**
@@ -57,7 +61,12 @@ class WebExceptionHandler extends Handler
     }
     
     
-    
+    /**
+     * @param $request
+     * @param Throwable $exception
+     * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
     public function handleWebException($request, Throwable $exception)
     {
         if (config('app.debug') == false)
@@ -65,23 +74,25 @@ class WebExceptionHandler extends Handler
             // Check if this is a custom exception
             $customException = $this->getCustomException($exception);
             
-            if (!empty($customException)) {
-                // Throw the custom exception
-                return $this->getUserFriendlyResponse($customException);
-            }
-            else {
+            if (empty($customException)) 
+            {
                 // Check if this exception has been specified to be caught
                 $caughtException = $this->getCaughtException($exception);
-                
+    
                 if (!empty($caughtException)) {
                     // Throw A custom exception that was specified
-                    return $this->getUserFriendlyResponse(app()->make($caughtException));
+                    $customException = app()->make($caughtException);
                 }
                 else {
                     // Show generic exception
-                    return $this->getUserFriendlyResponse(new GenericException());
-                }
+                    $customException = new Exceptions\Custom\GenericException();
+                }   
             }
+    
+            // Log the exception
+            $this->logException($request, $customException);
+            
+            return $this->handleException($customException);
         }
         else {
             // Default
@@ -94,9 +105,23 @@ class WebExceptionHandler extends Handler
      * @param Throwable $exception
      * @return \Illuminate\Http\RedirectResponse
      */
-    private function getUserFriendlyResponse(Throwable $exception)
+    private function handleException(Throwable $exception)
     {
-        return back()->withErrors($exception->getMessage());
+        if (method_exists($exception, 'redirectTo')) {
+            return $exception->redirectTo();
+        } else {
+            return back()->withErrors($exception->getMessage());    
+        }
+    }
+    
+    
+    /**
+     * @param $request
+     * @param Throwable $throwable
+     */
+    private function logException($request, Throwable $throwable)
+    {
+        AppLog::createLog($request, AppLog::TYPE_EXCEPTION, $throwable->getMessage());
     }
     
 }
