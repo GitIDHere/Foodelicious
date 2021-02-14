@@ -1,9 +1,9 @@
 @extends('master')
 
 @section('content')
-    
-    <h1>Registered. Please confirm your email address before you can login</h1>
-    
+
+    <h1>Please verify your email.</h1>
+
     <form method="POST" action="{{route('verification.send')}}">
         @csrf
 
@@ -16,10 +16,9 @@
                 </ul>
             </div>
         @endif
-        
+
         <input type="submit" value="Re-send verification email" />
-        
+
     </form>
-    
     
 @endsection

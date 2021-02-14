@@ -35,11 +35,13 @@ class UserRegisterController extends Controller
      */
     public function confirmation(Request $request)
     {
-        if ($request->user()->hasVerifiedEmail()) {
+        $user = Auth::user();
+        
+        if ($user && $user->hasVerifiedEmail()) {
             return Redirect::route('home');
         }
         else {
-            return view('screens.auth.register_confirmation');
+            return view('screens.auth.register.register_confirmation');
         }
     }
     

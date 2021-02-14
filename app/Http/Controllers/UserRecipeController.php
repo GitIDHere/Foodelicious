@@ -67,7 +67,7 @@ class UserRecipeController extends Controller
         $user = Auth::user();
         $userProfile = $user->userProfile;
         
-        return view('screens.user.recipes.list')->with('recipes', $userProfile->recipes);
+        return view('screens.user.recipe.list')->with('recipes', $userProfile->recipes);
     }
     
     

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\URL;
 class URLParameters
 {
     /**
-     * Set any URL parameters for the recipe route
+     * Set any URL parameters for the route
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next

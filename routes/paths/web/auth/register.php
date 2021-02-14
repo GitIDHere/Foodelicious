@@ -7,7 +7,7 @@ use \App\Http\Controllers\Auth as Controllers;
  * Show the registration form
  */
 Route::get('/register', function(){
-    return view('screens.auth.register');
+    return view('screens.auth.register.view');
 })
 ->middleware(['guest'])
 ->name('register.show');
@@ -22,5 +22,4 @@ Route::post('/register', [Controllers\UserRegisterController::class, 'register']
  * Show the user a confirmation screen after successful registration
  */
 Route::get('/register/confirm', [Controllers\UserRegisterController::class, 'confirmation'])
-->middleware(['auth'])
 ->name('register.confirmation');
