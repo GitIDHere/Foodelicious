@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class RecipeCreateRequest extends FormRequest
 {
@@ -35,6 +36,7 @@ class RecipeCreateRequest extends FormRequest
             'ingredients' => 'required|json',
             'photos' => 'nullable',
             'photos.*' => 'mimes:jpeg,jpg,png|max:2048',
+            'visibility' => 'required|string|'.Rule::in(['public', 'private']),
         ];
     }
 }

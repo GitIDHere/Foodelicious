@@ -37,8 +37,13 @@ class UserRecipeController extends Controller
         
         if ($userProfile)
         {
-            $files = $request->files->all();
-            $recipe = $this->recipeService->createRecipe($userProfile, $recipeFields, $files['photos']);
+            $photos = [];
+            
+            if ($request->files->has('photos')) {
+                $photos = $request->files->all();    
+            }
+            
+            $recipe = $this->recipeService->createRecipe($userProfile, $recipeFields, $photos);
             
             if ($recipe)
             {

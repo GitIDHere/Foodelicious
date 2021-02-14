@@ -48,6 +48,7 @@ class RecipeFactory extends Factory
             'servings' => $this->faker->numberBetween(1, 10),
             'prep_directions' => $this->faker->text,
             'ingredients' => $ingredients,
+            'is_public' => $this->faker->boolean(),
             'created_at' => $this->faker->unixTime(),
         ];
     }

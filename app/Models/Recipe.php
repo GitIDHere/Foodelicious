@@ -9,7 +9,13 @@ class Recipe extends Model
 {
     use HasFactory;
     
+    const IS_PUBLIC = 'public';
     
+    const IS_PRIVATE = 'private';
+    
+    /**
+     * @var array 
+     */
     protected $fillable = [
         'title',
         'description',
@@ -19,8 +25,30 @@ class Recipe extends Model
         'utensils',
         'prep_directions',
         'ingredients',
+        'is_public'
     ];
     
+    /**
+     * @var array 
+     */
+    protected $casts = [
+        'is_public' => 'boolean'  
+    ];
+    
+    
+    /**
+     * If $visibility is string then compare it with self::IS_PUBLIC to see if it is set to public.
+     * @param $visibility
+     */
+    public function setIsPublicAttribute($visibility)
+    {
+        if (is_string($visibility)) {
+            $this->attributes['is_public'] = ($visibility === self::IS_PUBLIC);
+        }
+        else {
+            $this->attributes['is_public'] = $visibility;    
+        }
+    }
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

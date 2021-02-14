@@ -47,6 +47,13 @@
         <input id="recipe-photos" type="file" name="photos[]" multiple="multiple" accept=".jpg,.png,.jpeg"/>
         <br/><br/>
         
+        <label for="recipe-visibility">Recipe visibility</label>
+        <select name="visibility">
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+        </select>
+        <br/><br/>
+        
         <pre>{"1": "Expedita explicabo consectetur rerum iure consectetur expedita cumque.", "2": "Dolorem dolorem vero quo aut perspiciatis.", "3": "Suscipit mollitia quo sed porro perspiciatis earum.", "4": "Consequatur est consequatur cupiditate architecto expedita.", "5": "Magni ea libero sint beatae."}</pre>
         
         <input type="submit" />
