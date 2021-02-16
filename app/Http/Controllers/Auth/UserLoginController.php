@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserLogin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
@@ -27,6 +28,9 @@ class UserLoginController extends Controller
         if (Auth::attempt($request->only('email', 'password'), $rememberMe))
         {
             $request->session()->regenerate();
+            
+            UserLogin::dispatch(Auth::user());
+            
             return redirect()->intended('home');
         } else {
             return back()->withErrors(['error.login' => 'Invalid email or password. Please try again.']);            
