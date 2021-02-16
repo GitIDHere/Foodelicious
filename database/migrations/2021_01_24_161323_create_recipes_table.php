@@ -25,7 +25,7 @@ class CreateRecipesTable extends Migration
             $table->json('utensils');
             $table->text('prep_directions');
             $table->json('ingredients');
-            $table->boolean('is_public');
+            $table->string('visibility', 10);
             $table->timestamps();
     
             $table

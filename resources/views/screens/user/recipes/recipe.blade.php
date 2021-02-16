@@ -48,9 +48,9 @@
         <br/><br/>
         
         <label for="visibility">Recipe visibility</label>
-        <select name="visibility" value="{{ ($recipe['visibility'] ?? '') }}">
-            <option value="public">Public</option>
-            <option value="private">Private</option>
+        <select name="visibility">
+            <option {{ ($recipe['visibility'] == 'public' ? 'selected' : '') }} value="public">Public</option>
+            <option  {{ ($recipe['visibility'] == 'private' ? 'selected' : '') }} value="private">Private</option>
         </select>
         <br/><br/>
         

@@ -102,7 +102,7 @@ class UserRecipeController extends Controller
                 'utensils' => $utensilsCSV, # JSON
                 'ingredients' => $ingredientsCSV, # JSON
                 'photos' => '', # JSON???
-                'visibility' => $recipe->is_public,
+                'visibility' => $recipe->visibility,
             ];
                         
             return view('screens.user.recipes.recipe', ['recipe' => $recipeData]);

@@ -24,10 +24,6 @@ class RecipeService
      */
     public function createRecipe($userProfile, $recipeData, $photos)
     {
-        if (isset($recipeData['visibility'])) {
-            $recipeData['is_public'] = $recipeData['visibility'];
-        }
-        
         $recipe = $userProfile->recipes()->create($recipeData);
     
         if ($recipe)
