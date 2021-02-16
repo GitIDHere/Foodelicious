@@ -8,34 +8,18 @@ Route::prefix('{username}/recipes')
     ->group(function() 
     {
         Route::get('new', function(){
-            return view('screens.user.recipe.new');
+            return view('screens.user.recipes.recipe');
         })
-        ->name('user.recipe.new');
+        ->name('user.recipes.new');
         
         Route::post('new', [Controllers\UserRecipeController::class, 'createRecipe'])
-        ->name('user.recipe.new.submit');
+        ->name('user.recipes.new.submit');
         
         Route::get('my-recipes', [Controllers\UserRecipeController::class, 'showRecipeList'])
-        ->name('user.recipe.list');
+        ->name('user.recipes.list');
         
-        Route::get('{recipeId}', [Controllers\UserRecipeController::class, 'viewRecipe'])
-        ->name('user.recipe.view')
+        Route::get('{recipe}', [Controllers\UserRecipeController::class, 'viewRecipe'])
+        ->name('user.recipes.view')
         ;
     })
 ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

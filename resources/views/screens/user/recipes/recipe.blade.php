@@ -16,39 +16,39 @@
         </div>
     @endif
     
-    <form method="POST" action="{{ route('user.recipe.new.submit') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('user.recipes.new.submit') }}" enctype="multipart/form-data">
         @csrf
         
-        <input id="recipe-title" type="text" name="title" placeholder="Title" value="First recipe" />
+        <input id="recipe-title" type="text" name="title" placeholder="Title" value="{{ ($recipe['title'] ?? '')  }}" />
         <br/><br/>
         
         <label for="recipe-desc">Description</label>
-        <textarea id="recipe-desc" name="description">This is a recipe that I want to save</textarea>
+        <textarea id="recipe-desc" name="description">{{ ($recipe['description'] ?? '')  }}</textarea>
         <br/><br/>
 
-        <input id="recipe-directions" type="text" name="directions" placeholder="Direction (JSON)" value="" />
+        <input id="recipe-directions" type="text" name="directions" placeholder="Direction (JSON)" value="{{ ($recipe['directions'] ?? '') }}" />
         <br/><br/>
         
-        <input id="recipe-cook_time" type="text" name="cook_time" placeholder="Cook time" value="01:33" />
+        <input id="recipe-cook_time" type="text" name="cook_time" placeholder="Cook time" value="{{ ($recipe['cook_time'] ?? '') }}" />
         <br/><br/>
         
-        <input id="recipe-servings" type="text" name="servings" placeholder="Servings" value="2" />
+        <input id="recipe-servings" type="text" name="servings" placeholder="Servings" value="{{ ($recipe['servings'] ?? '') }}" />
         <br/><br/>
 
-        <input id="recipe-utensils" type="text" name="utensils" placeholder="Utensils" value="spoon,{{old('utensils')}}" />
+        <input id="recipe-utensils" type="text" name="utensils" placeholder="Utensils" value="{{ ($recipe['utensils'] ?? '') }}" />
         <br/><br/>
 
-        <input id="recipe-prep" type="text" name="prep_directions" placeholder="Preperations" value="boil water. Cut carrots into cubes" />
+        <input id="recipe-prep" type="text" name="prep_directions" placeholder="Preparations" value="{{ ($recipe['preparations'] ?? '') }}" />
         <br/><br/>
         
-        <input id="recipe-ingredients" name='ingredients' class='some_class_name' value="chocolate,{{old('ingredients')}}" placeholder='Ingredients'>
+        <input id="recipe-ingredients" name="ingredients" class="some_class_name" placeholder="Ingredients" value="{{ ($recipe['ingredients'] ?? '') }}">
         <br/><br/>
         
         <input id="recipe-photos" type="file" name="photos[]" multiple="multiple" accept=".jpg,.png,.jpeg"/>
         <br/><br/>
         
-        <label for="recipe-visibility">Recipe visibility</label>
-        <select name="visibility">
+        <label for="visibility">Recipe visibility</label>
+        <select name="visibility" value="{{ ($recipe['visibility'] ?? '') }}">
             <option value="public">Public</option>
             <option value="private">Private</option>
         </select>

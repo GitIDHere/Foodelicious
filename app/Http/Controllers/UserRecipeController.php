@@ -50,7 +50,7 @@ class UserRecipeController extends Controller
                 // Send event
                 RecipeCreated::dispatch($recipe);
                 
-                return redirect()->route('my_recipes')->with(['success' => 'Recipe added!']);
+                return redirect()->route('user.recipes.list')->with(['success' => 'Recipe added!']);
             }
             else {
                 return back()->withErrors(['Failed to create recipe']);
@@ -72,17 +72,62 @@ class UserRecipeController extends Controller
         $user = Auth::user();
         $userProfile = $user->userProfile;
         
-        return view('screens.user.recipe.list')->with('recipes', $userProfile->recipes);
+        return view('screens.user.recipes.list')->with('recipes', $userProfile->recipes);
     }
     
     
-    public function viewRecipe(Request $request)
+    /**
+     * @param Request $request
+     * @param $username
+     * @param Recipe $recipe
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function viewRecipe(Request $request, $username, Recipe $recipe)
     {
-        /**
-         * - Make sure that the recipe belongs to the user
-         */
+        $user = Auth::user();
+        $isUserRecipe = $user->userProfile->recipes->contains($recipe);
         
-        
+        if ($isUserRecipe) 
+        {
+            $ingredientsCSV = $this->getCSVFromJSON($recipe->ingredients);
+            $utensilsCSV = $this->getCSVFromJSON($recipe->utensils);
+    
+            $recipeData = [
+                'title' => $recipe->title,
+                'description' => $recipe->description,
+                'directions' => $recipe->directions, # JSON
+                'cook_time' => $recipe->cook_time,
+                'servings' => $recipe->servings,
+                'preparations' => $recipe->prep_directions,
+                'utensils' => $utensilsCSV, # JSON
+                'ingredients' => $ingredientsCSV, # JSON
+                'photos' => '', # JSON???
+                'visibility' => $recipe->is_public,
+            ];
+                        
+            return view('screens.user.recipes.recipe', ['recipe' => $recipeData]);
+        } 
+        else {
+            // The recipe doesn't belong to the user
+            return redirect()->route('home');
+        }
     }
+    
+    
+    
+    /**
+     * @param $json
+     * @return string
+     */
+    private function getCSVFromJSON($json)
+    {
+        $jsonArr = json_decode($json);
+        $csv = '';
+        if ($jsonArr) {
+            $csv = implode(',', $jsonArr);
+        }
+        return $csv;
+    }
+    
     
 }

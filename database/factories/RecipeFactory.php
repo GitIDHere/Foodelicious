@@ -30,14 +30,8 @@ class RecipeFactory extends Factory
             '4' => $this->faker->sentence,
             '5' => $this->faker->sentence,
         ]);
-        $ingredients = json_encode([
-            $this->faker->words,
-            $this->faker->words,
-        ]);
-        $utensils = json_encode([
-            $this->faker->words,
-            $this->faker->words,            
-        ]);
+        $ingredients = json_encode($this->faker->words);
+        $utensils = json_encode($this->faker->words);
         
         return [
             'title' => $this->faker->word(),

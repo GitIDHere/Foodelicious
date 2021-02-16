@@ -15,8 +15,8 @@
         <br/>
         <br/>
         <br/>
-        <a href="{{route('user.recipe.new')}}">Add recipes</a>    
-        <a href="{{route('user.recipe.list')}}">My recipes</a>    
+        <a href="{{route('user.recipes.new')}}">Add recipes</a>    
+        <a href="{{route('user.recipes.list')}}">My recipes</a>    
     @endauth
     
 @endsection

@@ -9,10 +9,6 @@ class Recipe extends Model
 {
     use HasFactory;
     
-    const IS_PUBLIC = 'public';
-    
-    const IS_PRIVATE = 'private';
-    
     /**
      * @var array 
      */
@@ -43,7 +39,7 @@ class Recipe extends Model
     public function setIsPublicAttribute($visibility)
     {
         if (is_string($visibility)) {
-            $this->attributes['is_public'] = ($visibility === self::IS_PUBLIC);
+            $this->attributes['is_public'] = (strtolower($visibility) === 'public');
         }
         else {
             $this->attributes['is_public'] = $visibility;    
