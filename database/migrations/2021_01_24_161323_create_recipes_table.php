@@ -19,7 +19,7 @@ class CreateRecipesTable extends Migration
             $table->unsignedBigInteger('user_profile_id');
             $table->string('title');
             $table->text('description');
-            $table->json('directions');
+            $table->json('cooking_steps');
             $table->string('cook_time', 50);
             $table->smallInteger('servings');
             $table->json('utensils');

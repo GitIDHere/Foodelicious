@@ -2,6 +2,7 @@
 
 @section('page_scripts')
     <script src="{{mix('js/recipe_tags.js')}}"></script>
+    <script src="{{mix('js/recipe_cooking_steps.js')}}"></script>
 @endsection
 
 @section('content')
@@ -26,7 +27,7 @@
         <textarea id="recipe-desc" name="description">{{ ($recipe['description'] ?? '')  }}</textarea>
         <br/><br/>
 
-        <input id="recipe-directions" type="text" name="directions" placeholder="Direction (JSON)" value="{{ ($recipe['directions'] ?? '') }}" />
+        <input id="recipe-cooking_steps" type="text" name="cooking_steps" placeholder="Direction (JSON)" value="{{ ($recipe['cooking_steps'] ?? '') }}" />
         <br/><br/>
         
         <input id="recipe-cook_time" type="text" name="cook_time" placeholder="Cook time" value="{{ ($recipe['cook_time'] ?? '') }}" />
@@ -49,8 +50,13 @@
         
         <label for="visibility">Recipe visibility</label>
         <select name="visibility">
-            <option {{ ($recipe['visibility'] == 'public' ? 'selected' : '') }} value="public">Public</option>
-            <option  {{ ($recipe['visibility'] == 'private' ? 'selected' : '') }} value="private">Private</option>
+            @if(isset($recipe))
+                <option {{ ($recipe['visibility'] == 'public' ? 'selected' : '') }} value="public">Public</option>
+                <option  {{ ($recipe['visibility'] == 'private' ? 'selected' : '') }} value="private">Private</option>
+            @else
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+            @endif
         </select>
         <br/><br/>
         

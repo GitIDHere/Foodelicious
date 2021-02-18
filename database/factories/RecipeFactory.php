@@ -23,7 +23,7 @@ class RecipeFactory extends Factory
     {
         $cookTimeHours = $this->faker->numberBetween(0, 3);
         $cookTimeMins = $this->faker->numberBetween(1, 59);        
-        $directions = json_encode([
+        $cookingSteps = json_encode([
             '1' => $this->faker->sentence,
             '2' => $this->faker->sentence,
             '3' => $this->faker->sentence,
@@ -36,7 +36,7 @@ class RecipeFactory extends Factory
         return [
             'title' => $this->faker->word(),
             'description' => $this->faker->text,
-            'directions' => $directions,
+            'cooking_steps' => $cookingSteps,
             'cook_time' => $cookTimeHours.':'.$cookTimeMins,
             'utensils' => $utensils,
             'servings' => $this->faker->numberBetween(1, 10),

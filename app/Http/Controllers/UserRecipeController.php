@@ -95,7 +95,7 @@ class UserRecipeController extends Controller
             $recipeData = [
                 'title' => $recipe->title,
                 'description' => $recipe->description,
-                'directions' => $recipe->directions, # JSON
+                'cooking_steps' => $recipe->cooking_steps, # JSON
                 'cook_time' => $recipe->cook_time,
                 'servings' => $recipe->servings,
                 'preparations' => $recipe->prep_directions,
@@ -104,7 +104,7 @@ class UserRecipeController extends Controller
                 'photos' => '', # JSON???
                 'visibility' => $recipe->visibility,
             ];
-                        
+                 
             return view('screens.user.recipes.recipe', ['recipe' => $recipeData]);
         } 
         else {
