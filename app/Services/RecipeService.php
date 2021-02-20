@@ -19,12 +19,23 @@ class RecipeService
     
     /**
      * @param UserProfile $userProfile
+     * @param Recipe $recipe
      * @param array $recipeData
      * @return Model|Recipe
      */
-    public function createRecipe($userProfile, $recipeData, $photos)
+    public function saveRecipe($userProfile, $recipe, $recipeData, $photos)
     {
-        $recipe = $userProfile->recipes()->create($recipeData);
+        // Check $recipe is already attached to the user
+        $isUserRecipe = $userProfile->recipes->contains($recipe);
+        
+        if ($isUserRecipe) {
+            // Update the recipe
+            $recipe->fill($recipeData)->save();
+        }
+        else {
+            // Create new recipe
+            $recipe = $userProfile->recipes()->create($recipeData);    
+        }
     
         if ($recipe)
         {

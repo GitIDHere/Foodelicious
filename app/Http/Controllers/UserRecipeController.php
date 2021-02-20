@@ -8,6 +8,7 @@ use App\Models\Recipe;
 use App\Services\RecipeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 
 class UserRecipeController extends Controller
@@ -28,7 +29,7 @@ class UserRecipeController extends Controller
      * @param RecipeCreateRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function saveRecipe(RecipeCreateRequest $request)
+    public function saveRecipe(RecipeCreateRequest $request, $username, Recipe $recipe)
     {
         $recipeFields = $request->all();
                 
@@ -47,7 +48,7 @@ class UserRecipeController extends Controller
                 $recipeFields['cooking_steps'] = json_encode($recipeFields['cooking_steps']);
             }
             
-            $recipe = $this->recipeService->createRecipe($userProfile, $recipeFields, $photos);
+            $recipe = $this->recipeService->saveRecipe($userProfile, $recipe, $recipeFields, $photos);
             
             if ($recipe)
             {
@@ -109,7 +110,7 @@ class UserRecipeController extends Controller
                 'visibility' => $recipe->visibility,
             ];
                  
-            return view('screens.user.recipes.recipe', ['recipe' => $recipeData]);
+            return view('screens.user.recipes.recipe', ['data' => $recipeData, 'recipe' => $recipe]);
         } 
         else {
             // The recipe doesn't belong to the user

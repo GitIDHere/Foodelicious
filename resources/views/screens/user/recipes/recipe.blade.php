@@ -17,21 +17,21 @@
         </div>
     @endif
     
-    <form method="POST" action="{{ route('user.recipes.new.submit') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ (isset($data) ? route('user.recipes.save.submit', ['recipe' => $recipe]) : route('user.recipes.create.submit') ) }}" enctype="multipart/form-data">
         @csrf
         
-        <input id="recipe-title" type="text" name="title" placeholder="Title" value="{{ ($recipe['title'] ?? '')  }}" />
+        <input id="recipe-title" type="text" name="title" placeholder="Title" value="{{ ($data['title'] ?? '')  }}" />
         <br/><br/>
         
         <label for="recipe-desc">Description</label>
-        <textarea id="recipe-desc" name="description">{{ ($recipe['description'] ?? '')  }}</textarea>
+        <textarea id="recipe-desc" name="description">{{ ($data['description'] ?? '')  }}</textarea>
         <br/><br/>
 
         <div class="cooking-steps-container">
             <div class="cooking-steps-list">
-                @if(isset($recipe))
-                    @foreach($recipe['cooking_steps'] as $index => $cookingStep)
-                        <div data-cooking-step="{{$index + 1}}" class="cooking-step-container">
+                @if(isset($data))
+                    @foreach($data['cooking_steps'] as $index => $cookingStep)
+                        <div data-cooking-step="{{$index+1}}" class="cooking-step-container">
                             <textarea name="cooking_steps[]">{{ $cookingStep }}</textarea>
                             <div class="button-container">
                                 <a data-cooking-step="{{$index+1}}" href="#" class="delete-cooking-step btn btn-delete">Delete step</a>
@@ -46,19 +46,19 @@
         </div>
         <br/><br/>
         
-        <input id="recipe-cook_time" type="text" name="cook_time" placeholder="Cook time" value="{{ ($recipe['cook_time'] ?? '') }}" />
+        <input id="recipe-cook_time" type="text" name="cook_time" placeholder="Cook time" value="{{ ($data['cook_time'] ?? '') }}" />
         <br/><br/>
         
-        <input id="recipe-servings" type="text" name="servings" placeholder="Servings" value="{{ ($recipe['servings'] ?? '') }}" />
+        <input id="recipe-servings" type="text" name="servings" placeholder="Servings" value="{{ ($data['servings'] ?? '') }}" />
         <br/><br/>
 
-        <input id="recipe-utensils" type="text" name="utensils" placeholder="Utensils" value="{{ ($recipe['utensils'] ?? '') }}" />
+        <input id="recipe-utensils" type="text" name="utensils" placeholder="Utensils" value="{{ ($data['utensils'] ?? '') }}" />
         <br/><br/>
 
-        <input id="recipe-prep" type="text" name="prep_directions" placeholder="Preparations" value="{{ ($recipe['preparations'] ?? '') }}" />
+        <input id="recipe-prep" type="text" name="prep_directions" placeholder="Preparations" value="{{ ($data['preparations'] ?? '') }}" />
         <br/><br/>
         
-        <input id="recipe-ingredients" name="ingredients" class="some_class_name" placeholder="Ingredients" value="{{ ($recipe['ingredients'] ?? '') }}">
+        <input id="recipe-ingredients" name="ingredients" class="some_class_name" placeholder="Ingredients" value="{{ ($data['ingredients'] ?? '') }}">
         <br/><br/>
         
         <input id="recipe-photos" type="file" name="photos[]" multiple="multiple" accept=".jpg,.png,.jpeg"/>
@@ -66,9 +66,9 @@
         
         <label for="visibility">Recipe visibility</label>
         <select name="visibility">
-            @if(isset($recipe))
-                <option {{ ($recipe['visibility'] == 'public' ? 'selected' : '') }} value="public">Public</option>
-                <option  {{ ($recipe['visibility'] == 'private' ? 'selected' : '') }} value="private">Private</option>
+            @if(isset($data))
+                <option {{ ($data['visibility'] == 'public' ? 'selected' : '') }} value="public">Public</option>
+                <option  {{ ($data['visibility'] == 'private' ? 'selected' : '') }} value="private">Private</option>
             @else
                 <option value="public">Public</option>
                 <option value="private">Private</option>
