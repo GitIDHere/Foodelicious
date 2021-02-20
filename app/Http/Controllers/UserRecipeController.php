@@ -28,7 +28,7 @@ class UserRecipeController extends Controller
      * @param RecipeCreateRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function createRecipe(RecipeCreateRequest $request)
+    public function saveRecipe(RecipeCreateRequest $request)
     {
         $recipeFields = $request->all();
                 
@@ -95,11 +95,11 @@ class UserRecipeController extends Controller
         {
             $ingredientsCSV = $this->getCSVFromJSON($recipe->ingredients);
             $utensilsCSV = $this->getCSVFromJSON($recipe->utensils);
-    
+            
             $recipeData = [
                 'title' => $recipe->title,
                 'description' => $recipe->description,
-                'cooking_steps' => $recipe->cooking_steps, # JSON
+                'cooking_steps' => json_decode($recipe->cooking_steps),
                 'cook_time' => $recipe->cook_time,
                 'servings' => $recipe->servings,
                 'preparations' => $recipe->prep_directions,

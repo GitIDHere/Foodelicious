@@ -12,7 +12,7 @@ Route::prefix('{username}/recipes')
         })
         ->name('user.recipes.new');
         
-        Route::post('new', [Controllers\UserRecipeController::class, 'createRecipe'])
+        Route::post('new', [Controllers\UserRecipeController::class, 'saveRecipe'])
         ->name('user.recipes.new.submit');
         
         Route::get('my-recipes', [Controllers\UserRecipeController::class, 'showRecipeList'])

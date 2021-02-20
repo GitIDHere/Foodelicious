@@ -28,7 +28,20 @@
         <br/><br/>
 
         <div class="cooking-steps-container">
-            <div class="cooking-steps-list"></div>
+            <div class="cooking-steps-list">
+                @if(isset($recipe))
+                    @foreach($recipe['cooking_steps'] as $index => $cookingStep)
+                        <div data-cooking-step="{{$index + 1}}" class="cooking-step-container">
+                            <textarea name="cooking_steps[]">{{ $cookingStep }}</textarea>
+                            <div class="button-container">
+                                <a data-cooking-step="{{$index+1}}" href="#" class="delete-cooking-step btn btn-delete">Delete step</a>
+                                <a href="#" class="btn-move-up btn">Move up</a>
+                                <a href="#" class="btn-move-down btn">Move down</a>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
             <a href="#" class="cooking-steps-new-btn" role="button">Add a step</a>
         </div>
         <br/><br/>

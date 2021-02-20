@@ -2,7 +2,8 @@ $(() =>
 {
     let cookingStepsContainer = $('.cooking-steps-container');
     let addNewStepBtn = $('.cooking-steps-new-btn');
-    let cookingStepCounter = 0;
+    // Set the number of cooking steps. If none then length will be 0
+    let cookingStepCounter = $('.cooking-step-container').length;
     
     addNewStepBtn.on('click', () => 
     {
