@@ -28,7 +28,7 @@ class RecipeService
     
         if ($recipe)
         {
-            $savedFiles = $this->recipePhotoService->saveFiles($photos['photos']);
+            $savedFiles = $this->recipePhotoService->saveFiles($photos);
         
             if ($savedFiles->isNotEmpty())
             {

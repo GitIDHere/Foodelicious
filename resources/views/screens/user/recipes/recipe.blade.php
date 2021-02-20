@@ -27,7 +27,10 @@
         <textarea id="recipe-desc" name="description">{{ ($recipe['description'] ?? '')  }}</textarea>
         <br/><br/>
 
-        <input id="recipe-cooking_steps" type="text" name="cooking_steps" placeholder="Direction (JSON)" value="{{ ($recipe['cooking_steps'] ?? '') }}" />
+        <div class="cooking-steps-container">
+            <div class="cooking-steps-list"></div>
+            <a href="#" class="cooking-steps-new-btn" role="button">Add a step</a>
+        </div>
         <br/><br/>
         
         <input id="recipe-cook_time" type="text" name="cook_time" placeholder="Cook time" value="{{ ($recipe['cook_time'] ?? '') }}" />

@@ -31,7 +31,7 @@ class UserRecipeController extends Controller
     public function createRecipe(RecipeCreateRequest $request)
     {
         $recipeFields = $request->all();
-        
+                
         $user = Auth::user();
         $userProfile = $user->userProfile;
         
@@ -41,6 +41,10 @@ class UserRecipeController extends Controller
             
             if ($request->files->has('photos')) {
                 $photos = $request->files->all();    
+            }
+
+            if (is_array($recipeFields['cooking_steps'])) {
+                $recipeFields['cooking_steps'] = json_encode($recipeFields['cooking_steps']);
             }
             
             $recipe = $this->recipeService->createRecipe($userProfile, $recipeFields, $photos);
