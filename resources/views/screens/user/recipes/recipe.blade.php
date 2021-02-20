@@ -27,11 +27,14 @@
         <label for="recipe-desc">Description</label>
         <textarea id="recipe-desc" name="description">{{ ($data['description'] ?? '')  }}</textarea>
         <br/><br/>
-
+                
         <div class="cooking-steps-container">
             <div class="cooking-steps-list">
-                @if(isset($data))
-                    @foreach($data['cooking_steps'] as $index => $cookingStep)
+                @if(isset($data) || !empty(old('cooking_steps')))
+                    @php
+                    $cookingSteps = !empty(old('cooking_steps')) ? old('cooking_steps') : $data['cooking_steps'];
+                    @endphp
+                    @foreach($cookingSteps as $index => $cookingStep)
                         <div data-cooking-step="{{$index+1}}" class="cooking-step-container">
                             <textarea name="cooking_steps[]">{{ $cookingStep }}</textarea>
                             <div class="button-container">
@@ -55,13 +58,15 @@
         <input id="recipe-servings" type="text" name="servings" placeholder="Servings" value="{{ ($data['servings'] ?? '') }}" />
         <br/><br/>
 
-        <input id="recipe-utensils" type="text" name="utensils" placeholder="Utensils" value="{{ ($data['utensils'] ?? '') }}" />
+        @php $utensils = (!empty(old('utensils')) ? old('utensils') : $data['utensils']) @endphp
+        <input id="recipe-utensils" type="text" name="utensils" placeholder="Utensils" value="{{ ($utensils ?? '') }}" />
         <br/><br/>
 
         <input id="recipe-prep" type="text" name="prep_directions" placeholder="Preparations" value="{{ ($data['preparations'] ?? '') }}" />
         <br/><br/>
         
-        <input id="recipe-ingredients" name="ingredients" class="some_class_name" placeholder="Ingredients" value="{{ ($data['ingredients'] ?? '') }}">
+        @php $ingredients = (!empty(old('ingredients')) ? old('ingredients') : $data['ingredients']) @endphp
+        <input id="recipe-ingredients" name="ingredients" class="some_class_name" placeholder="Ingredients" value="{{ ($ingredients ?? '') }}">
         <br/><br/>
         
         <input id="recipe-photos" type="file" name="photos[]" multiple="multiple" accept=".jpg,.png,.jpeg"/>
