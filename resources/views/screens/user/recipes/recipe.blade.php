@@ -3,6 +3,7 @@
 @section('page_scripts')
     <script src="{{mix('js/recipe_tags.js')}}"></script>
     <script src="{{mix('js/recipe_cooking_steps.js')}}"></script>
+    <script src="{{mix('js/recipe_cook_times.js')}}"></script>
 @endsection
 
 @section('content')
@@ -45,8 +46,10 @@
             <a href="#" class="cooking-steps-new-btn" role="button">Add a step</a>
         </div>
         <br/><br/>
+
+        <input type="number" name="cook_time_hours" class="cook-time-hours" placeholder="HH" min="0" max="15" value="{{ ($data['cook_time_hours'] ?? '') }}" />
+        <input type="number" name="cook_time_minutes" class="cook-time-minutes"  placeholder="MM" min="1" max="59" value="{{ ($data['cook_time_minutes'] ?? '') }}" />
         
-        <input id="recipe-cook_time" type="text" name="cook_time" placeholder="Cook time" value="{{ ($data['cook_time'] ?? '') }}" />
         <br/><br/>
         
         <input id="recipe-servings" type="text" name="servings" placeholder="Servings" value="{{ ($data['servings'] ?? '') }}" />
@@ -75,8 +78,6 @@
             @endif
         </select>
         <br/><br/>
-        
-        <pre>{"1": "Expedita explicabo consectetur rerum iure consectetur expedita cumque.", "2": "Dolorem dolorem vero quo aut perspiciatis.", "3": "Suscipit mollitia quo sed porro perspiciatis earum.", "4": "Consequatur est consequatur cupiditate architecto expedita.", "5": "Magni ea libero sint beatae."}</pre>
         
         <input type="submit" />
         

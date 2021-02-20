@@ -8,7 +8,6 @@ use App\Models\Recipe;
 use App\Services\RecipeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\URL;
 
 
 class UserRecipeController extends Controller
@@ -32,7 +31,7 @@ class UserRecipeController extends Controller
     public function saveRecipe(RecipeCreateRequest $request, $username, Recipe $recipe)
     {
         $recipeFields = $request->all();
-                
+               
         $user = Auth::user();
         $userProfile = $user->userProfile;
         
@@ -44,6 +43,10 @@ class UserRecipeController extends Controller
                 $photos = $request->files->all();    
             }
 
+            $cookTimeHours = $recipeFields['cook_time_hours'];
+            $cookTimeMin = $recipeFields['cook_time_minutes'];
+            $recipeFields['cook_time'] = $cookTimeHours.':'.$cookTimeMin;
+            
             if (is_array($recipeFields['cooking_steps'])) {
                 $recipeFields['cooking_steps'] = json_encode($recipeFields['cooking_steps']);
             }
@@ -66,6 +69,7 @@ class UserRecipeController extends Controller
             return redirect()->route('login.show')->withErrors(['User profile not found.']);
         }
     }
+    
     
     /**
      * @param Request $request
@@ -97,11 +101,16 @@ class UserRecipeController extends Controller
             $ingredientsCSV = $this->getCSVFromJSON($recipe->ingredients);
             $utensilsCSV = $this->getCSVFromJSON($recipe->utensils);
             
+            $cookTimes = explode(':', $recipe->cook_time);
+            $cookTimeHours = $cookTimes[0];
+            $cookTimeMin = $cookTimes[1];
+            
             $recipeData = [
                 'title' => $recipe->title,
                 'description' => $recipe->description,
                 'cooking_steps' => json_decode($recipe->cooking_steps),
-                'cook_time' => $recipe->cook_time,
+                'cook_time_hours' => $cookTimeHours,
+                'cook_time_minutes' => $cookTimeMin,
                 'servings' => $recipe->servings,
                 'preparations' => $recipe->prep_directions,
                 'utensils' => $utensilsCSV, # JSON
@@ -117,7 +126,6 @@ class UserRecipeController extends Controller
             return redirect()->route('home');
         }
     }
-    
     
     
     /**

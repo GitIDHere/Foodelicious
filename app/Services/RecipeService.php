@@ -36,16 +36,17 @@ class RecipeService
             // Create new recipe
             $recipe = $userProfile->recipes()->create($recipeData);    
         }
-    
+        
         if ($recipe)
         {
             $savedFiles = $this->recipePhotoService->saveFiles($photos);
         
-            if ($savedFiles->isNotEmpty())
+            if ($savedFiles->isNotEmpty()) 
             {
                 $recipe->files()->attach($savedFiles);
-                return $recipe;
             }
+            
+            return $recipe;
         }
         
         return null;
