@@ -2,12 +2,10 @@
 
 namespace App\Exceptions\Custom;
 
-use Throwable;
-
-class GenericException extends \Exception
+class GenericException extends CustomHttpException
 {
-    public function __construct($message="Something went wrong. Please try again later.", $code = 500, Throwable $previous = null)
+    public function __construct($message="Something went wrong. Please try again later.", $code = 500)
     {
-        parent::__construct($message,$code,$previous);
+        parent::__construct($message,$code);
     }
 }

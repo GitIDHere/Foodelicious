@@ -64,7 +64,7 @@ class WebExceptionHandler extends Handler
     /**
      * @param $request
      * @param Throwable $exception
-     * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return mixed|Throwable|null
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function handleWebException($request, Throwable $exception)
@@ -84,36 +84,22 @@ class WebExceptionHandler extends Handler
                     $customException = app()->make($caughtException);
                 }
                 else {
-                    // Show generic exception
                     $customException = new Exceptions\Custom\GenericException();
+                    // Show generic exception
+                    //$customException = $exception;
                 }   
             }
     
             // Log the exception
             $this->logException($request, $customException);
-            
-            return $this->handleException($customException);
+
+            return $customException;
         }
         else {
             // Default
-            return $this->convertExceptionToResponse($exception);
+            return $exception;
         }
     }
-    
-    
-    /**
-     * @param Throwable $exception
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    private function handleException(Throwable $exception)
-    {
-        if (method_exists($exception, 'redirectTo')) {
-            return $exception->redirectTo();
-        } else {
-            return back()->withErrors($exception->getMessage());    
-        }
-    }
-    
     
     /**
      * @param $request

@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use App\Exceptions\Custom\CustomHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Arr;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -53,12 +55,17 @@ class Handler extends ExceptionHandler
             return $APIExceptionHandler->handleApiException($request, $exception);
         } 
         else {
-            return $this->toIlluminateResponse(
-                $webExceptionHandler->handleWebException($request, $exception),
-                $exception
-            );
+            $customExeption = $webExceptionHandler->handleWebException($request, $exception);
+                
+            if ($customExeption instanceof CustomHttpException) 
+            {
+                return redirect($customExeption->getRedirectTo() ?? url()->previous())
+                    ->withInput(Arr::except($request->input(), $this->dontFlash))
+                    ->withErrors($customExeption->getErrors());   
+            }
+            else {
+                return parent::render($request, $customExeption);
+            }
         }
-        
-        // parent::render($request, $exception);
     }
 }

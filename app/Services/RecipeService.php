@@ -2,11 +2,9 @@
 
 namespace App\Services;
 
-use App\Exceptions\Custom\CreateModelFailedException;
 use App\Models\Recipe;
 use App\Models\UserProfile;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\QueryException;
 
 class RecipeService
 {
@@ -51,14 +49,6 @@ class RecipeService
         
         return null;
     }
-    
-    
-    
-    
-    
-    
-    
-    
     
     
 }

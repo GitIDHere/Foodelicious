@@ -2,13 +2,10 @@
 
 namespace App\Exceptions\Custom;
 
-use Exception;
-use Throwable;
-
-class CreateModelFailedException extends Exception
+class CreateModelFailedException extends CustomHttpException
 {
-    public function __construct($message="Failed to create item", $code = 422, Throwable $previous = null)
+    public function __construct($message = "Failed to create item", $code = 422)
     {
-        parent::__construct($message,$code,$previous);
+        parent::__construct($message, $code);
     }
 }
