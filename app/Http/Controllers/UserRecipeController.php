@@ -40,7 +40,8 @@ class UserRecipeController extends Controller
             $photos = [];
             
             if ($request->files->has('photos')) {
-                $photos = $request->files->all();    
+                $paramPhotos = $request->files->all();    
+                $photos = $paramPhotos['photos'];
             }
 
             $cookTimeHours = $recipeFields['cook_time_hours'];

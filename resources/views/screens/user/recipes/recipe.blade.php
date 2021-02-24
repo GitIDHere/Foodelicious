@@ -58,14 +58,25 @@
         <input id="recipe-servings" type="text" name="servings" placeholder="Servings" value="{{ ($data['servings'] ?? '') }}" />
         <br/><br/>
 
-        @php $utensils = (!empty(old('utensils')) ? old('utensils') : $data['utensils']) @endphp
+        @php 
+            $utensils = old('utensils');
+            if (empty(old('utensils')) && isset($data)) {
+                $utensils = $data['utensils'];
+            }
+        @endphp
         <input id="recipe-utensils" type="text" name="utensils" placeholder="Utensils" value="{{ ($utensils ?? '') }}" />
         <br/><br/>
 
-        <input id="recipe-prep" type="text" name="prep_directions" placeholder="Preparations" value="{{ ($data['preparations'] ?? '') }}" />
+{{--        <input id="recipe-prep" type="text" name="prep_directions" placeholder="Preparations" value="{{ ($data['preparations'] ?? '') }}" />--}}
+        <textarea id="recipe-prep" name="prep_directions" placeholder="Prep">{{ ($data['preparations'] ?? '') }}</textarea>
         <br/><br/>
         
-        @php $ingredients = (!empty(old('ingredients')) ? old('ingredients') : $data['ingredients']) @endphp
+        @php
+            $ingredients = old('ingredients');
+            if (empty(old('ingredients')) && isset($data)) {
+                $ingredients = $data['ingredients'];
+            }
+        @endphp
         <input id="recipe-ingredients" name="ingredients" class="some_class_name" placeholder="Ingredients" value="{{ ($ingredients ?? '') }}">
         <br/><br/>
         
