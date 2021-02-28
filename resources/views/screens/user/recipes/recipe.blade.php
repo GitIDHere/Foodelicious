@@ -79,6 +79,18 @@
         @endphp
         <input id="recipe-ingredients" name="ingredients" class="some_class_name" placeholder="Ingredients" value="{{ ($ingredients ?? '') }}">
         <br/><br/>
+        <br/><br/>
+        
+        @if (isset($data))
+            <ul>
+            @foreach($data['photos'] as $photo)
+                <li>
+                    <img alt="{{ $photo['alt']  }}" src="{{ $photo['uri'] }}" />
+                    <a href="#" data-photo="{{$photo['id']}}" >Delete</a>
+                </li>
+            @endforeach
+            </ul>
+        @endif
         
         <input id="recipe-photos" type="file" name="photos[]" multiple="multiple" accept=".jpg,.png,.jpeg"/>
         <br/><br/>

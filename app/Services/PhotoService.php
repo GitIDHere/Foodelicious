@@ -52,6 +52,8 @@ class PhotoService
     {
         $savedFiles = new Eloquent\Collection();
         
+        $driver = Storage::drive($this->visibility);
+        
         foreach($files as $fileIndex => $file) 
         {
             // Check that the mime type is allowed
@@ -67,10 +69,10 @@ class PhotoService
                      if (isset($customNames[$fileIndex]) && !empty($customNames[$fileIndex])) 
                      {
                          $fileName = $customNames[$fileIndex];
-                         $path = Storage::putFileAs($this->baseFilePath, new File($file->getPathname()), $fileName, $this->visibility);
+                         $path = $driver->putFileAs($this->baseFilePath, new File($file->getPathname()), $fileName, $this->visibility);
                      } 
                      else {
-                         $path = Storage::putFile($this->baseFilePath, new File($file->getPathname()), $this->visibility);    
+                         $path = $driver->putFile($this->baseFilePath, new File($file->getPathname()), $this->visibility);    
                      }
                      
                      if ($path) 

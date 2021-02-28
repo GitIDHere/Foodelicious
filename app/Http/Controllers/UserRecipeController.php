@@ -8,6 +8,7 @@ use App\Models\Recipe;
 use App\Services\RecipeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 class UserRecipeController extends Controller
@@ -106,6 +107,15 @@ class UserRecipeController extends Controller
             $cookTimeHours = $cookTimes[0];
             $cookTimeMin = $cookTimes[1];
             
+            $recipePhotos = $recipe->files->map(function($photoFile)
+            {
+                return  [
+                    'id' => $photoFile->id,
+                    'uri' => asset($photoFile->public_path),
+                    'alt' => $photoFile->name
+                ];
+            });
+            
             $recipeData = [
                 'title' => $recipe->title,
                 'description' => $recipe->description,
@@ -114,9 +124,9 @@ class UserRecipeController extends Controller
                 'cook_time_minutes' => $cookTimeMin,
                 'servings' => $recipe->servings,
                 'preparations' => $recipe->prep_directions,
-                'utensils' => $utensilsCSV, # JSON
-                'ingredients' => $ingredientsCSV, # JSON
-                'photos' => '', # JSON???
+                'utensils' => $utensilsCSV,
+                'ingredients' => $ingredientsCSV,
+                'photos' => $recipePhotos->toArray(),
                 'visibility' => $recipe->visibility,
             ];
                  

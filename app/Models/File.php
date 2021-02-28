@@ -16,6 +16,23 @@ class File extends Model
     
     
     /**
+     * @var array 
+     */
+    protected $appends = [
+        'public_path'  
+    ];
+    
+    
+    /**
+     * @return string
+     */
+    public function getPublicPathAttribute()
+    {
+        return 'storage/'.$this->path;
+    }
+    
+    
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function recipe()
