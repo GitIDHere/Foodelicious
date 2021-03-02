@@ -4,6 +4,7 @@ namespace App\Services;
 
 
 
+use App\Models\Recipe;
 use Illuminate\Database\Eloquent;
 use Illuminate\Http\File;
 use App\Models\File as AppFile;
@@ -48,7 +49,7 @@ class PhotoService
      * @param array $customNames
      * @return Eloquent\Collection
      */
-    public function saveFiles($files, $customNames = [])
+    public function savePhotos($files, $customNames = [])
     {
         $savedFiles = new Eloquent\Collection();
         
@@ -89,6 +90,23 @@ class PhotoService
         }
         
         return $savedFiles;
+    }
+    
+    
+    /**
+     * @param Recipe $recipe
+     * @param [] $photoIds
+     */
+    public function deletePhotos($recipe, $photoIds)
+    {
+        if ($recipe instanceof Recipe && !empty($photoIds))
+        {
+            if (!is_array($photoIds)) {
+                $photoIds = [$photoIds];
+            }
+            
+            $recipe->files()->detach($photoIds);
+        }
     }
     
     /**

@@ -38,13 +38,15 @@ class UserRecipeController extends Controller
         
         if ($userProfile)
         {
-            $photos = [];
+            $savePhotos = [];
             
             if ($request->files->has('photos')) {
                 $paramPhotos = $request->files->all();    
-                $photos = $paramPhotos['photos'];
+                $savePhotos = $paramPhotos['photos'];
             }
 
+            $deletePhotos = $request->input('delete_photos');
+            
             $cookTimeHours = $recipeFields['cook_time_hours'];
             $cookTimeMin = $recipeFields['cook_time_minutes'];
             $recipeFields['cook_time'] = $cookTimeHours.':'.$cookTimeMin;
@@ -53,7 +55,7 @@ class UserRecipeController extends Controller
                 $recipeFields['cooking_steps'] = json_encode($recipeFields['cooking_steps']);
             }
             
-            $recipe = $this->recipeService->saveRecipe($userProfile, $recipe, $recipeFields, $photos);
+            $recipe = $this->recipeService->saveRecipe($userProfile, $recipe, $recipeFields, $savePhotos, $deletePhotos);
             
             if ($recipe)
             {

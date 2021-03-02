@@ -4,6 +4,7 @@
     <script src="{{mix('js/recipe_tags.js')}}"></script>
     <script src="{{mix('js/recipe_cooking_steps.js')}}"></script>
     <script src="{{mix('js/recipe_cook_times.js')}}"></script>
+    <script src="{{mix('js/recipe_photos.js')}}"></script>
 @endsection
 
 @section('content')
@@ -86,13 +87,16 @@
             @foreach($data['photos'] as $photo)
                 <li>
                     <img alt="{{ $photo['alt']  }}" src="{{ $photo['uri'] }}" />
-                    <a href="#" data-photo="{{$photo['id']}}" >Delete</a>
+                    <a href="#" class="photo-delete" data-photo="{{$photo['id']}}" >Delete</a>
                 </li>
             @endforeach
             </ul>
         @endif
         
         <input id="recipe-photos" type="file" name="photos[]" multiple="multiple" accept=".jpg,.png,.jpeg"/>
+        
+        <div class="deleted-photos"></div>
+        
         <br/><br/>
         
         <label for="visibility">Recipe visibility</label>

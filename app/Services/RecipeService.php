@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\File;
 use App\Models\Recipe;
 use App\Models\UserProfile;
 use Illuminate\Database\Eloquent\Model;
@@ -19,9 +20,11 @@ class RecipeService
      * @param UserProfile $userProfile
      * @param Recipe $recipe
      * @param array $recipeData
+     * @param File[] $recipeData
+     * @param [] $deletePhotos
      * @return Model|Recipe
      */
-    public function saveRecipe($userProfile, $recipe, $recipeData, $photos)
+    public function saveRecipe($userProfile, $recipe, $recipeData, $savePhotos, $deletePhotos)
     {
         // Check $recipe is already attached to the user
         $isUserRecipe = $userProfile->recipes->contains($recipe);
@@ -37,12 +40,14 @@ class RecipeService
         
         if ($recipe)
         {
-            $savedFiles = $this->recipePhotoService->saveFiles($photos);
+            $savedFiles = $this->recipePhotoService->savePhotos($savePhotos);
         
             if ($savedFiles->isNotEmpty()) 
             {
                 $recipe->files()->attach($savedFiles);
             }
+            
+            $this->recipePhotoService->deletePhotos($recipe, $deletePhotos); 
             
             return $recipe;
         }

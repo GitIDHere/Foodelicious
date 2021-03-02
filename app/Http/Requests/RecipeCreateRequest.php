@@ -37,6 +37,8 @@ class RecipeCreateRequest extends FormRequest
             'ingredients' => 'required|json',
             'photos' => 'nullable',
             'photos.*' => 'mimes:jpeg,jpg,png|max:2048',
+            'delete_photos' => 'nullable',
+            'delete_photos.*' => 'numeric|integer|distinct',
             'visibility' => 'required|string|'.Rule::in(['public', 'private']),
         ];
     }

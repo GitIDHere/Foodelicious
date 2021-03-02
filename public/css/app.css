@@ -308,3 +308,10 @@ template {
 body {
   background: #ffcc6e; }
 
+img.del {
+  filter: gray;
+  /* IE6-9 */
+  /* Google Chrome, Safari 6+ & Opera 15+ */
+  filter: grayscale(1);
+  /* Microsoft Edge and Firefox 35+ */ }
+
