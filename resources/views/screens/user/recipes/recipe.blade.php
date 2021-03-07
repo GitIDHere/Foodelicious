@@ -1,10 +1,11 @@
 @extends('master')
 
 @section('page_scripts')
-    <script src="{{mix('js/recipe_tags.js')}}"></script>
-    <script src="{{mix('js/recipe_cooking_steps.js')}}"></script>
-    <script src="{{mix('js/recipe_cook_times.js')}}"></script>
-    <script src="{{mix('js/recipe_photos.js')}}"></script>
+    <script src="{{mix('js/recipe.js')}}"></script>
+{{--    <script src="{{mix('js/recipe_tags.js')}}"></script>--}}
+{{--    <script src="{{mix('js/recipe_cooking_steps.js')}}"></script>--}}
+{{--    <script src="{{mix('js/recipe_cook_times.js')}}"></script>--}}
+{{--    <script src="{{mix('js/recipe_photos.js')}}"></script>--}}
 @endsection
 
 @section('content')

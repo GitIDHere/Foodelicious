@@ -3,34 +3,14 @@
 
 @import "~@yaireo/tagify/dist/tagify.css";
 
-body{
-  background: #ffcc6e;
-}
+@import "theme/style";
 
 
 img.del{
-  filter: gray; /* IE6-9 */
+  filter: grey; /* IE6-9 */
   -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
   filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
