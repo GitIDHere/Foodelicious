@@ -1315,6 +1315,9 @@ textarea:focus {
         font-size: 16px;
         font-weight: 600;
         color: #2f2f2f;
+        &:hover {
+            cursor: pointer;
+        }
     }
     .custom-control-label::after {
         top: 10px;
@@ -1691,16 +1694,19 @@ textarea:focus {
     }
 }
 
-form.login {
+.green {
+    color: $bg-default;
+}
+
+form.white-bk {
     background: white;
     color: black;
-    padding: 28px;
     border-radius: 12px;
-    
+
     input[type=text], input[type=password] {
         background:$bg-gray;
     }
-    
+
     label {
         font-size: 120%;
         font-weight: 600;
@@ -1726,7 +1732,6 @@ a.link {
   
 }
 
-
 .bg-img {
     h1 {
         color: $white-color;
@@ -1734,3 +1739,29 @@ a.link {
     }
 }
 
+.font-xl {font-size: 3rem;}
+.font-lg {font-size: 2.5rem;}
+.font-md {font-size: 2rem;}
+.font-sm {font-size: 1.5rem;}
+.font-xs {font-size: 1rem;}
+
+.icn-tick{
+    background: url("/img/core-img/check-circle-regular.svg") no-repeat center center;
+}
+
+.center-confirm
+{
+    text-align:  center;
+    padding: 0 10px;
+    
+    .icn-tick{
+        width: 100%;
+        height: 75px;
+    }
+    
+    h1{
+        @include media-responsive($screen-md) {
+            font-size: 2.5rem;
+        }
+    }
+}

@@ -1367,6 +1367,8 @@ textarea:focus {
   font-size: 16px;
   font-weight: 600;
   color: #2f2f2f; }
+  .form-checkbox .custom-control-label:hover {
+    cursor: pointer; }
 .form-checkbox .custom-control-label::after {
   top: 10px;
   left: 5px;
@@ -1679,14 +1681,16 @@ textarea:focus {
     margin-bottom: 0;
     padding-left: 30px; }
 
-form.login {
+.green {
+  color: #40ba37; }
+
+form.white-bk {
   background: white;
   color: black;
-  padding: 28px;
   border-radius: 12px; }
-  form.login input[type=text], form.login input[type=password] {
+  form.white-bk input[type=text], form.white-bk input[type=password] {
     background: #f3f5f8; }
-  form.login label {
+  form.white-bk label {
     font-size: 120%;
     font-weight: 600; }
 
@@ -1707,6 +1711,34 @@ a.link {
 .bg-img h1 {
   color: #ffffff;
   font-size: 3em; }
+
+.font-xl {
+  font-size: 3rem; }
+
+.font-lg {
+  font-size: 2.5rem; }
+
+.font-md {
+  font-size: 2rem; }
+
+.font-sm {
+  font-size: 1.5rem; }
+
+.font-xs {
+  font-size: 1rem; }
+
+.icn-tick {
+  background: url("/img/core-img/check-circle-regular.svg") no-repeat center center; }
+
+.reg-confirm {
+  text-align: center;
+  padding: 0 10px; }
+  .reg-confirm .icn-tick {
+    width: 100%;
+    height: 75px; }
+  @media (max-width: 768px) {
+    .reg-confirm h1 {
+      font-size: 2.5rem; } }
 
 img.del {
   filter: grey;

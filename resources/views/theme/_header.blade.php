@@ -26,6 +26,7 @@
                 <div class="col-xl col-sm-6">
                     <div class="top-header-info ">
                         @auth
+                            <a href="{{route('user.recipes.list')}}">My recipes</a>
                             <a href="{{route('logout')}}">Logout</a>
                         @endauth
                         @guest
@@ -50,7 +51,7 @@
                 <nav class="classy-navbar justify-content-between" id="deliciousNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+                    <a class="nav-brand" href="{{route('home')}}"><img src="/img/core-img/logo.png" alt=""></a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -71,7 +72,7 @@
                                 <li class=""><a href="{{route('home')}}">Home</a></li>
                                 <li><a href="#">Pages</a>
                                     <ul class="dropdown">
-                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="{{route('home')}}">Home</a></li>
                                         <li><a href="about.html">About Us</a></li>
                                         <li><a href="blog-post.html">Blog Post</a></li>
                                         <li><a href="receipe-post.html">Receipe Post</a></li>
@@ -79,7 +80,7 @@
                                         <li><a href="elements.html">Elements</a></li>
                                         <li><a href="#">Dropdown</a>
                                             <ul class="dropdown">
-                                                <li><a href="index.html">Home</a></li>
+                                                <li><a href="{{route('home')}}">Home</a></li>
                                                 <li><a href="about.html">About Us</a></li>
                                                 <li><a href="blog-post.html">Blog Post</a></li>
                                                 <li><a href="receipe-post.html">Receipe Post</a></li>

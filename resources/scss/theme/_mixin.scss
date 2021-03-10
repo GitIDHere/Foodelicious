@@ -60,3 +60,18 @@
     -ms-flex-wrap: $value;
     flex-wrap: $value;
 }
+
+@mixin media-responsive($max, $min: null)
+{
+    @if ($min) {
+        @media (min-width:$min) and (max-width:$max){
+            @content;
+        }
+    }
+    @else {
+        @media (max-width:$max) {
+            @content;
+        }
+    }
+
+}
