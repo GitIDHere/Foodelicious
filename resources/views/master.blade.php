@@ -7,10 +7,13 @@
         @include('includes.styles')
     </head>
     <body>
-        @include("theme._header")
         
-        @yield('content')
-
+        <div class="content-container">
+            @include("theme._header")
+            
+            @yield('content')
+        </div>
+        
         @include("theme._footer")
         
         <!-- JS -->

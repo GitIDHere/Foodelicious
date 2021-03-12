@@ -7,17 +7,9 @@
     <div class="container">
         
         <div class="row">
-            <div class="col-lg-12">
-                <h1 class="mt-0 mb-0 mb-4 mb-lg-0">Login</h1>
-            </div>
-        </div>
-        
-        <div class="row">
             
-            <div class="col-lg-6 col-md-12"><<!-- TODO ---></div>
-            
-            <div class="col-lg-6 col-md-12">
-                
+            <div class="mx-auto col-lg-6 col-md-12">
+              
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -30,6 +22,8 @@
                 
                 <form class="white-bk p-4" method="POST" action="{{ route('login.submit') }}">
                     @csrf
+                    
+                    <h1 class="mt-0 mb-4">Login</h1>
 
                     <div class="mb-3">
                         <label for="email">Email</label>
@@ -52,9 +46,12 @@
                     </div>
 
                     <input class="btn delicious-btn btn-5 mb-3" type="submit" />
-
+                    
+                    <hr/>
+                    
                     <div>
                         <a class="link" href="{{route('forgot_password.show')}}">Forgot your password?</a>
+                       <a class="link pull-right" href="{{route('register.show')}}">Register</a>
                     </div>
 
                 </form>

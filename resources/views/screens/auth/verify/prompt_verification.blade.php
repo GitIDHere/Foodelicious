@@ -2,23 +2,31 @@
 
 @section('content')
 
-    <h1>Please verify your email.</h1>
+<div class="pt-5 pb-5">
+    <div class="container">
 
-    <form method="POST" action="{{route('verification.send')}}">
-        @csrf
+        <div class="row">
+            <p>Please verify your email.</p>
+        </div>
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        <form method="POST" action="{{route('verification.send')}}">
+            @csrf
 
-        <input type="submit" value="Re-send verification email" />
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-    </form>
+            <input type="submit" value="Re-send verification email" />
+
+        </form>
+        
+    </div>
+</div>
     
 @endsection
