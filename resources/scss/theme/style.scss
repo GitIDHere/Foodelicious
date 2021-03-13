@@ -1130,24 +1130,50 @@ textarea:focus {
     }
 }
 
-.single-widget {
+.sidebar 
+{
     position: relative;
     z-index: 1;
-    h6 {
-        margin-bottom: 50px;
-        display: block;
-    }
-    .list {
-        padding-left: 30px;
-        li a {
-            display: block;
-            padding: 5px 0;
-            color: #797979;
-            &:hover,
-            &:focus {
-                color: $hover-color;
+    background: $sidebar-bg;
+    
+    ul 
+    {
+        li 
+        {
+            padding: 0 10px;
+            border-bottom: 1px solid $faint-grey;
+            
+            &.active 
+            {
+                background: $bg-default;
+                
+                a {
+                    color: $white-color;
+                }
             }
-        }
+            
+            &:first-child 
+            {
+                a {
+                    margin-top: 0;
+                }
+            }
+            
+            &:last-child 
+            {
+                border-bottom: none;
+            }
+            
+            a 
+            {
+                width: 100%;
+                display: block;
+                text-transform: uppercase;
+                padding: 10px 0 10px 0;
+                font-size: 1em;
+                font-weight: 500;
+            }
+        }        
     }
 }
 
@@ -1688,11 +1714,15 @@ textarea:focus {
 
 /* Features Area */
 
+//.container {
+//    background: $content-container;
+//}
+
 .required 
 {
     &:after{
         content: "*";
-        font-size: 0.9rem;
+        font-size: 1em;
         display: inline-block;
         vertical-align: top;
         color: $alert-color;
@@ -1717,10 +1747,9 @@ textarea:focus {
   color: $alert-color;
 }
 
-form.white-bk {
+.white-bk {
     background: white;
     color: black;
-    border-radius: 12px;
 
     input[type=text], input[type=password] {
         background:$bg-gray;
@@ -1732,8 +1761,15 @@ form.white-bk {
     }
     
     h1 {
+        font-size: 2.5em;
         color: $heading-color;
+        border-bottom: 1px solid $faint-grey;
+        padding-bottom: 10px;
     }
+}
+
+form.auth {
+    border-radius: 12px;
 }
 
 a.link {
@@ -1755,12 +1791,12 @@ a.link {
   
 }
 
-.bg-img {
-    h1 {
-        color: $white-color;
-        font-size: 3em;   
-    }
-}
+//.bg-img {
+//    h1 {
+//        color: $white-color;
+//        font-size: 3em;   
+//    }
+//}
 
 .font-xl {font-size: 3rem;}
 .font-lg {font-size: 2.5rem;}

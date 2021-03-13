@@ -19,7 +19,7 @@
                     </div>
                 @endif
                 
-                <form class="white-bk p-4" method="POST" action="{{ route('register.submit') }}">
+                <form class="white-bk auth p-4" method="POST" action="{{ route('register.submit') }}">
                     @csrf
 
                     <h1 class="mt-0 mb-4">Register</h1>

@@ -26,7 +26,7 @@
                 <div class="col-xl col-sm-6">
                     <div class="top-header-info ">
                         @auth
-                            <a href="{{route('user.recipes.list')}}">My recipes</a>
+                            <a href="{{route('user.profile.view')}}">Profile</a>
                             <a href="{{route('logout')}}">Logout</a>
                         @endauth
                         @guest
@@ -70,26 +70,6 @@
                         <div class="classynav">
                             <ul>
                                 <li class=""><a href="{{route('home')}}">Home</a></li>
-                                <li><a href="#">Pages</a>
-                                    <ul class="dropdown">
-                                        <li><a href="{{route('home')}}">Home</a></li>
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="blog-post.html">Blog Post</a></li>
-                                        <li><a href="receipe-post.html">Receipe Post</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="elements.html">Elements</a></li>
-                                        <li><a href="#">Dropdown</a>
-                                            <ul class="dropdown">
-                                                <li><a href="{{route('home')}}">Home</a></li>
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="blog-post.html">Blog Post</a></li>
-                                                <li><a href="receipe-post.html">Receipe Post</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
                                 <li><a href="receipe-post.html">Recipies</a></li>
                                 <li><a href="contact.html">Contact</a></li>
                             </ul>

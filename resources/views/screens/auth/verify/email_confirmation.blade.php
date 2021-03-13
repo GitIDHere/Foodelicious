@@ -2,8 +2,7 @@
 
 @section('content')
 
-    
-<div class="pt-5 pb-5 center-confirm">
+<div class="white-bk center-confirm">
     <div class="container">
         
         <div class="row">

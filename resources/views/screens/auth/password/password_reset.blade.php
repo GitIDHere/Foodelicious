@@ -9,13 +9,13 @@
             
             <div class="mx-auto col-lg-6 col-md-12">
                 
-                <form class="white-bk p-4" method="POST" action="{{route('password_reset.submit')}}">
+                <form class="white-bk auth p-4" method="POST" action="{{route('password_reset.submit')}}">
                     @csrf
 
                     <input id="email" name="email" type="hidden" value="{{$email}}"/>
                     <input id="token" name="token" type="hidden" value="{{$token}}"/>
                     
-                    <h1 class="mt-0 mb-4">Reset password</h1>
+                    <h1 class="mt-0 mb-4">Reset Password</h1>
 
                     @if ($errors->any())
                         <div class="alert alert-danger">

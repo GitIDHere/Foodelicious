@@ -10,10 +10,10 @@
             
             <div class="mx-auto col-lg-6 col-md-12">
                 
-                <form class="white-bk p-4" method="POST" action="{{route('forgot_password.submit')}}">
+                <form class="white-bk auth p-4" method="POST" action="{{route('forgot_password.submit')}}">
                     @csrf
                     
-                    <h1 class="mt-0 mb-4">Password reset</h1>
+                    <h1 class="mt-0 mb-4">Password Reset</h1>
 
                     @if ($errors->any())
                         <div class="alert alert-danger">

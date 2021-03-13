@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Events\RecipeCreated;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\RecipeCreateRequest;
 use App\Models\Recipe;
 use App\Services\RecipeService;
@@ -132,7 +133,7 @@ class UserRecipeController extends Controller
                 'visibility' => $recipe->visibility,
             ];
                  
-            return view('screens.user.recipes.recipe', ['data' => $recipeData, 'recipe' => $recipe]);
+            return view('screens.user.recipes.view', ['data' => $recipeData, 'recipe' => $recipe]);
         } 
         else {
             // The recipe doesn't belong to the user

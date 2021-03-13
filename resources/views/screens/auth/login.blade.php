@@ -10,7 +10,7 @@
             
             <div class="mx-auto col-lg-6 col-md-12">
                 
-                <form class="white-bk p-4" method="POST" action="{{ route('login.submit') }}">
+                <form class="white-bk auth p-4" method="POST" action="{{ route('login.submit') }}">
                     @csrf
                     
                     <h1 class="mt-0 mb-4">Login</h1>

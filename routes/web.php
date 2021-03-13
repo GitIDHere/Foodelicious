@@ -12,4 +12,6 @@ require_once ('paths/web/auth/password_reset.php');
 
 require_once ('paths/web/auth/email_verification.php');
 
-require_once ('paths/web/recipes.php');
+require_once ('paths/web/user/profile.php');
+
+require_once ('paths/web/user/recipes.php');
