@@ -8,12 +8,9 @@
     </head>
     <body>
         
-        <div class="content-container">
-            @include("theme._header")
-            
-            @yield('content')
-        </div>
+        @include("theme._header")
         
+        @yield('content')
         @include("theme._footer")
         
         <!-- JS -->

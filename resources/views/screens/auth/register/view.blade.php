@@ -25,22 +25,22 @@
                     <h1 class="mt-0 mb-4">Register</h1>
                     
                     <div class="mb-3">
-                        <label for="username">Username</label>
+                        <label for="username" class="required">Username</label>
                         <input id="username" name="username" type="text" class="form-control @error('username') is-invalid @enderror" value="{{ randUsername() }}" >
                     </div>
 
                     <div class="mb-3">
-                        <label for="email">Email</label>
+                        <label for="email" class="required">Email</label>
                         <input id="email" name="email" type="text" class="form-control @error('email') is-invalid @enderror" value="{{ randEmail() }}" >
                     </div>
                     
                     <div class="mb-3">
-                        <label for="password">Password</label>
+                        <label for="password" class="required">Password</label>
                         <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror">
                     </div>
 
                     <div class="mb-3">
-                        <label for="password_confirmation">Confirm password</label>
+                        <label for="password_confirmation" class="required">Confirm password</label>
                         <input id="password_confirmation" name="password_confirmation" type="password" class="form-control @error('password_confirmation ') is-invalid @enderror">
                     </div>
                     

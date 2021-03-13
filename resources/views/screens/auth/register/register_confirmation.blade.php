@@ -10,7 +10,7 @@
         </div>
         
         <div class="row">
-            <h3 class="mx-auto d-block">You will need to confirm your email before you can login</h3>
+            <h3 class="mx-auto d-block">Please check your email to verify your account</h3>
         </div>
         
     </div>

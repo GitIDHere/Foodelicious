@@ -321,7 +321,7 @@ template {
 body {
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
-  background: #f3f9fd;
+  background: #c9e4ff;
   height: 100%; }
 
 h1,
@@ -1382,7 +1382,6 @@ textarea:focus {
   z-index: 1;
   width: 100%;
   height: 140px;
-  margin-top: -140px;
   background-color: #ffffff; }
   @media only screen and (max-width: 767px) {
     .footer-area {
@@ -1674,11 +1673,12 @@ textarea:focus {
     font-size: 18px; }
 
 /* Features Area */
-.breakpoint-off .classynav ul li .dropdown {
-  transition-duration: 250ms !important; }
-
-.content-container {
-  height: 100vh; }
+.required:after {
+  content: "*";
+  font-size: 0.9rem;
+  display: inline-block;
+  vertical-align: top;
+  color: #ff4e28; }
 
 .single-feature-area {
   position: relative;
@@ -1689,6 +1689,9 @@ textarea:focus {
 
 .green {
   color: #40ba37; }
+
+.red {
+  color: #ff4e28; }
 
 form.white-bk {
   background: white;

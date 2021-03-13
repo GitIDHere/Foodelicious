@@ -9,29 +9,35 @@
         <div class="row">
             
             <div class="mx-auto col-lg-6 col-md-12">
-              
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
                 
                 <form class="white-bk p-4" method="POST" action="{{ route('login.submit') }}">
                     @csrf
                     
                     <h1 class="mt-0 mb-4">Login</h1>
 
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    @if(session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                    @endif
+                    
                     <div class="mb-3">
-                        <label for="email">Email</label>
+                        <label for="email" class="required">Email</label>
                         <input id="email" type="text" class="form-control" name="email" value="{{old('email')}}" />
                     </div>
 
                     <div class="mb-3">
-                        <label for="password">Password</label>
+                        <label for="password" class="required">Password</label>
                         <input id="password" type="password" class="form-control" name="password" />
                     </div>
 

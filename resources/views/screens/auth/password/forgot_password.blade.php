@@ -2,41 +2,57 @@
 
 @section('content')
 
-<div class="pt-5 pb-5 center-confirm">
+<div class="pt-5 pb-5" >
+    
     <div class="container">
-
+        
         <div class="row">
-            <h1 class="green font-lg mb-0">Password reset</h1>
+            
+            <div class="mx-auto col-lg-6 col-md-12">
+                
+                <form class="white-bk p-4" method="POST" action="{{route('forgot_password.submit')}}">
+                    @csrf
+                    
+                    <h1 class="mt-0 mb-4">Password reset</h1>
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    
+                    @if(session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                    @endif
+
+                    <div class="mb-3">
+                        <label class="required" for="email">Email</label>
+                        <input id="email" type="text" class="form-control" name="email" value="{{old('email')}}" />
+                    </div>
+
+                    <input class="btn delicious-btn btn-5 mb-3" type="submit" />
+                    
+                    <hr/>
+                    
+                    <div>
+                        <a class="link" href="{{route('login.show')}}">Login?</a>
+                       <a class="link pull-right" href="{{route('register.show')}}">Register</a>
+                    </div>
+
+                </form>
+                
+            </div>
+            
         </div>
         
-        <form method="POST" action="{{route('forgot_password.submit')}}">
-            @csrf
-            
-            @if(session()->has('status'))
-                <div class="alert alert-success">
-                    {{ session()->get('status') }}
-                </div>
-            @endif
-            
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-            
-            <label for="email">Email</label>
-            <input id="email" name="email" type="text" />
-            <br/><br/>
-            
-            <input type="submit" />
-            
-        </form>
-
     </div>
+    
 </div>
     
 @endsection
