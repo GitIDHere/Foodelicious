@@ -26,7 +26,7 @@ class RecipeCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|min:2|max:250',
+            'title' => 'required|string|min:2|max:60',
             'description' => 'required|string|min:5|max:10000',
             'cooking_steps' => 'required|array',
             'cook_time_hours' => 'required|between:0,15',

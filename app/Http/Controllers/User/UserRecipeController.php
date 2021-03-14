@@ -86,7 +86,23 @@ class UserRecipeController extends Controller
         $user = Auth::user();
         $userProfile = $user->userProfile;
         
-        return view('screens.user.recipes.list')->with('recipes', $userProfile->recipes);
+        $recipeList = $userProfile->recipes->map(function($recipe)
+        {
+            $recipePhoto = $recipe->files->first();
+            $imgURL = '';#Default image
+            if(is_object($recipePhoto)) {
+                $imgURL = asset($recipePhoto->public_path);
+            }
+            
+            return [
+                'id' => $recipe->id,
+                'title' => $recipe->title,                
+                'img_url' => $imgURL,
+                'total_favourites' => 450,                
+            ];
+        });
+        
+        return view('screens.user.recipes.list')->with('recipes', $recipeList);
     }
     
     

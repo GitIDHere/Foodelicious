@@ -8,7 +8,7 @@
                     @include('screens.user.partials._side_bar')
                     
                     <div class="col-12 col-lg-8">
-                        fddf
+                        
                     </div>
                     
                 </div>

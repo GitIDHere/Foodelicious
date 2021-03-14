@@ -3990,6 +3990,66 @@ textarea:focus {
     font-size: 18px; }
 
 /* Features Area */
+.recipe-list li {
+  border-bottom: 1px solid #b2b2b2;
+  padding: 10px;
+  background: #fbfbfb;
+  transition: background 0.2s; }
+  .recipe-list li:last-child {
+    border-bottom: none; }
+  .recipe-list li a {
+    display: block; }
+    .recipe-list li a .thumbnail {
+      width: 50px;
+      height: 50px;
+      background: #9b9b9b;
+      display: inline-block;
+      vertical-align: middle; }
+    .recipe-list li a .title {
+      width: 80%;
+      display: inline-block;
+      font-size: 1.2em;
+      margin-left: 10px;
+      vertical-align: top; }
+      @media (max-width: 576px) {
+        .recipe-list li a .title {
+          font-size: 1.1em; } }
+      @media (max-width: 370px) {
+        .recipe-list li a .title {
+          width: 100%;
+          font-size: 1em;
+          margin-top: 5px;
+          margin-left: 0px; } }
+    .recipe-list li a .icon-list {
+      float: right; }
+      .recipe-list li a .icon-list .icon-container {
+        text-align: center; }
+        .recipe-list li a .icon-list .icon-container .icon {
+          width: 25px;
+          height: 25px;
+          display: block;
+          background: url("/img/core-img/heart-green-full.svg") no-repeat center center; }
+        .recipe-list li a .icon-list .icon-container .text {
+          display: block;
+          margin-top: 5px;
+          font-size: 1.13em; }
+      .recipe-list li a .icon-list:after {
+        content: "";
+        display: block;
+        clear: both; }
+      @media (max-width: 768px) {
+        .recipe-list li a .icon-list {
+          display: none; } }
+  .recipe-list li:hover {
+    color: #ffffff;
+    background: #40ba37; }
+    .recipe-list li:hover a .title {
+      color: #ffffff; }
+    .recipe-list li:hover .icon-list .icon-container .icon {
+      background: url("/img/core-img/heart-white-full.svg") no-repeat center center; }
+    .recipe-list li:hover .icon-list .icon-container .text {
+      color: #ffffff; }
+
 .required:after {
   content: "*";
   font-size: 1em;
@@ -4039,21 +4099,6 @@ a.link {
     transition: width 0.3s; }
   a.link:hover:after {
     width: 100%; }
-
-.font-xl {
-  font-size: 3rem; }
-
-.font-lg {
-  font-size: 2.5rem; }
-
-.font-md {
-  font-size: 2rem; }
-
-.font-sm {
-  font-size: 1.5rem; }
-
-.font-xs {
-  font-size: 1rem; }
 
 .icn-tick {
   background: url("/img/core-img/check-circle-regular.svg") no-repeat center center; }

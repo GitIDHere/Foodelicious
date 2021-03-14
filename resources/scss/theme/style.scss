@@ -1714,9 +1714,122 @@ textarea:focus {
 
 /* Features Area */
 
-//.container {
-//    background: $content-container;
-//}
+.recipe-list 
+{
+    li 
+    {
+        border-bottom: 1px solid $faint-grey;
+        padding: 10px;
+        background: $recipe-list-background;
+        
+        @include transition(background 0.2s);
+        
+        &:last-child 
+        {
+            border-bottom: none;
+        }
+        
+        a 
+        {
+            display: block;
+            
+            .thumbnail
+            {
+                width: 50px;
+                height: 50px;
+                background: #9b9b9b;
+                display: inline-block;
+                vertical-align: middle;
+            }
+            
+            .title 
+            {
+                width: 80%;
+                display: inline-block;
+                font-size: 1.2em;
+                margin-left: 10px;
+                vertical-align: top;
+                
+                @include media-responsive($screen-sm)
+                {
+                    font-size: 1.1em;
+                }
+                
+                @include media-responsive($screen-xs)
+                {
+                    width:100%;
+                    font-size: 1em;
+                    margin-top: 5px;
+                    margin-left: 0px;
+                }
+            }
+            
+            .icon-list
+            {
+                float:right;
+                
+                .icon-container 
+                {
+                    text-align: center;
+                    
+                    .icon {
+                        width:25px;
+                        height: 25px;
+                        display: block;
+                        background: url("/img/core-img/heart-green-full.svg") no-repeat center center;
+                    }
+                    
+                    .text 
+                    {
+                        display: block;
+                        margin-top: 5px;
+                        font-size: 1.13em;
+                    }
+                }
+                
+                &:after
+                {
+                    content: "";
+                    display: block;
+                    clear: both;
+                }
+
+                @include media-responsive ($screen-md) 
+                {
+                    display: none;
+                }
+            }
+            
+        }
+        
+        &:hover 
+        {
+            color: $white-color;
+            background: $bg-default;
+            
+            a {
+                .title {
+                    color: $white-color;        
+                }
+            }
+            
+            .icon-list
+            {
+                .icon-container 
+                {
+                    .icon {
+                        background: url("/img/core-img/heart-white-full.svg") no-repeat center center;
+                    }
+                    
+                    .text {
+                        color: $white-color;
+                    }
+                }
+            }
+        }
+        
+    }
+}
 
 .required 
 {
@@ -1798,11 +1911,11 @@ a.link {
 //    }
 //}
 
-.font-xl {font-size: 3rem;}
-.font-lg {font-size: 2.5rem;}
-.font-md {font-size: 2rem;}
-.font-sm {font-size: 1.5rem;}
-.font-xs {font-size: 1rem;}
+//.font-xl {font-size: 3rem;}
+//.font-lg {font-size: 2.5rem;}
+//.font-md {font-size: 2rem;}
+//.font-sm {font-size: 1.5rem;}
+//.font-xs {font-size: 1rem;}
 
 .icn-tick{
     background: url("/img/core-img/check-circle-regular.svg") no-repeat center center;
