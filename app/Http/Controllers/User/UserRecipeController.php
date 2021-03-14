@@ -82,12 +82,20 @@ class UserRecipeController extends Controller
      */
     public function showRecipeList(Request $request)
     {
+        $itemsPerPage = 10;
+        
         // Get the user's recipes
         $user = Auth::user();
         $userProfile = $user->userProfile;
         
-        $recipeList = $userProfile->recipes->map(function($recipe)
+        $pager = collectionPaginate($userProfile->recipes, $itemsPerPage);
+        // Get the items out from the pager
+        $recipeItems = collect($pager->toArray()['data']);
+        
+        $recipeList = $recipeItems->map(function($recipe)
         {
+            $recipe = new Recipe($recipe);
+            
             $recipePhoto = $recipe->files->first();
             $imgURL = '';#Default image
             if(is_object($recipePhoto)) {
@@ -102,7 +110,10 @@ class UserRecipeController extends Controller
             ];
         });
         
-        return view('screens.user.recipes.list')->with('recipes', $recipeList);
+        return view('screens.user.recipes.list')
+            ->with('recipes', $recipeList)
+            ->with('pager', $pager)
+            ;
     }
     
     

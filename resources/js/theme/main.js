@@ -136,4 +136,6 @@
         $.preventDefault()
     });
 
+    $("body").removeClass("preload");
+    
 })(jQuery);

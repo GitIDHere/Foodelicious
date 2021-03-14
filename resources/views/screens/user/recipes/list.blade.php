@@ -8,10 +8,10 @@
 
                     @include('screens.user.partials._side_bar')
                     
-                    <div class="col-12 col-lg-8">
+                    <div class="col-12 col-lg-9 pl-3">
                         <h1 class="mt-0">My Recipes</h1>
                         
-                        <!-- TODO Quick search -->
+                        Quick search <!-- TODO Quick search -->
                         
                         <ul class="recipe-list">
                             @foreach($recipes as $recipe)
@@ -31,6 +31,9 @@
                                 </li>
                             @endforeach
                         </ul>
+                        
+                        {!! $pager->links('includes.pagination') !!}
+                        
                     </div>
                     
                 </div>

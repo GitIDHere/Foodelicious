@@ -36,7 +36,7 @@
                         <input id="email" type="text" class="form-control" name="email" value="{{old('email')}}" />
                     </div>
 
-                    <input class="btn delicious-btn btn-5 mb-3" type="submit" />
+                    <input class="btn delicious-btn btn-5 mb-3" type="submit" value="Submit" />
                     
                     <hr/>
                     

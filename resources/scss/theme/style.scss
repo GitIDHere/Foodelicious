@@ -1714,6 +1714,45 @@ textarea:focus {
 
 /* Features Area */
 
+.preload * {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
+}
+
+.pull-right, .pull-left {
+    &:after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+}
+
+.num-pager 
+{
+    text-align: right;
+    margin: 10px 0;
+    
+    .page-btn {
+        display: inline-block;
+        padding: 5px 20px;
+        border: 1px solid $bg-default;
+        font-size: 1.2em;
+        margin-top: 3px;
+    }
+    
+    span.page-btn {
+        cursor: default;
+        color: $white-color;
+        background: $bg-default;
+    }
+    
+    p {
+        display: block;
+    }
+}
+
 .recipe-list 
 {
     li 

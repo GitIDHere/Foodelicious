@@ -6,7 +6,7 @@
         <title>{{env('APP_NAME')}}</title>
         @include('includes.styles')
     </head>
-    <body>
+    <body class="preload">
         
         @include("theme._header")
         
