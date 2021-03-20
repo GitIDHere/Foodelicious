@@ -192,13 +192,19 @@ $(function()
 {
     let utensilInput = document.querySelector('#recipe-utensils');
     let utensilTagify = new Tagify(utensilInput, {
-        whitelist: [],
+        whitelist: ['Knife', 'Non-stick pan', 'Spatula', 'Grater', 'Peeler'],
+        dropdown: {
+            position: "input",
+            enabled : 0 // always opens dropdown when input gets focus
+        },
+        // This is to convert the tags into json when form is submitted
         originalInputValueFormat: valuesArr => JSON.stringify(valuesArr.map(item => item.value))
     });
     
     let ingredientInput = document.querySelector('#recipe-ingredients');
     let ingTagify = new Tagify(ingredientInput, {
         whitelist: [],
+        // This is to convert the tags into json when form is submitted
         originalInputValueFormat: valuesArr => JSON.stringify(valuesArr.map(item => item.value))
     });
     

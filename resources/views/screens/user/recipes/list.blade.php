@@ -33,6 +33,8 @@
                             </div>
                         </div>
                         
+                        <a class="delicious-btn btn-sm " href="{{route('user.recipes.create.view')}}">Add recipe</a>
+                        
                         @if ($recipes->isNotEmpty())
                             <ul class="recipe-list">
                                 @foreach($recipes as $recipe)

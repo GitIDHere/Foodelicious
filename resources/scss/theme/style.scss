@@ -14,6 +14,7 @@
 @import '../css/plugins/custom-icon.css';
 @import '../css/plugins/classy-nav.min.css';
 @import '../css/plugins/nice-select.min.css';
+@import '../css/plugins/tagify.min.css';
 /* :: 3.0 Base CSS */
 
 * {
@@ -1714,6 +1715,94 @@ textarea:focus {
 
 /* Features Area */
 
+.txt-area {
+    height: 115px;
+    background: $input-bg;
+    
+    &:focus {
+        background: $input-bg;
+    }
+}
+
+.num-counter{
+    width: auto;
+}
+
+.tagify--outside.tags-container
+{
+    border: none;
+    
+    .tagify__input {
+        margin: 0 0 5px;
+        border-radius: .25rem;
+        background: $input-bg;
+        border: 1px solid #ced4da;
+    }
+    
+    tag 
+    {
+        margin-right: 10px;
+        
+        > div 
+        {
+            color: $white-color;
+
+            
+            &:before{
+                background: $tag-bg;
+                box-shadow: none;
+            }  
+
+            &:hover:before{
+                background: $bg-light-green;
+            }
+        }
+
+        &:hover 
+        {
+            > div 
+            {
+                  &:before{
+                      box-shadow: none !important;
+
+                  }
+            }
+        }
+    }
+}
+
+.tags-dropdown {
+    padding: 7px;
+    width: 50px;
+}
+
+.tagify--outside{
+    border: 0;
+}
+//
+.tagify--outside .tagify__input{
+  order: -1;
+  flex: 100%;
+  border: 1px solid var(--tags-border-color);
+  margin-bottom: 1em;
+  transition: .1s;
+}
+
+.tagify--outside .tagify__input:hover{ border-color:var(--tags-hover-border-color); }
+.tagify--outside.tagify--focus .tagify__input{
+  transition:0s;
+  border-color: var(--tags-focus-border-color);
+}
+
+
+
+
+
+
+
+
+
+
 .preload * {
   -webkit-transition: none !important;
   -moz-transition: none !important;
@@ -1959,8 +2048,8 @@ h5 {
     background: white;
     color: black;
 
-    input[type=text], input[type=password] {
-        background:$bg-gray;
+    input[type=text], input[type=password], input[type=number] {
+        background: $input-bg;
     }
 
     label {
