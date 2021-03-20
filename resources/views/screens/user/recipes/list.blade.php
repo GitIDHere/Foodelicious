@@ -11,6 +11,16 @@
                     <div class="col-12 col-lg-9 pl-3">
                         <h1 class="mt-0">My Recipes</h1>
                         
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        
                         <div class="search-box container pl-0 pr-0">
                             <div class="row">
                                 <div class="col-12">
@@ -47,7 +57,7 @@
                         @else
                             <div class="container">
                                 <div class="row">
-                                    <h5 class="mx-auto mt-4 mb-4">No recipes found. <a href="{{'user.recipes.create.view'}}">Add new recipes!</a></h5>
+                                    <h5 class="mx-auto mt-4 mb-4">No recipes found. <a href="{{route('user.recipes.create.view')}}">Add new recipes!</a></h5>
                                 </div>
                             </div>
                         @endif

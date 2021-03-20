@@ -27,8 +27,16 @@ class UserRecipeController extends Controller
     }
     
     
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function searchRecipe(Request $request)
     {
+        $validated = $request->validate([
+            'search_term' => 'nullable|string|min:1|max:60',
+        ]);
+        
         // Get the user's recipes
         $user = Auth::user();
         $userProfile = $user->userProfile;
