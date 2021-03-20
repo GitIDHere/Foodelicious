@@ -1753,6 +1753,61 @@ textarea:focus {
     }
 }
 
+
+h5 {
+    a {
+        font-size: inherit;
+        color: $bg-default;
+        text-decoration: underline;
+        @include transition(none);
+        
+        &:hover {
+            font-size: inherit;
+            color: $bg-default;
+            @include transition(none);
+            text-decoration: underline;
+        }
+    }
+}
+
+.search-box 
+{
+    margin-bottom: 10px;
+    border: 1px solid $faint-grey;
+    border-radius: 5px;
+    padding: 5px;
+    
+    form 
+    {
+        button 
+        {
+            width: 5%;
+            background: none;
+            border: none;
+            padding: 7px;
+            border-right: 1px solid $faint-grey;
+            
+            @include media-responsive($screen-md, $screen-xs) {
+                width: 8%;
+            }
+            
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        
+        input {
+            width: 94%;
+            padding: 7px;
+            border: none;
+            @include media-responsive($screen-md, $screen-xs) {
+                width: 85%;
+            }
+        }
+    }
+    
+}
+
 .recipe-list 
 {
     li 
@@ -1806,6 +1861,7 @@ textarea:focus {
             .icon-list
             {
                 float:right;
+                margin-right: 20px;
                 
                 .icon-container 
                 {
@@ -1915,8 +1971,8 @@ textarea:focus {
     h1 {
         font-size: 2.5em;
         color: $heading-color;
-        border-bottom: 1px solid $faint-grey;
-        padding-bottom: 10px;
+        //border-bottom: 1px solid $faint-grey;
+        padding-bottom: 4px;
     }
 }
 

@@ -11,29 +11,46 @@
                     <div class="col-12 col-lg-9 pl-3">
                         <h1 class="mt-0">My Recipes</h1>
                         
-                        Quick search <!-- TODO Quick search -->
+                        <div class="search-box container pl-0 pr-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <form action="{{route('user.recipes.search.submit')}}" method="POST">
+                                        @csrf
+                                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                        <input type="search" name="search_term" placeholder="Search recipes" value="{{ isset($searchTerm) ? $searchTerm : ''}}">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         
-                        <ul class="recipe-list">
-                            @foreach($recipes as $recipe)
-                                <li>
-                                    <a href="{{$recipe['id']}}">
-                                        <div class="thumbnail"></div>
-                                        <span class="title">{{$recipe['title']}}</span>
-                                        
-                                        <span class="icon-list">
+                        @if ($recipes->isNotEmpty())
+                            <ul class="recipe-list">
+                                @foreach($recipes as $recipe)
+                                    <li>
+                                        <a href="{{$recipe['id']}}">
+                                            <div class="thumbnail"></div>
+                                            <span class="title">{{$recipe['title']}}</span>
+
+                                            <span class="icon-list">
                                             <span class="icon-container">
                                                 <span class="icon">&nbsp;</span>
                                                 <span class="text">{{$recipe['total_favourites']}}</span>
                                             </span>
                                         </span>
-                                        
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                        
-                        {!! $pager->links('includes.pagination') !!}
-                        
+
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+
+                            {{ $pager->links('includes.pagination') }}
+                        @else
+                            <div class="container">
+                                <div class="row">
+                                    <h5 class="mx-auto mt-4 mb-4">No recipes found. <a href="{{'user.recipes.create.view'}}">Add new recipes!</a></h5>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                     
                 </div>

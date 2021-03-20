@@ -1708,6 +1708,43 @@ textarea:focus {
   .num-pager p {
     display: block; }
 
+h5 a {
+  font-size: inherit;
+  color: #40ba37;
+  text-decoration: underline;
+  -webkit-transition: none;
+  transition: none; }
+  h5 a:hover {
+    font-size: inherit;
+    color: #40ba37;
+    -webkit-transition: none;
+    transition: none;
+    text-decoration: underline; }
+
+.search-box {
+  margin-bottom: 10px;
+  border: 1px solid #b2b2b2;
+  border-radius: 5px;
+  padding: 5px; }
+  .search-box form button {
+    width: 5%;
+    background: none;
+    border: none;
+    padding: 7px;
+    border-right: 1px solid #b2b2b2; }
+    @media (min-width: 370px) and (max-width: 768px) {
+      .search-box form button {
+        width: 8%; } }
+    .search-box form button:hover {
+      cursor: pointer; }
+  .search-box form input {
+    width: 94%;
+    padding: 7px;
+    border: none; }
+    @media (min-width: 370px) and (max-width: 768px) {
+      .search-box form input {
+        width: 85%; } }
+
 .recipe-list li {
   border-bottom: 1px solid #b2b2b2;
   padding: 10px;
@@ -1740,7 +1777,8 @@ textarea:focus {
           margin-top: 5px;
           margin-left: 0px; } }
     .recipe-list li a .icon-list {
-      float: right; }
+      float: right;
+      margin-right: 20px; }
       .recipe-list li a .icon-list .icon-container {
         text-align: center; }
         .recipe-list li a .icon-list .icon-container .icon {
@@ -1800,8 +1838,7 @@ textarea:focus {
   .white-bk h1 {
     font-size: 2.5em;
     color: #464646;
-    border-bottom: 1px solid #b2b2b2;
-    padding-bottom: 10px; }
+    padding-bottom: 4px; }
 
 form.auth {
   border-radius: 12px; }

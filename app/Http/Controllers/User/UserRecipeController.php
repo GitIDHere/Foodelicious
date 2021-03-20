@@ -19,12 +19,61 @@ class UserRecipeController extends Controller
      */    
     private $recipeService;
     
+    private $recipeItemsPerPage = 10;
     
     public function __construct(RecipeService $recipeService)
     {
         $this->recipeService = $recipeService;
     }
     
+    
+    public function searchRecipe(Request $request)
+    {
+        // Get the user's recipes
+        $user = Auth::user();
+        $userProfile = $user->userProfile;
+        
+        $searchTerm = $request->get('search_term');
+        
+        // If the search term is empty, then redirect them to the full recipe list
+        if(empty($searchTerm)) {
+            return redirect()->route('user.recipes.list');
+        }
+        
+        $recipeList = $userProfile->recipes->filter(function($recipe) use ($searchTerm)
+        {
+            return (stripos($recipe->title, $searchTerm) !== false);
+        });
+        
+        $pager = collectionPaginate($recipeList, $this->recipeItemsPerPage);
+        
+        // Get the items out from the pager
+        $recipeItems = collect($pager->toArray()['data']);
+        
+        $recipeList = $recipeItems->map(function($recipe)
+        {
+            $recipe = new Recipe($recipe);
+        
+            $recipePhoto = $recipe->files->first();
+            $imgURL = '';#Default image
+            if(is_object($recipePhoto)) {
+                $imgURL = asset($recipePhoto->public_path);
+            }
+        
+            return [
+                'id' => $recipe->id,
+                'title' => $recipe->title,
+                'img_url' => $imgURL,
+                'total_favourites' => 450,
+            ];
+        });
+    
+        return view('screens.user.recipes.list')
+            ->with('recipes', $recipeList)
+            ->with('pager', $pager)
+            ->with('searchTerm', $searchTerm)
+            ;
+    }
     
     /**
      * @param RecipeCreateRequest $request
@@ -82,13 +131,11 @@ class UserRecipeController extends Controller
      */
     public function showRecipeList(Request $request)
     {
-        $itemsPerPage = 10;
-        
         // Get the user's recipes
         $user = Auth::user();
         $userProfile = $user->userProfile;
         
-        $pager = collectionPaginate($userProfile->recipes, $itemsPerPage);
+        $pager = collectionPaginate($userProfile->recipes, $this->recipeItemsPerPage);
         // Get the items out from the pager
         $recipeItems = collect($pager->toArray()['data']);
         
