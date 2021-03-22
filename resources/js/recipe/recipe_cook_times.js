@@ -1,43 +1,24 @@
 $(() => 
 {
-    let cookTimeHours = $('.cook-time-hours');
-    let cookTimeMinutes = $('.cook-time-minutes');
-    
-    let restrictTimeInput = function(inputEl, event, maxVal)
-    {
-        let keyNum = Number(event.which);
+    let cookTimeEl = $('#cook_time');
+    let maxHours = 23;
 
-        // If they keystroke isn't a backspace
-        if (keyNum !== 8)
-        {
-            if (inputEl !== undefined || isNaN(e.key) === false)
-            {
-                let elVal = inputEl.val();
-                let keyVal = Number(event.key);
-                let inputVal = Number(elVal + keyVal);
-                
-                // If the digits in the input are > 2.
-                // Doing +1 to account for this current keystroke
-                if (elVal.length + 1 > 2) {
-                    event.preventDefault();
-                }
-                // Check if the value exceeds 15
-                else if (isNaN(inputVal) || inputVal > maxVal) {
-                    event.preventDefault();
-                }
-            }
-            else {
-                event.preventDefault();
-            }
-        }
+    let pad = (num) => {
+        num = num.toString();
+        while (num.length < 2) num = "0" + num;
+        return num;
     };
     
-    cookTimeHours.on('keydown', function(e) {
-        restrictTimeInput($(this), e, 15);
-    });
-
-    cookTimeMinutes.on('keydown', function(e) {
-        restrictTimeInput($(this), e, 59);
-    });
+    let genTimeOptions = (maxHours, selectEl) => 
+    {
+        for(let hours = 0; hours <= maxHours; hours++) 
+        {
+            for (let min = 5; min <= 55; min += 5) {
+                selectEl.append('<option value="">'+pad(hours)+':'+pad(min)+'</option>');
+            }    
+        }    
+    };
+    
+    genTimeOptions(maxHours, cookTimeEl);
     
 });

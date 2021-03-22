@@ -1,7 +1,9 @@
-@import 'theme_color';
-@import 'fonts';
-@import 'mixin';
-@import 'responsive';
+@import 'partials/theme_color';
+@import 'partials/fonts';
+@import 'partials/mixin';
+@import 'partials/responsive';
+
+@import 'switch_element';
 
 /* :: 1.0 Import Fonts */
 
@@ -13,7 +15,7 @@
 @import '../css/plugins/font-awesome.min.css';
 @import '../css/plugins/custom-icon.css';
 @import '../css/plugins/classy-nav.min.css';
-@import '../css/plugins/nice-select.min.css';
+//@import '../css/plugins/nice-select.min.css';
 @import '../css/plugins/tagify.min.css';
 /* :: 3.0 Base CSS */
 
@@ -1714,6 +1716,138 @@ textarea:focus {
 }
 
 /* Features Area */
+
+.block {
+    display: block;
+}
+
+.single-accordion.panel {
+    background: #f1f1f1;
+}
+
+.cooking-steps-container
+{
+    padding: 10px;
+    
+    .cooking-step-container
+    {
+        margin-bottom: 30px;
+        
+        .txt-area
+        {
+            margin-bottom: 10px;    
+        }
+    }
+}
+
+.btn 
+{
+    background: $colour-btn-normal;
+    margin:5px;
+    color: white;
+    
+    &:focus, &:hover 
+    {
+        font-size: initial;
+        color: white;
+        font-weight: initial;
+    }
+    
+    &:hover 
+    {
+        background: $colour-btn-normal-hover;
+    }
+    
+    &.btn-lg
+    {
+        padding: 10px 25px;
+        font-size: 1.2rem;    
+    }
+    
+    &.btn-red
+    {
+        background: $colour-btn-red;
+        
+        &:hover {
+            background: $colour-btn-red-hover;
+        }
+    }
+    
+    i.fa {
+        margin-left: 5px;
+    }
+    
+    &.chevron
+    {
+        padding-right: 40px;
+        padding-left: 0;
+    }
+    
+    &.chevron:before
+    {
+        left:113%;
+        top: 10px;
+        width: 15px;
+        height: 15px;
+    }
+    
+}
+
+.chevron::before {
+	border-style: solid;
+	border-width: 0.20em 0.20em 0 0;
+	content: '';
+	display: inline-block;
+	height: 0.45em;
+	left: 0.15em;
+	position: relative;
+	top: 0.15em;
+	transform: rotate(-45deg);
+	vertical-align: top;
+	width: 0.45em;
+}
+
+.chevron.chev-right:before {
+	left: 0;
+	transform: rotate(45deg);
+}
+
+.chevron.chev-down:before {
+	top: 0;
+	transform: rotate(135deg);
+}
+
+.chevron.chev-left:before {
+	left: 0.25em;
+	transform: rotate(-135deg);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+form#recipe-form 
+{
+    .input-container
+    {
+        //margin-bottom: 0 !important;
+        padding-top: 20px;    
+    }    
+}
 
 .txt-area {
     height: 115px;

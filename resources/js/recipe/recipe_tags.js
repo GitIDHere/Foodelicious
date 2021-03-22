@@ -15,7 +15,11 @@ $(function()
     let ingTagify = new Tagify(ingredientInput, {
         whitelist: [],
         // This is to convert the tags into json when form is submitted
-        originalInputValueFormat: valuesArr => JSON.stringify(valuesArr.map(item => item.value))
+        originalInputValueFormat: valuesArr => JSON.stringify(valuesArr.map(item => item.value)),
+        dropdown: {
+            position: "input",
+            enabled : 0 // always opens dropdown when input gets focus
+        },
     });
     
     let controller = null;

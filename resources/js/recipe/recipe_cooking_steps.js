@@ -15,6 +15,7 @@ $(() =>
         
         // Add the textarea
         let txtArea = $('<textarea name="cooking_steps[]">'); 
+        txtArea.addClass("form-control txt-area");
         stepContainer.append(txtArea);
         
         // Button container
@@ -22,25 +23,25 @@ $(() =>
         btnsContainer.addClass('button-container');
         
         // Delete button
-        let cookingStepDelBtn = $('<a data-cooking-step="'+cookingStepCounter+'" href="#">Delete step</a>');
-        cookingStepDelBtn.addClass('delete-cooking-step btn btn-delete');
+        let cookingStepDelBtn = $('<a data-cooking-step="'+cookingStepCounter+'" href="#">Delete step <i class="fa fa-trash" ></i></a>');
+        cookingStepDelBtn.addClass('delete-cooking-step btn btn-red');
         btnsContainer.append(cookingStepDelBtn);
         
         // Move up button
         let moveUpBtn = $('<a href="#">Move up</a>');
-        moveUpBtn.addClass('btn-move-up btn');
+        moveUpBtn.addClass('btn-move-up btn chevron');
         btnsContainer.append(moveUpBtn);
         
         // Move down button
         let moveDownBtn = $('<a href="#">Move down</a>');
-        moveDownBtn.addClass('btn-move-down btn');
+        moveDownBtn.addClass('btn-move-down btn chevron chev-down');
         btnsContainer.append(moveDownBtn);
                 
         // Add the button container to the cooking step container
         stepContainer.append(btnsContainer);
         
         // Add the cooking step to the parent container
-        cookingStepsContainer.append(stepContainer);
+        cookingStepsContainer.prepend(stepContainer);
     });
 
     

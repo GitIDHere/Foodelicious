@@ -1,44 +1,25 @@
 $(() => 
 {
-    let cookTimeHours = $('.cook-time-hours');
-    let cookTimeMinutes = $('.cook-time-minutes');
-    
-    let restrictTimeInput = function(inputEl, event, maxVal)
-    {
-        let keyNum = Number(event.which);
+    let cookTimeEl = $('#cook_time');
+    let maxHours = 23;
 
-        // If they keystroke isn't a backspace
-        if (keyNum !== 8)
-        {
-            if (inputEl !== undefined || isNaN(e.key) === false)
-            {
-                let elVal = inputEl.val();
-                let keyVal = Number(event.key);
-                let inputVal = Number(elVal + keyVal);
-                
-                // If the digits in the input are > 2.
-                // Doing +1 to account for this current keystroke
-                if (elVal.length + 1 > 2) {
-                    event.preventDefault();
-                }
-                // Check if the value exceeds 15
-                else if (isNaN(inputVal) || inputVal > maxVal) {
-                    event.preventDefault();
-                }
-            }
-            else {
-                event.preventDefault();
-            }
-        }
+    let pad = (num) => {
+        num = num.toString();
+        while (num.length < 2) num = "0" + num;
+        return num;
     };
     
-    cookTimeHours.on('keydown', function(e) {
-        restrictTimeInput($(this), e, 15);
-    });
-
-    cookTimeMinutes.on('keydown', function(e) {
-        restrictTimeInput($(this), e, 59);
-    });
+    let genTimeOptions = (maxHours, selectEl) => 
+    {
+        for(let hours = 0; hours <= maxHours; hours++) 
+        {
+            for (let min = 5; min <= 55; min += 5) {
+                selectEl.append('<option value="">'+pad(hours)+':'+pad(min)+'</option>');
+            }    
+        }    
+    };
+    
+    genTimeOptions(maxHours, cookTimeEl);
     
 });
 $(() =>
@@ -58,6 +39,7 @@ $(() =>
         
         // Add the textarea
         let txtArea = $('<textarea name="cooking_steps[]">'); 
+        txtArea.addClass("form-control txt-area");
         stepContainer.append(txtArea);
         
         // Button container
@@ -65,25 +47,25 @@ $(() =>
         btnsContainer.addClass('button-container');
         
         // Delete button
-        let cookingStepDelBtn = $('<a data-cooking-step="'+cookingStepCounter+'" href="#">Delete step</a>');
-        cookingStepDelBtn.addClass('delete-cooking-step btn btn-delete');
+        let cookingStepDelBtn = $('<a data-cooking-step="'+cookingStepCounter+'" href="#">Delete step <i class="fa fa-trash" ></i></a>');
+        cookingStepDelBtn.addClass('delete-cooking-step btn btn-red');
         btnsContainer.append(cookingStepDelBtn);
         
         // Move up button
         let moveUpBtn = $('<a href="#">Move up</a>');
-        moveUpBtn.addClass('btn-move-up btn');
+        moveUpBtn.addClass('btn-move-up btn chevron');
         btnsContainer.append(moveUpBtn);
         
         // Move down button
         let moveDownBtn = $('<a href="#">Move down</a>');
-        moveDownBtn.addClass('btn-move-down btn');
+        moveDownBtn.addClass('btn-move-down btn chevron chev-down');
         btnsContainer.append(moveDownBtn);
                 
         // Add the button container to the cooking step container
         stepContainer.append(btnsContainer);
         
         // Add the cooking step to the parent container
-        cookingStepsContainer.append(stepContainer);
+        cookingStepsContainer.prepend(stepContainer);
     });
 
     
@@ -205,7 +187,11 @@ $(function()
     let ingTagify = new Tagify(ingredientInput, {
         whitelist: [],
         // This is to convert the tags into json when form is submitted
-        originalInputValueFormat: valuesArr => JSON.stringify(valuesArr.map(item => item.value))
+        originalInputValueFormat: valuesArr => JSON.stringify(valuesArr.map(item => item.value)),
+        dropdown: {
+            position: "input",
+            enabled : 0 // always opens dropdown when input gets focus
+        },
     });
     
     let controller = null;
