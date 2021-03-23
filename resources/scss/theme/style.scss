@@ -17,6 +17,7 @@
 @import '../css/plugins/classy-nav.min.css';
 //@import '../css/plugins/nice-select.min.css';
 @import '../css/plugins/tagify.min.css';
+@import '../css/plugins/balloon.min.css';
 /* :: 3.0 Base CSS */
 
 * {
@@ -1758,10 +1759,10 @@ textarea:focus {
         background: $colour-btn-normal-hover;
     }
     
-    &.btn-lg
+    &.btn-md
     {
-        padding: 10px 25px;
-        font-size: 1.2rem;    
+        padding: 5px 23px;
+        font-size: 1.05rem;    
     }
     
     &.btn-red
@@ -1792,6 +1793,40 @@ textarea:focus {
     }
     
 }
+
+
+.hint
+{
+    
+    
+    i
+    {
+        color: #007bff;
+        position: relative;
+        
+        span[aria-label]
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 15px;
+            height: 15px;
+            display: inline-block;
+        }
+
+        .hint-tooltip
+        {
+            --balloon-font-size: 0.95rem;
+            line-height: 21px;   
+            
+            --balloon-color: #007bff;
+        }
+        
+    }
+    
+    
+}
+
 
 .chevron::before {
 	border-style: solid;

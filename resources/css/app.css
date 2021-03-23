@@ -14,6 +14,7 @@
 @import url(../css/plugins/custom-icon.css);
 @import url(../css/plugins/classy-nav.min.css);
 @import url(../css/plugins/tagify.min.css);
+@import url(../css/plugins/balloon.min.css);
 html {
   line-height: 1.15;
   /* 1 */
@@ -1819,9 +1820,9 @@ textarea:focus {
     font-weight: initial; }
   .btn:hover {
     background: #3d9133; }
-  .btn.btn-lg {
-    padding: 10px 25px;
-    font-size: 1.2rem; }
+  .btn.btn-md {
+    padding: 5px 23px;
+    font-size: 1.05rem; }
   .btn.btn-red {
     background: #cd4833; }
     .btn.btn-red:hover {
@@ -1836,6 +1837,21 @@ textarea:focus {
     top: 10px;
     width: 15px;
     height: 15px; }
+
+.hint i {
+  color: #007bff;
+  position: relative; }
+  .hint i span[aria-label] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    display: inline-block; }
+  .hint i .hint-tooltip {
+    --balloon-font-size: 0.95rem;
+    line-height: 21px;
+    --balloon-color: #007bff; }
 
 .chevron::before {
   border-style: solid;

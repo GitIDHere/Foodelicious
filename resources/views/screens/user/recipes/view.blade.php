@@ -11,6 +11,25 @@
 @section('content')
     @auth
 
+        
+        <div style="position:relative;">
+            <img src="/img/blog-img/3.jpg" />
+            <div style="position: absolute;top: 0;left:0;">
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         @php
             $utensils = old('utensils');
             if (empty(old('utensils')) && isset($data)) {
@@ -73,7 +92,18 @@
                         </div>
 
                         <div class="input-container">
-                            <label for="recipe-utensils" class="required">Utensils</label>
+                            <label for="recipe-utensils" class="required">
+                                Utensils
+                                <span class="hint">
+                                    <i class="fa fa-info-circle">
+                                        <span 
+                                            class="hint-tooltip"
+                                            data-balloon-length="large"
+                                            aria-label="List the utensils needed for this recipe. Press the `enter` key to add it to the list!" 
+                                            data-balloon-pos="right"></span>
+                                    </i>
+                                </span>
+                            </label>
                             <input
                                 type="text"
                                 name="utensils"
@@ -84,7 +114,18 @@
                         </div>
 
                         <div class="input-container">
-                            <label for="recipe-ingredients" class="required">Ingredients</label>
+                            <label for="recipe-ingredients" class="required">
+                                Ingredients
+                                <span class="hint">
+                                    <i class="fa fa-info-circle">
+                                        <span
+                                            class="hint-tooltip"
+                                            data-balloon-length="large"
+                                            aria-label="List the ingredients for this recipe. Press the `enter` key to add it to the list!"
+                                            data-balloon-pos="right"></span>
+                                    </i>
+                                </span>
+                            </label>
                             <input
                                     type="text"
                                     name="utensils"
@@ -96,7 +137,18 @@
                         
                         
                         <div id="accordion" class="input-container ">
-                            <label>Cooking steps</label>
+                            <label>
+                                Cooking steps
+                                <span class="hint">
+                                    <i class="fa fa-info-circle">
+                                            <span
+                                                class="hint-tooltip"
+                                                data-balloon-length="large"
+                                                aria-label="Click on the grey banner top open the panel."
+                                                data-balloon-pos="right"></span>
+                                    </i>
+                                </span>
+                            </label>
                             <div class="panel single-accordion">
                                 <h6>
                                     <a role="button" class="collapsed" aria-expanded="false" aria-controls="collapseTwo" data-parent="#accordion" data-toggle="collapse" href="#collapseTwo">
@@ -166,7 +218,7 @@
                         </div>
                         
                         
-                        <input type="submit" value="Submit" class="btn btn-lg" />
+                        <input type="submit" value="Submit" class="btn btn-md" />
                         
                     </form>
                 </div>
