@@ -20,6 +20,17 @@
                                 </ul>
                             </div>
                         @endif
+
+                        <div class="container pl-0 pr-0">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a class="new-rec btn btn-md mb-3" href="{{route('user.recipes.create.view')}}">
+                                        New Recipe
+                                        <i class="fa fa-plus" ></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                         
                         <div class="search-box container pl-0 pr-0">
                             <div class="row">
@@ -27,19 +38,17 @@
                                     <form action="{{route('user.recipes.search.submit')}}" method="POST">
                                         @csrf
                                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                        <input type="search" name="search_term" placeholder="Search recipes" value="{{ isset($searchTerm) ? $searchTerm : ''}}">
+                                        <input type="search" name="search_term" placeholder="Search your recipes" value="{{ isset($searchTerm) ? $searchTerm : ''}}">
                                     </form>
                                 </div>
                             </div>
                         </div>
                         
-                        <a class="delicious-btn btn-sm " href="{{route('user.recipes.create.view')}}">Add recipe</a>
-                        
                         @if ($recipes->isNotEmpty())
                             <ul class="recipe-list">
                                 @foreach($recipes as $recipe)
                                     <li>
-                                        <a href="{{$recipe['id']}}">
+                                        <a href="{{route('user.recipes.view', ['recipe' => $recipe['id']])}}">
                                             <div class="thumbnail"></div>
                                             <span class="title">{{$recipe['title']}}</span>
 

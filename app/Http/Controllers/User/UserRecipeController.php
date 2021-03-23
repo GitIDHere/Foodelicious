@@ -90,7 +90,7 @@ class UserRecipeController extends Controller
     public function saveRecipe(RecipeCreateRequest $request, $username, Recipe $recipe)
     {
         $recipeFields = $request->all();
-               
+        
         $user = Auth::user();
         $userProfile = $user->userProfile;
         
@@ -105,12 +105,13 @@ class UserRecipeController extends Controller
 
             $deletePhotos = $request->input('delete_photos');
             
-            $cookTimeHours = $recipeFields['cook_time_hours'];
-            $cookTimeMin = $recipeFields['cook_time_minutes'];
-            $recipeFields['cook_time'] = $cookTimeHours.':'.$cookTimeMin;
-            
             if (is_array($recipeFields['cooking_steps'])) {
                 $recipeFields['cooking_steps'] = json_encode($recipeFields['cooking_steps']);
+            }
+            
+            $recipeFields['visibility'] = 'private';
+            if ($request->has('visibility')) {
+                $recipeFields['visibility'] = 'public';    
             }
             
             $recipe = $this->recipeService->saveRecipe($userProfile, $recipe, $recipeFields, $savePhotos, $deletePhotos);
@@ -149,6 +150,7 @@ class UserRecipeController extends Controller
         
         $recipeList = $recipeItems->map(function($recipe)
         {
+            $id = $recipe['id'];
             $recipe = new Recipe($recipe);
             
             $recipePhoto = $recipe->files->first();
@@ -158,7 +160,7 @@ class UserRecipeController extends Controller
             }
             
             return [
-                'id' => $recipe->id,
+                'id' => $id,
                 'title' => $recipe->title,                
                 'img_url' => $imgURL,
                 'total_favourites' => 450,                
@@ -188,9 +190,7 @@ class UserRecipeController extends Controller
             $ingredientsCSV = $this->getCSVFromJSON($recipe->ingredients);
             $utensilsCSV = $this->getCSVFromJSON($recipe->utensils);
             
-            $cookTimes = explode(':', $recipe->cook_time);
-            $cookTimeHours = $cookTimes[0];
-            $cookTimeMin = $cookTimes[1];
+            $cookTime = $recipe->cook_time;
             
             $recipePhotos = $recipe->files->map(function($photoFile)
             {
@@ -205,8 +205,7 @@ class UserRecipeController extends Controller
                 'title' => $recipe->title,
                 'description' => $recipe->description,
                 'cooking_steps' => json_decode($recipe->cooking_steps),
-                'cook_time_hours' => $cookTimeHours,
-                'cook_time_minutes' => $cookTimeMin,
+                'cook_time' => $cookTime,
                 'servings' => $recipe->servings,
                 'preparations' => $recipe->prep_directions,
                 'utensils' => $utensilsCSV,

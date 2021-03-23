@@ -1776,6 +1776,8 @@ textarea:focus {
     
     i.fa {
         margin-left: 5px;
+        position: relative;
+        top: 2px;
     }
     
     &.chevron
@@ -1791,14 +1793,21 @@ textarea:focus {
         width: 15px;
         height: 15px;
     }
-    
+}
+
+
+
+.new-rec.btn 
+{
+    float: right;
+    @include media-responsive($screen-md) {
+        float: none;
+    }
 }
 
 
 .hint
 {
-    
-    
     i
     {
         color: #007bff;
@@ -1817,14 +1826,10 @@ textarea:focus {
         .hint-tooltip
         {
             --balloon-font-size: 0.95rem;
-            line-height: 21px;   
-            
+            line-height: 21px;
             --balloon-color: #007bff;
         }
-        
     }
-    
-    
 }
 
 
@@ -1856,22 +1861,6 @@ textarea:focus {
 	left: 0.25em;
 	transform: rotate(-135deg);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2045,8 +2034,12 @@ h5 {
             padding: 7px;
             border-right: 1px solid $faint-grey;
             
-            @include media-responsive($screen-md, $screen-xs) {
+            @include media-responsive($screen-md) {
                 width: 8%;
+            }
+            
+            @include media-responsive($screen-sm) {
+                width: 10%;
             }
             
             &:hover {
@@ -2058,8 +2051,8 @@ h5 {
             width: 94%;
             padding: 7px;
             border: none;
-            @include media-responsive($screen-md, $screen-xs) {
-                width: 85%;
+            @include media-responsive($screen-md) {
+                width: 80%;
             }
         }
     }
@@ -2087,11 +2080,16 @@ h5 {
             
             .thumbnail
             {
-                width: 50px;
-                height: 50px;
+                width: 75px;
+                height: 75px;
                 background: #9b9b9b;
                 display: inline-block;
                 vertical-align: middle;
+
+                @include media-responsive($screen-sm) {
+                    width: 50px;
+                    height: 50px;
+                }
             }
             
             .title 

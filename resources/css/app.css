@@ -1828,7 +1828,9 @@ textarea:focus {
     .btn.btn-red:hover {
       background: #bc4733; }
   .btn i.fa {
-    margin-left: 5px; }
+    margin-left: 5px;
+    position: relative;
+    top: 2px; }
   .btn.chevron {
     padding-right: 40px;
     padding-left: 0; }
@@ -1837,6 +1839,12 @@ textarea:focus {
     top: 10px;
     width: 15px;
     height: 15px; }
+
+.new-rec.btn {
+  float: right; }
+  @media (max-width: 768px) {
+    .new-rec.btn {
+      float: none; } }
 
 .hint i {
   color: #007bff;
@@ -1981,18 +1989,21 @@ h5 a {
     border: none;
     padding: 7px;
     border-right: 1px solid #b2b2b2; }
-    @media (min-width: 370px) and (max-width: 768px) {
+    @media (max-width: 768px) {
       .search-box form button {
         width: 8%; } }
+    @media (max-width: 576px) {
+      .search-box form button {
+        width: 10%; } }
     .search-box form button:hover {
       cursor: pointer; }
   .search-box form input {
     width: 94%;
     padding: 7px;
     border: none; }
-    @media (min-width: 370px) and (max-width: 768px) {
+    @media (max-width: 768px) {
       .search-box form input {
-        width: 85%; } }
+        width: 80%; } }
 
 .recipe-list li {
   border-bottom: 1px solid #b2b2b2;
@@ -2005,11 +2016,15 @@ h5 a {
   .recipe-list li a {
     display: block; }
     .recipe-list li a .thumbnail {
-      width: 50px;
-      height: 50px;
+      width: 75px;
+      height: 75px;
       background: #9b9b9b;
       display: inline-block;
       vertical-align: middle; }
+      @media (max-width: 576px) {
+        .recipe-list li a .thumbnail {
+          width: 50px;
+          height: 50px; } }
     .recipe-list li a .title {
       width: 80%;
       display: inline-block;

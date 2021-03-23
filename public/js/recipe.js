@@ -1,27 +1,3 @@
-$(() => 
-{
-    let cookTimeEl = $('#cook_time');
-    let maxHours = 23;
-
-    let pad = (num) => {
-        num = num.toString();
-        while (num.length < 2) num = "0" + num;
-        return num;
-    };
-    
-    let genTimeOptions = (maxHours, selectEl) => 
-    {
-        for(let hours = 0; hours <= maxHours; hours++) 
-        {
-            for (let min = 5; min <= 55; min += 5) {
-                selectEl.append('<option value="">'+pad(hours)+':'+pad(min)+'</option>');
-            }    
-        }    
-    };
-    
-    genTimeOptions(maxHours, cookTimeEl);
-    
-});
 $(() =>
 {
     let cookingStepsContainer = $('.cooking-steps-container');
@@ -65,7 +41,7 @@ $(() =>
         stepContainer.append(btnsContainer);
         
         // Add the cooking step to the parent container
-        cookingStepsContainer.prepend(stepContainer);
+        addNewStepBtn.before(stepContainer);
     });
 
     
@@ -187,7 +163,10 @@ $(function()
     let ingTagify = new Tagify(ingredientInput, {
         whitelist: [],
         // This is to convert the tags into json when form is submitted
-        originalInputValueFormat: valuesArr => JSON.stringify(valuesArr.map(item => item.value)),
+        //originalInputValueFormat: valuesArr => JSON.stringify(valuesArr.map(item => item.value)),
+        originalInputValueFormat: function(valuesArr){
+            return JSON.stringify(valuesArr.map(item => item.value))
+        },
         dropdown: {
             position: "input",
             enabled : 0 // always opens dropdown when input gets focus

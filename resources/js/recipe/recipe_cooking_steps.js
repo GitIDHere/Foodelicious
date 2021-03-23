@@ -41,7 +41,7 @@ $(() =>
         stepContainer.append(btnsContainer);
         
         // Add the cooking step to the parent container
-        cookingStepsContainer.prepend(stepContainer);
+        addNewStepBtn.before(stepContainer);
     });
 
     

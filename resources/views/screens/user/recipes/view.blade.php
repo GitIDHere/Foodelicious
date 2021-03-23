@@ -2,41 +2,18 @@
 
 @section('page_scripts')
     <script src="{{mix('js/recipe.js')}}"></script>
-    {{--    <script src="{{mix('js/recipe_tags.js')}}"></script>--}}
-    {{--    <script src="{{mix('js/recipe_cooking_steps.js')}}"></script>--}}
-    {{--    <script src="{{mix('js/recipe_cook_times.js')}}"></script>--}}
-    {{--    <script src="{{mix('js/recipe_photos.js')}}"></script>--}}
 @endsection
 
 @section('content')
     @auth
-
-        
-        <div style="position:relative;">
-            <img src="/img/blog-img/3.jpg" />
-            <div style="position: absolute;top: 0;left:0;">
-                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-            </div>
-        </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         @php
             $utensils = old('utensils');
             if (empty(old('utensils')) && isset($data)) {
                 $utensils = $data['utensils'];
             }
-            
         @endphp
+        
         <div class="container">
             <div class="row white-bk pt-4 pb-4">
                 @include('screens.user.partials._side_bar')
@@ -67,7 +44,7 @@
                                 name="title" 
                                 class="form-control" 
                                 id="recipe-title" 
-                                value="{{ ($data['title'] ?? '')  }}" 
+                                value="{{ ($data['title'] ?? old('title'))  }}" 
                             />
                         </div>
                         
@@ -76,19 +53,39 @@
                             <textarea
                                     name="description"
                                     id="recipe-desc"
-                                    class="form-control txt-area">{{ ($data['description'] ?? '')  }}</textarea>
+                                    class="form-control txt-area">{{ ($data['description'] ?? old('description'))  }}</textarea>
                         </div>
 
                         <div class="input-container">
                             <label for="cook_time">Cook time (HH:MM)</label>
                             <select id="cook_time" class="form-control" name="cook_time">
                                 <option>Please select</option>
+                                @for($hour = 0; $hour <= 23; $hour++)
+                                    @for($min = 5; $min <= 55; $min += 5)
+                                        @php
+                                        $hourPadded = \Illuminate\Support\Str::padLeft($hour, 2, 0);
+                                        $minPadded = \Illuminate\Support\Str::padLeft($min, 2, 0);
+                                        $time = $hourPadded.':'.$minPadded;
+                                        $selected = '';
+                                        if (old('cook_time') && old('cook_time') == $time) {
+                                            $selected = 'selected';    
+                                        } else if (isset($data['cook_time']) && $data['cook_time'] == $time) {
+                                            $selected = 'selected';
+                                        }
+                                        @endphp
+                                        <option 
+                                            value="{{$time}}"
+                                            {{$selected}}>
+                                            {{$time}}
+                                        </option>
+                                    @endfor
+                                @endfor
                             </select>
                         </div>
 
                         <div class="input-container">
                             <label for="recipe-prep" class="required">Preparation</label>
-                            <textarea  name="prep_directions"  id="recipe-prep"  class="form-control txt-area">{{ ($data['preparations'] ?? '')  }}</textarea>
+                            <textarea  name="prep_directions"  id="recipe-prep"  class="form-control txt-area">{{ ($data['preparations'] ?? old('prep_directions'))  }}</textarea>
                         </div>
 
                         <div class="input-container">
@@ -128,10 +125,10 @@
                             </label>
                             <input
                                     type="text"
-                                    name="utensils"
+                                    name="ingredients"
                                     id="recipe-ingredients"
                                     class="form-control tagify--outside tags-container"
-                                    value="{{ ($ingredients ?? '') }}"
+                                    value="{{ ($data['ingredients'] ?? old('ingredients')) }}"
                             />
                         </div>
                         
@@ -207,7 +204,7 @@
                                 <input 
                                     type="checkbox" 
                                     class="switch switch-bootstrap status" 
-                                    name="status" id="visibility" 
+                                    name="visibility" id="visibility" 
                                     value="1" 
                                     @if(isset($data))
                                         {{$data['visibility'] == 'public' ? 'checked' : ''}}
@@ -217,8 +214,9 @@
                             </label>
                         </div>
                         
-                        
-                        <input type="submit" value="Submit" class="btn btn-md" />
+                        <div class="input-container">
+                            <input type="submit" value="Save" class="btn btn-md pull-right" />
+                        </div>
                         
                     </form>
                 </div>
