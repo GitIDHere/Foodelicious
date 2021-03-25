@@ -19,7 +19,8 @@ class File extends Model
      * @var array 
      */
     protected $appends = [
-        'public_path'  
+        'public_path',
+        'thumbnail_path'
     ];
     
     
@@ -29,6 +30,14 @@ class File extends Model
     public function getPublicPathAttribute()
     {
         return 'storage/'.$this->path;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getThumbnailPathAttribute()
+    {
+       return 'storage/thumb/'.$this->path; 
     }
     
     

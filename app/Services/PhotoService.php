@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Models\Recipe;
 use Illuminate\Database\Eloquent;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Http\File;
 use App\Models\File as AppFile;
 use Illuminate\Http\UploadedFile;
@@ -34,6 +35,8 @@ class PhotoService
      */
     protected $visibility = 'public';
     
+    protected $thumbnailPath = 'thumb/';
+    
     
     /**
      * @param $allowedMimeTypes
@@ -53,6 +56,7 @@ class PhotoService
     {
         $savedFiles = new Eloquent\Collection();
         
+        /** @var FilesystemAdapter $driver */
         $driver = Storage::drive($this->visibility);
         
         foreach($files as $fileIndex => $file) 
@@ -78,6 +82,8 @@ class PhotoService
                      
                      if ($path) 
                      {
+                        $this->createThumbnail($driver, $path);
+                         
                         $fileName = basename($path);
                         
                         $savedFiles->add(AppFile::create([
@@ -92,6 +98,17 @@ class PhotoService
         return $savedFiles;
     }
     
+    
+    /**
+     * @param $driver
+     * @param $imgPath
+     */
+    private function createThumbnail($driver, $imgPath)
+    {
+        $thumbnailDir = $driver->path($this->thumbnailPath . $this->baseFilePath.'/');
+        \Illuminate\Support\Facades\File::ensureDirectoryExists($thumbnailDir);
+        createThumbnail($thumbnailDir, $driver->path($imgPath));
+    }
     
     /**
      * @param Recipe $recipe

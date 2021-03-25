@@ -49,7 +49,7 @@
                                 @foreach($recipes as $recipe)
                                     <li>
                                         <a href="{{route('user.recipes.view', ['recipe' => $recipe['id']])}}">
-                                            <div class="thumbnail"></div>
+                                            <img src="{{$recipe['thumbnail']}}"  class="thumbnail" />
                                             <span class="title">{{$recipe['title']}}</span>
 
                                             <span class="icon-list">

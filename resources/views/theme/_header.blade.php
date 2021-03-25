@@ -1,20 +1,3 @@
-<!-- Search Wrapper -->
-<div class="search-wrapper">
-    <!-- Close Btn -->
-    <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <form action="#" method="post">
-                    <input type="search" name="search" placeholder="Type any keywords...">
-                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- ##### Header Area Start ##### -->
 <header class="header-area">
 
@@ -73,11 +56,6 @@
                                 <li><a href="receipe-post.html">Recipies</a></li>
                                 <li><a href="contact.html">Contact</a></li>
                             </ul>
-
-                            <!-- Newsletter Form -->
-                            <div class="search-btn">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </div>
 
                         </div>
                         <!-- Nav End -->

@@ -146,23 +146,22 @@ class UserRecipeController extends Controller
         
         $pager = collectionPaginate($userProfile->recipes, $this->recipeItemsPerPage);
         // Get the items out from the pager
-        $recipeItems = collect($pager->toArray()['data']);
-        
+        $recipeItems = collect($pager->items);
         $recipeList = $recipeItems->map(function($recipe)
         {
-            $id = $recipe['id'];
-            $recipe = new Recipe($recipe);
-            
             $recipePhoto = $recipe->files->first();
-            $imgURL = '';#Default image
+            
+            $imgURL = $thumbnail = '';
             if(is_object($recipePhoto)) {
                 $imgURL = asset($recipePhoto->public_path);
+                $thumbnail = asset($recipePhoto->thumbnail_path);
             }
             
             return [
-                'id' => $id,
+                'id' => $recipe->id,
                 'title' => $recipe->title,                
                 'img_url' => $imgURL,
+                'thumbnail' => $thumbnail,
                 'total_favourites' => 450,                
             ];
         });
