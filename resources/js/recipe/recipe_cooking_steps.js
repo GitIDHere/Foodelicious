@@ -22,11 +22,6 @@ $(() =>
         let btnsContainer = $('<div>');
         btnsContainer.addClass('button-container');
         
-        // Delete button
-        let cookingStepDelBtn = $('<a data-cooking-step="'+cookingStepCounter+'" href="#">Delete step <i class="fa fa-trash" ></i></a>');
-        cookingStepDelBtn.addClass('delete-cooking-step btn btn-red');
-        btnsContainer.append(cookingStepDelBtn);
-        
         // Move up button
         let moveUpBtn = $('<a href="#">Move up</a>');
         moveUpBtn.addClass('btn-move-up btn chevron');
@@ -37,6 +32,11 @@ $(() =>
         moveDownBtn.addClass('btn-move-down btn chevron chev-down');
         btnsContainer.append(moveDownBtn);
                 
+        // Delete button
+        let cookingStepDelBtn = $('<a data-cooking-step="'+cookingStepCounter+'" href="#">Delete step<i class="fa fa-trash" ></i></a>');
+        cookingStepDelBtn.addClass('pull-right delete-cooking-step btn btn-red');
+        btnsContainer.append(cookingStepDelBtn);
+        
         // Add the button container to the cooking step container
         stepContainer.append(btnsContainer);
         

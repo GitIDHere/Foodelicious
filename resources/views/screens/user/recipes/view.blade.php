@@ -164,9 +164,9 @@
                                                 <div data-cooking-step="{{$index+1}}" class="cooking-step-container">
                                                     <textarea name="cooking_steps[]" class="form-control txt-area">{{ $cookingStep }}</textarea>
                                                     <div class="button-container">
-                                                        <a href="#" class="btn-sm btn-red btn-move-up btn">Move up</a>
-                                                        <a href="#" class="btn-sm btn-move-down btn">Move down</a>
-                                                        <a data-cooking-step="{{$index+1}}" href="#" class="btn-sm delete-cooking-step btn btn-red">Delete step</a>
+                                                        <a href="#" class="btn-move-up btn chevron">Move up</a>
+                                                        <a href="#" class="btn-move-down btn chevron chev-down">Move down</a>
+                                                        <a data-cooking-step="{{$index+1}}" href="#" class="pull-right delete-cooking-step btn btn-red">Delete step<i class="fa fa-trash" ></i></a>
                                                     </div>
                                                 </div>
                                             @endforeach
