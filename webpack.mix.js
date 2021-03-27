@@ -24,7 +24,6 @@ mix
         'Tagify'
     ])
     .js('resources/js/app.js', 'public/js')
-    //.copy('resources/js/scripts/**/*.js', 'public/js')
     .combine([
         'resources/js/theme/plugins.js',
         'resources/js/theme/main.js',

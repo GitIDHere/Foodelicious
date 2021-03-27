@@ -16,6 +16,7 @@ $(() =>
         // Add the textarea
         let txtArea = $('<textarea name="cooking_steps[]">'); 
         txtArea.addClass("form-control txt-area");
+        txtArea.ckeditor();
         stepContainer.append(txtArea);
         
         // Button container
