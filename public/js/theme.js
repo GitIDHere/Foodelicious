@@ -260,4 +260,6 @@ return t=a?function(t){return t&&a(r(t))}:function(t){return t&&r(t)}}function e
 
     $("body").removeClass("preload");
     
+    $('textarea').ckeditor();
+    
 })(jQuery);

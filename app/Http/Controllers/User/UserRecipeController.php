@@ -45,7 +45,7 @@ class UserRecipeController extends Controller
         
         // If the search term is empty, then redirect them to the full recipe list
         if(empty($searchTerm)) {
-            return redirect()->route('user.recipes.list');
+            return redirect()->route('user.profile.view');
         }
         
         $recipeList = $userProfile->recipes->filter(function($recipe) use ($searchTerm)
@@ -54,29 +54,29 @@ class UserRecipeController extends Controller
         });
         
         $pager = collectionPaginate($recipeList, $this->recipeItemsPerPage);
-        
         // Get the items out from the pager
-        $recipeItems = collect($pager->toArray()['data']);
+        $recipeItems = collect($pager->items);
         
         $recipeList = $recipeItems->map(function($recipe)
         {
-            $recipe = new Recipe($recipe);
-        
             $recipePhoto = $recipe->files->first();
-            $imgURL = '';#Default image
+            
+            $imgURL = $thumbnail = '';
             if(is_object($recipePhoto)) {
                 $imgURL = asset($recipePhoto->public_path);
+                $thumbnail = asset($recipePhoto->thumbnail_path);
             }
         
             return [
                 'id' => $recipe->id,
                 'title' => $recipe->title,
                 'img_url' => $imgURL,
+                'thumbnail' => $thumbnail,
                 'total_favourites' => 450,
             ];
         });
     
-        return view('screens.user.recipes.list')
+        return view('screens.user.profile.view')
             ->with('recipes', $recipeList)
             ->with('pager', $pager)
             ->with('searchTerm', $searchTerm)
@@ -121,7 +121,7 @@ class UserRecipeController extends Controller
                 // Send event
                 RecipeCreated::dispatch($recipe);
                 
-                return redirect()->route('user.recipes.list')->with(['success' => 'Recipe added!']);
+                return redirect()->route('user.profile.view')->with(['success' => 'Recipe added!']);
             }
             else {
                 return back()->withErrors(['Failed to create recipe']);
@@ -143,8 +143,7 @@ class UserRecipeController extends Controller
         // Get the user's recipes
         $user = Auth::user();
         $userProfile = $user->userProfile;
-        
-        $pager = collectionPaginate($userProfile->recipes, $this->recipeItemsPerPage);
+        $pager = collectionPaginate($userProfile->recipes->sortByDesc('created_at'), $this->recipeItemsPerPage);
         // Get the items out from the pager
         $recipeItems = collect($pager->items);
         $recipeList = $recipeItems->map(function($recipe)
@@ -162,11 +161,12 @@ class UserRecipeController extends Controller
                 'title' => $recipe->title,                
                 'img_url' => $imgURL,
                 'thumbnail' => $thumbnail,
+                'date_created' => $recipe->created_at->format('d/m/Y'),
                 'total_favourites' => 450,                
             ];
         });
         
-        return view('screens.user.recipes.list')
+        return view('screens.user.profile.view')
             ->with('recipes', $recipeList)
             ->with('pager', $pager)
             ;

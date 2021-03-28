@@ -7,7 +7,12 @@ Route::prefix('{username}')
     ->middleware(['user.verified', 'auth', 'url.parameters', 'user.routes'])
     ->group(function() 
     {
-        Route::get('', [Controllers\UserProfileController::class, 'showProfile'])
-        ->name('user.profile.view');
+        /*
+         * Show a list of recipe belonging to the user
+         */
+        Route::get('', [Controllers\UserRecipeController::class, 'showRecipeList'])
+            ->name('user.profile.view')
+        ;
+        
     })
 ;

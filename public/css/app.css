@@ -3669,8 +3669,6 @@ textarea:focus {
         color: #ffffff; }
     .sidebar ul li:first-child a {
       margin-top: 0; }
-    .sidebar ul li:last-child {
-      border-bottom: none; }
     .sidebar ul li a {
       width: 100%;
       display: block;

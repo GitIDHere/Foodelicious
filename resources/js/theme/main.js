@@ -138,4 +138,6 @@
 
     $("body").removeClass("preload");
     
+    $('textarea').ckeditor();
+    
 })(jQuery);
