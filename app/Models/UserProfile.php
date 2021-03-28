@@ -16,6 +16,18 @@ class UserProfile extends Model
         'desc',
     ];
     
+    protected $attributes = [
+        'full_name'  
+    ];
+    
+    /**
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return $this->forename.' '.$this->surname;
+    }
+    
     
     /**
      * User profile belongs to one User

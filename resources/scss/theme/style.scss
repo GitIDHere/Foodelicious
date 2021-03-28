@@ -1859,11 +1859,10 @@ textarea:focus {
 
 
 
-form#recipe-form 
+form
 {
     .input-container
     {
-        //margin-bottom: 0 !important;
         padding-top: 20px;    
     }    
 }
@@ -2210,7 +2209,7 @@ h5 {
     background: white;
     color: black;
 
-    input[type=text], input[type=password], input[type=number] {
+    input[type=text], input[type=password], input[type=number], input[type=email]{
         background: $input-bg;
     }
 

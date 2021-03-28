@@ -1884,7 +1884,7 @@ textarea:focus {
   left: 0.25em;
   transform: rotate(-135deg); }
 
-form#recipe-form .input-container {
+form .input-container {
   padding-top: 20px; }
 
 .txt-area {
@@ -2092,7 +2092,7 @@ h5 a {
 .white-bk {
   background: white;
   color: black; }
-  .white-bk input[type=text], .white-bk input[type=password], .white-bk input[type=number] {
+  .white-bk input[type=text], .white-bk input[type=password], .white-bk input[type=number], .white-bk input[type=email] {
     background: #f7f7f7; }
   .white-bk label {
     font-size: 120%;

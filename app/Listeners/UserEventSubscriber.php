@@ -1,6 +1,9 @@
 <?php namespace App\Listeners;
 
 
+use App\Mail\EmailUpdateRequest;
+use Illuminate\Support\Facades\Mail;
+
 class UserEventSubscriber
 {
     /**
@@ -15,6 +18,19 @@ class UserEventSubscriber
      */
     public function handleUserLogout($event) {
         
+    }
+    
+    /**
+     * Send an email to the original email address notifying them that their email address has been updated.
+     * @param $event
+     */
+    public function handleEmailUpdate($event)
+    {
+        $user = $event->user;
+        $oldEmail = $event->oldEmail;
+        $name = $user->userProfile->full_name;
+        
+        Mail::to($oldEmail)->send(new EmailUpdateRequest($name, $user));
     }
 
     /**
@@ -33,6 +49,11 @@ class UserEventSubscriber
         $events->listen(
             'Illuminate\Auth\Events\Logout',
             [UserEventSubscriber::class, 'handleUserLogout']
+        );
+        
+        $events->listen(
+            'App\Events\EmailUpdateRequest',
+            [UserEventSubscriber::class, 'handleEmailUpdate']
         );
     }
 }

@@ -6,7 +6,7 @@
             $routeName = \Request::route()->getName();
             $userProfileRoutes = \Illuminate\Support\Str::contains($routeName, 'user.profile');
             $favouritesRoutes = \Illuminate\Support\Str::contains($routeName, 'user.favourites');
-            $securityRoutes = \Illuminate\Support\Str::contains($routeName, 'user.profile_security');
+            $securityRoutes = \Illuminate\Support\Str::contains($routeName, 'user.security');
             @endphp
             
             <li class="{{ ($userProfileRoutes ? 'active' : '') }}">
@@ -18,7 +18,7 @@
             </li>
 
             <li class="{{ ($securityRoutes ? 'active' : '') }}">
-                <a href="#">Security</a>
+                <a href="{{route('user.security.view')}}">Account security</a>
             </li>
         </ul>
     </div>

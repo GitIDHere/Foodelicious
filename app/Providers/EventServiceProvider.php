@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\EmailUpdateRequest;
 use App\Events\UserLogin;
 use App\Listeners\AppLogListener;
 use App\Listeners\LogUserLogin;
