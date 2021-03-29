@@ -1,6 +1,28 @@
 <!-- ##### Header Area Start ##### -->
 <header class="header-area">
 
+    @Auth
+        @if (Auth::user()->hasVerifiedEmail() == false)
+            <!-- Notification bar -->
+                <div class="notification-bar">
+
+                    <div class="d-flex justify-content-center align-items-center pt-2">
+
+                        @if(session()->has('message'))
+                            <h4>{{ session()->get('message') }}</h4>
+                        @else
+                            <h4>Please verify your email</h4>
+                            <form method="POST" action="{{route('verification.send')}}">
+                                @csrf
+                                <input type="submit"  class="btn btn-white" value="Re-send verification email" />
+                            </form>
+                        @endif
+
+                    </div>
+                </div>
+        @endif
+    @endauth
+    
     <!-- Top Header Area -->
     <div class="top-header-area">
         <div class="container h-100">

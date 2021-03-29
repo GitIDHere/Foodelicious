@@ -4,9 +4,7 @@ use App\Events\EmailUpdateRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserSecurityEmailRequest;
 use App\Services\UserService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class UserSecurityController extends Controller
 {
@@ -17,13 +15,12 @@ class UserSecurityController extends Controller
         $this->userService = $userService;
     }
     
-    
-    public function verifyEmail()
-    {
-        
-    }
-    
-    
+    /**
+     * Handle the request to update the user's email address
+     * 
+     * @param UserSecurityEmailRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updateEmail(UserSecurityEmailRequest $request)
     {
         $params = $request->all();
