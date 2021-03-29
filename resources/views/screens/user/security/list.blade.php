@@ -21,8 +21,12 @@
                         </div>
                     @endif
 
-                    <a class="new-rec btn btn-md mb-3" href="{{route('user.security.email.view')}}">
+                    <a class="btn btn-md mb-3" href="{{route('user.security.email.view')}}">
                         Change email
+                    </a>
+
+                    <a class="btn btn-md mb-3" href="{{route('user.security.password.view')}}">
+                        Change password
                     </a>
                     
                 </div>

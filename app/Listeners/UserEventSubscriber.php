@@ -1,7 +1,8 @@
 <?php namespace App\Listeners;
 
 
-use App\Mail\EmailUpdateRequest;
+use App\Mail\EmailUpdatedEmail;
+use App\Mail\PasswordUpdatedEmail;
 use Illuminate\Support\Facades\Mail;
 
 class UserEventSubscriber
@@ -30,9 +31,23 @@ class UserEventSubscriber
         $oldEmail = $event->oldEmail;
         $name = $user->userProfile->full_name;
         
-        Mail::to($oldEmail)->send(new EmailUpdateRequest($name, $user));
+        Mail::to($oldEmail)->send(new EmailUpdatedEmail($name, $user));
     }
 
+    /**
+     * Send an email to the user notifying them that their password has been updated
+     * 
+     * @param $event
+     */
+    public function handlePasswordUpdate($event)
+    {
+       $user = $event->user;
+       $name = $user->userProfile->full_name;
+       
+       Mail::to($user->email)->send(new PasswordUpdatedEmail($name, $user));
+    }
+    
+    
     /**
      * Register the listeners for the subscriber.
      *
@@ -52,8 +67,13 @@ class UserEventSubscriber
         );
         
         $events->listen(
-            'App\Events\EmailUpdateRequest',
+            'App\Events\EmailUpdateEvent',
             [UserEventSubscriber::class, 'handleEmailUpdate']
+        );
+    
+        $events->listen(
+            'App\Events\PasswordUpdateEvent',
+            [UserEventSubscriber::class, 'handlePasswordUpdate']
         );
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -25,16 +26,21 @@ class Email extends Mailable
      */
     public $signOff = '';
     
+    /**
+     * @var User|null 
+     */
+    public $user = null;
     
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($recipientName)
+    public function __construct($recipientName, $user = null)
     {
         $this->recipientName = $recipientName;
         $this->signOff = env('MAIL_FROM_NAME', 'Foodelicious Team');
+        $this->user = $user;
     }
     
     

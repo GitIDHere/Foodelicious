@@ -31,6 +31,24 @@ Route::prefix('{username}/account-security')
         Route::post('email', [Controllers\UserSecurityController::class, 'updateEmail'])
             ->middleware(['user.verified'])
             ->name('user.security.email.submit')
-        ;   
+        ;
+    
+        /**
+         * Show page to update password
+         */
+        Route::get('password', function(){
+            return view('screens.user.security.password');
+        })
+            ->name('user.security.password.view')
+        ;
+    
+        /**
+         * Handle request to update password
+         */
+        Route::post('password', [Controllers\UserSecurityController::class, 'updatePassword'])
+            ->middleware(['user.verified'])
+            ->name('user.security.password.submit')
+        ;
+    
     })
 ;
