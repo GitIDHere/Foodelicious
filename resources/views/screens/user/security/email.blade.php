@@ -8,6 +8,8 @@
                 @include('screens.user.partials._side_bar')
                 
                 <div class="col-12 col-lg-9 pl-3">
+
+                    {{ Breadcrumbs::render('update_email')}}
                     
                     <h1 class="mt-0">Update email</h1>
                     

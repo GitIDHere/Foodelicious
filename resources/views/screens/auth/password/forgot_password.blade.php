@@ -41,7 +41,7 @@
                     <hr/>
                     
                     <div>
-                        <a class="link" href="{{route('login.show')}}">Login?</a>
+                        <a class="link" href="{{route('login.show')}}">Login</a>
                        <a class="link pull-right" href="{{route('register.show')}}">Register</a>
                     </div>
 

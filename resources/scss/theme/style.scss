@@ -1671,6 +1671,32 @@ textarea:focus {
 
 /* Features Area */
 
+.breadcrumb 
+{
+    margin-bottom: 0;
+    
+    ul {
+        width: 100%;
+        
+        li {
+            display: inline-block;
+            
+            &:after {
+                content: "\00BB";
+                color: inherit;
+                font-size: 1rem;
+                display: inline-block;
+                margin: 0 5px;
+            }
+            
+            &:last-child:after {
+                display: none;
+            }
+        }
+    }
+}
+
+
 .block {
     display: block;
 }

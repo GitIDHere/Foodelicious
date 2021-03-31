@@ -4058,6 +4058,21 @@ textarea:focus {
     font-size: 18px; }
 
 /* Features Area */
+.breadcrumb {
+  margin-bottom: 0; }
+  .breadcrumb ul {
+    width: 100%; }
+    .breadcrumb ul li {
+      display: inline-block; }
+      .breadcrumb ul li:after {
+        content: "\00BB";
+        color: inherit;
+        font-size: 1rem;
+        display: inline-block;
+        margin: 0 5px; }
+      .breadcrumb ul li:last-child:after {
+        display: none; }
+
 .block {
   display: block; }
 

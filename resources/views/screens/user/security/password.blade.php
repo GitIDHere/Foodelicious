@@ -9,6 +9,8 @@
                 
                 <div class="col-12 col-lg-9 pl-3">
                     
+                    {{ Breadcrumbs::render('update_password')}}
+                    
                     <h1 class="mt-0">Update password</h1>
                     
                     @if ($errors->any())

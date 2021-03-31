@@ -5,9 +5,13 @@
         <div class="profile-area">
             <div class="container">
                 <div class="row white-bk pt-4 pb-4">
+                    
                     @include('screens.user.partials._side_bar')
+                    
                     <div class="col-12 col-lg-8">
                     
+                        {{ Breadcrumbs::render('my_profile') }}
+                        
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
