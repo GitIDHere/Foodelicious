@@ -13,6 +13,12 @@ Breadcrumbs::for('my_profile', function ($trail) {
     $trail->push('My Profile', route('user.profile.view'));
 });
 
+// Home > My Profile > Update details
+Breadcrumbs::for('profile_details', function ($trail) {
+    $trail->parent('my_profile');
+    $trail->push('Update Details', route('user.profile.details'));
+});
+
 // Home > My Profile > New Recipe
 Breadcrumbs::for('new_recipe', function ($trail) {
     $trail->parent('my_profile');

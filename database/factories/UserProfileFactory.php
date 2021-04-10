@@ -30,8 +30,7 @@ class UserProfileFactory extends Factory
         return [
             'user_id' => self::$user_id_sequence,
             'username' => $this->faker->userName,
-            'forename' => $this->faker->firstName(),
-            'surname' => $this->faker->lastName,
+            'description' => $this->faker->words(15, true)
         ];
     }
 }

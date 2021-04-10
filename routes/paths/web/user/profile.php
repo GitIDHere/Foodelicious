@@ -14,5 +14,13 @@ Route::prefix('{username}')
             ->name('user.profile.view')
         ;
         
+        Route::get('details', [Controllers\UserProfileController::class, 'showProfileDetails'])
+            ->name('user.profile.details')
+        ;
+    
+        Route::post('details/update', [Controllers\UserProfileController::class, 'updateProfileDetails'])
+            ->name('user.profile.details.update')
+        ;
+        
     })
 ;

@@ -30,4 +30,48 @@ class UserProfileService
     }
     
     
+    
+    public function updateDetails($user, $info = [])
+    {
+        $profile = $user->userProfile();
+        
+        if ($profile) 
+        {
+            if(isset($info['description'])) {
+                $profile->update(['description' => $info['description']]);    
+            }
+            
+            // Save profile pic
+            
+            
+        } else {
+            // error
+        }
+        
+        return true;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

@@ -12,6 +12,8 @@
                     
                         {{ Breadcrumbs::render('my_profile') }}
                         
+                        @include('screens.user.profile.partials._profile_info')
+                        
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -21,6 +23,8 @@
                                 </ul>
                             </div>
                         @endif
+                        
+                        <hr />
 
                         <div class="container pl-0 pr-0">
                             <div class="row">
