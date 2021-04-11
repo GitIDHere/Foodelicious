@@ -19,16 +19,24 @@ Breadcrumbs::for('profile_details', function ($trail) {
     $trail->push('Update Details', route('user.profile.details'));
 });
 
-// Home > My Profile > New Recipe
+// Home > My Recipes
+Breadcrumbs::for('recipes_list', function ($trail) {
+    $trail->parent('home');
+    $trail->push('My Recipes', route('user.recipes.list'));
+});
+
+// Home > My Recipes > New Recipe
 Breadcrumbs::for('new_recipe', function ($trail) {
-    $trail->parent('my_profile');
+    $trail->parent('recipes_list');
     $trail->push('New Recipe', route('user.recipes.create.view'));
 });
 
-// Home > My Profile > {recipe}
-Breadcrumbs::for('edit_recipe', function ($trail, $recipe) {
-    $trail->parent('my_profile');
-    $trail->push('Edit Recipe', route('user.recipes.view', $recipe));
+// Home > My Recipes > {recipe}
+Breadcrumbs::for('edit_recipe', function ($trail, $recipe) 
+{
+    $shortTitle = \Illuminate\Support\Str::limit($recipe->title, 25);
+    $trail->parent('recipes_list');
+    $trail->push($shortTitle, route('user.recipes.view', $recipe));
 });
 
 

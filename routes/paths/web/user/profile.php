@@ -7,17 +7,24 @@ Route::prefix('{username}')
     ->middleware(['auth', 'url.parameters', 'user.routes'])
     ->group(function() 
     {
-        /*
-         * Show a list of recipe belonging to the user
+    
+        /**
+         * Show the profile page
          */
-        Route::get('', [Controllers\UserRecipeController::class, 'showRecipeList'])
+        Route::get('', [Controllers\UserProfileController::class, 'showProfile'])
             ->name('user.profile.view')
         ;
-        
-        Route::get('details', [Controllers\UserProfileController::class, 'showProfileDetails'])
+    
+        /**
+         * Show the form to update the profile details
+         */
+        Route::get('details', [Controllers\UserProfileController::class, 'showProfileUpdate'])
             ->name('user.profile.details')
         ;
     
+        /**
+         * Handle the form submission for updating the profile details
+         */
         Route::post('details/update', [Controllers\UserProfileController::class, 'updateProfileDetails'])
             ->name('user.profile.details.update')
         ;

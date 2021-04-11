@@ -7,6 +7,14 @@ Route::prefix('{username}/recipes')
     ->middleware(['auth', 'url.parameters', 'user.routes'])
     ->group(function() 
     {
+    
+        /*
+         * Show a list of recipe belonging to the user
+         */
+        Route::get('', [Controllers\UserRecipeController::class, 'showRecipeList'])
+            ->name('user.recipes.list')
+        ;
+        
         /*
          * Show a form to create a recipe
          */

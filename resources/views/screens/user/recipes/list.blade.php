@@ -9,7 +9,8 @@
                     @include('screens.user.partials._side_bar')
                     
                     <div class="col-12 col-lg-9 pl-3">
-                        <h1 class="mt-0">My Recipes</h1>
+                        
+                        {{ Breadcrumbs::render('recipes_list') }}
                         
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -72,6 +73,7 @@
                                 </div>
                             </div>
                         @endif
+                        
                     </div>
                     
                 </div>

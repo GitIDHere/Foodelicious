@@ -17,11 +17,24 @@ class UserProfileController extends Controller
         $this->profileService = $profileService;
     }
     
+    
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function showProfileDetails(Request $request)
+    public function showProfile(Request $request)
+    {
+        $user = Auth::user();
+        $profile = $user->userProfile;
+        return view('screens.user.profile.view')->with('profile', $profile);
+    }
+    
+    
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function showProfileUpdate(Request $request)
     {
         $user = Auth::user();
 

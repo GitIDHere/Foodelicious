@@ -45,7 +45,7 @@ class UserRecipeController extends Controller
         
         // If the search term is empty, then redirect them to the full recipe list
         if(empty($searchTerm)) {
-            return redirect()->route('user.profile.view');
+            return redirect()->route('user.recipes.list');
         }
         
         $recipeList = $userProfile->recipes->filter(function($recipe) use ($searchTerm)
@@ -76,7 +76,7 @@ class UserRecipeController extends Controller
             ];
         });
     
-        return view('screens.user.profile.view')
+        return view('screens.user.recipes.list')
             ->with('recipes', $recipeList)
             ->with('pager', $pager)
             ->with('searchTerm', $searchTerm)
@@ -121,7 +121,7 @@ class UserRecipeController extends Controller
                 // Send event
                 RecipeCreated::dispatch($recipe);
                 
-                return redirect()->route('user.profile.view')->with(['success' => 'Recipe added!']);
+                return redirect()->route('user.recipes.list')->with(['success' => 'Recipe added!']);
             }
             else {
                 return back()->withErrors(['Failed to create recipe']);
@@ -166,7 +166,7 @@ class UserRecipeController extends Controller
             ];
         });
         
-        return view('screens.user.profile.view')
+        return view('screens.user.recipes.list')
             ->with('recipes', $recipeList)
             ->with('pager', $pager)
             ;
