@@ -70,19 +70,20 @@ if (! function_exists('paginator'))
     }
 }
 
-if (! function_exists('createThumbnail')) 
+if (! function_exists('createImage')) 
 {
     /**
      * Ref: https://stackoverflow.com/a/11376379/5486928
      *
-     * @param $thumbDir
+     * @param $fileDir
      * @param $imgPath
+     * @param int $targetWidth
+     * @param int $targetHeight
+     * @param null|int $cropX
+     * @param null|int $cropY
      */
-    function createThumbnail($thumbDir, $imgPath)
+    function createImage($fileDir, $imgPath, $targetWidth, $targetHeight, $cropX = null, $cropY = null)
     {
-        $thumbnail_width = 150;
-        $thumbnail_height = 150;
-        
         $arr_image_details = getimagesize($imgPath); // pass id to thumb name
         $imgName = basename($imgPath);
         
@@ -90,15 +91,22 @@ if (! function_exists('createThumbnail'))
         $original_height = $arr_image_details[1];
         
         if ($original_width > $original_height) {
-            $new_width = $thumbnail_width;
+            $new_width = $targetWidth;
             $new_height = intval($original_height * $new_width / $original_width);
         } else {
-            $new_height = $thumbnail_height;
+            $new_height = $targetHeight;
             $new_width = intval($original_width * $new_height / $original_height);
         }
         
-        $dest_x = intval(($thumbnail_width - $new_width) / 2);
-        $dest_y = intval(($thumbnail_height - $new_height) / 2);
+        $dest_x = $cropX;
+        if (empty($dest_x)) {
+            $dest_x = intval(($targetWidth - $new_width) / 2);    
+        }
+                
+        $dest_y = $cropY;
+        if (empty($dest_y)) {
+            $dest_y = intval(($targetHeight - $new_height) / 2);    
+        }
         
         if ($arr_image_details[2] == IMAGETYPE_JPEG) {
             $imgt = "ImageJPEG";
@@ -111,13 +119,13 @@ if (! function_exists('createThumbnail'))
         
         if ($imgt) {
             $old_image = $imgcreatefrom($imgPath);
-            $new_image = imagecreatetruecolor($thumbnail_width, $thumbnail_height);
+            $new_image = imagecreatetruecolor($targetWidth, $targetHeight);
             
             $white  = imagecolorallocate($new_image,255,255,255);
-            imagefilledrectangle($new_image,0,0,$thumbnail_width-1,$thumbnail_height-1,$white);
+            imagefilledrectangle($new_image,0,0,$targetWidth-1,$targetHeight-1,$white);
             
             imagecopyresized($new_image, $old_image, $dest_x, $dest_y, 0, 0, $new_width, $new_height, $original_width, $original_height);
-            $imgt($new_image, $thumbDir . $imgName );
+            $imgt($new_image, $fileDir . $imgName );
         }
     }
 }

@@ -18,7 +18,7 @@ Route::prefix('{username}')
         /**
          * Show the form to update the profile details
          */
-        Route::get('details', [Controllers\UserProfileController::class, 'showProfileUpdate'])
+        Route::get('details', [Controllers\UserProfileController::class, 'profileUpdate'])
             ->name('user.profile.details')
         ;
     

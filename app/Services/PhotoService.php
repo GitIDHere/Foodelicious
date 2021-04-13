@@ -2,8 +2,6 @@
 
 namespace App\Services;
 
-
-
 use App\Models\Recipe;
 use Illuminate\Database\Eloquent;
 use Illuminate\Filesystem\FilesystemAdapter;
@@ -17,7 +15,10 @@ class PhotoService
     /**
      * @var array
      */
-    protected $allowedMimeTypes;
+    protected $allowedMimeTypes = [
+        'image/jpeg',
+        'image/png',
+    ];
     
     /**
      * Max file size in MB
@@ -31,33 +32,46 @@ class PhotoService
     protected $baseFilePath = '';
     
     /**
+     * @var null|FilesystemAdapter
+     */
+    protected $driver = null;
+    
+    /**
      * @var string 
      */
-    protected $visibility = 'public';
-    
     protected $thumbnailPath = 'thumb/';
+    
+    /**
+     * @var string 
+     */
+    protected $tmpPath = 'img_tmp';
+    
+    
+    const VISIBILITY_PUBLIC = 'public';
     
     
     /**
+     * @param FilesystemAdapter $driver
      * @param $allowedMimeTypes
      */
-    public function __construct($allowedMimeTypes)
+    public function __construct($driver)
     {
-        $this->allowedMimeTypes = $allowedMimeTypes;
+        $this->driver = $driver;
     }
     
     
     /**
      * @param UploadedFile[] $files
+     * @param string $visibility
      * @param array $customNames
      * @return Eloquent\Collection
+     * @throws \Exception
      */
     public function savePhotos($files, $customNames = [])
     {
-        $savedFiles = new Eloquent\Collection();
+        $this->checkDriverExists();
         
-        /** @var FilesystemAdapter $driver */
-        $driver = Storage::drive($this->visibility);
+        $savedFiles = new Eloquent\Collection();
         
         foreach($files as $fileIndex => $file) 
         {
@@ -70,20 +84,20 @@ class PhotoService
                 
                 if ($fileSizeMb > 0 && $fileSizeMb < $this->maxFileSizeMb) 
                 {
+                    $visibility = $this->driver->getVisibility($file->getPathname());
+                    
                     // Check if the file needs custom name
                      if (isset($customNames[$fileIndex]) && !empty($customNames[$fileIndex])) 
                      {
                          $fileName = $customNames[$fileIndex];
-                         $path = $driver->putFileAs($this->baseFilePath, new File($file->getPathname()), $fileName, $this->visibility);
+                         $path = $this->driver->putFileAs($this->baseFilePath, new File($file->getPathname()), $fileName, $visibility);
                      } 
                      else {
-                         $path = $driver->putFile($this->baseFilePath, new File($file->getPathname()), $this->visibility);    
+                         $path = $this->driver->putFile($this->baseFilePath, new File($file->getPathname()), $visibility);
                      }
                      
                      if ($path) 
                      {
-                        $this->createThumbnail($driver, $path);
-                         
                         $fileName = basename($path);
                         
                         $savedFiles->add(AppFile::create([
@@ -100,22 +114,29 @@ class PhotoService
     
     
     /**
-     * @param $driver
+     * @param int width
+     * @param int height
      * @param $imgPath
+     * @throws \Exception
      */
-    private function createThumbnail($driver, $imgPath)
+    public function createThumbnail($width, $height, $imgPath)
     {
-        $thumbnailDir = $driver->path($this->thumbnailPath . $this->baseFilePath.'/');
+        $this->checkDriverExists();
+        
+        $thumbnailDir = $this->driver->path($this->thumbnailPath . $this->baseFilePath.'/');
         \Illuminate\Support\Facades\File::ensureDirectoryExists($thumbnailDir);
-        createThumbnail($thumbnailDir, $driver->path($imgPath));
+        createImage($thumbnailDir, $this->driver->path($imgPath), $width, $height);
     }
     
     /**
      * @param Recipe $recipe
      * @param [] $photoIds
+     * * @throws \Exception
      */
     public function deletePhotos($recipe, $photoIds)
     {
+        $this->checkDriverExists();
+        
         if ($recipe instanceof Recipe && !empty($photoIds))
         {
             if (!is_array($photoIds)) {
@@ -123,6 +144,24 @@ class PhotoService
             }
             
             $recipe->files()->detach($photoIds);
+        }
+    }
+    
+    /**
+     * @param FilesystemAdapter $driver
+     */
+    public function setDriver($driver)
+    {
+        $this->driver = $driver;
+    }
+    
+    /**
+     * @throws \Exception
+     */
+    private function checkDriverExists()
+    {
+        if ( isset($this->driver) == false || ($this->driver instanceof FilesystemAdapter) == false) {
+            throw new \Exception('Photo driver is not set');
         }
     }
     

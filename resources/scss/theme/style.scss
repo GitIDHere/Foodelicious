@@ -1673,6 +1673,48 @@ textarea:focus {
 
 
 
+.hidden {
+    display: none;
+}
+
+
+.img-container,
+.img-preview {
+    background-color: #f7f7f7;
+    text-align: center;
+    width: 100%;
+}
+
+.img-container {
+    max-height: 497px;
+    min-height: 200px;
+}
+
+@media (min-width: 768px) {
+    .img-container {
+        min-height: 497px;
+    }
+}
+
+.img-container > img {
+    max-width: 100%;
+}
+
+.profile-pic-container
+{
+    img {
+        max-width: 100%;
+    }
+    
+    #canvas {
+        height: 290px;
+        width: 650px;
+        background-color: #ffffff;
+        cursor: default;
+        border: 1px solid black;
+    }
+}
+
 
 
 

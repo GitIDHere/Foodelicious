@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProfileDetailsRequest;
 use App\Services\UserProfileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,7 @@ class UserProfileController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function showProfileUpdate(Request $request)
+    public function profileUpdate(Request $request)
     {
         $user = Auth::user();
 
@@ -52,22 +53,23 @@ class UserProfileController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateProfileDetails(Request $request)
+    public function updateProfileDetails(ProfileDetailsRequest $request)
     {
-        $validated = $request->validate([
-            //'photo' => 'required|mimes:jpg,png,bmp',
-            'description' => 'nullable|string|max:850'
-        ]);
-        
         $user = Auth::user();
         
-        $profileInfo = $request->all();
+        $formData = $request->all();
         
-        $info = [
-            'description' => $profileInfo['description'] 
+        $profilePicData = [
+            'image' => $formData['profile_pic'],
+            'crop_x' => $formData['img-x'],   
+            'crop_y' => $formData['img-y'],   
+            'crop_w' => $formData['img-w'],   
+            'crop_h' => $formData['img-h'],   
         ];
         
-        $this->profileService->updateDetails($user, $info);
+        $this->profileService->updateDescription($user, $formData['description']);
+        
+        $this->profileService->setProfilePic($user, $profilePicData);
         
         return redirect()->route('user.profile.view');
     }

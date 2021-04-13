@@ -6,6 +6,7 @@ use App\Models\File;
 use App\Models\Recipe;
 use App\Models\UserProfile;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class RecipeService
 {
@@ -23,6 +24,7 @@ class RecipeService
      * @param File[] $recipeData
      * @param [] $deletePhotos
      * @return Model|Recipe
+     * @throws \Exception
      */
     public function saveRecipe($userProfile, $recipe, $recipeData, $savePhotos, $deletePhotos)
     {
@@ -40,10 +42,18 @@ class RecipeService
         
         if ($recipe)
         {
+            $driver = Storage::drive(PhotoService::VISIBILITY_PUBLIC);
+            $this->recipePhotoService->setDriver($driver);
+            
             $savedFiles = $this->recipePhotoService->savePhotos($savePhotos);
-        
+            
             if ($savedFiles->isNotEmpty()) 
             {
+                $savedFiles->each(function($file) 
+                {
+                    $this->recipePhotoService->makeThumbnail($file->path);
+                });
+                
                 $recipe->files()->attach($savedFiles);
             }
             

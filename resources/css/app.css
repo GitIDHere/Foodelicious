@@ -15,6 +15,7 @@
 @import url(../css/plugins/classy-nav.min.css);
 @import url(../css/plugins/tagify.min.css);
 @import url(../css/plugins/balloon.min.css);
+@import url(~cropperjs/dist/cropper.min.css);
 html {
   line-height: 1.15;
   /* 1 */
@@ -1754,6 +1755,34 @@ textarea:focus {
     font-size: 18px; }
 
 /* Features Area */
+.hidden {
+  display: none; }
+
+.img-container,
+.img-preview {
+  background-color: #f7f7f7;
+  text-align: center;
+  width: 100%; }
+
+.img-container {
+  max-height: 497px;
+  min-height: 200px; }
+
+@media (min-width: 768px) {
+  .img-container {
+    min-height: 497px; } }
+.img-container > img {
+  max-width: 100%; }
+
+.profile-pic-container img {
+  max-width: 100%; }
+.profile-pic-container #canvas {
+  height: 290px;
+  width: 650px;
+  background-color: #ffffff;
+  cursor: default;
+  border: 1px solid black; }
+
 .breadcrumb {
   margin-bottom: 0; }
   .breadcrumb ul {
