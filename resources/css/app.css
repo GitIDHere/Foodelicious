@@ -1758,30 +1758,24 @@ textarea:focus {
 .hidden {
   display: none; }
 
-.img-container,
-.img-preview {
-  background-color: #f7f7f7;
-  text-align: center;
-  width: 100%; }
-
-.img-container {
-  max-height: 497px;
-  min-height: 200px; }
-
-@media (min-width: 768px) {
-  .img-container {
-    min-height: 497px; } }
-.img-container > img {
-  max-width: 100%; }
-
-.profile-pic-container img {
-  max-width: 100%; }
-.profile-pic-container #canvas {
-  height: 290px;
-  width: 650px;
-  background-color: #ffffff;
-  cursor: default;
-  border: 1px solid black; }
+.profile-pic-container {
+  max-height: 300px;
+  max-width: 300px;
+  min-width: 300px;
+  min-height: 300px; }
+  .profile-pic-container > img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%; }
+    .profile-pic-container > img.default-pic:hover {
+      cursor: pointer; }
+  .profile-pic-container #canvas {
+    height: 290px;
+    width: 650px;
+    background-color: #ffffff;
+    cursor: default;
+    border: 1px solid black; }
 
 .breadcrumb {
   margin-bottom: 0; }

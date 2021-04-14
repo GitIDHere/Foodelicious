@@ -1,13 +1,16 @@
 $(function(){
 
     const image = document.getElementById('profile_pic');
-    
     var URL = window.URL || window.webkitURL;
+    var cropper = null;
+    var uploadedImageURL;
+    var defaultPic = $('img.default-pic');
+    // Import image
+    var picInputEl = document.getElementById('pic_file');
     
     var options = {
         aspectRatio: 4 / 3,
         viewMode: 3,
-        autoCrop: false,
         zoomable: false,
         zoomOnWheel: false,
         rotatable: false,
@@ -17,25 +20,6 @@ $(function(){
         minCropBoxHeight: 150
     };
     
-    // minContainerHeight
-    // minCanvasWidth
-    
-    var cropper = new Cropper(image, options);
-    var uploadedImageURL;
-
-    // Tooltip
-    $('[data-toggle="tooltip"]').tooltip();
-
-    // Buttons
-    if (!document.createElement('canvas').getContext) {
-        $('button[data-method="getCroppedCanvas"]').prop('disabled', true);
-    }
-
-    if (typeof document.createElement('cropper').style.transition === 'undefined') {
-        $('button[data-method="rotate"]').prop('disabled', true);
-        $('button[data-method="scale"]').prop('disabled', true);
-    }
-
     $('form#profile-details-form').on('submit', function(event)
     {
         var cropData = cropper.getData(true);
@@ -45,12 +29,16 @@ $(function(){
         $('#img-w').val(cropData.width);
         $('#img-h').val(cropData.height);
     });
-
-    // Import image
-    var inputImage = document.getElementById('pic_file');
+    
+    
+    defaultPic.on('click', function()
+    {
+        var defaultPic = $(this);
+        picInputEl.click();
+    });
 
     if (URL) {
-        inputImage.onchange = function () {
+        picInputEl.onchange = function () {
             var files = this.files;
             var file;
 
@@ -73,7 +61,7 @@ $(function(){
                     }
 
                     cropper = new Cropper(image, options);
-                    cropper.clear();
+                    defaultPic.removeClass('default-pic');
                     
                 } else {
                     window.alert('Please choose an image file.');
@@ -81,8 +69,8 @@ $(function(){
             }
         };
     } else {
-        inputImage.disabled = true;
-        inputImage.parentNode.className += ' disabled';
+        picInputEl.disabled = true;
+        picInputEl.parentNode.className += ' disabled';
     }
     
 });

@@ -29,26 +29,12 @@ class ProfilePhotoService extends PhotoService
     {
         $targetW = 500;
         $targetH = 500;
-    
-        $scaleX = ($targetW / $cropWidth);
-        $scaleY = ($targetH / $cropHeight);
-    
-        if ($scaleX < $scaleY) {
-            # if the height needs to be scaled.
-            # shrink y to match x scale
-            $targetH = ($cropHeight * $scaleX);
-            $targetW = ($cropWidth * $scaleX);
-        } else {
-            # shrink y to match x scale
-            $targetH = ($cropHeight * $scaleY);
-            $targetW = ($cropWidth * $scaleY);
-        }
         
         $dir = $this->driver->path($this->baseFilePath.'/');
         
         $imgPath = $this->driver->putFile($this->tmpPath, new File($img->getPathname()), 'private');
         
-        createImage($dir, $this->driver->path($imgPath), $targetW, $targetH, $cropX, $cropY);
+        cropImage($dir, $this->driver->path($imgPath), $targetW, $targetH, $cropWidth, $cropHeight, $cropX, $cropY);
     }
     
     

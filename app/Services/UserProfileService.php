@@ -63,9 +63,6 @@ class UserProfileService
     {
         if($user instanceof User && !empty($imageData))
         {
-            $targetW = 500;
-            $targetH = 500;
-            
             $uploadedImg = $imageData['image'];
     
             $imgW = $imageData['crop_w'];
@@ -73,26 +70,11 @@ class UserProfileService
             $imgX = $imageData['crop_x'];
             $imgY = $imageData['crop_y'];
     
-//            $scaleX = ($targetW / $imgW);
-//            $scaleY = ($targetH / $imgH);
-//            
-//            if ($scaleX < $scaleY) {
-//                # if the height needs to be scaled.
-//                # shrink y to match x scale
-//                $targetH = ($imgH * $scaleX);
-//                $targetW = ($imgW * $scaleX);
-//            } else {
-//                # shrink y to match x scale
-//                $targetH = ($imgH * $scaleY);
-//                $targetW = ($imgW * $scaleY);
-//            }
-            
             $driver = Storage::drive(PhotoService::VISIBILITY_PUBLIC);
             $this->profilePhotoService->setDriver($driver);
-            $this->profilePhotoService->cropImage($uploadedImg, $imgW, $imgH, $imgX, $imgY);
+            $imagePath = $this->profilePhotoService->cropImage($uploadedImg, $imgW, $imgH, $imgX, $imgY);
         }
         
-        dd($imageData);
     }
     
     
