@@ -29,4 +29,14 @@ class UserProfile extends Model
         return $this->hasMany(Recipe::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function files()
+    {
+        return $this
+            ->belongsToMany(File::class, 'user_profile_images', 'user_profile_id', 'file_id')
+            ->using(UserProfileImages::class);
+    }
+
 }

@@ -16,17 +16,17 @@ class UserRecipeController extends Controller
 {
     /**
      * @var RecipeService
-     */    
+     */
     private $recipeService;
-    
+
     private $recipeItemsPerPage = 10;
-    
+
     public function __construct(RecipeService $recipeService)
     {
         $this->recipeService = $recipeService;
     }
-    
-    
+
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
@@ -36,37 +36,37 @@ class UserRecipeController extends Controller
         $validated = $request->validate([
             'search_term' => 'nullable|string|min:1|max:60',
         ]);
-        
+
         // Get the user's recipes
         $user = Auth::user();
         $userProfile = $user->userProfile;
-        
+
         $searchTerm = $request->get('search_term');
-        
+
         // If the search term is empty, then redirect them to the full recipe list
         if(empty($searchTerm)) {
             return redirect()->route('user.recipes.list');
         }
-        
+
         $recipeList = $userProfile->recipes->filter(function($recipe) use ($searchTerm)
         {
             return (stripos($recipe->title, $searchTerm) !== false);
         });
-        
+
         $pager = collectionPaginate($recipeList, $this->recipeItemsPerPage);
         // Get the items out from the pager
         $recipeItems = collect($pager->items);
-        
+
         $recipeList = $recipeItems->map(function($recipe)
         {
             $recipePhoto = $recipe->files->first();
-            
+
             $imgURL = $thumbnail = '';
             if(is_object($recipePhoto)) {
                 $imgURL = asset($recipePhoto->public_path);
                 $thumbnail = asset($recipePhoto->thumbnail_path);
             }
-        
+
             return [
                 'id' => $recipe->id,
                 'title' => $recipe->title,
@@ -75,14 +75,14 @@ class UserRecipeController extends Controller
                 'total_favourites' => 450,
             ];
         });
-    
+
         return view('screens.user.recipes.list')
             ->with('recipes', $recipeList)
             ->with('pager', $pager)
             ->with('searchTerm', $searchTerm)
             ;
     }
-    
+
     /**
      * @param RecipeCreateRequest $request
      * @return \Illuminate\Http\RedirectResponse
@@ -90,37 +90,37 @@ class UserRecipeController extends Controller
     public function saveRecipe(RecipeCreateRequest $request, $username, Recipe $recipe)
     {
         $recipeFields = $request->all();
-        
+
         $user = Auth::user();
         $userProfile = $user->userProfile;
-        
+
         if ($userProfile)
         {
             $savePhotos = [];
-            
+
             if ($request->files->has('photos')) {
-                $paramPhotos = $request->files->all();    
+                $paramPhotos = $request->files->all();
                 $savePhotos = $paramPhotos['photos'];
             }
 
             $deletePhotos = $request->input('delete_photos');
-            
+
             if (is_array($recipeFields['cooking_steps'])) {
                 $recipeFields['cooking_steps'] = json_encode($recipeFields['cooking_steps']);
             }
-            
+
             $recipeFields['visibility'] = 'private';
             if ($request->has('visibility')) {
-                $recipeFields['visibility'] = 'public';    
+                $recipeFields['visibility'] = 'public';
             }
-            
+
             $recipe = $this->recipeService->saveRecipe($userProfile, $recipe, $recipeFields, $savePhotos, $deletePhotos);
-            
+
             if ($recipe)
             {
                 // Send event
                 RecipeCreated::dispatch($recipe);
-                
+
                 return redirect()->route('user.recipes.list')->with(['success' => 'Recipe added!']);
             }
             else {
@@ -132,8 +132,8 @@ class UserRecipeController extends Controller
             return redirect()->route('login.show')->withErrors(['User profile not found.']);
         }
     }
-    
-    
+
+
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
@@ -149,30 +149,30 @@ class UserRecipeController extends Controller
         $recipeList = $recipeItems->map(function($recipe)
         {
             $recipePhoto = $recipe->files->first();
-            
+
             $imgURL = $thumbnail = '';
             if(is_object($recipePhoto)) {
                 $imgURL = asset($recipePhoto->public_path);
                 $thumbnail = asset($recipePhoto->thumbnail_path);
             }
-            
+
             return [
                 'id' => $recipe->id,
-                'title' => $recipe->title,                
+                'title' => $recipe->title,
                 'img_url' => $imgURL,
                 'thumbnail' => $thumbnail,
                 'date_created' => $recipe->created_at->format('d/m/Y'),
-                'total_favourites' => 450,                
+                'total_favourites' => 450,
             ];
         });
-        
+
         return view('screens.user.recipes.list')
             ->with('recipes', $recipeList)
             ->with('pager', $pager)
             ;
     }
-    
-    
+
+
     /**
      * @param Request $request
      * @param $username
@@ -183,14 +183,14 @@ class UserRecipeController extends Controller
     {
         $user = Auth::user();
         $isUserRecipe = $user->userProfile->recipes->contains($recipe);
-        
-        if ($isUserRecipe) 
+
+        if ($isUserRecipe)
         {
             $ingredientsCSV = $this->getCSVFromJSON($recipe->ingredients);
             $utensilsCSV = $this->getCSVFromJSON($recipe->utensils);
-            
+
             $cookTime = $recipe->cook_time;
-            
+
             $recipePhotos = $recipe->files->map(function($photoFile)
             {
                 return  [
@@ -199,7 +199,7 @@ class UserRecipeController extends Controller
                     'alt' => $photoFile->name
                 ];
             });
-            
+
             $recipeData = [
                 'title' => $recipe->title,
                 'description' => $recipe->description,
@@ -212,16 +212,16 @@ class UserRecipeController extends Controller
                 'photos' => $recipePhotos->toArray(),
                 'visibility' => $recipe->visibility,
             ];
-                 
+
             return view('screens.user.recipes.view', ['data' => $recipeData, 'recipe' => $recipe]);
-        } 
+        }
         else {
             // The recipe doesn't belong to the user
             return redirect()->route('home');
         }
     }
-    
-    
+
+
     /**
      * @param $json
      * @return string
@@ -235,6 +235,6 @@ class UserRecipeController extends Controller
         }
         return $csv;
     }
-    
-    
+
+
 }

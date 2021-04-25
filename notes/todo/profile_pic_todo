@@ -4,8 +4,11 @@
 ------------------------------
 - Create new table to store the profile pic
 - Link the Pic file to UserProfile
-- Load the pic when viewing details
-- Have a default profile pic path if one isn't set. Link it with the profile_pic table
-- Show the pic on the profile page
-- Check what happens when an error is shown. Does the cropper still show up?
 
+- Load the pic when viewing details
+- Show the pic on the profile page
+- Have a default profile pic path if one isn't set. Link it with the profile_pic table
+- Check what happens when an error is shown. Does the cropper still show up?
+- User profile factory
+
+- separate out saving/delete of recipe photos from saveRecipe();

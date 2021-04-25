@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\Storage;
 class RecipeService
 {
     private $recipePhotoService;
-    
+
     public function __construct(RecipePhotoService $recipePhotoService)
     {
         $this->recipePhotoService = $recipePhotoService;
     }
-    
+
     /**
      * @param UserProfile $userProfile
      * @param Recipe $recipe
@@ -30,40 +30,40 @@ class RecipeService
     {
         // Check $recipe is already attached to the user
         $isUserRecipe = $userProfile->recipes->contains($recipe);
-        
+
         if ($isUserRecipe) {
             // Update the recipe
             $recipe->fill($recipeData)->save();
         }
         else {
             // Create new recipe
-            $recipe = $userProfile->recipes()->create($recipeData);    
+            $recipe = $userProfile->recipes()->create($recipeData);
         }
-        
+
         if ($recipe)
         {
             $driver = Storage::drive(PhotoService::VISIBILITY_PUBLIC);
             $this->recipePhotoService->setDriver($driver);
-            
+
             $savedFiles = $this->recipePhotoService->savePhotos($savePhotos);
-            
-            if ($savedFiles->isNotEmpty()) 
+
+            if ($savedFiles->isNotEmpty())
             {
-                $savedFiles->each(function($file) 
+                $savedFiles->each(function($file)
                 {
                     $this->recipePhotoService->makeThumbnail($file->path);
                 });
-                
+
                 $recipe->files()->attach($savedFiles);
             }
-            
-            $this->recipePhotoService->deletePhotos($recipe, $deletePhotos); 
-            
+
+            $this->recipePhotoService->deletePhotos($recipe, $deletePhotos);
+
             return $recipe;
         }
-        
+
         return null;
     }
-    
-    
+
+
 }
