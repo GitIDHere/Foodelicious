@@ -5,9 +5,11 @@ namespace App\Http\Controllers\User;
 use App\Events\UserProfileDetailsUpdates;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileDetailsRequest;
+use App\Models\File;
 use App\Services\UserProfileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserProfileController extends Controller
 {
@@ -28,7 +30,20 @@ class UserProfileController extends Controller
     {
         $user = Auth::user();
         $profile = $user->userProfile;
-        return view('screens.user.profile.view')->with('profile', $profile);
+
+        $profilePic = $profile->files->first();
+
+        $imgURL = '';
+        if(is_object($profilePic)) {
+            $imgURL = asset($profilePic->public_path);
+        }
+
+        $profileData = [
+            'description' => $profile->description,
+            'img' => $imgURL
+        ];
+
+        return view('screens.user.profile.view')->with('data', $profileData);
     }
 
 
@@ -36,15 +51,18 @@ class UserProfileController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function profileUpdate(Request $request)
+    public function showProfileUpdate(Request $request)
     {
         $user = Auth::user();
 
         $profile = $user->userProfile;
 
-        $details = [
-            'description' => $profile->description
-        ];
+        $details = ['description' => $profile->description];
+
+        $profilePic = $profile->files->first();
+        if(is_object($profilePic)) {
+            $details['profile_pic_path'] = asset($profilePic->public_path);
+        }
 
         return view('screens.user.profile.update_details')->with('details', $details);
     }
@@ -73,7 +91,10 @@ class UserProfileController extends Controller
                 'crop_h' => $formData['img-h'],
             ];
 
-            $profilePicFile = $this->profileService->setProfilePic( $profilePicData);
+            // Remove the existing profile pic
+            $this->profileService->removeProfilePic($userProfile);
+
+            $profilePicFile = $this->profileService->setProfilePic($profilePicData);
 
             // Not sure if the file gets saved or if ->save needs to be called
             $userProfile->files()->attach($profilePicFile);

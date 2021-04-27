@@ -259,20 +259,21 @@ return t=a?function(t){return t&&a(r(t))}:function(t){return t&&r(t)}}function e
     });
 
     $("body").removeClass("preload");
-    
+
     $('textarea').ckeditor();
-    
+
 })(jQuery);
+
 $(function(){
 
     const image = document.getElementById('profile_pic');
     var URL = window.URL || window.webkitURL;
     var cropper = null;
     var uploadedImageURL;
-    var defaultPic = $('img.default-pic');
+    var profilePic = $('img#profile_pic');
     // Import image
     var picInputEl = document.getElementById('pic_file');
-    
+
     var options = {
         aspectRatio: 4 / 3,
         viewMode: 3,
@@ -284,21 +285,22 @@ $(function(){
         minCropBoxWidth: 150,
         minCropBoxHeight: 150
     };
-    
+
     $('form#profile-details-form').on('submit', function(event)
     {
-        var cropData = cropper.getData(true);
-       
-        $('#img-x').val(cropData.x);
-        $('#img-y').val(cropData.y);
-        $('#img-w').val(cropData.width);
-        $('#img-h').val(cropData.height);
+        if (cropper !== null)
+        {
+            var cropData = cropper.getData(true);
+
+            $('#img-x').val(cropData.x);
+            $('#img-y').val(cropData.y);
+            $('#img-w').val(cropData.width);
+            $('#img-h').val(cropData.height);
+        }
     });
-    
-    
-    defaultPic.on('click', function()
+
+    profilePic.on('click', function()
     {
-        var defaultPic = $(this);
         picInputEl.click();
     });
 
@@ -317,7 +319,7 @@ $(function(){
                     if (uploadedImageURL) {
                         URL.revokeObjectURL(uploadedImageURL);
                     }
-                    
+
                     image.classList.remove("hidden");
                     image.src = uploadedImageURL = URL.createObjectURL(file);
 
@@ -326,8 +328,8 @@ $(function(){
                     }
 
                     cropper = new Cropper(image, options);
-                    defaultPic.removeClass('default-pic');
-                    
+                    //profilePic.removeClass('default-pic');
+
                 } else {
                     window.alert('Please choose an image file.');
                 }
@@ -337,5 +339,5 @@ $(function(){
         picInputEl.disabled = true;
         picInputEl.parentNode.className += ' disabled';
     }
-    
+
 });

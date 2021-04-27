@@ -22,15 +22,13 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(APIResponse::class, function($app){
             return new APIResponse();
         });
-    
+
         $this->app->bind(ProfilePhotoService::class, function ($app) {
-            $driver = Storage::drive(PhotoService::VISIBILITY_PUBLIC);
-            return new ProfilePhotoService($driver);
+            return new ProfilePhotoService(PhotoService::VISIBILITY_PUBLIC);
         });
-    
+
         $this->app->bind(RecipePhotoService::class, function ($app) {
-            $driver = Storage::drive(PhotoService::VISIBILITY_PUBLIC);
-            return new RecipePhotoService($driver);
+            return new RecipePhotoService(PhotoService::VISIBILITY_PUBLIC);
         });
     }
 

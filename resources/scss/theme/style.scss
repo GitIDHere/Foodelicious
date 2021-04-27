@@ -457,7 +457,7 @@ textarea:focus {
 
 /* :: 4.0 Search Wrapper */
 
-.notification-bar 
+.notification-bar
 {
     width: 100%;
     height: 70px;
@@ -466,12 +466,12 @@ textarea:focus {
     background-color: $bg-default;
     @include trans-duration(700ms);
     display: block;
-        
+
     h4
     {
         color: $white-color;
         font-weight: 500;
-    }    
+    }
 }
 
 /* :: 5.0 Header Area CSS */
@@ -1092,36 +1092,36 @@ textarea:focus {
     }
 }
 
-.sidebar 
+.sidebar
 {
     position: relative;
     z-index: 1;
     background: $sidebar-bg;
-    
-    ul 
+
+    ul
     {
-        li 
+        li
         {
             padding: 0 10px;
             border-bottom: 1px solid $faint-grey;
-            
-            &.active 
+
+            &.active
             {
                 background: $bg-default;
-                
+
                 a {
                     color: $white-color;
                 }
             }
-            
-            &:first-child 
+
+            &:first-child
             {
                 a {
                     margin-top: 0;
                 }
             }
-            
-            a 
+
+            a
             {
                 width: 100%;
                 display: block;
@@ -1130,7 +1130,7 @@ textarea:focus {
                 font-size: 1em;
                 font-weight: 500;
             }
-        }        
+        }
     }
 }
 
@@ -1678,11 +1678,11 @@ textarea:focus {
 }
 
 
-.profile-pic-container 
+.profile-pic-container
 {
     max-height: 300px;
     max-width: 300px;
-    
+
     min-width: 300px;
     min-height: 300px;
 
@@ -1691,12 +1691,12 @@ textarea:focus {
         height: auto;
         display: block;
         max-width: 100%;
-        
-        &.default-pic:hover {
+
+        &#profile_pic:hover {
             cursor: pointer;
         }
     }
-    
+
     #canvas {
         height: 290px;
         width: 650px;
@@ -1709,16 +1709,16 @@ textarea:focus {
 
 
 
-.breadcrumb 
+.breadcrumb
 {
     margin-bottom: 0;
-    
+
     ul {
         width: 100%;
-        
+
         li {
             display: inline-block;
-            
+
             &:after {
                 content: "\00BB";
                 color: inherit;
@@ -1726,7 +1726,7 @@ textarea:focus {
                 display: inline-block;
                 margin: 0 5px;
             }
-            
+
             &:last-child:after {
                 display: none;
             }
@@ -1746,68 +1746,68 @@ textarea:focus {
 .cooking-steps-container
 {
     padding: 10px;
-    
+
     .cooking-step-container
     {
         margin-bottom: 30px;
-        
+
         .txt-area
         {
-            margin-bottom: 10px;    
+            margin-bottom: 10px;
         }
     }
 }
 
-.btn 
+.btn
 {
     background: $colour-btn-normal;
     margin:5px;
     color: white;
-    
+
     &.btn-white{
         background: $white-color;
         color: $bg-default;
     }
-    
-    &:focus, &:hover 
+
+    &:focus, &:hover
     {
         font-size: initial;
         color: white;
         font-weight: initial;
     }
-    
-    &:hover 
+
+    &:hover
     {
         background: $colour-btn-normal-hover;
     }
-    
+
     &.btn-md
     {
         padding: 5px 23px;
-        font-size: 1.05rem;    
+        font-size: 1.05rem;
     }
-    
+
     &.btn-red
     {
         background: $colour-btn-red;
-        
+
         &:hover {
             background: $colour-btn-red-hover;
         }
     }
-    
+
     i.fa {
         margin-left: 5px;
         position: relative;
         top: 2px;
     }
-    
+
     &.chevron
     {
         padding-right: 40px;
         padding-left: 0;
     }
-    
+
     &.chevron:before
     {
         left:113%;
@@ -1819,7 +1819,7 @@ textarea:focus {
 
 
 
-.new-rec.btn 
+.new-rec.btn
 {
     float: right;
     @include media-responsive($screen-md) {
@@ -1834,7 +1834,7 @@ textarea:focus {
     {
         color: #007bff;
         position: relative;
-        
+
         span[aria-label]
         {
             position: absolute;
@@ -1890,14 +1890,14 @@ form
 {
     .input-container
     {
-        padding-top: 20px;    
-    }    
+        padding-top: 20px;
+    }
 }
 
 .txt-area {
     height: 115px;
     background: $input-bg;
-    
+
     &:focus {
         background: $input-bg;
     }
@@ -1910,36 +1910,36 @@ form
 .tagify--outside.tags-container
 {
     border: none;
-    
+
     .tagify__input {
         margin: 0 0 5px;
         border-radius: .25rem;
         background: $input-bg;
         border: 1px solid #ced4da;
     }
-    
-    tag 
+
+    tag
     {
         margin-right: 10px;
-        
-        > div 
+
+        > div
         {
             color: $white-color;
 
-            
+
             &:before{
                 background: $tag-bg;
                 box-shadow: none;
-            }  
+            }
 
             &:hover:before{
                 background: $bg-light-green;
             }
         }
 
-        &:hover 
+        &:hover
         {
-            > div 
+            > div
             {
                   &:before{
                       box-shadow: none !important;
@@ -1997,11 +1997,11 @@ form
     }
 }
 
-.num-pager 
+.num-pager
 {
     text-align: right;
     margin: 10px 0;
-    
+
     .page-btn {
         display: inline-block;
         padding: 5px 20px;
@@ -2009,13 +2009,13 @@ form
         font-size: 1.2em;
         margin-top: 3px;
     }
-    
+
     span.page-btn {
         cursor: default;
         color: $white-color;
         background: $bg-default;
     }
-    
+
     p {
         display: block;
     }
@@ -2028,7 +2028,7 @@ h5 {
         color: $bg-default;
         text-decoration: underline;
         @include transition(none);
-        
+
         &:hover {
             font-size: inherit;
             color: $bg-default;
@@ -2038,36 +2038,36 @@ h5 {
     }
 }
 
-.search-box 
+.search-box
 {
     margin-bottom: 20px;
     border: 1px solid $faint-grey;
     border-radius: 5px;
     padding: 5px;
-    
-    form 
+
+    form
     {
-        button 
+        button
         {
             width: 5%;
             background: none;
             border: none;
             padding: 7px;
             border-right: 1px solid $faint-grey;
-            
+
             @include media-responsive($screen-md) {
                 width: 8%;
             }
-            
+
             @include media-responsive($screen-sm) {
                 width: 10%;
             }
-            
+
             &:hover {
                 cursor: pointer;
             }
         }
-        
+
         input {
             width: 94%;
             padding: 7px;
@@ -2077,28 +2077,28 @@ h5 {
             }
         }
     }
-    
+
 }
 
-.recipe-list 
+.recipe-list
 {
-    li 
+    li
     {
         border-bottom: 1px solid $faint-grey;
         padding: 10px;
         background: $recipe-list-background;
-        
+
         @include transition(background 0.2s);
-        
-        &:last-child 
+
+        &:last-child
         {
             border-bottom: none;
         }
-        
-        a 
+
+        a
         {
             display: block;
-            
+
             .thumbnail
             {
                 width: 75px;
@@ -2112,20 +2112,20 @@ h5 {
                     height: 50px;
                 }
             }
-            
-            .title 
+
+            .title
             {
                 width: 80%;
                 display: inline-block;
                 font-size: 1.2em;
                 margin-left: 10px;
                 vertical-align: top;
-                
+
                 @include media-responsive($screen-sm)
                 {
                     font-size: 1.1em;
                 }
-                
+
                 @include media-responsive($screen-xs)
                 {
                     width:100%;
@@ -2134,31 +2134,31 @@ h5 {
                     margin-left: 0px;
                 }
             }
-            
+
             .icon-list
             {
                 float:right;
                 margin-right: 20px;
-                
-                .icon-container 
+
+                .icon-container
                 {
                     text-align: center;
-                    
+
                     .icon {
                         width:25px;
                         height: 25px;
                         display: block;
                         background: url("/img/core-img/heart-green-full.svg") no-repeat center center;
                     }
-                    
-                    .text 
+
+                    .text
                     {
                         display: block;
                         margin-top: 5px;
                         font-size: 1.13em;
                     }
                 }
-                
+
                 &:after
                 {
                     content: "";
@@ -2166,44 +2166,44 @@ h5 {
                     clear: both;
                 }
 
-                @include media-responsive ($screen-md) 
+                @include media-responsive ($screen-md)
                 {
                     display: none;
                 }
             }
-            
+
         }
-        
-        &:hover 
+
+        &:hover
         {
             color: $white-color;
             background: $bg-default;
-            
+
             a {
                 .title {
-                    color: $white-color;        
+                    color: $white-color;
                 }
             }
-            
+
             .icon-list
             {
-                .icon-container 
+                .icon-container
                 {
                     .icon {
                         background: url("/img/core-img/heart-white-full.svg") no-repeat center center;
                     }
-                    
+
                     .text {
                         color: $white-color;
                     }
                 }
             }
         }
-        
+
     }
 }
 
-.required 
+.required
 {
     &:after{
         content: "*";
@@ -2244,7 +2244,7 @@ h5 {
         font-size: 120%;
         font-weight: 600;
     }
-    
+
     h1 {
         font-size: 2.5em;
         color: $heading-color;
@@ -2260,7 +2260,7 @@ form.auth {
 a.link {
     text-decoration: none;
     display: inline-block;
-    
+
     &:after{
         content:"";
         display: block;
@@ -2269,17 +2269,17 @@ a.link {
         background: black;
         @include transition(width 0.3s);
     }
-    
+
     &:hover:after {
-        width: 100%;    
+        width: 100%;
     }
-  
+
 }
 
 //.bg-img {
 //    h1 {
 //        color: $white-color;
-//        font-size: 3em;   
+//        font-size: 3em;
 //    }
 //}
 
@@ -2297,12 +2297,12 @@ a.link {
 {
     text-align:  center;
     padding: 0 10px;
-    
+
     .icn-tick{
         width: 100%;
         height: 75px;
     }
-    
+
     h1{
         @include media-responsive($screen-md) {
             font-size: 2.5rem;

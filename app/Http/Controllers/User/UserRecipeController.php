@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Events\RecipeCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RecipeCreateRequest;
+use App\Models\File;
 use App\Models\Recipe;
 use App\Services\RecipeService;
 use Illuminate\Http\Request;
@@ -103,7 +104,7 @@ class UserRecipeController extends Controller
                 $savePhotos = $paramPhotos['photos'];
             }
 
-            $deletePhotos = $request->input('delete_photos');
+            $photosToDeleteIds = $request->input('delete_photos');
 
             if (is_array($recipeFields['cooking_steps'])) {
                 $recipeFields['cooking_steps'] = json_encode($recipeFields['cooking_steps']);
@@ -114,10 +115,12 @@ class UserRecipeController extends Controller
                 $recipeFields['visibility'] = 'public';
             }
 
-            $recipe = $this->recipeService->saveRecipe($userProfile, $recipe, $recipeFields, $savePhotos, $deletePhotos);
+            $recipe = $this->recipeService->saveRecipe($userProfile, $recipe, $recipeFields, $savePhotos);
 
             if ($recipe)
             {
+                $this->recipeService->deletePhotos($recipe, $photosToDeleteIds);
+
                 // Send event
                 RecipeCreated::dispatch($recipe);
 

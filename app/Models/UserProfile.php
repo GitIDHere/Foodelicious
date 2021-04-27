@@ -11,7 +11,7 @@ class UserProfile extends Model
 
     protected $fillable = [
         'username',
-        'desc',
+        'description',
     ];
     /**
      * User profile belongs to one User

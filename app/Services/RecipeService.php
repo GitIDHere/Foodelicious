@@ -18,15 +18,14 @@ class RecipeService
     }
 
     /**
-     * @param UserProfile $userProfile
-     * @param Recipe $recipe
-     * @param array $recipeData
-     * @param File[] $recipeData
-     * @param [] $deletePhotos
-     * @return Model|Recipe
+     * @param $userProfile
+     * @param $recipe
+     * @param $recipeData
+     * @param $savePhotos
+     * @return mixed|null
      * @throws \Exception
      */
-    public function saveRecipe($userProfile, $recipe, $recipeData, $savePhotos, $deletePhotos)
+    public function saveRecipe($userProfile, $recipe, $recipeData, $savePhotos)
     {
         // Check $recipe is already attached to the user
         $isUserRecipe = $userProfile->recipes->contains($recipe);
@@ -42,9 +41,6 @@ class RecipeService
 
         if ($recipe)
         {
-            $driver = Storage::drive(PhotoService::VISIBILITY_PUBLIC);
-            $this->recipePhotoService->setDriver($driver);
-
             $savedFiles = $this->recipePhotoService->savePhotos($savePhotos);
 
             if ($savedFiles->isNotEmpty())
@@ -57,13 +53,20 @@ class RecipeService
                 $recipe->files()->attach($savedFiles);
             }
 
-            $this->recipePhotoService->deletePhotos($recipe, $deletePhotos);
-
             return $recipe;
         }
 
         return null;
     }
 
+    /**
+     * @param $recipe
+     * @param $photosToDeleteIds
+     * @throws \Exception
+     */
+    public function deletePhotos($recipe, $photosToDeleteIds)
+    {
+        $this->recipePhotoService->deletePhotos($recipe, $photosToDeleteIds);
+    }
 
 }

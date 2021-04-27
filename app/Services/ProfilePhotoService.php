@@ -1,6 +1,6 @@
 <?php namespace App\Services;
 
-
+use App\Models\UserProfile;
 use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
 
@@ -11,35 +11,99 @@ class ProfilePhotoService extends PhotoService
      */
     protected $baseFilePath = 'profile_pics';
 
+    /**
+     * @var int
+     */
+    protected $target_width = 500;
 
-    public function __construct($driver)
-    {
-        parent::__construct($driver);
-    }
+    /**
+     * @var int
+     */
+    protected $target_height = 500;
 
 
     /**
-     * @param UploadedFile $img
-     * @param int $cropWidth
-     * @param int $cropHeight
-     * @param int $cropX
-     * @param int $cropY
-     * @return null|string
+     * ProfilePhotoService constructor.
+     * @param $visibility
      */
-    public function cropImage($img, $cropWidth, $cropHeight, $cropX, $cropY)
+    public function __construct($visibility)
     {
-        $targetW = 500;
-        $targetH = 500;
+        parent::__construct($visibility);
+    }
 
-        $dir = $this->driver->path($this->baseFilePath.'/');
+    /**
+     * @param UploadedFile $img
+     * @param $cropWidth
+     * @param $cropHeight
+     * @param $cropX
+     * @param $cropY
+     * @return string|null
+     */
+    public function crop(UploadedFile $img, $cropWidth, $cropHeight, $cropX, $cropY)
+    {
+        $imgPath = $this->saveTempImage($img);
 
-        // Put the uploaded image in a temp folder so that we have it saved somewhere on the server
-        $imgPath = $this->driver->putFile($this->tmpPath, new File($img->getPathname()), 'private');
+        $imagePath = '';
 
-        // Crop the uploaded image
-        $imagePath = cropImage($dir, $this->driver->path($imgPath), $targetW, $targetH, $cropWidth, $cropHeight, $cropX, $cropY);
+        if ($imgPath) {
+            // Crop the uploaded image
+            $imagePath = $this->cropPhoto($this->baseFilePath, $this->drive->path($imgPath), $this->target_width, $this->target_height, $cropWidth, $cropHeight, $cropX, $cropY);
+        }
+
         return $imagePath;
     }
 
+    /**
+     * @param UserProfile $userProfile
+     * @param \App\Models\File $picFile
+     */
+//    public function removePic(UserProfile $userProfile, \App\Models\File $picFile)
+//    {
+//        if ($userProfile instanceof UserProfile)
+//        {
+//            $public = self::VISIBILITY_PUBLIC;
+//
+//            // Remove the table link
+//            $userProfile->files()->detach($picFile->id);
+//
+//            // Delete the file from the directory
+//            $this->drive->delete($public . '/' . $picFile->path);
+//        }
+//    }
+
+    /**
+     * @param UploadedFile $image
+     * @return false|string
+     */
+    private function saveTempImage($image)
+    {
+        $originalVisibility = $this->getVisibility();
+
+        // Set the visibility to private because we are storing it in temp folder
+        $this->setVisibility(self::VISIBILITY_PRIVATE);
+
+        // Put the uploaded image in a temp folder so that we have it saved somewhere on the server
+        $imgPath = $this->drive->putFile($this->getTempPath(), new File($image->getPathname()));
+
+        $this->setVisibility($originalVisibility);
+
+        return $imgPath;
+    }
+
+    /**
+     * @param int $width
+     */
+    public function setTargetWidth($width)
+    {
+        $this->target_width = $width;
+    }
+
+    /**
+     * @param int $height
+     */
+    public function setTargetHeight($height)
+    {
+        $this->target_height = $height;
+    }
 
 }

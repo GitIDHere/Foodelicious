@@ -53,6 +53,18 @@ class UserProfileService
         return true;
     }
 
+    /**
+     * @param UserProfile $userProfile
+     */
+    public function removeProfilePic(UserProfile $userProfile)
+    {
+        $profilePic = $userProfile->files->first();
+
+        if (is_object($profilePic))
+        {
+            $this->profilePhotoService->deletePhotoFromDrive($userProfile, $profilePic);
+        }
+    }
 
     /**
      * @param array $imageData
@@ -69,11 +81,7 @@ class UserProfileService
             $imgX = $imageData['crop_x'];
             $imgY = $imageData['crop_y'];
 
-            // Create the driver for for storing the pic
-            $driver = Storage::drive(PhotoService::VISIBILITY_PUBLIC);
-            $this->profilePhotoService->setDriver($driver);
-
-            $imgPath = $this->profilePhotoService->cropImage($uploadedImg, $imgW, $imgH, $imgX, $imgY);
+            $imgPath = $this->profilePhotoService->crop($uploadedImg, $imgW, $imgH, $imgX, $imgY);
 
             if ($imgPath)
             {
@@ -88,24 +96,6 @@ class UserProfileService
 
         return null;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

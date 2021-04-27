@@ -70,71 +70,6 @@ if (! function_exists('paginator'))
     }
 }
 
-if (! function_exists('cropImage'))
-{
-    /**
-     * Ref: https://stackoverflow.com/a/11376379/5486928
-     *
-     * @param $fileDir
-     * @param $imgPath
-     * @param int $targetWidth
-     * @param int $targetHeight
-     * @param int $cropWidth
-     * @param int $cropHeight
-     * @param null|int $cropX
-     * @param null|int $cropY
-     * @return null|string
-     */
-    function cropImage($fileDir, $imgPath, $targetWidth, $targetHeight, $cropWidth, $cropHeight, $cropX = 0, $cropY = 0)
-    {
-        $arr_image_details = getimagesize($imgPath);
-        $imgName = basename($imgPath);
-
-        if ($arr_image_details[2] == IMAGETYPE_JPEG) {
-            $imgt = "ImageJPEG";
-            $imgcreatefrom = "ImageCreateFromJPEG";
-        }
-        if ($arr_image_details[2] == IMAGETYPE_PNG) {
-            $imgt = "ImagePNG";
-            $imgcreatefrom = "ImageCreateFromPNG";
-        }
-
-        if ($targetWidth > $targetHeight) {
-            $new_width = $targetWidth;
-            $new_height = intval($targetHeight * $new_width / $targetWidth);
-        } else {
-            $new_height = $targetHeight;
-            $new_width = intval($targetWidth * $new_height / $targetHeight);
-        }
-
-        if ($imgt)
-        {
-            $old_image = $imgcreatefrom($imgPath);
-
-            // Crop the original image
-            $croppedImg = imagecrop($old_image, ['x' => $cropX, 'y' => $cropY, 'width' => $cropWidth, 'height' => $cropHeight]);
-
-            // Create a blank img canvas for the cropped image to be placed onto
-            $targetImageCanvas = imagecreatetruecolor($targetWidth, $targetHeight);
-
-            // White background
-            $white  = imagecolorallocate($targetImageCanvas,255,255,255);
-            imagefilledrectangle($targetImageCanvas,0,0,$targetWidth-1,$targetHeight-1, $white);
-
-            // Fit the cropped image onto the target canvas
-            imagecopyresized($targetImageCanvas, $croppedImg, 0, 0, 0, 0, $new_width, $new_height, $cropWidth, $cropHeight);
-
-            $imgRes = $imgt($targetImageCanvas, $fileDir . $imgName);
-            if ($imgRes) {
-                return $fileDir . $imgName;
-            }
-        }
-
-        return null;
-    }
-}
-
-
 
 if (! function_exists('createImage'))
 {
@@ -182,7 +117,7 @@ if (! function_exists('createImage'))
             imagefilledrectangle($new_image,0,0,$targetWidth-1,$targetHeight-1, $white);
 
             imagecopyresized($new_image, $old_image, $dest_x, $dest_y, 0, 0, $new_width, $new_height, $original_width, $original_height);
-            $imgt($new_image, $ImgDirectory . $imgName );
+            $imgt($new_image, $ImgDirectory . '/' . $imgName );
         }
     }
 }

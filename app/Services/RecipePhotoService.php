@@ -2,33 +2,34 @@
 
 namespace App\Services;
 
+use App\Models;
 use Illuminate\Filesystem\FilesystemAdapter;
 
 class RecipePhotoService extends PhotoService
 {
     /**
-     * @var string 
+     * @var string
      */
     protected $baseFilePath = 'recipes';
-    
+
     /**
-     * @var int 
+     * @var int
      */
     protected $thumbnailWidth = 150;
-    
+
     /**
-     * @var int 
+     * @var int
      */
     protected $thumbnailHeight = 150;
-    
+
     /**
-     * @param FilesystemAdapter $driver
+     * @param string $visibility
      */
-    public function __construct($driver)
+    public function __construct($visibility)
     {
-        parent::__construct($driver);
+        parent::__construct($visibility);
     }
-    
+
     /**
      * @param $imgPath
      * @throws \Exception
@@ -37,5 +38,30 @@ class RecipePhotoService extends PhotoService
     {
         parent::createThumbnail($this->thumbnailWidth, $this->thumbnailHeight, $imgPath);
     }
-    
+
+    /**
+     * @param Models\Recipe $recipe
+     * @param [] $photoIds
+     * @throws \Exception
+     */
+    public function deletePhotos($recipe, $photoIds)
+    {
+        if ($recipe instanceof Models\Recipe && !empty($photoIds))
+        {
+            if (!is_array($photoIds)) {
+                $photoIds = [$photoIds];
+            }
+
+            $recipe->files()->detach($photoIds);
+
+            $recipeImgFiles = Models\File::find($photoIds)->all();
+
+            // Remove the actual files
+            foreach ($recipeImgFiles as $recipeImgFile)
+            {
+                $this->deletePhotoFromDrive($recipe, $recipeImgFile);
+            }
+        }
+    }
+
 }
