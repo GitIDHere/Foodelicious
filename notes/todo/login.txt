@@ -1,0 +1,61 @@
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+
+https://laravel.com/docs/8.x/authentication#password-confirmation
+
+- When they reset their password
+https://laravel.com/docs/8.x/authentication#invalidating-sessions-on-other-devices
+
+https://laravel.com/docs/8.x/authentication#logging-out
+
+
+- User model
+- Auth scope
+
+-  including login, registration, password reset, email verification, and password confirmation. 
+
+- Only get active users
+
+- Prevent spamming
+
+- Redirect the user to the login page if they aren't logged in
+
+- Repopulate the form on errors https://laravel.com/docs/8.x/validation#repopulating-forms
+
+- Look at the quick start apps, and see what they implement which you need to
+
+- Create a Profile entry when they sign up
+
+- Create a task to clean out users who haven't varified their email after x days
+
+- Determining If A Password Needs To Be Rehashed - https://laravel.com/docs/8.x/hashing#determining-if-a-password-needs-to-be-rehashed
+
+- Create custom exception classes
+
+- Log who logs into the system. Use events
+
+- Push event to notify listeners of user signing up / logging in
+https://laravel.com/docs/8.x/authentication#events
+
+
+
+
+
+
+
+
+
+
+
+
+
+

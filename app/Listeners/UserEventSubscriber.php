@@ -11,16 +11,16 @@ class UserEventSubscriber
      * Handle user login events.
      */
     public function handleUserLogin($event) {
-        
+
     }
 
     /**
      * Handle user logout events.
      */
     public function handleUserLogout($event) {
-        
+
     }
-    
+
     /**
      * Send an email to the original email address notifying them that their email address has been updated.
      * @param $event
@@ -29,25 +29,25 @@ class UserEventSubscriber
     {
         $user = $event->user;
         $oldEmail = $event->oldEmail;
-        $name = $user->userProfile->full_name;
-        
-        Mail::to($oldEmail)->send(new EmailUpdatedEmail($name, $user));
+        $username = $user->userProfile->username;
+
+        Mail::to($oldEmail)->send(new EmailUpdatedEmail($username, $user));
     }
 
     /**
      * Send an email to the user notifying them that their password has been updated
-     * 
+     *
      * @param $event
      */
     public function handlePasswordUpdate($event)
     {
        $user = $event->user;
-       $name = $user->userProfile->full_name;
-       
-       Mail::to($user->email)->send(new PasswordUpdatedEmail($name, $user));
+       $username = $user->userProfile->username;
+
+       Mail::to($user->email)->send(new PasswordUpdatedEmail($username, $user));
     }
-    
-    
+
+
     /**
      * Register the listeners for the subscriber.
      *
@@ -65,12 +65,12 @@ class UserEventSubscriber
             'Illuminate\Auth\Events\Logout',
             [UserEventSubscriber::class, 'handleUserLogout']
         );
-        
+
         $events->listen(
             'App\Events\EmailUpdateEvent',
             [UserEventSubscriber::class, 'handleEmailUpdate']
         );
-    
+
         $events->listen(
             'App\Events\PasswordUpdateEvent',
             [UserEventSubscriber::class, 'handlePasswordUpdate']

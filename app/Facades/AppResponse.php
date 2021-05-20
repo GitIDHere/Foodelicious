@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static \Illuminate\Http\Response make($code, $content)
  *
- * @see \App\Classes\APIResponse
+ * @see \App\Classes\AppResponse
  */
-class APIResponse extends Facade
+class AppResponse extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \App\Classes\APIResponse::class;
+        return \App\Classes\AppResponse::class;
     }
 }

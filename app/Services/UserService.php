@@ -6,14 +6,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
-    
-    
-    
-    
-    
     /**
      * Register a user
-     * 
      * @param $username
      * @param $email
      * @param $password
@@ -23,18 +17,16 @@ class UserService
     public function register($email, $password)
     {
         $existingUser = User::where('email', '=', $email)->first();
-        
+
         if (empty($existingUser))
         {
             return User::create([
                 'email' => $email,
                 'password' => Hash::make($password)
-            ]);            
+            ]);
         }
         else {
             throw new \Exception('Email is taken');
         }
     }
-    
-    
 }

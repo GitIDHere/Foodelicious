@@ -1,0 +1,47 @@
+
+- Rate limit sending the verification emails
+- Remember me checkbox
+- Allow them to re-send verification email to themselves
+- XXXX Look at route groups so that you can group the registration routes together
+- Limit access to website before they verify email
+- Add is_active field to User model
+- Create user Profile when user registers
+- Ask for username field. Have fields in userprofile:
+	- Name
+	- Desc
+- Create a middleware to only allow users who aren't logged in
+	- Replace all Auth::check()
+- Create the content for the verification email
+	- See if you can customise the verify link
+---------------------------------------------------------------
+
+- Show a message to let the user know that they haven't verified their email
+
+- Send confirmation email to thank users for registering
+
+- Create a listener to log that the user has verified their email https://laravel.com/docs/8.x/verification#events
+
+- Create email templates to be used when sending email. Not to use MailMessage()
+
+- Create a template to show user message to verify their email address
+	- $request->user()->hasVerifiedEmail()
+
+- Log when the user registers
+
+- Log when the user logs in
+
+- Only get users that are active
+
+
+
+
+-------------------------------------------------------------------------------------
+- Password reset
+	- Throttle it
+
+- Log when the user's password was attempted to reset
+- Log when the user resets their password
+- 
+
+
+

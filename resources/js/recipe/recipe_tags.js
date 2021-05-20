@@ -10,7 +10,7 @@ $(function()
         // This is to convert the tags into json when form is submitted
         originalInputValueFormat: valuesArr => JSON.stringify(valuesArr.map(item => item.value))
     });
-    
+
     let ingredientInput = document.querySelector('#recipe-ingredients');
     let ingTagify = new Tagify(ingredientInput, {
         whitelist: [],
@@ -24,10 +24,10 @@ $(function()
             enabled : 0 // always opens dropdown when input gets focus
         },
     });
-    
+
     let controller = null;
     let apiCallTimer = null;
-    
+
     /**
      * A generic function which helps to generate a Tagify list based on the callback
      * @param term
@@ -47,7 +47,7 @@ $(function()
             controller = new AbortController();
 
             tagifyObj.loading(true).dropdown.hide.call(tagifyObj);
-            
+
             apiCallback(term)
                 .then(function(resp)
                 {
@@ -78,8 +78,7 @@ $(function()
         return new Promise(function(resolve, reject){
             $.ajax({
                 url : endpoint,
-                datatype: "json",
-                type: "POST",
+                type: "GET",
                 accept: 'application/json',
                 data: {'term': term},
             })
@@ -88,7 +87,7 @@ $(function()
             ;
         });
     };
-    
+
     ingTagify.on('input', function(e){
         generateTagList(e.detail.value, ingTagify, getIngredientList)
     });

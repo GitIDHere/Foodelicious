@@ -15,6 +15,7 @@
 @import url(../css/plugins/classy-nav.min.css);
 @import url(../css/plugins/tagify.min.css);
 @import url(../css/plugins/balloon.min.css);
+@import url(~cropperjs/dist/cropper.min.css);
 html {
   line-height: 1.15;
   /* 1 */
@@ -1754,6 +1755,28 @@ textarea:focus {
     font-size: 18px; }
 
 /* Features Area */
+.hidden {
+  display: none; }
+
+.profile-pic-container {
+  max-height: 300px;
+  max-width: 300px;
+  min-width: 300px;
+  min-height: 300px; }
+  .profile-pic-container > img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%; }
+    .profile-pic-container > img.default-pic:hover {
+      cursor: pointer; }
+  .profile-pic-container #canvas {
+    height: 290px;
+    width: 650px;
+    background-color: #ffffff;
+    cursor: default;
+    border: 1px solid black; }
+
 .breadcrumb {
   margin-bottom: 0; }
   .breadcrumb ul {

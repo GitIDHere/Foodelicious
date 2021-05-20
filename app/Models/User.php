@@ -18,7 +18,6 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
         'is_active'
@@ -43,8 +42,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'is_active' => 'boolean',
     ];
-    
-    
+
+
     /**
      * User has one user profile
      */
@@ -52,11 +51,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(UserProfile::class);
     }
-    
-    
+
+
     /**
      * Send custom password reset notification
-     * 
+     *
      * @param string $token
      */
     public function sendPasswordResetNotification($token)

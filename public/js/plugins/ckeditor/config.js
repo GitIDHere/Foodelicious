@@ -22,6 +22,6 @@ CKEDITOR.editorConfig = function( config ) {
 	];
 
 	config.format_tags = "p;h1;h2;h3";
-	
+
 	config.removeButtons = 'Subscript,Superscript,PasteFromWord,Link,Unlink,Anchor,SpecialChar,Maximize,Strike,Blockquote,About,Source';
 };
