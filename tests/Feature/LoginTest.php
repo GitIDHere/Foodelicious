@@ -29,7 +29,7 @@ class LoginTest extends TestCase
 
 
     /** @test */
-    public function test_user_is_able_to_log_in()
+    public function test_user_gets_logged_in()
     {
         $resp = $this->json('POST', route('login.submit'), [
             'email' => $this->testUserEmail,

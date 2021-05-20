@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Classes\AppResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
@@ -12,31 +13,31 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserRegisterController extends Controller
 {
-    
+
     /**
-     * @var UserRegisterService 
+     * @var UserRegisterService
      */
     private $userRegisterService;
-    
-    
+
+
     public function __construct(UserRegisterService $userRegisterService)
     {
         $this->userRegisterService = $userRegisterService;
     }
-    
-    
+
+
     /**
      * Method: GET
-     * 
+     *
      * Show the confirmation page to users who successfully registered.
-     * 
+     *
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
     public function confirmation(Request $request)
     {
         $user = Auth::user();
-        
+
         if ($user && $user->hasVerifiedEmail()) {
             return Redirect::route('home');
         }
@@ -44,13 +45,13 @@ class UserRegisterController extends Controller
             return view('screens.auth.register.register_confirmation');
         }
     }
-    
-    
+
+
     /**
      * Method: POST
-     * 
+     *
      * Handle POST request for registering to the site
-     * 
+     *
      * @param RegisterRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -60,19 +61,22 @@ class UserRegisterController extends Controller
         $email = $request->get('email');
         $password = $request->get('password');
         $rememberMe = $request->get('remember_me') ? true : false;
-        
+
         $user = $this->userRegisterService->registerUser($email, $password, $username);
-        
+
         if ($user instanceof User)
         {
             Auth::login($user, $rememberMe);
-            return Redirect::route('register.confirmation');
+
+            return AppResponse::getResponse($request, [], 302, '', 'register.confirmation');
         }
         else {
-            return back()->withInput();   
+            return AppResponse::getErrorResponse($request, [
+                'error.register' => 'Error registering. Please try again.'
+            ]);
         }
     }
-    
-    
-    
+
+
+
 }

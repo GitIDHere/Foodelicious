@@ -5,6 +5,11 @@ namespace App\Exceptions;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Throwable;
 
+/**
+ * @deprecated
+ * Class APIExceptionHandler
+ * @package App\Exceptions
+ */
 class APIExceptionHandler extends Handler
 {
     
