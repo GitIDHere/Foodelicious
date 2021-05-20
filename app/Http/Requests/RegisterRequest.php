@@ -36,6 +36,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'email.required' => 'Email is required',
+            'remember_me.boolean' => 'Invalid value for remember me',
             'password.required' => 'Password is required',
             'password.confirmed' => 'Please make sure the confirmation password matched your password.',
         ];

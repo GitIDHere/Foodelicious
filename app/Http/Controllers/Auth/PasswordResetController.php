@@ -40,7 +40,7 @@ class PasswordResetController extends Controller
         
         // Returning a success always because we don't want
         // user to know if email exists in DB or not  
-        return back()->with(['status' => 'success']);
+        return back()->with(['message' => 'Email sent']);
     }
     
     
@@ -100,7 +100,7 @@ class PasswordResetController extends Controller
     
         if ($status == Password::PASSWORD_RESET)
         {
-            return redirect()->route('login.show')->with('status', $status);
+            return redirect()->route('login.show')->with('message', 'Password reset successfully');
         } else {
             return back()->withErrors('Invalid request');   
         }

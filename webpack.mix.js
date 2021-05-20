@@ -11,7 +11,31 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+/**
+ * JS mix
+ */
+mix
+    .autoload({
+        jquery: ['$', 'jQuery'],
+        bootstrap: ['bootstrap'],
+        Cropper: ['Cropper'],
+    })
+    .extract([
+        'jquery',
+        'Tagify',
+        'Cropper'
+    ])
+    .js('resources/js/app.js', 'public/js')
+    .combine([
+        'resources/js/theme/plugins.js',
+        'resources/js/theme/main.js',
+        'resources/js/theme/profile_pic.js',
+    ], 'public/js/theme.js')
+    .combine('resources/js/recipe/*.js', 'public/js/recipe.js')
+    .version()
+;
+
+mix
+    .postCss('resources/css/app.css', 'public/css')
+    .version()
+;

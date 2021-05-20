@@ -3,17 +3,19 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title>{{env('APP_NAME')}}</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-        <!-- Styles -->
-        <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+        @include('includes.styles')
     </head>
-    <body>
-        <a href="{{route('home')}}">Home</a>
+    <body class="preload">
+        
+        @include("theme._header")
+        
         @yield('content')
+        
+        @include("theme._footer")
+        
+        <!-- JS -->
+        @include('includes.scripts')
+        
     </body>
 </html>

@@ -1,0 +1,26 @@
+
+@import 'normailise';
+
+@import "~@yaireo/tagify/dist/tagify.css";
+
+@import "theme/style";
+
+@import "~cropperjs/dist/cropper.min.css";
+
+img.del{
+  filter: grey; /* IE6-9 */
+  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+  filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+}
+
+
+
+
+
+
+
+
+
+
+
+

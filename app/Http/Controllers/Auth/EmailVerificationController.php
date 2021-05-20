@@ -29,10 +29,8 @@ class EmailVerificationController
     public function handleVerifyEmail(EmailVerificationRequest $request)
     {
         $request->fulfill();
-        /**
-         * TODO - Flash success message at the top in the view that they get redirected to
-         */
-        return Redirect::route('home');
+
+        return Redirect::route('verification.confirmation');
     }
     
     

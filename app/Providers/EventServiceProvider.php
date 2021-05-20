@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\EmailUpdateEvent;
+use App\Events\UserLogin;
 use App\Listeners\AppLogListener;
+use App\Listeners\LogUserLogin;
 use App\Listeners\PasswordResetListener;
 use App\Listeners\UserEventSubscriber;
 use Illuminate\Auth\Events\PasswordReset;
@@ -31,7 +34,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         PasswordReset::class => [
             PasswordResetListener::class
-        ]
+        ],
+        UserLogin::class => [
+            LogUserLogin::class  
+        ],
     ];
     
     /**

@@ -2,6 +2,9 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AcceptJSONHeader;
+use App\Http\Middleware\URLParameters;
+use App\Http\Middleware\UserRoute;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -24,6 +27,25 @@ class Kernel extends HttpKernel
     ];
 
     /**
+     * The priority-sorted list of middleware.
+     *
+     * Forces non-global middleware to always be in the given order.
+     *
+     * @var string[]
+     */
+    protected $middlewarePriority = [
+        \Illuminate\Cookie\Middleware\EncryptCookies::class,
+        \Illuminate\Session\Middleware\StartSession::class,
+        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        \App\Http\Middleware\EmailMustBeVerified::class,
+        \Illuminate\Contracts\Auth\Middleware\AuthenticatesRequests::class,
+        \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        \Illuminate\Session\Middleware\AuthenticateSession::class,
+        \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        \Illuminate\Auth\Middleware\Authorize::class,
+    ];
+    
+    /**
      * The application's route middleware groups.
      *
      * @var array
@@ -37,11 +59,17 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\URLParameters::class,
+        ],
+        
+        'user.verified' => [
+            \App\Http\Middleware\EmailMustBeVerified::class
         ],
 
         'api' => [
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            AcceptJSONHeader::class,
         ],
     ];
 
@@ -62,5 +90,9 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        
+        'user.routes' => \App\Http\Middleware\UserRoute::class,
+        'url.parameters' => \App\Http\Middleware\URLParameters::class,
+        'user.email.verify' => \App\Http\Middleware\EmailMustBeVerified::class,
     ];
 }

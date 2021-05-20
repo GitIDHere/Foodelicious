@@ -11,8 +11,16 @@
     },
     "devDependencies": {
         "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
+        "laravel-mix": "^6.0.18",
         "lodash": "^4.17.19",
+        "popper.js": "^1.16.1",
         "postcss": "^8.1.14"
+    },
+    "dependencies": {
+        "@popperjs/core": "^2.9.0",
+        "@yaireo/tagify": "^3.22.1",
+        "bootstrap": "^4.6.0",
+        "cropperjs": "^1.5.11",
+        "jquery": "^3.5.1"
     }
 }
