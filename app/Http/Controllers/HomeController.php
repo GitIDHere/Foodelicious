@@ -15,15 +15,6 @@ class HomeController extends Controller
      */
     public function showHome(Request $request)
     {
-        $username = '';
-        $user = Auth::user();
-        
-        if ($user) {
-            $username = $user->userProfile->username;
-        }
-        
-        URL::defaults(['username' => $username]);
-        
         return view('screens.home');
     }
     

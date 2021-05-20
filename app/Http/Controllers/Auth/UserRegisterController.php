@@ -65,7 +65,7 @@ class UserRegisterController extends Controller
         
         if ($user instanceof User)
         {
-            //Auth::login($user, $rememberMe);
+            Auth::login($user, $rememberMe);
             return Redirect::route('register.confirmation');
         }
         else {

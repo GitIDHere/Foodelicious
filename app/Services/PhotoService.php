@@ -2,10 +2,8 @@
 
 namespace App\Services;
 
-
-
-use App\Models\Recipe;
 use Illuminate\Database\Eloquent;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Http\File;
 use App\Models\File as AppFile;
 use Illuminate\Http\UploadedFile;
@@ -16,99 +14,229 @@ class PhotoService
     /**
      * @var array
      */
-    protected $allowedMimeTypes;
-    
+    protected $allowedMimeTypes = [
+        'image/jpeg',
+        'image/png',
+    ];
+
     /**
      * Max file size in MB
-     * @var int 
+     * @var int
      */
     protected $maxFileSizeMb = 1;
-    
+
     /**
-     * @var string 
+     * @var string
      */
     protected $baseFilePath = '';
-    
+
     /**
-     * @var string 
+     * @var null|FilesystemAdapter
      */
-    protected $visibility = 'public';
-    
-    
+    protected $drive = null;
+
     /**
-     * @param $allowedMimeTypes
+     * @var string
      */
-    public function __construct($allowedMimeTypes)
+    private $thumbnailPath = 'thumb';
+
+    /**
+     * @var string
+     */
+    private $tmpPath = 'img_tmp';
+
+    /**
+     * @var string
+     */
+    private $visibility = self::VISIBILITY_PRIVATE;
+
+    /**
+     * @const string
+     */
+    const VISIBILITY_PRIVATE = 'private';
+
+    /**
+     * @const string
+     */
+    const VISIBILITY_PUBLIC = 'public';
+
+
+    /**
+     * @param string $visibility
+     */
+    public function __construct($visibility)
     {
-        $this->allowedMimeTypes = $allowedMimeTypes;
+        $this->visibility = $visibility;
+        $this->drive = Storage::drive();
     }
-    
-    
+
+
     /**
      * @param UploadedFile[] $files
      * @param array $customNames
      * @return Eloquent\Collection
+     * @throws \Exception
      */
     public function savePhotos($files, $customNames = [])
     {
         $savedFiles = new Eloquent\Collection();
-        
-        $driver = Storage::drive($this->visibility);
-        
-        foreach($files as $fileIndex => $file) 
+
+        $visibility = $this->getVisibility();
+
+        foreach($files as $fileIndex => $file)
         {
             // Check that the mime type is allowed
-            if (in_array($file->getMimeType(), $this->allowedMimeTypes)) 
+            if (in_array($file->getMimeType(), $this->allowedMimeTypes))
             {
                 // Check that the size is in limit
                 $fileSizeBytes = $file->getSize();
                 $fileSizeMb = $this->getMbFromBytes($fileSizeBytes);
-                
-                if ($fileSizeMb > 0 && $fileSizeMb < $this->maxFileSizeMb) 
+
+                if ($fileSizeMb > 0 && $fileSizeMb <= $this->maxFileSizeMb)
                 {
                     // Check if the file needs custom name
-                     if (isset($customNames[$fileIndex]) && !empty($customNames[$fileIndex])) 
+                     if (isset($customNames[$fileIndex]) && !empty($customNames[$fileIndex]))
                      {
                          $fileName = $customNames[$fileIndex];
-                         $path = $driver->putFileAs($this->baseFilePath, new File($file->getPathname()), $fileName, $this->visibility);
-                     } 
-                     else {
-                         $path = $driver->putFile($this->baseFilePath, new File($file->getPathname()), $this->visibility);    
+                         $path = $this->drive->putFileAs($visibility . '/' . $this->baseFilePath, new File($file->getPathname()), $fileName);
                      }
-                     
-                     if ($path) 
+                     else {
+                         $path = $this->drive->putFile($visibility . '/' . $this->baseFilePath, new File($file->getPathname()));
+                     }
+
+                     if ($path)
                      {
                         $fileName = basename($path);
-                        
+
                         $savedFiles->add(AppFile::create([
                              'name' => $fileName,
-                             'path' => $path
+                             'path' => $this->baseFilePath . '/' . $fileName
                          ]));
                      }
                 }
             }
         }
-        
+
         return $savedFiles;
     }
-    
-    
+
+
     /**
-     * @param Recipe $recipe
-     * @param [] $photoIds
+     * @param int width
+     * @param int height
+     * @param $imgPath
+     * @throws \Exception
      */
-    public function deletePhotos($recipe, $photoIds)
+    public function createThumbnail($width, $height, $imgPath)
     {
-        if ($recipe instanceof Recipe && !empty($photoIds))
+        $visibility = $this->getVisibility();
+        $thumbnailDirPath = $visibility . '/' . $this->thumbnailPath . '/' . $this->baseFilePath;
+
+        $thumbnailDir = $this->drive->path($thumbnailDirPath);
+
+        $this->createDir($thumbnailDir);
+
+        createImage($thumbnailDir, $this->drive->path($visibility . '/' . $imgPath), $width, $height);
+    }
+
+    /**
+     * Ref: https://stackoverflow.com/a/11376379/5486928
+     *
+     * @param $basePath
+     * @param $imgPath
+     * @param $targetWidth
+     * @param $targetHeight
+     * @param $cropWidth
+     * @param $cropHeight
+     * @param int $cropX
+     * @param int $cropY
+     * @return string|null
+     * @throws \Exception
+     */
+    public function cropPhoto($basePath, $imgPath, $targetWidth, $targetHeight, $cropWidth, $cropHeight, $cropX = 0, $cropY = 0)
+    {
+        $arr_image_details = getimagesize($imgPath);
+        $imgName = basename($imgPath);
+
+        $imgDir = $this->visibility . '/' . $basePath;
+
+        $this->createDir($imgDir);
+
+        $fullFilePath = $this->drive->path($imgDir);
+
+        if ($arr_image_details[2] == IMAGETYPE_JPEG) {
+            $imgt = "ImageJPEG";
+            $imgcreatefrom = "ImageCreateFromJPEG";
+        }
+        if ($arr_image_details[2] == IMAGETYPE_PNG) {
+            $imgt = "ImagePNG";
+            $imgcreatefrom = "ImageCreateFromPNG";
+        }
+
+        if ($targetWidth > $targetHeight) {
+            $new_width = $targetWidth;
+            $new_height = intval($targetHeight * $new_width / $targetWidth);
+        } else {
+            $new_height = $targetHeight;
+            $new_width = intval($targetWidth * $new_height / $targetHeight);
+        }
+
+        if ($imgt)
         {
-            if (!is_array($photoIds)) {
-                $photoIds = [$photoIds];
+            $old_image = $imgcreatefrom($imgPath);
+
+            // Crop the original image
+            $croppedImg = imagecrop($old_image, ['x' => $cropX, 'y' => $cropY, 'width' => $cropWidth, 'height' => $cropHeight]);
+
+            // Create a blank img canvas for the cropped image to be placed onto
+            $targetImageCanvas = imagecreatetruecolor($targetWidth, $targetHeight);
+
+            // White background
+            $white  = imagecolorallocate($targetImageCanvas,255,255,255);
+            imagefilledrectangle($targetImageCanvas,0,0,$targetWidth-1,$targetHeight-1, $white);
+
+            // Fit the cropped image onto the target canvas
+            imagecopyresized($targetImageCanvas, $croppedImg, 0, 0, 0, 0, $new_width, $new_height, $cropWidth, $cropHeight);
+
+            $imgRes = $imgt($targetImageCanvas, $fullFilePath . '/' . $imgName);
+
+            if ($imgRes) {
+                return $basePath . '/' . $imgName;
             }
-            
-            $recipe->files()->detach($photoIds);
+        }
+
+        return null;
+    }
+
+    /**
+     * @param FilesystemAdapter $drive
+     */
+    public function setDrive($drive)
+    {
+        $this->drive = $drive;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTempPath()
+    {
+        return $this->visibility . '/' . $this->tmpPath;
+    }
+
+    /**
+     * @param $fullPath
+     * @param int $perms
+     * @param bool $recursive
+     */
+    private function createDir($fullPath, $perms = 755, $recursive = true)
+    {
+        if (!$this->drive->exists($fullPath))
+        {
+            \Illuminate\Support\Facades\File::ensureDirectoryExists($fullPath, $perms, $recursive);
         }
     }
-    
+
     /**
      * @param $bytes
      * @return float
@@ -117,7 +245,7 @@ class PhotoService
     {
         return $bytes * 0.000000954;
     }
-    
+
     /**
      * @param string $baseFilePath
      */
@@ -125,7 +253,7 @@ class PhotoService
     {
         $this->baseFilePath = $baseFilePath;
     }
-    
+
     /**
      * @param $visibility
      */
@@ -133,5 +261,31 @@ class PhotoService
     {
         $this->visibility = $visibility;
     }
-    
+
+    /**
+     * @return string
+     */
+    public function getVisibility()
+    {
+        return $this->visibility;
+    }
+
+    /**
+     * @param Eloquent\Model $model
+     * @param AppFile $picFile
+     */
+    public function deletePhotoFromDrive(Eloquent\Model $model, \App\Models\File $picFile)
+    {
+        if ($model instanceof Eloquent\Model)
+        {
+            $public = self::VISIBILITY_PUBLIC;
+
+            // Remove the table link
+            $model->files()->detach($picFile->id);
+
+            // Delete the file from the directory
+            $this->drive->delete($public . '/' . $picFile->path);
+        }
+    }
+
 }

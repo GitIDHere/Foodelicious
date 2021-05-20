@@ -23,7 +23,7 @@ $(() =>
         
         // Delete button
         let cookingStepDelBtn = $('<a data-cooking-step="'+cookingStepCounter+'" href="#">Delete step</a>');
-        cookingStepDelBtn.addClass('delete-cooking-step btn btn-delete');
+        cookingStepDelBtn.addClass('delete-cooking-step btn btn-red');
         btnsContainer.append(cookingStepDelBtn);
         
         // Move up button

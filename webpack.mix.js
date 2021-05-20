@@ -17,13 +17,21 @@ const mix = require('laravel-mix');
 mix
     .autoload({
         jquery: ['$', 'jQuery'],
+        bootstrap: ['bootstrap'],
+        Cropper: ['Cropper'],
     })
     .extract([
         'jquery',
-        'Tagify'
+        'Tagify',
+        'Cropper'
     ])
     .js('resources/js/app.js', 'public/js')
-    .copy('resources/js/scripts/**/*.js', 'public/js')
+    .combine([
+        'resources/js/theme/plugins.js',
+        'resources/js/theme/main.js',
+        'resources/js/theme/profile_pic.js',
+    ], 'public/js/theme.js')
+    .combine('resources/js/recipe/*.js', 'public/js/recipe.js')
     .version()
 ;
 

@@ -2,7 +2,11 @@
 
 @section('content')
 
-    <h1>Please verify your email.</h1>
+<div class="white-bk container">
+
+    <div class="row">
+        <p>Please verify your email.</p>
+    </div>
 
     <form method="POST" action="{{route('verification.send')}}">
         @csrf
@@ -20,5 +24,8 @@
         <input type="submit" value="Re-send verification email" />
 
     </form>
+    
+</div>
+
     
 @endsection

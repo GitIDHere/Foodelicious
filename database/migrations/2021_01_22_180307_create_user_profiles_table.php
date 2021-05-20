@@ -17,9 +17,7 @@ class CreateUserProfilesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('username', 25);
-            $table->string('forename', 150)->nullable();
-            $table->string('surname', 150)->nullable();
-            $table->mediumText('desc')->nullable();
+            $table->mediumText('description')->nullable();
             $table->timestamps();
             
             $table

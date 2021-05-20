@@ -6,11 +6,14 @@
         <title>{{env('APP_NAME')}}</title>
         @include('includes.styles')
     </head>
-    <body>
-        <a href="{{route('home')}}">Home</a>
+    <body class="preload">
+        
+        @include("theme._header")
         
         @yield('content')
-
+        
+        @include("theme._footer")
+        
         <!-- JS -->
         @include('includes.scripts')
         
