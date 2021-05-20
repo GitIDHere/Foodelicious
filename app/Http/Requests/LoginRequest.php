@@ -31,12 +31,13 @@ class LoginRequest extends FormRequest
             'remember_me' => 'boolean|nullable',
         ];
     }
-    
+
     public function messages()
     {
         return [
             'email.required' => 'Email is required',
             'email.email' => 'Please enter a valid email address',
+            'email.exists' => 'Unable to find user',
             'password.required' => 'Password is required',
             'email.unique' => 'Invalid login details',
             //'remember_me.boolean' => 'Please check that the details are correct',

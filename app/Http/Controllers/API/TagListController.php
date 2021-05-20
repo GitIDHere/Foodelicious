@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Facades\APIResponse;
+use App\Facades\AppResponse;
 use App\Http\Controllers\Controller;
 use App\Models\Ingredient;
 use App\Services\TagService;
@@ -39,6 +39,6 @@ class TagListController extends Controller
             $list[] = $ingredient['name'];
         }
 
-        return APIResponse::make(200, $list);
+        return AppResponse::getResponse($request, $list, 200);
     }
 }

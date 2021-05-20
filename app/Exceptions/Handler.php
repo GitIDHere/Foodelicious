@@ -39,33 +39,33 @@ class Handler extends ExceptionHandler
             //
         });
     }
-    
+
     /**
      * @param \Illuminate\Http\Request $request
      * @param Throwable $exception
      * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
      * @throws Throwable
      */
-    public function render($request, Throwable $exception)
-    {
-        $APIExceptionHandler = app()->make(APIExceptionHandler::class);
-        $webExceptionHandler = app()->make(WebExceptionHandler::class);
-        
-        if ($request->wantsJson()) {
-            return $APIExceptionHandler->handleApiException($request, $exception);
-        } 
-        else {
-            $customExeption = $webExceptionHandler->handleWebException($request, $exception);
-                
-            if ($customExeption instanceof CustomHttpException) 
-            {
-                return redirect($customExeption->getRedirectTo() ?? url()->previous())
-                    ->withInput(Arr::except($request->input(), $this->dontFlash))
-                    ->withErrors($customExeption->getErrors());   
-            }
-            else {
-                return parent::render($request, $customExeption);
-            }
-        }
-    }
+//    public function render($request, Throwable $exception)
+//    {
+//        $APIExceptionHandler = app()->make(APIExceptionHandler::class);
+//        $webExceptionHandler = app()->make(WebExceptionHandler::class);
+//
+//        if ($request->wantsJson()) {
+//            return $APIExceptionHandler->handleApiException($request, $exception);
+//        }
+//        else {
+//            $customExeption = $webExceptionHandler->handleWebException($request, $exception);
+//
+//            if ($customExeption instanceof CustomHttpException)
+//            {
+//                return redirect($customExeption->getRedirectTo() ?? url()->previous())
+//                    ->withInput(Arr::except($request->input(), $this->dontFlash))
+//                    ->withErrors($customExeption->getErrors());
+//            }
+//            else {
+//                return parent::render($request, $customExeption);
+//            }
+//        }
+//    }
 }
