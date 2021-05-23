@@ -8,6 +8,7 @@ use Database\Seeders\UserSeeder;
 use Illuminate\Auth\SessionGuard;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
@@ -17,9 +18,20 @@ class RegisterTest extends TestCase
 
     use RefreshDatabase, WithFaker;
 
+    private $testUserEmail = '';
+
+    private $testUserPassword = '';
+
+    private $testUsername = '';
+
+
     protected function setUp(): void
     {
         parent::setUp();
+
+        $this->testUserEmail = env('TEST_USER_EMAIL', 'test@user.com');
+        $this->testUserPassword = env('TEST_USER_PASSWORD', 'password');
+        $this->testUsername = env('TEST_USER_USERNAME', 'test_user');
     }
 
     // Username is required
@@ -27,8 +39,8 @@ class RegisterTest extends TestCase
     {
         $resp = $this->json('POST', route('register.submit'), [
             'username' => '',
-            'email' => 'not@exists.com',
-            'password' => 'password',
+            'email' => $this->testUserEmail,
+            'password' => $this->testUserPassword,
             'password_confirmation' => 'password',
             'remember_me' => true
         ]);
@@ -46,10 +58,10 @@ class RegisterTest extends TestCase
     public function test_email_is_required()
     {
         $resp = $this->json('POST', route('register.submit'), [
-            'username' => 'random_user',
+            'username' => $this->testUsername,
             'email' => '',
-            'password' => 'password',
-            'password_confirmation' => 'password',
+            'password' => $this->testUserPassword,
+            'password_confirmation' => $this->testUserPassword,
             'remember_me' => true
         ]);
 
@@ -66,10 +78,10 @@ class RegisterTest extends TestCase
     public function test_password_is_required()
     {
         $resp = $this->json('POST', route('register.submit'), [
-            'username' => 'random_user',
-            'email' => 'not@exists.com',
+            'username' => $this->testUsername,
+            'email' => $this->testUserEmail,
             'password' => '',
-            'password_confirmation' => 'password',
+            'password_confirmation' => $this->testUserPassword,
             'remember_me' => true
         ]);
 
@@ -82,7 +94,6 @@ class RegisterTest extends TestCase
         });
     }
 
-
     public function test_username_does_not_exists_in_database()
     {
         $this->seed(UserSeeder::class);
@@ -94,9 +105,9 @@ class RegisterTest extends TestCase
 
         $resp = $this->json('POST', route('register.submit'), [
             'username' => $username,
-            'email' => 'not@exists.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
+            'email' => $this->testUserEmail,
+            'password' => $this->testUserPassword,
+            'password_confirmation' => $this->testUserPassword,
             'remember_me' => true
         ]);
 
@@ -110,18 +121,20 @@ class RegisterTest extends TestCase
     }
 
 
-    public function test_email_does_not_exist()
+    public function test_user_email_is_not_already_registered()
     {
-        $this->seed(UserSeeder::class);
-
-        // Get the first user after seeding the DB
-        $user = User::where('id', 1)->first();
+        $user = User::factory()->create([
+            'email' => $this->testUserEmail,
+            'password' => Hash::make($this->testUserPassword),
+            'email_verified_at' => now(),
+            'is_active' => 1,
+        ]);
 
         $resp = $this->json('POST', route('register.submit'), [
-            'username' => 'random_user',
+            'username' => $this->testUsername,
             'email' => $user->email,
-            'password' => 'password',
-            'password_confirmation' => 'password',
+            'password' => $this->testUserPassword,
+            'password_confirmation' => $this->testUserPassword,
             'remember_me' => true
         ]);
 
@@ -135,13 +148,13 @@ class RegisterTest extends TestCase
     }
 
 
-    public function test_user_is_able_to_register()
+    public function test_user_can_register()
     {
         $resp = $this->json('POST', route('register.submit'), [
-            'username' => 'random_user',
-            'email' => 'not@exists.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
+            'username' => $this->testUsername,
+            'email' => $this->testUserEmail,
+            'password' => $this->testUserPassword,
+            'password_confirmation' => $this->testUserPassword,
             'remember_me' => true
         ]);
 
@@ -151,13 +164,13 @@ class RegisterTest extends TestCase
 
     public function test_user_gets_inserted_into_database()
     {
-        $testUserEmail = 'not@exists.com';
+        $testUserEmail = $this->testUserEmail;
 
         $resp = $this->json('POST', route('register.submit'), [
-            'username' => 'random_user',
+            'username' => $this->testUsername,
             'email' => $testUserEmail,
-            'password' => 'password',
-            'password_confirmation' => 'password',
+            'password' => $this->testUserPassword,
+            'password_confirmation' => $this->testUserPassword,
             'remember_me' => true
         ]);
 
@@ -176,9 +189,9 @@ class RegisterTest extends TestCase
 
         $resp = $this->json('POST', route('register.submit'), [
             'username' => $testUserUsername,
-            'email' => 'not@exists.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
+            'email' => $this->testUserEmail,
+            'password' => $this->testUserPassword,
+            'password_confirmation' => $this->testUserPassword,
             'remember_me' => true
         ]);
 
@@ -194,10 +207,10 @@ class RegisterTest extends TestCase
     public function test_user_is_logged_in_after_registering()
     {
         $resp = $this->json('POST', route('register.submit'), [
-            'username' => 'random_user',
-            'email' => 'not@exists.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
+            'username' => $this->testUsername,
+            'email' => $this->testUserEmail,
+            'password' => $this->testUserPassword,
+            'password_confirmation' => $this->testUserPassword,
             'remember_me' => true
         ]);
 
@@ -226,21 +239,6 @@ class RegisterTest extends TestCase
         $this->assertNotNull($user->remember_token);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

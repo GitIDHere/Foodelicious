@@ -28,7 +28,7 @@ class UserLoginController extends Controller
 
             UserLogin::dispatch(Auth::user());
 
-            return AppResponse::getResponse($request, [], 302, '', 'home');
+            return AppResponse::getResponse($request, [], 204, '', 'home');
         }
         else {
             return AppResponse::getErrorResponse($request, ['error.login' => 'Invalid email or password. Please try again.']);
@@ -49,7 +49,7 @@ class UserLoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return AppResponse::getResponse($request, [], 302);
+        return AppResponse::getResponse($request, []);
     }
 
 }

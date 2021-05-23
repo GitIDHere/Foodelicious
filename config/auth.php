@@ -96,7 +96,7 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
-            'expire' => 5,
+            'expire' => env('PASSWORD_RESET_TOKEN_LIFESPAN', 5),
             'throttle' => 3,
         ],
     ],

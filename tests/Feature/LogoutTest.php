@@ -27,7 +27,6 @@ class LogoutTest extends TestCase
     }
 
 
-    /** @test */
     public function test_user_is_logged_out()
     {
         $this->seed(UserSeeder::class);
