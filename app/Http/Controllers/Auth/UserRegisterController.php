@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Classes\AppResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
@@ -68,12 +67,10 @@ class UserRegisterController extends Controller
         {
             Auth::login($user, $rememberMe);
 
-            return AppResponse::getResponse($request, [], 302, '', 'register.confirmation');
+            return redirect()->route('register.confirmation');
         }
         else {
-            return AppResponse::getErrorResponse($request, [
-                'error.register' => 'Error registering. Please try again.'
-            ]);
+            return back()->withInput()->with(['error.register' => 'Error registering. Please try again.']);
         }
     }
 

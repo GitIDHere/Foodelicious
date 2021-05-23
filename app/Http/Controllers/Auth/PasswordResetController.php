@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Classes\AppResponse;
 use App\Http\Controllers\Controller;
 use App\Services\Auth\PasswordResetService;
 use Illuminate\Auth\Events\PasswordReset;

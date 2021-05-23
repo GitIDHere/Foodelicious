@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Classes\AppResponse;
 use App\Events\UserLogin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
-use App\Models\User;
-use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
 class UserLoginController extends Controller
 {
@@ -28,16 +24,14 @@ class UserLoginController extends Controller
 
             UserLogin::dispatch(Auth::user());
 
-            return AppResponse::getResponse($request, [], 204, '', 'home');
+            return redirect()->route('home');
         }
         else {
-            return AppResponse::getErrorResponse($request, ['error.login' => 'Invalid email or password. Please try again.']);
+            return back()->withErrors(['error.login' => 'Invalid email or password. Please try again.']);
         }
     }
 
     /**
-     * Method: GET
-     *
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -49,7 +43,7 @@ class UserLoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return AppResponse::getResponse($request, []);
+        return redirect()->route('home');
     }
 
 }

@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Classes\AppResponse;
 use App\Services\PhotoService;
 use App\Services\ProfilePhotoService;
 use App\Services\RecipePhotoService;
@@ -19,10 +18,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(AppResponse::class, function($app){
-            return new AppResponse();
-        });
-
         $this->app->bind(ProfilePhotoService::class, function ($app) {
             return new ProfilePhotoService(PhotoService::VISIBILITY_PUBLIC);
         });
