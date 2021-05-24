@@ -8,11 +8,11 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UserLogin
+class UserRegisterEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    private $user;
+    public $user;
 
     /**
      * Create a new event instance.

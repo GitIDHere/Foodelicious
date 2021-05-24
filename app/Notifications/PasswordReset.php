@@ -10,13 +10,13 @@ use Illuminate\Support\Facades\App;
 class PasswordReset extends Notification
 {
     use Queueable;
-    
+
     /**
      * @var string
      */
     private $token;
-    
-    
+
+
     /**
      * Create a new notification instance.
      *
@@ -27,7 +27,7 @@ class PasswordReset extends Notification
         $this->token = $token;
     }
 
-    
+
     /**
      * Get the notification's delivery channels.
      *
@@ -47,11 +47,11 @@ class PasswordReset extends Notification
      */
     public function toMail($user)
     {
-        $username = $user->userprofile->username;
-        
+        $username = $user->userProfile->username;
+
         $passwordResetService = App::make(PasswordResetService::class);
         $email = $passwordResetService->getEmail($this->token, $user->email, $username);
-        
+
         return ($email)->to($user->email);
     }
 }

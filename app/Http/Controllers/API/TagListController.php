@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Facades\AppResponse;
 use App\Http\Controllers\Controller;
 use App\Models\Ingredient;
 use App\Services\TagService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class TagListController extends Controller
 {
-
+    /**
+     * @var TagService
+     */
     private $tagService;
+
 
     public function __construct(TagService $tagService)
     {
@@ -20,9 +23,8 @@ class TagListController extends Controller
 
     /**
      * Get ingredients by matching term
-     *
-     * @param  string $ingredientTerm
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      */
     public function ingredientList(Request $request)
     {
@@ -39,6 +41,11 @@ class TagListController extends Controller
             $list[] = $ingredient['name'];
         }
 
-        return AppResponse::getResponse($request, $list, 200);
+        return new JsonResponse([
+            'message' => '',
+            'data' => $list,
+            'status' => 200,
+            'date_time' => now()->format('Y-m-d H:i:s')
+        ]);
     }
 }

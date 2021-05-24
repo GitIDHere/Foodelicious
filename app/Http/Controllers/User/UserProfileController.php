@@ -6,6 +6,7 @@ use App\Events\UserProfileDetailsUpdates;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileDetailsRequest;
 use App\Models\File;
+use App\Models\User;
 use App\Services\UserProfileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Storage;
 
 class UserProfileController extends Controller
 {
+    /**
+     * @var UserProfileService
+     */
     private $profileService;
 
 
@@ -28,19 +32,15 @@ class UserProfileController extends Controller
      */
     public function showProfile(Request $request)
     {
+        /** @var User $user */
         $user = Auth::user();
         $profile = $user->userProfile;
 
         $profilePic = $profile->files->first();
 
-        $imgURL = '';
-        if(is_object($profilePic)) {
-            $imgURL = asset($profilePic->public_path);
-        }
-
         $profileData = [
             'description' => $profile->description,
-            'img' => $imgURL
+            'img' => (is_object($profilePic) ? asset($profilePic->public_path) : '')
         ];
 
         return view('screens.user.profile.view')->with('data', $profileData);
@@ -53,8 +53,8 @@ class UserProfileController extends Controller
      */
     public function showProfileUpdate(Request $request)
     {
+        /** @var User $user */
         $user = Auth::user();
-
         $profile = $user->userProfile;
 
         $details = ['description' => $profile->description];
@@ -76,6 +76,7 @@ class UserProfileController extends Controller
     {
         $formData = $request->all();
 
+        /** @var User $user */
         $user = Auth::user();
         $userProfile = $user->userProfile;
 
@@ -105,10 +106,5 @@ class UserProfileController extends Controller
 
         return redirect()->route('user.profile.view');
     }
-
-
-
-
-
 
 }

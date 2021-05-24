@@ -39,8 +39,7 @@ class LoginRequest extends FormRequest
             'email.email' => 'Please enter a valid email address',
             'email.exists' => 'Unable to find user',
             'password.required' => 'Password is required',
-            'email.unique' => 'Invalid login details',
-            //'remember_me.boolean' => 'Please check that the details are correct',
+            'email.unique' => 'Invalid login details'
         ];
     }
 }

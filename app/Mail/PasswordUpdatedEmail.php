@@ -9,12 +9,12 @@ use Illuminate\Queue\SerializesModels;
 class PasswordUpdatedEmail extends Email
 {
     use Queueable, SerializesModels;
-    
+
     /**
      * @var string
      */
-    public $subject = 'Someone requested to update your email';
-    
+    public $subject = 'Your email has been updated';
+
     /**
      * Create a new message instance.
      * @param string $recipientName

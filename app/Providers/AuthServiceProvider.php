@@ -37,16 +37,16 @@ class AuthServiceProvider extends ServiceProvider
                 ->line('Click the button below to verify your email address.')
                 ->action('Verify Email Address', $url);
         });
-        
-        
-        // Customise the password reset URL
-        ResetPassword::createUrlUsing(function ($user, $token) 
+
+
+        // Custom password reset URL
+        ResetPassword::createUrlUsing(function ($user, $token)
         {
             return URL::route(PasswordResetService::getPasswordResetRoute(), [
                 'token' => $token,
                 'email' => $user->email
             ]);
         });
-        
+
     }
 }

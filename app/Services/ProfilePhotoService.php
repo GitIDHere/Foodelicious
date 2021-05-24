@@ -54,24 +54,6 @@ class ProfilePhotoService extends PhotoService
     }
 
     /**
-     * @param UserProfile $userProfile
-     * @param \App\Models\File $picFile
-     */
-//    public function removePic(UserProfile $userProfile, \App\Models\File $picFile)
-//    {
-//        if ($userProfile instanceof UserProfile)
-//        {
-//            $public = self::VISIBILITY_PUBLIC;
-//
-//            // Remove the table link
-//            $userProfile->files()->detach($picFile->id);
-//
-//            // Delete the file from the directory
-//            $this->drive->delete($public . '/' . $picFile->path);
-//        }
-//    }
-
-    /**
      * @param UploadedFile $image
      * @return false|string
      */

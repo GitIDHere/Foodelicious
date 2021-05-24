@@ -11,24 +11,21 @@ class AcceptJSONHeader
 {
     /**
      * The Response Factory our app uses
-     *
      * @var ResponseFactory
      */
     protected $factory;
-    
+
     /**
      * JsonMiddleware constructor.
-     *
      * @param ResponseFactory $factory
      */
     public function __construct(ResponseFactory $factory)
     {
         $this->factory = $factory;
     }
-    
+
     /**
      * Handle an incoming request.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed
@@ -37,9 +34,9 @@ class AcceptJSONHeader
     {
         // Set the `Accept` header to be JSON
         $request->headers->set('Accept', 'application/json');
-        
+
         $response = $next($request);
-    
+
         // If the response is not strictly a JsonResponse, we make it
         if (!$response instanceof JsonResponse) {
             $response = $this->factory->json(
@@ -48,7 +45,7 @@ class AcceptJSONHeader
                 $response->headers->all()
             );
         }
-        
+
         return $response;
     }
 }

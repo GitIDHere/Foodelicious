@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Route;
 class EmailMustBeVerified
 {
     /**
-     * Only allow users who have verified their email address to pass 
-     *
+     * Only allow users who have verified their email address to pass
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed
@@ -19,30 +18,29 @@ class EmailMustBeVerified
     public function handle(Request $request, Closure $next)
     {
         $failed = true;
-        
+
         $user = Auth::user();
-        
+
         if ($user && $user->hasVerifiedEmail()) {
             $failed = false;
         }
-                
-        // Only allow this middleware to access the email verification screen
+
+        // Allow the user to access the email verification screen if they are trying to access it
         if ($user && $request->route()->named('verification.*')) {
             $failed = false;
         }
-        
-        if ($failed) 
+
+        if ($failed)
         {
             // If the user is logged in then show them the prompt screen to verify their email
             if ($user) {
                 return redirect()->route('verification.prompt');
-            } 
+            }
             else {
                 return redirect()->guest(route('login.show'));
             }
-                        
         }
-        
+
         return $next($request);
     }
 }

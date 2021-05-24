@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserRegisterEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
@@ -26,15 +27,13 @@ class UserRegisterController extends Controller
 
 
     /**
-     * Method: GET
-     *
      * Show the confirmation page to users who successfully registered.
-     *
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
     public function confirmation(Request $request)
     {
+        /** @var User $user */
         $user = Auth::user();
 
         if ($user && $user->hasVerifiedEmail()) {
@@ -47,10 +46,7 @@ class UserRegisterController extends Controller
 
 
     /**
-     * Method: POST
-     *
      * Handle POST request for registering to the site
-     *
      * @param RegisterRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -66,6 +62,8 @@ class UserRegisterController extends Controller
         if ($user instanceof User)
         {
             Auth::login($user, $rememberMe);
+
+            UserRegisterEvent::dispatch($user);
 
             return redirect()->route('register.confirmation');
         }

@@ -26,10 +26,10 @@ class ProfileDetailsRequest extends FormRequest
     {
         return [
             'profile_pic' => 'nullable|mimes:jpeg,jpg,png,bmp|max:2048',
-            'img-x' => 'required_with:new_profile_pic|nullable|integer',
-            'img-y' => 'required_with:new_profile_pic|nullable|integer',
-            'img-w' => 'required_with:new_profile_pic|nullable|integer',
-            'img-h' => 'required_with:new_profile_pic|nullable|integer',
+            'img-x' => 'nullable|required_with:new_profile_pic|integer',
+            'img-y' => 'nullable|required_with:new_profile_pic|integer',
+            'img-w' => 'nullable|required_with:new_profile_pic|integer',
+            'img-h' => 'nullable|required_with:new_profile_pic|integer',
             'description' => 'nullable|string|max:850'
         ];
     }

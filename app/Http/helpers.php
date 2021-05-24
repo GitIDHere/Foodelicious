@@ -14,6 +14,24 @@ if (! function_exists('isDev'))
     }
 }
 
+if (! function_exists('getCSVFromJSON'))
+{
+    /**
+     * @param $json
+     * @return string
+     */
+    function getCSVFromJSON($json)
+    {
+        $jsonArr = json_decode($json);
+        $csv = '';
+        if ($jsonArr) {
+            $csv = implode(',', $jsonArr);
+        }
+        return $csv;
+    }
+}
+
+
 if (! function_exists('randUsername'))
 {
     function randUsername()

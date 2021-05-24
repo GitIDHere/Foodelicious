@@ -33,7 +33,7 @@ class UserProfileService
          * Username has to be present. But because we are using ->create() we need an array.
          * That is why we are merging the username array with the array from function parameter
          */
-        $profile = array_merge(['username' => $username], $profileInfo );
+        $profile = array_merge(['username' => $username], $profileInfo);
         return $user->userProfile()->create($profile);
     }
 

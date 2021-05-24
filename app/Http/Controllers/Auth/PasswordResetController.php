@@ -13,7 +13,9 @@ use Illuminate\Support\Str;
 
 class PasswordResetController extends Controller
 {
-
+    /**
+     * @var PasswordResetService
+     */
     private $passwordResetService;
 
 
@@ -35,7 +37,7 @@ class PasswordResetController extends Controller
 
         $email = $request->only('email');
 
-        // The user has to be logged out
+        // The user must not be logged in
         if (Auth::check() == false)
         {
             Password::sendResetLink($email);
@@ -77,8 +79,6 @@ class PasswordResetController extends Controller
 
 
     /**
-     * Method: POST
-     *
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -101,7 +101,8 @@ class PasswordResetController extends Controller
 
                 $user->setRememberToken(Str::random(60));
 
-                event(new PasswordReset($user));
+                PasswordReset::dispatch($user);
+                //event(new PasswordReset($user));
             }
         );
 

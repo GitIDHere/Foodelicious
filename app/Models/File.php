@@ -40,7 +40,6 @@ class File extends Model
        return 'storage/thumb/'.$this->path;
     }
 
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

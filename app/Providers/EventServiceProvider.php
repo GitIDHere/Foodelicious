@@ -8,6 +8,7 @@ use App\Listeners\AppLogListener;
 use App\Listeners\LogUserLogin;
 use App\Listeners\PasswordResetListener;
 use App\Listeners\UserEventSubscriber;
+use App\Listeners\UserVerifiedListener;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Events\Verified;
@@ -27,7 +28,7 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         Verified::class => [
-            // TODO - Log that the user has been verified
+            UserVerifiedListener::class
         ],
         MessageLogged::class => [
             AppLogListener::class,
@@ -36,10 +37,10 @@ class EventServiceProvider extends ServiceProvider
             PasswordResetListener::class
         ],
         UserLogin::class => [
-            LogUserLogin::class  
+            LogUserLogin::class
         ],
     ];
-    
+
     /**
      * The subscriber classes to register.
      *

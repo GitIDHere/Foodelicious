@@ -18,7 +18,9 @@ class UserLoginController extends Controller
     {
         $rememberMe = $request->get('remember_me');
 
-        if (Auth::attempt($request->only('email', 'password'), $rememberMe))
+        $loginCreds = $request->only('email', 'password');
+
+        if (Auth::attempt($loginCreds, $rememberMe))
         {
             $request->session()->regenerate();
 

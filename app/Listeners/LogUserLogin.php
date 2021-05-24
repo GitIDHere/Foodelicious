@@ -4,10 +4,6 @@ namespace App\Listeners;
 
 use App\Events\UserLogin;
 use App\Models\AppLog;
-use App\Models\User;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Http\Request;
-use Illuminate\Queue\InteractsWithQueue;
 
 class LogUserLogin
 {
@@ -23,7 +19,6 @@ class LogUserLogin
 
     /**
      * Handle the event.
-     *
      * @return void
      */
     public function handle(UserLogin $event)
@@ -32,7 +27,7 @@ class LogUserLogin
         if ($user) {
             $request = Request();
             $msg = 'User logged in: '.$user->id;
-            AppLog::createLog($request, AppLog::TYPE_CUSTOM, $msg);   
+            AppLog::createLog($request, AppLog::TYPE_CUSTOM, $msg);
         }
     }
 }
