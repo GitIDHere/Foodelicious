@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Recipe extends Model
 {
     use HasFactory;
-    
+
     /**
-     * @var array 
+     * @var array
      */
     protected $fillable = [
         'title',
@@ -23,8 +23,8 @@ class Recipe extends Model
         'ingredients',
         'visibility'
     ];
-    
-    
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -32,7 +32,7 @@ class Recipe extends Model
     {
         return $this->belongsTo(UserProfile::class);
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -42,5 +42,10 @@ class Recipe extends Model
             ->belongsToMany(File::class, 'recipe_images', 'recipe_id', 'file_id')
             ->using(RecipeImages::class);
     }
-    
+
+    public function scopePublic($query)
+    {
+        return $query->where('visibility', 'public');
+    }
+
 }

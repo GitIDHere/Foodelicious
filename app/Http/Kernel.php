@@ -44,7 +44,7 @@ class Kernel extends HttpKernel
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         \Illuminate\Auth\Middleware\Authorize::class,
     ];
-    
+
     /**
      * The application's route middleware groups.
      *
@@ -61,7 +61,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\URLParameters::class,
         ],
-        
+
         'user.verified' => [
             \App\Http\Middleware\EmailMustBeVerified::class
         ],
@@ -90,9 +90,10 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        
+
         'user.routes' => \App\Http\Middleware\UserRoute::class,
         'url.parameters' => \App\Http\Middleware\URLParameters::class,
         'user.email.verify' => \App\Http\Middleware\EmailMustBeVerified::class,
+        'recipe.route' => \App\Http\Middleware\RecipeRoute::class,
     ];
 }

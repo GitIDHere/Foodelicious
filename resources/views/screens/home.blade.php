@@ -2,11 +2,13 @@
 
 @section('content')
     @auth
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <a href="{{route('user.recipes.create.view')}}">Add recipes</a>    
+        <a href="{{route('user.recipes.create.view')}}">Add recipes</a>
     @endauth
-    
+
+    <!-- Most recent -->
+
+    <!-- Most favourited this week -->
+
+    <!-- Most commented today -->
+
 @endsection
