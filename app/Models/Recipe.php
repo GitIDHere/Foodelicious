@@ -19,7 +19,6 @@ class Recipe extends Model
         'cook_time',
         'servings',
         'utensils',
-        'prep_directions',
         'ingredients',
         'is_published'
     ];

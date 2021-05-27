@@ -94,11 +94,6 @@
                         </div>
 
                         <div class="input-container">
-                            <label for="recipe-prep" class="required">Preparation</label>
-                            <textarea  name="prep_directions"  id="recipe-prep"  class="form-control txt-area">{{ ($data['preparations'] ?? old('prep_directions'))  }}</textarea>
-                        </div>
-
-                        <div class="input-container">
                             <label for="recipe-utensils" class="required">
                                 Utensils
                                 <span class="hint">

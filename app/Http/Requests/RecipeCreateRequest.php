@@ -32,7 +32,6 @@ class RecipeCreateRequest extends FormRequest
             'cook_time' => 'required|string|max:5|min:5',
             'servings' => 'required|numeric|max:50',
             'utensils' => 'required|json',
-            'prep_directions' => 'required|string|max:10000',
             'ingredients' => 'required|json',
             'photos' => 'nullable',
             'photos.*' => 'mimes:jpeg,jpg,png|max:2048',
