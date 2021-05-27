@@ -121,10 +121,7 @@ class UserRecipeController extends Controller
                 $recipeFields['cooking_steps'] = json_encode($recipeFields['cooking_steps']);
             }
 
-            $recipeFields['visibility'] = 'private';
-            if ($request->has('visibility')) {
-                $recipeFields['visibility'] = 'public';
-            }
+            $recipeFields['is_published'] = $request->get('is_published') ? 1 : 0;
 
             $recipe = $this->recipeService->saveRecipe($userProfile, $recipe, $recipeFields, $savePhotos);
 
@@ -227,7 +224,7 @@ class UserRecipeController extends Controller
                 'utensils' => $utensilsCSV,
                 'ingredients' => $ingredientsCSV,
                 'photos' => $recipePhotos->toArray(),
-                'visibility' => $recipe->visibility,
+                'is_published' => $recipe->is_published,
             ];
 
             return view('screens.user.recipes.view', ['data' => $recipeData, 'recipe' => $recipe]);

@@ -21,7 +21,7 @@ class RecipeRoute
 
             $recipeTitle = str_ireplace('_', ' ', trim($recipeTitle));
 
-            if ($recipe->visibility == 'public')
+            if ($recipe->is_published)
             {
                 // Make sure that the recipe matches the recipe title from the URL
                 if ($recipe->title == $recipeTitle) {

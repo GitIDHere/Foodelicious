@@ -21,7 +21,7 @@ class Recipe extends Model
         'utensils',
         'prep_directions',
         'ingredients',
-        'visibility'
+        'is_published'
     ];
 
 
@@ -45,7 +45,7 @@ class Recipe extends Model
 
     public function scopePublic($query)
     {
-        return $query->where('visibility', 'public');
+        return $query->where('is_published', 1);
     }
 
 }

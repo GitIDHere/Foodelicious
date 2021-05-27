@@ -14,7 +14,7 @@ class RecipeFactory extends Factory
      * @var string
      */
     protected $model = Recipe::class;
-    
+
     /**
      * @param $multipleOf
      * @param $min
@@ -25,15 +25,15 @@ class RecipeFactory extends Factory
     {
         $list = [];
         for ($i = $min; $i <= $max; $i += $multipleOf) {
-            $list[] = $i; 
+            $list[] = $i;
         }
-        
+
         $k = array_rand($list);
-        
+
         return ($list[$k]);
     }
-    
-    
+
+
     /**
      * Define the model's default state.
      *
@@ -42,7 +42,7 @@ class RecipeFactory extends Factory
     public function definition()
     {
         $cookTimeHours = $this->faker->numberBetween(0, 3);
-        $cookTimeMins = $this->getMultipleOf(5, 0, 55);        
+        $cookTimeMins = $this->getMultipleOf(5, 0, 55);
         $cookingSteps = json_encode([
             '1' => $this->faker->sentence,
             '2' => $this->faker->sentence,
@@ -52,7 +52,7 @@ class RecipeFactory extends Factory
         ]);
         $ingredients = json_encode($this->faker->words);
         $utensils = json_encode($this->faker->words);
-        
+
         return [
             'title' => $this->faker->word(),
             'description' => $this->faker->text,
@@ -62,7 +62,7 @@ class RecipeFactory extends Factory
             'servings' => $this->faker->numberBetween(1, 10),
             'prep_directions' => $this->faker->text,
             'ingredients' => $ingredients,
-            'visibility' => $this->faker->randomElement(['public', 'private']),
+            'is_published' => $this->faker->numberBetween(0, 1),
             'created_at' => $this->faker->unixTime(),
         ];
     }

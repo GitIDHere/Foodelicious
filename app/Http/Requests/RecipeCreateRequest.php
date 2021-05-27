@@ -38,7 +38,7 @@ class RecipeCreateRequest extends FormRequest
             'photos.*' => 'mimes:jpeg,jpg,png|max:2048',
             'delete_photos' => 'nullable',
             'delete_photos.*' => 'numeric|integer|distinct',
-            'visibility' => 'nullable|integer|max:1',
+            'is_published' => 'integer|between:0,1',
         ];
     }
 }

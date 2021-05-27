@@ -13,7 +13,7 @@ class CreateRecipesTable extends Migration
      */
     public function up()
     {
-        Schema::create('recipes', function (Blueprint $table) 
+        Schema::create('recipes', function (Blueprint $table)
         {
             $table->id();
             $table->unsignedBigInteger('user_profile_id');
@@ -25,9 +25,9 @@ class CreateRecipesTable extends Migration
             $table->json('utensils');
             $table->text('prep_directions');
             $table->json('ingredients');
-            $table->string('visibility', 10);
+            $table->tinyInteger('is_published');
             $table->timestamps();
-    
+
             $table
                 ->foreign('user_profile_id')
                 ->references('id')

@@ -6,22 +6,22 @@
 
 @section('content')
     @auth
-        
+
         @php
             $utensils = old('utensils');
             if (empty(old('utensils')) && isset($data)) {
                 $utensils = $data['utensils'];
             }
         @endphp
-        
+
         <div class="container">
-            
+
             <div class="row white-bk pt-4 pb-4">
-                
+
                 @include('screens.user.partials._side_bar')
-                
+
                 <div class="col-12 col-lg-9 pl-3">
-                    
+
                     @if (isset($recipe))
                         {{ Breadcrumbs::render('edit_recipe', $recipe)}}
                         <h1 class="mt-0">Edit Recipe</h1>
@@ -29,7 +29,7 @@
                         {{ Breadcrumbs::render('new_recipe') }}
                         <h1 class="mt-0">New Recipe</h1>
                     @endif
-                    
+
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -39,25 +39,25 @@
                             </ul>
                         </div>
                     @endif
-                    
-                    <form 
+
+                    <form
                             id="recipe-form"
-                            method="POST" 
-                            action="{{ (isset($data) ? route('user.recipes.save.submit', ['recipe' => $recipe]) : route('user.recipes.create.submit') ) }}" 
+                            method="POST"
+                            action="{{ (isset($data) ? route('user.recipes.save.submit', ['recipe' => $recipe]) : route('user.recipes.create.submit') ) }}"
                             enctype="multipart/form-data">
                         @csrf
-                        
+
                         <div class="input-container">
                             <label for="recipe-title" class="required">Title</label>
-                            <input 
-                                type="text" 
-                                name="title" 
-                                class="form-control" 
-                                id="recipe-title" 
-                                value="{{ ($data['title'] ?? old('title'))  }}" 
+                            <input
+                                type="text"
+                                name="title"
+                                class="form-control"
+                                id="recipe-title"
+                                value="{{ ($data['title'] ?? old('title'))  }}"
                             />
                         </div>
-                        
+
                         <div class="input-container">
                             <label for="recipe-desc" class="required">Description</label>
                             <textarea
@@ -78,12 +78,12 @@
                                         $time = $hourPadded.':'.$minPadded;
                                         $selected = '';
                                         if (old('cook_time') && old('cook_time') == $time) {
-                                            $selected = 'selected';    
+                                            $selected = 'selected';
                                         } else if (isset($data['cook_time']) && $data['cook_time'] == $time) {
                                             $selected = 'selected';
                                         }
                                         @endphp
-                                        <option 
+                                        <option
                                             value="{{$time}}"
                                             {{$selected}}>
                                             {{$time}}
@@ -103,10 +103,10 @@
                                 Utensils
                                 <span class="hint">
                                     <i class="fa fa-info-circle">
-                                        <span 
+                                        <span
                                             class="hint-tooltip"
                                             data-balloon-length="large"
-                                            aria-label="List the utensils needed for this recipe. Press the `enter` key to add it to the list!" 
+                                            aria-label="List the utensils needed for this recipe. Press the `enter` key to add it to the list!"
                                             data-balloon-pos="right"></span>
                                     </i>
                                 </span>
@@ -116,7 +116,7 @@
                                 name="utensils"
                                 id="recipe-utensils"
                                 class="form-control tagify--outside tags-container"
-                                value="{{ ($utensils ?? 'Spoon,Bowl') }}" 
+                                value="{{ ($utensils ?? 'Spoon,Bowl') }}"
                             />
                         </div>
 
@@ -141,8 +141,8 @@
                                     value="{{ ($data['ingredients'] ?? old('ingredients')) }}"
                             />
                         </div>
-                        
-                        
+
+
                         <div id="accordion" class="input-container ">
                             <label>
                                 Cooking steps
@@ -181,21 +181,21 @@
                                                 </div>
                                             @endforeach
                                         @endif
-                                        
+
                                         <a href="#" class="btn cooking-steps-new-btn" role="button">Add step <i class="fa fa-plus" ></i></a>
-                                        
+
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="input-container">
                             <label for="recipe-photos" class="block">Recipe photos</label>
-                            <input id="recipe-photos" type="file" name="photos[]" multiple="multiple" accept=".jpg,.png,.jpeg"/>    
+                            <input id="recipe-photos" type="file" name="photos[]" multiple="multiple" accept=".jpg,.png,.jpeg"/>
                         </div>
-                        
-                        
+
+
                         <div class="input-container">
                             <label for="recipe-servings" class="required">Servings</label>
                             <input
@@ -207,27 +207,27 @@
                                     value="{{ ($data['servings'] ?? '1') }}"
                             />
                         </div>
-                        
+
                         <div class="input-container">
                             <label class="label-switch switch-primary">
                                 <span class="block mb-2">Set visibility</span>
-                                <input 
-                                    type="checkbox" 
-                                    class="switch switch-bootstrap status" 
-                                    name="visibility" id="visibility" 
-                                    value="1" 
+                                <input
+                                    type="checkbox"
+                                    class="switch switch-bootstrap status"
+                                    name="is_published" id="is_published"
+                                    value="1"
                                     @if(isset($data))
-                                        {{$data['visibility'] == 'public' ? 'checked' : ''}}
+                                        {{$data['is_published'] ? 'checked' : ''}}
                                     @endif
                                 >
                                 <span class="lable"></span>
                             </label>
                         </div>
-                        
+
                         <div class="input-container">
                             <input type="submit" value="Save" class="btn btn-md pull-right" />
                         </div>
-                        
+
                     </form>
                 </div>
             </div>
