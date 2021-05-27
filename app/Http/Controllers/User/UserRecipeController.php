@@ -217,7 +217,7 @@ class UserRecipeController extends Controller
             $recipeData = [
                 'title' => $recipe->title,
                 'description' => $recipe->description,
-                'cooking_steps' => json_decode($recipe->cooking_steps),
+                'cooking_steps' => $recipe->cooking_steps,
                 'cook_time' => $cookTime,
                 'servings' => $recipe->servings,
                 'preparations' => $recipe->prep_directions,

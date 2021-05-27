@@ -42,6 +42,20 @@ class Recipe extends Model
             ->using(RecipeImages::class);
     }
 
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function getCookingStepsAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    public function getUtensilsAttribute($value)
+    {
+        return json_decode($value);
+    }
+
     public function scopePublic($query)
     {
         return $query->where('is_published', 1);

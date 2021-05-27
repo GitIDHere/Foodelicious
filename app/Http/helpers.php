@@ -22,11 +22,19 @@ if (! function_exists('getCSVFromJSON'))
      */
     function getCSVFromJSON($json)
     {
-        $jsonArr = json_decode($json);
         $csv = '';
+
+        if(is_array($json) == false) {
+            $jsonArr = json_decode($json);
+        }
+        else {
+            $jsonArr = $json;
+        }
+
         if ($jsonArr) {
             $csv = implode(',', $jsonArr);
         }
+
         return $csv;
     }
 }
