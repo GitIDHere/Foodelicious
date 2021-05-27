@@ -22,14 +22,28 @@
                 </div>
         @endif
     @endauth
-    
+
     <!-- Top Header Area -->
     <div class="top-header-area">
         <div class="container h-100">
-            <div class="row h-100 align-items-center text-right">
-                <!-- Top Social Info -->
-                <div class="col-xl col-sm-6">
-                    <div class="top-header-info ">
+            <div class="row h-100 align-items-center justify-content-between">
+
+                <!-- Breaking News -->
+                <div class="col-12 col-sm-6">
+                    <div class="breaking-news">
+                        <div id="breakingNewsTicker" class="ticker">
+                            <ul>
+                                <li>Hello World!</li>
+                                <li>Welcome to Colorlib Family.</li>
+                                <li>Hello Delicious!</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Login/Logout/Profile -->
+                <div class="col-12 col-sm-6">
+                    <div class="top-social-info text-right">
                         @auth
                             <a href="{{route('user.profile.view')}}">Profile</a>
                             <a href="{{route('logout')}}">Logout</a>
@@ -47,7 +61,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Navbar Area -->
     <div class="delicious-main-menu">
         <div class="classy-nav-container breakpoint-off">

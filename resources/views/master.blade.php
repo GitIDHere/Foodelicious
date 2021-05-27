@@ -7,15 +7,17 @@
         @include('includes.styles')
     </head>
     <body class="preload">
-        
+
         @include("theme._header")
-        
+
         @yield('content')
-        
+
+        @include("theme._instagram_feed")
+
         @include("theme._footer")
-        
+
         <!-- JS -->
         @include('includes.scripts')
-        
+
     </body>
 </html>

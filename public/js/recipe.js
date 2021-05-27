@@ -227,7 +227,6 @@ $(function()
         return new Promise(function(resolve, reject){
             $.ajax({
                 url : endpoint,
-                //datatype: "json",
                 type: "GET",
                 accept: 'application/json',
                 data: {'term': term},

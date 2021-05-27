@@ -15,6 +15,7 @@
 @import '../css/plugins/font-awesome.min.css';
 @import '../css/plugins/custom-icon.css';
 @import '../css/plugins/classy-nav.min.css';
+@import '../css/plugins/owl.carousel.min.css';
 //@import '../css/plugins/nice-select.min.css';
 @import '../css/plugins/tagify.min.css';
 @import '../css/plugins/balloon.min.css';
@@ -28,8 +29,6 @@
 body {
     font-family: $fonts;
     font-size: 14px;
-    background: $body-color;
-    height: 100%;
 }
 
 h1,
@@ -381,13 +380,13 @@ textarea:focus {
     height: 60px;
     color: $white-color;
     border: none;
-    //border-left: 3px solid $border-color;
-    border-radius: 5px;
+    border-left: 3px solid $border-color;
+    border-radius: 0;
     padding: 0 30px;
     font-size: 16px;
     line-height: 58px;
     font-weight: 600;
-    @include trans-duration(250ms);
+    @include trans-duration(500ms);
     text-transform: capitalize;
     background-color: $bg-default;
     &.active,
@@ -440,15 +439,6 @@ textarea:focus {
             }
         }
     }
-    &btn-5{
-        background-color: $bg-default;
-        &.active,
-        &:hover,
-        &:focus {
-            background-color: $bg-default;
-            border-color: $border-color;
-        }
-    }
     @media #{$breakpoint-xs} {
         height: 40px;
         line-height: 39px;
@@ -457,20 +447,62 @@ textarea:focus {
 
 /* :: 4.0 Search Wrapper */
 
-.notification-bar
-{
+.search-wrapper {
     width: 100%;
     height: 70px;
-    position: relative;
+    position: fixed;
     z-index: 200;
+    top: -80px;
+    left: 0;
     background-color: $bg-default;
     @include trans-duration(700ms);
-    display: block;
-
-    h4
-    {
+    form {
+        position: relative;
+        z-index: 1;
+        input {
+            width: 90%;
+            height: 40px;
+            border: 2px solid $white-color;
+            font-size: 12px;
+            font-style: italic;
+            padding: 0 20px;
+            margin: 15px 0;
+            @media #{$breakpoint-xs} {
+                width: 80%;
+            }
+        }
+        button {
+            position: absolute;
+            width: 60px;
+            height: 40px;
+            z-index: 1;
+            top: 15px;
+            border: none;
+            right: 10%;
+            cursor: pointer;
+            outline: none;
+            @media #{$breakpoint-xs} {
+                right: 20%;
+            }
+        }
+    }
+    .close-btn {
+        position: absolute;
+        width: 70px;
+        height: 100%;
+        background-color: $heading-color;
+        line-height: 50px;
         color: $white-color;
-        font-weight: 500;
+        text-align: center;
+        cursor: pointer;
+        line-height: 70px;
+        font-size: 12px;
+        right: 0;
+        top: 0;
+        z-index: 100;
+    }
+    &.on {
+        top: 0;
     }
 }
 
@@ -480,7 +512,6 @@ textarea:focus {
     position: relative;
     z-index: 100;
     width: 100%;
-    background-color: $white-color;
     .top-header-area {
         width: 100%;
         height: 50px;
@@ -517,8 +548,7 @@ textarea:focus {
                 }
             }
         }
-        .top-header-info {
-            width: 100%;
+        .top-social-info {
             a {
                 display: inline-block;
                 color: #b6b6b6;
@@ -570,8 +600,8 @@ textarea:focus {
                 &:hover,
                 &:focus {
                     font-size: 14px;
-                    //color: $white-color;
-                    //background-color: $bg-default;
+                    color: $white-color;
+                    background-color: $bg-default;
                     border-bottom: 3px solid $border-color;
                     &::after {
                         color: $white-color;
@@ -582,8 +612,8 @@ textarea:focus {
                 &::after {
                     color: $white-color;
                 }
-                //color: $white-color;
-                //background-color: $bg-default;
+                color: $white-color;
+                background-color: $bg-default;
                 border-bottom: 3px solid $border-color;
             }
         }
@@ -1092,43 +1122,22 @@ textarea:focus {
     }
 }
 
-.sidebar
-{
+.single-widget {
     position: relative;
     z-index: 1;
-    background: $sidebar-bg;
-
-    ul
-    {
-        li
-        {
-            padding: 0 10px;
-            border-bottom: 1px solid $faint-grey;
-
-            &.active
-            {
-                background: $bg-default;
-
-                a {
-                    color: $white-color;
-                }
-            }
-
-            &:first-child
-            {
-                a {
-                    margin-top: 0;
-                }
-            }
-
-            a
-            {
-                width: 100%;
-                display: block;
-                text-transform: uppercase;
-                padding: 10px 0 10px 0;
-                font-size: 1em;
-                font-weight: 500;
+    h6 {
+        margin-bottom: 50px;
+        display: block;
+    }
+    .list {
+        padding-left: 30px;
+        li a {
+            display: block;
+            padding: 5px 0;
+            color: #797979;
+            &:hover,
+            &:focus {
+                color: $hover-color;
             }
         }
     }
@@ -1271,7 +1280,7 @@ textarea:focus {
     }
 }
 
-.form-checkbox {
+.ingredients {
     @media #{$breakpoint-md} {
         margin-bottom: 80px;
     }
@@ -1301,9 +1310,6 @@ textarea:focus {
         font-size: 16px;
         font-weight: 600;
         color: #2f2f2f;
-        &:hover {
-            cursor: pointer;
-        }
     }
     .custom-control-label::after {
         top: 10px;
@@ -1671,8 +1677,17 @@ textarea:focus {
 
 /* Features Area */
 
+.single-feature-area {
+    position: relative;
+    z-index: 1;
+    h5 {
+        margin-bottom: 0;
+        padding-left: 30px;
+    }
+}
 
 
+/*
 .hidden {
     display: none;
 }
@@ -2276,19 +2291,6 @@ a.link {
 
 }
 
-//.bg-img {
-//    h1 {
-//        color: $white-color;
-//        font-size: 3em;
-//    }
-//}
-
-//.font-xl {font-size: 3rem;}
-//.font-lg {font-size: 2.5rem;}
-//.font-md {font-size: 2rem;}
-//.font-sm {font-size: 1.5rem;}
-//.font-xs {font-size: 1rem;}
-
 .icn-tick{
     background: url("/img/core-img/check-circle-regular.svg") no-repeat center center;
 }
@@ -2309,3 +2311,4 @@ a.link {
         }
     }
 }
+*/
