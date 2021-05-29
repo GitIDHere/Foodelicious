@@ -185,4 +185,6 @@
 
     </div>
 
+    @include("theme._instagram_feed")
+
 @endsection

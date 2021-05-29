@@ -2,12 +2,12 @@
 
 @section('content')
 
-<div class="bg-img bg-overlay pt-5 pb-5" style="background-image: url(/img/bg-img/hero/hero3.jpg);">
+<div class="bg-img bg-overlay pt-5 pb-5" style="background-image: url(/img/bg-img/hero/hero3.jpg);" >
     <div class="container">
 
         <div class="row">
 
-            <div class="mx-auto col-lg-6 col-md-12">
+            <div class="white-box mx-auto col-lg-6 col-md-12">
 
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -54,7 +54,8 @@
                         </div>
                     </div>
 
-                    <input class="btn delicious-btn btn-5 mb-3" type="submit" value="Submit" />
+                    <input class="btn delicious-btn btn-5 mb-3 right" type="submit" value="Submit" />
+                    <div class="clear"></div>
 
                     <hr/>
 

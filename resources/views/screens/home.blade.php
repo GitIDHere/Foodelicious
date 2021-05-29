@@ -11,4 +11,6 @@
 
     <!-- Most commented today -->
 
+    @include("theme._instagram_feed")
+
 @endsection

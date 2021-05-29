@@ -12,8 +12,6 @@
 
         @yield('content')
 
-        @include("theme._instagram_feed")
-
         @include("theme._footer")
 
         <!-- JS -->

@@ -2,17 +2,17 @@
 
 @section('content')
 
-<div class="pt-5 pb-5" >
-    
+<div class="bg-img light-bg-overlay pt-5 pb-5">
+
     <div class="container">
-        
+
         <div class="row">
-            
-            <div class="mx-auto col-lg-6 col-md-12">
-                
+
+            <div class="white-box mx-auto col-lg-6 col-md-12">
+
                 <form class="white-bk auth p-4" method="POST" action="{{route('forgot_password.submit')}}">
                     @csrf
-                    
+
                     <h1 class="mt-0 mb-4">Password Reset</h1>
 
                     @if ($errors->any())
@@ -24,7 +24,7 @@
                             </ul>
                         </div>
                     @endif
-                    
+
                     @if(session()->has('message'))
                         <div class="alert alert-success">
                             {{ session()->get('message') }}
@@ -36,23 +36,24 @@
                         <input id="email" type="text" class="form-control" name="email" value="{{old('email')}}" />
                     </div>
 
-                    <input class="btn delicious-btn btn-5 mb-3" type="submit" value="Submit" />
-                    
+                    <input class="btn delicious-btn btn-5 mb-3 right" type="submit" value="Submit" />
+                    <div class="clear"></div>
+
                     <hr/>
-                    
+
                     <div>
                         <a class="link" href="{{route('login.show')}}">Login</a>
                        <a class="link pull-right" href="{{route('register.show')}}">Register</a>
                     </div>
 
                 </form>
-                
+
             </div>
-            
+
         </div>
-        
+
     </div>
-    
+
 </div>
-    
+
 @endsection
