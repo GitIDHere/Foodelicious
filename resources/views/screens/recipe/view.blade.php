@@ -7,7 +7,7 @@
 @section('content')
 
     <!-- ##### Hero header ##### -->
-    <div class="hero-header-area bg-img bg-overlay" style="background-image: url({{asset('img/bg-img/breadcumb3.jpg')}});">
+    <div class="hero-header-area bg-img bg-overlay" style="background-image: url({{asset('img/bg-img/hero/hero3.jpg')}});">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-    <!-- ##### Breadcumb Area End ##### -->
+    <!-- ##### breadcrumb Area End ##### -->
 
     <div class="recipe-post-area section-padding-80">
 

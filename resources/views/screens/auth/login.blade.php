@@ -2,17 +2,17 @@
 
 @section('content')
 
-    
-<div class="bg-img bg-overlay pt-5 pb-5" style="background-image: url(/img/bg-img/breadcumb3.jpg);">
+
+<div class="bg-img bg-overlay pt-5 pb-5" style="background-image: url(/img/bg-img/hero/hero3.jpg);">
     <div class="container">
-        
+
         <div class="row">
-            
+
             <div class="mx-auto col-lg-6 col-md-12">
-                
+
                 <form class="white-bk auth p-4" method="POST" action="{{ route('login.submit') }}">
                     @csrf
-                    
+
                     <h1 class="mt-0 mb-4">Login</h1>
 
                     @if ($errors->any())
@@ -30,7 +30,7 @@
                             {{ session()->get('message') }}
                         </div>
                     @endif
-                    
+
                     <div class="mb-3">
                         <label for="email" class="required">Email</label>
                         <input id="email" type="text" class="form-control" name="email" value="{{old('email')}}" />
@@ -52,9 +52,9 @@
                     </div>
 
                     <input class="btn delicious-btn btn-5 mb-3" type="submit" value="Submit" />
-                    
+
                     <hr/>
-                    
+
                     <div>
                         <a class="link" href="{{route('forgot_password.show')}}">Forgot your password?</a>
                        <a class="link pull-right" href="{{route('register.show')}}">Register</a>
@@ -65,5 +65,5 @@
         </div>
     </div>
 </div>
-    
+
 @endsection
