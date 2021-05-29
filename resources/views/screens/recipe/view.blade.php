@@ -20,13 +20,13 @@
     </div>
     <!-- ##### Breadcumb Area End ##### -->
 
-    <div class="receipe-post-area section-padding-80">
+    <div class="recipe-post-area section-padding-80">
 
-        <!-- Receipe Slider -->
+        <!-- recipe Slider -->
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="receipe-slider owl-carousel">
+                    <div class="recipe-slider owl-carousel">
                         <img src="{{asset('img/bg-img/bg5.jpg')}}" alt="">
                         <img src="{{asset('img/bg-img/bg5.jpg')}}" alt="">
                         <img src="{{asset('img/bg-img/bg5.jpg')}}" alt="">
@@ -35,16 +35,16 @@
             </div>
         </div>
 
-        <!-- Receipe Content Area -->
-        <div class="receipe-content-area">
+        <!-- recipe Content Area -->
+        <div class="recipe-content-area">
             <div class="container">
 
                 <div class="row">
                     <div class="col-12 col-md-8">
-                        <div class="receipe-headline my-5">
+                        <div class="recipe-headline my-5">
                             <span>April 05, 2018</span>
                             <h2>Vegetarian cheese salad</h2>
-                            <div class="receipe-duration">
+                            <div class="recipe-duration">
                                 <h6>Prep: 15 mins</h6>
                                 <h6>Cook: 30 mins</h6>
                                 <h6>Yields: 8 Servings</h6>
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="col-12 col-md-4">
-                        <div class="receipe-ratings text-right my-5">
+                        <div class="recipe-ratings text-right my-5">
                             <div class="ratings">
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>

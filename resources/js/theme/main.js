@@ -35,7 +35,7 @@
     // :: 5.0 Sliders Active Code
     if ($.fn.owlCarousel) {
         var welcomeSlide = $('.hero-slides');
-        var receipeSlide = $('.receipe-slider');
+        var recipeSlide = $('.recipe-slider');
 
         welcomeSlide.owlCarousel({
             items: 1,
@@ -85,7 +85,7 @@
             }
         });
 
-        receipeSlide.owlCarousel({
+        recipeSlide.owlCarousel({
             items: 1,
             margin: 0,
             loop: true,

@@ -114,7 +114,7 @@ return t=a?function(t){return t&&a(r(t))}:function(t){return t&&r(t)}}function e
  */
 !function(e){e.simpleTicker=function(t,i){var s={speed:1e3,delay:3e3,easing:"swing",effectType:"slide"},n={ul:"",li:"",initList:"",ulWidth:"",liHeight:"",tickerHook:"tickerHook",effect:{}},c=this;c.settings={};e(t),t=t;c.init=function(){switch(c.settings=e.extend({},s,i),n.ul=t.children("ul"),n.li=t.find("li"),n.initList=t.find("li:first"),n.ulWidth=n.ul.width(),n.liHeight=n.li.height(),t.css({height:n.liHeight}),n.li.css({top:"0",left:"0",position:"absolute"}),c.settings.effectType){case"fade":c.effect.fade();break;case"roll":c.effect.roll();break;case"slide":c.effect.slide()}c.effect.exec()},c.effect={},c.effect.exec=function(){n.initList.css(n.effect.init.css).animate(n.effect.init.animate,c.settings.speed,c.settings.easing).addClass(n.tickerHook),t.find(n.li).length>1&&setInterval(function(){t.find("."+n.tickerHook).animate(n.effect.start.animate,c.settings.speed,c.settings.easing).next().css(n.effect.next.css).animate(n.effect.next.animate,c.settings.speed,c.settings.easing).addClass(n.tickerHook).end().appendTo(n.ul).css(n.effect.end.css).removeClass(n.tickerHook)},c.settings.delay)},c.effect.fade=function(){n.effect={init:{css:{display:"block",opacity:"0"},animate:{opacity:"1",zIndex:"98"}},start:{animate:{opacity:"0"}},next:{css:{display:"block",opacity:"0",zIndex:"99"},animate:{opacity:"1"}},end:{css:{display:"none",zIndex:"98"}}}},c.effect.roll=function(){n.effect={init:{css:{top:"3em",display:"block",opacity:"0"},animate:{top:"0",opacity:"1",zIndex:"98"}},start:{animate:{top:"-3em",opacity:"0"}},next:{css:{top:"3em",display:"block",opacity:"0",zIndex:"99"},animate:{top:"0",opacity:"1"}},end:{css:{zIndex:"98"}}}},c.effect.slide=function(){n.effect={init:{css:{left:200,display:"block",opacity:"0"},animate:{left:"0",opacity:"1",zIndex:"98"}},start:{animate:{left:-200,opacity:"0"}},next:{css:{left:n.ulWidth,display:"block",opacity:"0",zIndex:"99"},animate:{left:"0",opacity:"1"}},end:{css:{zIndex:"98"}}}},c.init()},e.fn.simpleTicker=function(t){return this.each(function(){if(void 0==e(this).data("simpleTicker")){var i=new e.simpleTiecker(this,t);e(this).data("simpleTicker",i)}})}}(jQuery);
 
-/* Credits: 
+/* Credits:
  * https://www.developphp.com/video/JavaScript/Circular-Progress-Loader-Canvas-JavaScript-Programming-Tutorial
  */
 !function(){var t=function(t){this.context=t.getContext("2d"),this.refElement=t.parentNode,this.loaded=0,this.start=4.72,this.width=this.context.canvas.width,this.height=this.context.canvas.height,this.total=parseInt(this.refElement.dataset.percent,10),this.timer=null,this.diff=0,this.init()};t.prototype={init:function(){var t=this;t.timer=setInterval(function(){t.run()},25)},run:function(){var t=this;t.diff=(t.loaded/100*Math.PI*2*10).toFixed(2),t.context.clearRect(0,0,t.width,t.height),t.context.lineWidth=5,t.context.fillStyle="#000",t.context.strokeStyle="#40ba37",t.context.textAlign="center",t.context.fillText(t.loaded+"%",.5*t.width,.5*t.height+2,t.width),t.context.beginPath(),t.context.arc(35,35,30,t.start,t.diff/10+t.start,!1),t.context.stroke(),t.loaded>=t.total&&clearInterval(t.timer),t.loaded++}};var e=function(t){this.bars=document.querySelectorAll(t),this.bars.length>0&&this.init()};e.prototype={init:function(){this.tick=25,this.progress()},progress:function(){var e=this,n=0,i=e.bars[0].querySelector("canvas"),r=(new t(i),setInterval(function(){n++;var i=e.bars[n].querySelector("canvas");new t(i);n==e.bars.length&&clearInterval(r)},100*e.tick))}},document.addEventListener("DOMContentLoaded",function(){new e(".single-pie-bar")})}();
@@ -157,7 +157,7 @@ return t=a?function(t){return t&&a(r(t))}:function(t){return t&&r(t)}}function e
     // :: 5.0 Sliders Active Code
     if ($.fn.owlCarousel) {
         var welcomeSlide = $('.hero-slides');
-        var receipeSlide = $('.receipe-slider');
+        var recipeSlide = $('.recipe-slider');
 
         welcomeSlide.owlCarousel({
             items: 1,
@@ -207,7 +207,7 @@ return t=a?function(t){return t&&a(r(t))}:function(t){return t&&r(t)}}function e
             }
         });
 
-        receipeSlide.owlCarousel({
+        recipeSlide.owlCarousel({
             items: 1,
             margin: 0,
             loop: true,

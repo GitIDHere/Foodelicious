@@ -817,21 +817,21 @@ textarea:focus {
     }
 }
 
-/* :: 8.0 Best Receipe Area */
+/* :: 8.0 Best recipe Area */
 
-.best-receipe-area {
+.best-recipe-area {
     position: relative;
     z-index: 1;
     padding-bottom: 50px;
 }
 
-.single-best-receipe-area {
+.single-best-recipe-area {
     position: relative;
     z-index: 1;
     img {
         border-bottom: 3px solid $bg-default;
     }
-    .receipe-content {
+    .recipe-content {
         padding-top: 30px;
         text-align: center;
         h5 {
@@ -890,25 +890,25 @@ textarea:focus {
     }
 }
 
-/* :: 10.0 Small Receipe Area */
+/* :: 10.0 Small recipe Area */
 
-.small-receipe-area {
+.small-recipe-area {
     position: relative;
     z-index: 1;
     padding-bottom: 30px;
 }
 
-.single-small-receipe-area {
+.single-small-recipe-area {
     position: relative;
     z-index: 1;
     margin-bottom: 50px;
-    .receipe-thumb {
+    .recipe-thumb {
         @include flex(0 0 100px);
         max-width: 100px;
         width: 100px;
         padding-right: 20px;
     }
-    .receipe-content {
+    .recipe-content {
         span {
             font-size: 12px;
             display: block;
@@ -1166,9 +1166,9 @@ textarea:focus {
     }
 }
 
-/* :: 15.0 Receipe Area */
+/* :: 15.0 recipe Area */
 
-.receipe-post-search {
+.recipe-post-search {
     position: relative;
     z-index: 20;
     form {
@@ -1191,7 +1191,7 @@ textarea:focus {
     }
 }
 
-.receipe-slider {
+.recipe-slider {
     position: relative;
     z-index: 1;
     .owl-prev,
@@ -1228,7 +1228,7 @@ textarea:focus {
     }
 }
 
-.receipe-headline {
+.recipe-headline {
     span {
         font-size: 14px;
         display: block;
@@ -1243,7 +1243,7 @@ textarea:focus {
             font-size: 24px;
         }
     }
-    .receipe-duration {
+    .recipe-duration {
         border-left: 3px solid $bg-default;
         padding: 15px;
         h6 {
@@ -1256,7 +1256,7 @@ textarea:focus {
     }
 }
 
-.receipe-ratings {
+.recipe-ratings {
     .ratings {
         margin-bottom: 30px;
     }
