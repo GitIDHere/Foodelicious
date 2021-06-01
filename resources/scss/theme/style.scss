@@ -1753,6 +1753,56 @@ textarea:focus {
     clear: both;
 }
 
+.sidebar
+{
+    ul
+    {
+        li
+        {
+            &.active
+            {
+                background: $bg-default;
+
+                a {
+                    color: $white-color;
+                }
+            }
+
+            a {
+                display: block;
+                font-size: 1.1rem;
+
+                text-transform: capitalize;
+                padding-top: 15px;
+                padding-bottom: 15px;
+                padding-left: 5px;
+                border-bottom: 1px solid $bg-default;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 .hidden {

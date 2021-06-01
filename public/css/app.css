@@ -4558,6 +4558,22 @@ textarea:focus {
   clear: both;
 }
 
+.sidebar ul li.active {
+  background: #40ba37;
+}
+.sidebar ul li.active a {
+  color: #ffffff;
+}
+.sidebar ul li a {
+  display: block;
+  font-size: 1.1rem;
+  text-transform: capitalize;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 5px;
+  border-bottom: 1px solid #40ba37;
+}
+
 /*
 .hidden {
     display: none;
