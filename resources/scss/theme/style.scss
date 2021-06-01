@@ -1687,11 +1687,41 @@ textarea:focus {
 }
 
 
+.notification-bar
+{
+    background: $bg-default;
+
+    h1,h2,h3,h4 {
+        font-size: 1.2rem !important;
+        color: white !important;
+    }
+
+    input[type="submit"].link
+    {
+        background: none;
+        border: none;
+        text-decoration: underline;
+        font-size: 1.2rem !important;
+        color: white !important;
+        vertical-align: top;
+        margin: 0 5px 8px 5px;
+        font-weight: 600;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
 
 .white-box
 {
     background: $white-color;
     border-radius: 7px;
+
+    @include media-responsive($screen-sm) {
+        border-radius: 0;
+    }
 }
 
 .light-bg-overlay

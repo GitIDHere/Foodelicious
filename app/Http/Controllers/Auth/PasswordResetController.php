@@ -101,8 +101,7 @@ class PasswordResetController extends Controller
 
                 $user->setRememberToken(Str::random(60));
 
-                PasswordReset::dispatch($user);
-                //event(new PasswordReset($user));
+                event(new PasswordReset($user));
             }
         );
 

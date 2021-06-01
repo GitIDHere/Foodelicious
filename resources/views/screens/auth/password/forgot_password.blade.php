@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="bg-img light-bg-overlay pt-5 pb-5">
+<div class="bg-img bg-overlay pt-5 pb-5" style="background-image: url(/img/bg-img/hero/hero3.jpg);">
 
     <div class="container">
 

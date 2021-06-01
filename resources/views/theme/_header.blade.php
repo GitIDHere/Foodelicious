@@ -14,7 +14,7 @@
                             <h4>Please verify your email</h4>
                             <form method="POST" action="{{route('verification.send')}}">
                                 @csrf
-                                <input type="submit"  class="btn btn-white" value="Re-send verification email" />
+                                <input type="submit"  class="link" value="Send verification email" />
                             </form>
                         @endif
 

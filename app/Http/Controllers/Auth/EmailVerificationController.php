@@ -29,7 +29,7 @@ class EmailVerificationController
     public function sendVerificationEmail(Request $request)
     {
         $request->user()->sendEmailVerificationNotification();
-        return back()->with('message', 'Verification link sent');
+        return back()->with('message', 'Verification link sent. Please check your email');
     }
 
 }
