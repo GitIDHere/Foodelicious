@@ -14,12 +14,12 @@ class ProfilePhotoService extends PhotoService
     /**
      * @var int
      */
-    protected $target_width = 500;
+    protected $target_width = 200;
 
     /**
      * @var int
      */
-    protected $target_height = 500;
+    protected $target_height = 200;
 
 
     /**

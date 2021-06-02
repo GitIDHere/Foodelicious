@@ -1,16 +1,22 @@
-$(function(){
+$(function()
+{
+    /**
+     * Look at this issue if you want to set the width and height of the container
+     * https://github.com/fengyuanchen/cropper/issues/833
+     */
 
     const image = document.getElementById('profile_pic');
     var URL = window.URL || window.webkitURL;
     var cropper = null;
     var uploadedImageURL;
     var profilePic = $('img#profile_pic');
+    var picContainer = $('#profile_pic_container');
     // Import image
     var picInputEl = document.getElementById('pic_file');
 
     var options = {
         aspectRatio: 4 / 3,
-        viewMode: 3,
+        viewMode: 1,
         zoomable: false,
         zoomOnWheel: false,
         rotatable: false,
@@ -60,6 +66,12 @@ $(function(){
                     if (cropper) {
                         cropper.destroy();
                     }
+
+                    picContainer.css({
+                        "max-width": "500px",
+                        "min-width": "200px",
+                        "min-height": "500px",
+                    });
 
                     cropper = new Cropper(image, options);
                     //profilePic.removeClass('default-pic');

@@ -51,7 +51,7 @@
                         </div>
                     </div>
 
-                    <input class="btn delicious-btn btn-5 mb-3 right" type="submit" value="Submit" />
+                    <input class="btn delicious-btn btn-5 mb-3 mt-4 right" type="submit" value="Submit" />
                     <div class="clear"></div>
 
                     <hr/>

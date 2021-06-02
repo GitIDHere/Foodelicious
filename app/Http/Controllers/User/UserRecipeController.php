@@ -148,42 +148,42 @@ class UserRecipeController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\View
      */
-    public function showRecipeList(Request $request)
-    {
-        // Get the user's recipes
-        /** @var User $user */
-        $user = Auth::user();
-        $userProfile = $user->userProfile;
-
-        $pager = collectionPaginate($userProfile->recipes->sortByDesc('created_at'), $this->recipeItemsPerPage);
-
-        // Get the items out of the pager
-        $recipeItems = collect($pager->items);
-
-        $recipeList = $recipeItems->map(function($recipe)
-        {
-            $recipePhoto = $recipe->files->first();
-
-            $imgURL = $thumbnail = '';
-            if(is_object($recipePhoto)) {
-                $imgURL = asset($recipePhoto->public_path);
-                $thumbnail = asset($recipePhoto->thumbnail_path);
-            }
-
-            return [
-                'id' => $recipe->id,
-                'title' => $recipe->title,
-                'img_url' => $imgURL,
-                'thumbnail' => $thumbnail,
-                'date_created' => $recipe->created_at->format('d/m/Y'),
-                'total_favourites' => 0,
-            ];
-        });
-
-        return view('screens.user.recipes.list')
-            ->with('recipes', $recipeList)
-            ->with('pager', $pager);
-    }
+//    public function showRecipeList(Request $request)
+//    {
+//        // Get the user's recipes
+//        /** @var User $user */
+//        $user = Auth::user();
+//        $userProfile = $user->userProfile;
+//
+//        $pager = collectionPaginate($userProfile->recipes->sortByDesc('created_at'), $this->recipeItemsPerPage);
+//
+//        // Get the items out of the pager
+//        $recipeItems = collect($pager->items);
+//
+//        $recipeList = $recipeItems->map(function($recipe)
+//        {
+//            $recipePhoto = $recipe->files->first();
+//
+//            $imgURL = $thumbnail = '';
+//            if(is_object($recipePhoto)) {
+//                $imgURL = asset($recipePhoto->public_path);
+//                $thumbnail = asset($recipePhoto->thumbnail_path);
+//            }
+//
+//            return [
+//                'id' => $recipe->id,
+//                'title' => $recipe->title,
+//                'img_url' => $imgURL,
+//                'thumbnail' => $thumbnail,
+//                'date_created' => $recipe->created_at->format('d/m/Y'),
+//                'total_favourites' => 0,
+//            ];
+//        });
+//
+//        return view('screens.user.recipes.list')
+//            ->with('recipes', $recipeList)
+//            ->with('pager', $pager);
+//    }
 
 
     /**

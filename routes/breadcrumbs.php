@@ -13,10 +13,10 @@ Breadcrumbs::for('my_profile', function ($trail) {
     $trail->push('My Profile', route('user.profile.view'));
 });
 
-// Home > My Profile > Update details
+// Home > My Profile > Profile details
 Breadcrumbs::for('profile_details', function ($trail) {
     $trail->parent('my_profile');
-    $trail->push('Update Details', route('user.profile.details'));
+    $trail->push('Details', route('user.profile.details'));
 });
 
 // Home > My Recipes
@@ -32,7 +32,7 @@ Breadcrumbs::for('new_recipe', function ($trail) {
 });
 
 // Home > My Recipes > {recipe}
-Breadcrumbs::for('edit_recipe', function ($trail, $recipe) 
+Breadcrumbs::for('edit_recipe', function ($trail, $recipe)
 {
     $shortTitle = \Illuminate\Support\Str::limit($recipe->title, 25);
     $trail->parent('recipes_list');

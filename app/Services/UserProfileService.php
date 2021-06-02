@@ -6,6 +6,7 @@ use App\Models\File;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class UserProfileService
 {
@@ -47,7 +48,7 @@ class UserProfileService
     {
         if ($userProfile instanceof UserProfile)
         {
-            $userProfile->update(['description' => $description]);
+            $userProfile->update(['description' => strip_tags($description)]);
         }
 
         return true;
