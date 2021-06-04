@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class UserProfile extends Model
 {
@@ -13,6 +14,11 @@ class UserProfile extends Model
         'username',
         'description',
     ];
+
+    protected $guarded = [
+        'short_description'
+    ];
+
     /**
      * User profile belongs to one User
      */
@@ -37,6 +43,14 @@ class UserProfile extends Model
         return $this
             ->belongsToMany(File::class, 'user_profile_images', 'user_profile_id', 'file_id')
             ->using(UserProfileImages::class);
+    }
+
+    /**
+     * @return string
+     */
+    public function getShortDescriptionAttribute()
+    {
+        return Str::substr($this->description, 0, 250).'...';
     }
 
 }

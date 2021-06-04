@@ -6,11 +6,11 @@
 
             <div class="row">
 
-                <div class="col-md-3">
+                <div class="col-lg-3 col-md-4">
                     @include('screens.user.partials._side_bar')
                 </div>
 
-                <div class="col-md-9">
+                <div class="col-lg-9 col-md-8">
 
                     {{ Breadcrumbs::render('profile_details') }}
 
@@ -59,10 +59,8 @@
                         </div>
 
                         <label for="profile-desc" class="required">A little bit about yourself</label>
-                        <textarea name="description" id="profile-desc" data-char-limit="850" class="form-control txt-area">{{ ($details['description'] ?? old('description'))  }}</textarea>
-                        <div class="total_char_count">
-                            <p><strong>Characters remaining:</strong> <span></span></p>
-                        </div>
+                        <textarea name="description" id="profile-desc" class="form-control txt-area">{{ ($details['description'] ?? old('description'))  }}</textarea>
+                        <div class="word_counter" data-link="profile-desc" data-char-limit="500"></div>
 
                         <input type="submit" value="Save" class="btn delicious-btn btn-5 mb-3 mt-4 right" />
 

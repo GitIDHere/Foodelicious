@@ -2244,6 +2244,10 @@ h1 {
   clear: both;
 }
 
+.red {
+  color: #ff0404;
+}
+
 .btn-small {
   background-color: #40ba37;
   color: #ffffff;
@@ -2296,12 +2300,29 @@ h1 {
 
 .display-profile-info {
   border-bottom: 1px solid gray;
+  height: 250px;
 }
-.display-profile-info img {
-  display: block;
-  background: blueviolet;
-  width: 100%;
-  height: 179px;
+@media (max-width: 1200px) {
+  .display-profile-info {
+    height: 300px;
+  }
+}
+@media (max-width: 992px) {
+  .display-profile-info {
+    height: auto;
+  }
+}
+@media (max-width: 768px) {
+  .display-profile-info .btn-small {
+    float: right;
+  }
+}
+@media (max-width: 576px) {
+  .display-profile-info img#profile_pic {
+    width: 160px;
+    display: block;
+    margin: 0 auto 15px auto;
+  }
 }
 
 form label {
@@ -2325,6 +2346,10 @@ form#profile-details-form input#pic_file {
   margin-top: 5%;
   margin-bottom: 5%;
 }
+form#profile-details-form #profile-desc + .word_counter > p {
+  font-size: 1.2em;
+}
+
 .txt-area {
   height: 225px;
 }

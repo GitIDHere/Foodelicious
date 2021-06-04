@@ -11,6 +11,7 @@ use App\Services\UserProfileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class UserProfileController extends Controller
 {
@@ -40,6 +41,7 @@ class UserProfileController extends Controller
 
         $profileData = [
             'description' => $profile->description,
+            'short_description' => $profile->short_description,
             'img' => (is_object($profilePic) ? asset($profilePic->public_path) : '')
         ];
 

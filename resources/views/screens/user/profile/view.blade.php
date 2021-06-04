@@ -6,24 +6,24 @@
 
             <div class="row">
 
-                <div class="col-md-3">
+                <div class="col-lg-3 col-md-4 mb-4">
                     @include('screens.user.partials._side_bar')
                 </div>
 
-                <div class="col-md-9">
+                <div class="col-lg-9 col-md-8">
 
                     {{ Breadcrumbs::render('my_profile') }}
 
                     <div class="row display-profile-info">
 
-                        <div class="col-md-3">
-                            <img id="profile_pic" src="{{$data['img'] ?? '/img/core-img/profile_pic_default.png'}}" alt="profile picture" />
+                        <div class="col-lg-3 col-md-4 col-sm-12">
+                            <img class="d-sm-block d-xs-block mx-sm-auto mx-xs-auto" id="profile_pic" src="{{$data['img'] ?? '/img/core-img/profile_pic_default.png'}}" alt="profile picture" />
                         </div>
 
-                        <div class="col-md-9">
-                            <p>
-                                {{ $data['description'] ?? '' }}
-                            </p>
+                        <div class="col-lg-9 col-md-8">
+                            <p class="desc-long d-none d-lg-block">{{ $data['description'] ?? '' }}</p>
+
+                            <p class="desc-short d-none d-lg-none d-md-block">Short {{ $data['short_description'] ?? '' }}</p>
 
                             <a class="btn-small mb-3" href="{{route('user.profile.details')}}">
                                 Update profile

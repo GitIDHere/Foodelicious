@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ProfileDetailsRequest extends FormRequest
 {
@@ -30,7 +31,15 @@ class ProfileDetailsRequest extends FormRequest
             'img-y' => 'nullable|required_with:new_profile_pic|integer',
             'img-w' => 'nullable|required_with:new_profile_pic|integer',
             'img-h' => 'nullable|required_with:new_profile_pic|integer',
-            'description' => 'nullable|string|max:850'
+            'description' => 'nullable|string'
         ];
+    }
+
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'description' => preg_replace( "/\r|\n/", "", $this->description),
+        ]);
     }
 }

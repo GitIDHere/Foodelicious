@@ -27,9 +27,8 @@ mix
     ])
     .js('resources/js/app.js', 'public/js')
     .combine([
-        'resources/js/theme/plugins.js',
-        'resources/js/theme/main.js',
-        'resources/js/theme/profile_pic.js',
+        'resources/js/plugins.js',
+        'resources/js/theme/*.js',
     ], 'public/js/theme.js')
     .combine('resources/js/recipe/*.js', 'public/js/recipe.js')
     .version()
