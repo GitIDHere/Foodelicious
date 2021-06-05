@@ -17,13 +17,13 @@
                     <div class="row display-profile-info">
 
                         <div class="col-lg-3 col-md-4 col-sm-12">
-                            <img class="d-sm-block d-xs-block mx-sm-auto mx-xs-auto" id="profile_pic" src="{{$data['img'] ?? '/img/core-img/profile_pic_default.png'}}" alt="profile picture" />
+                            <img class="d-sm-block d-xs-block mx-sm-auto mx-xs-auto" id="profile_pic" src="{{$profile['img'] ?? '/img/core-img/profile_pic_default.png'}}" alt="profile picture" />
                         </div>
 
                         <div class="col-lg-9 col-md-8">
-                            <p class="desc-long d-none d-lg-block">{{ $data['description'] ?? '' }}</p>
+                            <p class="desc-long d-none d-lg-block">{{ $profile['description'] ?? '' }}</p>
 
-                            <p class="desc-short d-none d-lg-none d-md-block">Short {{ $data['short_description'] ?? '' }}</p>
+                            <p class="desc-short d-none d-lg-none d-md-block">Short {{ $profile['short_description'] ?? '' }}</p>
 
                             <a class="btn-small mb-3" href="{{route('user.profile.details')}}">
                                 Update profile
@@ -32,9 +32,9 @@
 
                     </div>
 
-{{--                    <div class="row">--}}
-{{--                        @include('screens.user.partials._recipe_list')--}}
-{{--                    </div>--}}
+                    <div class="row">
+                        @include('screens.user.partials._recipe_list')
+                    </div>
 
                 </div>
 

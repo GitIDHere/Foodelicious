@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileDetailsRequest;
 use App\Models\File;
 use App\Models\User;
+use App\Services\RecipeService;
 use App\Services\UserProfileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,10 +21,12 @@ class UserProfileController extends Controller
      */
     private $profileService;
 
+    private $recipeService;
 
-    public function __construct(UserProfileService $profileService)
+    public function __construct(UserProfileService $profileService, RecipeService $recipeService)
     {
         $this->profileService = $profileService;
+        $this->recipeService = $recipeService;
     }
 
 
@@ -37,15 +40,47 @@ class UserProfileController extends Controller
         $user = Auth::user();
         $profile = $user->userProfile;
 
-        $profilePic = $profile->files->first();
+        $profileData = $this->profileService->getProfileInfo($profile);
+        $recipeList = $this->recipeService->getRecipeList($profile);
 
-        $profileData = [
-            'description' => $profile->description,
-            'short_description' => $profile->short_description,
-            'img' => (is_object($profilePic) ? asset($profilePic->public_path) : '')
-        ];
+        return view('screens.user.profile.view')
+            ->with('profile', $profileData)
+            ->with('recipeList', $recipeList['recipe_list'])
+            ->with('recipeListPager', $recipeList['pager'])
+            ;
+    }
 
-        return view('screens.user.profile.view')->with('data', $profileData);
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     */
+    public function searchRecipe(Request $request)
+    {
+        $validated = $request->validate([
+            'search_term' => 'nullable|string|min:1|max:60',
+        ]);
+
+        /** @var User $user */
+        $user = Auth::user();
+        $userProfile = $user->userProfile;
+
+        $searchTerm = $request->get('search_term');
+
+        // If the search term is empty, then redirect them to the full recipe list
+        if(empty($searchTerm)) {
+            return redirect()->route('user.profile.view');
+        }
+
+        $profileData = $this->profileService->getProfileInfo($userProfile);
+        $recipes = $this->recipeService->getRecipeList($userProfile, $searchTerm);
+
+        return view('screens.user.profile.view')
+            ->with('profile', $profileData)
+            ->with('recipeList', $recipes['recipe_list'])
+            ->with('recipeListPager', $recipes['pager'])
+            ->with('searchTerm', $searchTerm)
+            ;
     }
 
 

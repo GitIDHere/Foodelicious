@@ -99,5 +99,19 @@ class UserProfileService
     }
 
 
+    /**
+     * @param UserProfile $userProfile
+     * @return array
+     */
+    public function getProfileInfo(UserProfile $userProfile)
+    {
+        $profilePic = $userProfile->files->first();
+
+        return [
+            'description' => $userProfile->description,
+            'short_description' => $userProfile->short_description,
+            'img' => (is_object($profilePic) ? asset($profilePic->public_path) : '')
+        ];
+    }
 
 }

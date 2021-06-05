@@ -5,16 +5,8 @@ use \App\Http\Controllers\User as Controllers;
 
 Route::prefix('{username}/recipes')
     ->middleware(['auth', 'url.parameters', 'user.routes'])
-    ->group(function() 
+    ->group(function()
     {
-    
-        /*
-         * Show a list of recipe belonging to the user
-         */
-        Route::get('', [Controllers\UserRecipeController::class, 'showRecipeList'])
-            ->name('user.recipes.list')
-        ;
-        
         /*
          * Show a form to create a recipe
          */
@@ -24,7 +16,7 @@ Route::prefix('{username}/recipes')
             ->middleware(['user.verified'])
             ->name('user.recipes.create.view')
         ;
-        
+
         /*
          * Show a single recipe
          */
@@ -33,7 +25,7 @@ Route::prefix('{username}/recipes')
             ->middleware(['user.verified'])
             ->name('user.recipes.view')
         ;
-    
+
         /*
          * Create a recipe POST request
          */
@@ -41,7 +33,7 @@ Route::prefix('{username}/recipes')
             ->middleware(['user.verified'])
             ->name('user.recipes.create.submit')
         ;
-        
+
         /*
          * Save/update a recipe
          */
@@ -49,13 +41,6 @@ Route::prefix('{username}/recipes')
             ->whereNumber('recipe')
             ->middleware(['user.verified'])
             ->name('user.recipes.save.submit')
-        ;
-        
-        /*
-         * Search user's recipe list
-         */
-        Route::post('search', [Controllers\UserRecipeController::class, 'searchRecipe'])
-            ->name('user.recipes.search.submit')
         ;
     })
 ;

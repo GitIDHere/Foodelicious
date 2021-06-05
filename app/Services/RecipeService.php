@@ -12,6 +12,11 @@ class RecipeService
 {
     private $recipePhotoService;
 
+    /**
+     * @var int
+     */
+    private $recipeItemsPerPage = 10;
+
     public function __construct(RecipePhotoService $recipePhotoService)
     {
         $this->recipePhotoService = $recipePhotoService;
@@ -67,6 +72,53 @@ class RecipeService
     public function deletePhotos($recipe, $photosToDeleteIds)
     {
         $this->recipePhotoService->deletePhotos($recipe, $photosToDeleteIds);
+    }
+
+
+    /**
+     * @param UserProfile $userProfile
+     * @param string|null $searchTerm
+     * @return array
+     */
+    public function getRecipeList(UserProfile $userProfile, $searchTerm = null)
+    {
+        $recipes = $userProfile->recipes->sortByDesc('created_at');
+
+        $recipeList = $recipes->filter(function($recipe) use ($searchTerm)
+        {
+            // If the search term is empty, then include the recipe, because we aren't searching
+            return (empty($searchTerm) || stripos($recipe->title, $searchTerm) !== false);
+        });
+
+        $pager = collectionPaginate($recipeList, $this->recipeItemsPerPage);
+
+        // Get the items out of the pager
+        $recipeItems = collect($pager->items);
+
+        $recipeList = $recipeItems->map(function($recipe)
+        {
+            $recipePhoto = $recipe->files->first();
+
+            $imgURL = $thumbnail = '';
+            if(is_object($recipePhoto)) {
+                $imgURL = asset($recipePhoto->public_path);
+                $thumbnail = asset($recipePhoto->thumbnail_path);
+            }
+
+            return [
+                'id' => $recipe->id,
+                'title' => $recipe->title,
+                'img_url' => $imgURL,
+                'thumbnail' => $thumbnail,
+                'date_created' => $recipe->created_at->format('d/m/Y'),
+                'total_favourites' => 0,
+            ];
+        });
+
+        return [
+            'recipe_list' => $recipeList,
+            'pager' => $pager
+        ];
     }
 
 }

@@ -1726,7 +1726,7 @@ h1
     background: $white-color;
     border-radius: 7px;
 
-    @include media-responsive($screen-sm) {
+    @include media-responsive($screen-xs) {
         border-radius: 0;
     }
 }
@@ -1856,17 +1856,17 @@ h1
     border-bottom: 1px solid gray;
     height: 250px;
 
-    @include media-responsive($screen-xl) {
+    @include media-responsive($screen-lg) {
         height: 300px;
     }
 
-    @include media-responsive($screen-lg) {
+    @include media-responsive($screen-md) {
         height: auto;
     }
 
     .btn-small
     {
-        @include media-responsive($screen-md) {
+        @include media-responsive($screen-sm) {
             float:right;
         }
     }
@@ -1874,7 +1874,7 @@ h1
     // Profile pic
     img#profile_pic
     {
-        @include media-responsive($screen-sm) {
+        @include media-responsive($screen-xs) {
             width: 160px;
             display: block;
             margin: 0 auto 15px auto;
@@ -1904,7 +1904,8 @@ form#profile-details-form
 
     img#profile_pic
     {
-        &:hover {
+        &:hover
+        {
             cursor: pointer;
         }
     }
@@ -1921,19 +1922,155 @@ form#profile-details-form
     }
 }
 
-.txt-area {
+.txt-area
+{
     height: 225px;
 
-    &:focus {
+    &:focus
+    {
         background: $input-bg;
     }
 }
 
 
 
+.search-box
+{
+    margin-bottom: 20px;
+    border: 1px solid $faint-grey;
+    border-radius: 5px;
+    padding: 5px;
+
+    form
+    {
+        button
+        {
+            width: 5%;
+            background: none;
+            border: none;
+            padding: 7px;
+            border-right: 1px solid $faint-grey;
+
+            @include media-responsive($screen-md)
+            {
+                width: 8%;
+            }
+
+            &:hover
+            {
+                cursor: pointer;
+            }
+        }
+
+        input
+        {
+            width: 94%;
+            padding: 7px;
+            border: none;
+            @include media-responsive($screen-md) {
+                width: 89%;
+            }
+        }
+    }
+
+}
+
+.recipe-list
+{
+    width: 100%;
+
+    li
+    {
+        width:33%;
+        display: inline-block;
+        vertical-align: top;
+        padding: 0 30px;
+        margin-bottom: 25px;
+
+        @include media-responsive($screen-lg) {
+            padding: 0 15px;
+            width: 32%;
+        }
+
+        @include media-responsive($screen-md) {
+            width: 49%;
+        }
+
+        .content-container
+        {
+            @include media-responsive($screen-sm) {
+                min-height: auto;
+                max-height: auto;
+            }
+
+            min-height: 360px;
+            max-height: 360px;
+
+            > a
+            {
+                display: block;
+
+                .thumbnail
+                {
+                    width: 100%;
+                    display: block;
+                }
+            }
 
 
+            .recipe-info
+            {
+                display: block;
+                padding-top: 10px;
 
+                .title
+                {
+                    display: block;
+                    font-size: 1.2em;
+                    min-height: 75px;
+
+                    @include media-responsive($screen-lg) {
+                        min-height: 100px;
+                    }
+                }
+
+                .icon-container
+                {
+                    text-align: center;
+                    display: inline-block;
+                    margin-top: 10px;
+
+                    .icon {
+                        width:25px;
+                        height: 25px;
+                        display: block;
+                        background: url("/img/core-img/heart-green-full.svg") no-repeat center center;
+                    }
+
+                    .text
+                    {
+                        display: block;
+                        margin-top: 5px;
+                        font-size: 1.13em;
+                    }
+
+                    &:after
+                    {
+                        content: "";
+                        display: block;
+                        clear: both;
+                    }
+
+                    @include media-responsive ($screen-sm)
+                    {
+                        display: none;
+                    }
+                }
+
+            }
+        }
+    }
+}
 
 
 
