@@ -32,6 +32,52 @@ class UserRecipeController extends Controller
         $this->recipeService = $recipeService;
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\View
+     */
+    public function showRecipeList()
+    {
+        /** @var User $user */
+        $user = Auth::user();
+        $profile = $user->userProfile;
+
+        $recipeList = $this->recipeService->getRecipeList($profile);
+
+        return view('screens.user.recipes.list')
+            ->with('recipeList', $recipeList['recipe_list'])
+            ->with('recipeListPager', $recipeList['pager'])
+            ;
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     */
+    public function searchRecipe(Request $request)
+    {
+        $validated = $request->validate([
+            'search_term' => 'nullable|string|min:1|max:60',
+        ]);
+
+        /** @var User $user */
+        $user = Auth::user();
+        $userProfile = $user->userProfile;
+
+        $searchTerm = $request->get('search_term');
+
+        // If the search term is empty, then redirect them to the full recipe list
+        if(empty($searchTerm)) {
+            return redirect()->route('user.recipes.list');
+        }
+
+        $recipes = $this->recipeService->getRecipeList($userProfile, $searchTerm);
+
+        return view('screens.user.recipes.list')
+            ->with('recipeList', $recipes['recipe_list'])
+            ->with('recipeListPager', $recipes['pager'])
+            ->with('searchTerm', $searchTerm)
+            ;
+    }
 
     /**
      * @param RecipeCreateRequest $request
@@ -74,7 +120,7 @@ class UserRecipeController extends Controller
                 // Dispatch event
                 RecipeCreated::dispatch($recipe);
 
-                return redirect()->route('user.profile.view')->with(['success' => 'Recipe added!']);
+                return redirect()->route('user.recipes.list')->with(['success' => 'Recipe added!']);
             }
             else {
                 return back()->withErrors(['Failed to create recipe']);

@@ -8,6 +8,13 @@ Route::prefix('{username}/recipes')
     ->group(function()
     {
         /*
+         * Show a list of recipe belonging to the user
+         */
+        Route::get('', [Controllers\UserRecipeController::class, 'showRecipeList'])
+            ->name('user.recipes.list')
+        ;
+
+        /*
          * Show a form to create a recipe
          */
         Route::get('create', function(){
@@ -41,6 +48,13 @@ Route::prefix('{username}/recipes')
             ->whereNumber('recipe')
             ->middleware(['user.verified'])
             ->name('user.recipes.save.submit')
+        ;
+
+        /*
+         * Search user's recipe list
+         */
+        Route::post('search', [Controllers\UserRecipeController::class, 'searchRecipe'])
+            ->name('user.recipes.search.submit')
         ;
     })
 ;

@@ -32,10 +32,6 @@
 
                     </div>
 
-                    <div class="row">
-                        @include('screens.user.partials._recipe_list')
-                    </div>
-
                 </div>
 
             </div>

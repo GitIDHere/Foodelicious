@@ -17,6 +17,7 @@ class RecipeService
      */
     private $recipeItemsPerPage = 10;
 
+
     public function __construct(RecipePhotoService $recipePhotoService)
     {
         $this->recipePhotoService = $recipePhotoService;

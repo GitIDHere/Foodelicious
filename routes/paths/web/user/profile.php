@@ -29,12 +29,5 @@ Route::prefix('{username}')
             ->name('user.profile.details.update')
         ;
 
-        /*
-         * Search user's recipe list
-         */
-        Route::post('search', [Controllers\UserProfileController::class, 'searchRecipe'])
-            ->name('user.recipes.search.submit')
-        ;
-
     })
 ;
