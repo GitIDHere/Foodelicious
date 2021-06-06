@@ -27,7 +27,7 @@ class RecipeCreateRequest extends FormRequest
     {
         return [
             'title' => 'required|string|min:2|max:60',
-            'description' => 'required|string|min:5|max:1000',
+            'description' => 'required|string|min:5|max:1500',
             'cooking_steps' => 'required|array',
             'cook_time' => 'required|string|max:5|min:5',
             'servings' => 'required|numeric|max:50',

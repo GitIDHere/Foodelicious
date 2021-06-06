@@ -47,6 +47,7 @@ $(function()
         var counter = $(ele);
         var linkedInputId = counter.attr('data-link');
         var linkedInput = $('#'+linkedInputId);
+console.log(linkedInput);
 
         $(linkedInput).on('keyup', function(){
             updateWordCount(ele);

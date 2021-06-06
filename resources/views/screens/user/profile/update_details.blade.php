@@ -14,8 +14,6 @@
 
                     {{ Breadcrumbs::render('profile_details') }}
 
-                    <h1 class="mt-3 mb-5">Profile Details</h1>
-
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
