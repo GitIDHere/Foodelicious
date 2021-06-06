@@ -73,7 +73,7 @@
                                         <textarea
                                             name="description"
                                             id="recipe-desc"
-                                            class="form-control txt-area cke">{{ ($data['description'] ?? old('description'))  }}</textarea>
+                                            class="form-control txt-area ck-editor">{{ ($data['description'] ?? old('description'))  }}</textarea>
                                     </div>
 
                                     <div class="input-container">
@@ -176,7 +176,7 @@
                                                         @endphp
                                                         @foreach($cookingSteps as $index => $cookingStep)
                                                             <div data-cooking-step="{{$index+1}}" class="cooking-step-container">
-                                                                <textarea name="cooking_steps[]" class="form-control txt-area cke">{{ $cookingStep }}</textarea>
+                                                                <textarea name="cooking_steps[]" class="form-control txt-area ck-editor" id="cooking-step-{{$index+1}}">{{ $cookingStep }}</textarea>
                                                                 <div class="button-container">
                                                                     <a href="#" class="btn-move-up btn">Move up</a>
                                                                     <a href="#" class="btn-move-down btn">Move down</a>

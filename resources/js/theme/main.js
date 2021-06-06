@@ -139,6 +139,6 @@
     $("body").removeClass("preload");
 
 
-    $('textarea.cke').ckeditor();
+    $('textarea.ck-editor').ckeditor();
 
 })(jQuery);

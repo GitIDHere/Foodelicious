@@ -14,8 +14,8 @@ $(function()
         stepContainer.addClass('cooking-step-container');
 
         // Add the textarea
-        var txtArea = $('<textarea name="cooking_steps[]">');
-        txtArea.addClass("form-control txt-area cke");
+        var txtArea = $('<textarea name="cooking_steps[]" id="cooking-step-'+cookingStepCounter+'">');
+        txtArea.addClass("form-control txt-area ck-editor");
         txtArea.ckeditor();
         stepContainer.append(txtArea);
 
@@ -54,12 +54,27 @@ $(function()
         var eventTarget = $(event.target);
 
         var parent = eventTarget.parent().parent('.cooking-step-container');
+        var txtAreaId = parent.find('.txt-area').attr('id');
 
-        if (eventTarget.hasClass('btn-move-up')) {
+        if (eventTarget.hasClass('btn-move-up'))
+        {
+            // Ref https://ckeditor.com/old/forums/CKEditor/CKEditor-Becomes-Disabled-When-Moved-with-Javascript
+            CKEDITOR.instances[txtAreaId].destroy();
+            CKEDITOR.remove(txtAreaId);
+
             parent.insertBefore(parent.prev('div'));
+
+            CKEDITOR.replace( txtAreaId );
         }
-        else if (eventTarget.hasClass('btn-move-down')) {
+        else if (eventTarget.hasClass('btn-move-down'))
+        {
+            // Ref https://ckeditor.com/old/forums/CKEditor/CKEditor-Becomes-Disabled-When-Moved-with-Javascript
+            CKEDITOR.instances[txtAreaId].destroy();
+            CKEDITOR.remove(txtAreaId);
+
             parent.insertAfter(parent.next('div'));
+
+            CKEDITOR.replace( txtAreaId );
         }
 
         event.preventDefault();
