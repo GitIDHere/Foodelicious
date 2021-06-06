@@ -43,21 +43,15 @@ Breadcrumbs::for('edit_recipe', function ($trail, $recipe)
 
 
 
-// Home > Account Security
-Breadcrumbs::for('account_security', function ($trail) {
-    $trail->parent('home');
-    $trail->push('Account Security', route('user.security.view'));
-});
-
 // Home > Account Security > Update Password
 Breadcrumbs::for('update_password', function ($trail) {
-    $trail->parent('account_security');
+    $trail->parent('my_profile');
     $trail->push('Update Password', route('user.security.password.view'));
 });
 
 // Home > Account Security > Update email
 Breadcrumbs::for('update_email', function ($trail) {
-    $trail->parent('account_security');
+    $trail->parent('my_profile');
     $trail->push('Update Email', route('user.security.email.view'));
 });
 

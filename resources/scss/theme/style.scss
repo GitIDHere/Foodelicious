@@ -1764,6 +1764,71 @@ h1
     color: $red;
 }
 
+.green-circle
+{
+    border: 1px solid $bg-default;
+}
+
+form label
+{
+    font-weight: 600;
+    font-size: 1.2em;
+    margin-bottom:15px;
+}
+
+img#profile_pic
+{
+    width: 200px;
+    border-radius: 100%;
+}
+
+a.btn
+{
+    background-color: #40ba37;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+h1,h2,h3
+{
+    width: 100%;
+    display: block;
+    margin: 15px 0;
+}
+
+h1
+{
+    font-size: 2em;
+}
+
+h2
+{
+    font-size: 1.7em;
+}
+
+h3
+{
+    font-size: 1.5em;
+}
+
+.btn-tile
+{
+    margin: 10px;
+
+    span
+    {
+        font-size: 1.2em;
+        text-transform: capitalize;
+    }
+
+    i
+    {
+        margin-bottom:10px;
+        font-size: 2.2em;
+        display: block;
+    }
+}
 
 .btn-small
 {
@@ -1853,7 +1918,7 @@ h1
 
 .display-profile-info
 {
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid $faint-grey;
     height: 250px;
 
     @include media-responsive($screen-lg) {
@@ -1880,19 +1945,6 @@ h1
             margin: 0 auto 15px auto;
         }
     }
-}
-
-form label
-{
-    font-weight: 600;
-    font-size: 1.2em;
-    margin-bottom:15px;
-}
-
-img#profile_pic
-{
-    width: 200px;
-    border-radius: 100%;
 }
 
 form#profile-details-form
@@ -1931,8 +1983,6 @@ form#profile-details-form
         background: $input-bg;
     }
 }
-
-
 
 .search-box
 {
@@ -2116,19 +2166,6 @@ form#profile-details-form
     }
 }
 
-a.btn
-{
-    background-color: #40ba37;
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-
-
-
-
-
 .tagify--outside.tags-container
 {
     border: none;
@@ -2176,7 +2213,7 @@ a.btn
 .tagify--outside{
     border: 0;
 }
-//
+
 .tagify--outside .tagify__input{
     order: -1;
     flex: 100%;
@@ -2217,7 +2254,6 @@ a.btn
         }
     }
 }
-
 
 
 

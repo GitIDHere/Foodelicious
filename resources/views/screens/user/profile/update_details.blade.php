@@ -32,7 +32,7 @@
                         @csrf
 
                         <label>
-                            Your profile pic
+                            Profile pic
                             <span class="hint">
                                     <i class="fa fa-info-circle">
                                         <span
@@ -44,7 +44,9 @@
                                 </span>
                         </label>
                         <div id="profile_pic_container">
-                            <img id="profile_pic"  src="{{ $details['profile_pic_path'] ?? '/img/core-img/profile_pic_default.png'}}" alt="Profile picture" />
+                            <img id="profile_pic"
+                                 class="{{$details['profile_pic_path'] ?? 'green-circle' }}"
+                                 src="{{ $details['profile_pic_path'] ?? '/img/core-img/profile_pic_default.png'}}" alt="Profile picture" />
                         </div>
 
 

@@ -11,10 +11,10 @@
                         @if(session()->has('message'))
                             <h4>{{ session()->get('message') }}</h4>
                         @else
-                            <h4>Please verify your email</h4>
+                            <h4>Please verify your email.</h4>
                             <form method="POST" action="{{route('verification.send')}}">
                                 @csrf
-                                <input type="submit"  class="link" value="Send verification email" />
+                                <input type="submit"  class="link" value="Resend email" />
                             </form>
                         @endif
 

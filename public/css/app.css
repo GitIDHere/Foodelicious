@@ -4566,6 +4566,59 @@ h1 {
   color: #ff0404;
 }
 
+.green-circle {
+  border: 1px solid #40ba37;
+}
+
+form label {
+  font-weight: 600;
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+img#profile_pic {
+  width: 200px;
+  border-radius: 100%;
+}
+
+a.btn {
+  background-color: #40ba37;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+h1, h2, h3 {
+  width: 100%;
+  display: block;
+  margin: 15px 0;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.7em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+.btn-tile {
+  margin: 10px;
+}
+.btn-tile span {
+  font-size: 1.2em;
+  text-transform: capitalize;
+}
+.btn-tile i {
+  margin-bottom: 10px;
+  font-size: 2.2em;
+  display: block;
+}
+
 .btn-small {
   background-color: #40ba37;
   color: #ffffff;
@@ -4617,7 +4670,7 @@ h1 {
 }
 
 .display-profile-info {
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #b2b2b2;
   height: 250px;
 }
 @media (max-width: 1200px) {
@@ -4641,17 +4694,6 @@ h1 {
     display: block;
     margin: 0 auto 15px auto;
   }
-}
-
-form label {
-  font-weight: 600;
-  font-size: 1.2em;
-  margin-bottom: 15px;
-}
-
-img#profile_pic {
-  width: 200px;
-  border-radius: 100%;
 }
 
 form#profile-details-form label {
@@ -4814,13 +4856,6 @@ form#profile-details-form #profile-desc + .word_counter > p {
 }
 .cooking-step-container .button-container .btn:last-child {
   margin-right: auto;
-}
-
-a.btn {
-  background-color: #40ba37;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 600;
 }
 
 .tagify--outside.tags-container {
