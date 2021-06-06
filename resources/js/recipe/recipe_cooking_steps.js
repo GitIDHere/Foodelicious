@@ -1,40 +1,40 @@
-$(() =>
+$(function()
 {
-    let cookingStepsContainer = $('.cooking-steps-container');
-    let addNewStepBtn = $('.cooking-steps-new-btn');
+    var cookingStepsContainer = $('.cooking-steps-container');
+    var addNewStepBtn = $('.cooking-steps-new-btn');
     // Set the number of cooking steps. If none then length will be 0
-    let cookingStepCounter = $('.cooking-step-container').length;
+    var cookingStepCounter = $('.cooking-step-container').length;
 
     addNewStepBtn.on('click', () =>
     {
         cookingStepCounter++;
 
         // The step container
-        let stepContainer = $('<div data-cooking-step="'+cookingStepCounter+'">');
+        var stepContainer = $('<div data-cooking-step="'+cookingStepCounter+'">');
         stepContainer.addClass('cooking-step-container');
 
         // Add the textarea
-        let txtArea = $('<textarea name="cooking_steps[]">');
+        var txtArea = $('<textarea name="cooking_steps[]">');
         txtArea.addClass("form-control txt-area cke");
         txtArea.ckeditor();
         stepContainer.append(txtArea);
 
         // Button container
-        let btnsContainer = $('<div>');
+        var btnsContainer = $('<div>');
         btnsContainer.addClass('button-container');
 
         // Move up button
-        let moveUpBtn = $('<a href="#">Move up</a>');
+        var moveUpBtn = $('<a href="#">Move up</a>');
         moveUpBtn.addClass('btn-move-up btn');
         btnsContainer.append(moveUpBtn);
 
         // Move down button
-        let moveDownBtn = $('<a href="#">Move down</a>');
+        var moveDownBtn = $('<a href="#">Move down</a>');
         moveDownBtn.addClass('btn-move-down btn');
         btnsContainer.append(moveDownBtn);
 
         // Delete button
-        let cookingStepDelBtn = $('<a data-cooking-step="'+cookingStepCounter+'" href="#">Delete</a>');
+        var cookingStepDelBtn = $('<a data-cooking-step="'+cookingStepCounter+'" href="#">Delete</a>');
         cookingStepDelBtn.addClass('pull-right delete-cooking-step btn btn-red');
         btnsContainer.append(cookingStepDelBtn);
 
@@ -49,9 +49,9 @@ $(() =>
     /**
      * Handler for the move up/down buttons
      */
-    cookingStepsContainer.on('click', '.btn-move-up, .btn-move-down', (e) =>
+    cookingStepsContainer.on('click', '.btn-move-up, .btn-move-down', function(event)
     {
-        let eventTarget = $(e.target);
+        var eventTarget = $(event.target);
 
         var parent = eventTarget.parent().parent('.cooking-step-container');
 
@@ -62,17 +62,17 @@ $(() =>
             parent.insertAfter(parent.next('div'));
         }
 
-        e.preventDefault();
+        event.preventDefault();
     });
 
 
     /**
      * Click handler to delete the cooking step
      */
-    cookingStepsContainer.on('click', '.delete-cooking-step', (e) =>
+    cookingStepsContainer.on('click', '.delete-cooking-step', function(event)
     {
         // Get the cooking step number from the delete button
-        let cookingStepNum = $(e.target).attr('data-cooking-step');
+        var cookingStepNum = $(event.target).attr('data-cooking-step');
 
         if (cookingStepNum !== undefined)
         {
@@ -81,7 +81,7 @@ $(() =>
 
             if (allow)
             {
-                let cookingStep = cookingStepsContainer.find('div[data-cooking-step="'+cookingStepNum+'"]');
+                var cookingStep = cookingStepsContainer.find('div[data-cooking-step="'+cookingStepNum+'"]');
                 if (cookingStep !== undefined)
                 {
                     $('.cooking-step-container .btn').off();
@@ -91,7 +91,7 @@ $(() =>
                 }
             }
             else {
-                e.preventDefault();
+                event.preventDefault();
             }
         }
         else {

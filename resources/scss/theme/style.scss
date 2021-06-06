@@ -1984,8 +1984,18 @@ form#profile-details-form
     }
 }
 
+.txt-center{
+    text-align: center;
+}
+
+.bg-grey
+{
+    background: $light-grey;
+}
+
 .search-box
 {
+    background-color: $white;
     margin-bottom: 40px;
     border: 1px solid $faint-grey;
     border-radius: 5px;
@@ -2134,46 +2144,52 @@ form#profile-details-form
     }
 }
 
-
-.cooking-step-container
+.cooking-steps-container
 {
-    margin-bottom: 10px;
+    background: $light-grey;
 
-    .button-container
+    .cooking-step-container
     {
-        background: $bg-gray;
-        padding: 10px;
+        margin-bottom: 10px;
 
-        .btn
+        .button-container
         {
-            background-color: #40ba37;
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 600;
-            display: inline-block;
-            margin-right: 10px;
+            background: $bg-gray;
+            padding: 10px;
 
-            &.btn-red
+            .btn
             {
-                background-color: $colour-btn-red;
-            }
+                background-color: #40ba37;
+                color: #ffffff;
+                font-size: 14px;
+                font-weight: 600;
+                display: inline-block;
+                margin-right: 10px;
 
-            &:last-child
-            {
-                margin-right: auto;
+                &.btn-red
+                {
+                    background-color: $colour-btn-red;
+                }
+
+                &:last-child
+                {
+                    margin-right: auto;
+                }
             }
         }
     }
+
 }
 
 .tagify--outside.tags-container
 {
+    background: $light-grey;
     border: none;
 
     .tagify__input {
         margin: 0 0 5px;
         border-radius: .25rem;
-        background: $input-bg;
+        background: $white;
         border: 1px solid #ced4da;
     }
 

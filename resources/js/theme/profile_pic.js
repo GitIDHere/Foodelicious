@@ -44,43 +44,47 @@ $(function()
         picInputEl.click();
     });
 
-    if (URL) {
-        picInputEl.onchange = function () {
-            var files = this.files;
-            var file;
+    if (URL)
+    {
+        if (picInputEl !== undefined && picInputEl !== null)
+        {
+            picInputEl.onchange = function () {
+                var files = this.files;
+                var file;
 
-            if (files && files.length) {
-                file = files[0];
+                if (files && files.length) {
+                    file = files[0];
 
-                if (/^image\/\w+/.test(file.type)) {
-                    uploadedImageType = file.type;
-                    uploadedImageName = file.name;
+                    if (/^image\/\w+/.test(file.type)) {
+                        uploadedImageType = file.type;
+                        uploadedImageName = file.name;
 
-                    if (uploadedImageURL) {
-                        URL.revokeObjectURL(uploadedImageURL);
+                        if (uploadedImageURL) {
+                            URL.revokeObjectURL(uploadedImageURL);
+                        }
+
+                        image.classList.remove("hidden");
+                        image.src = uploadedImageURL = URL.createObjectURL(file);
+
+                        if (cropper) {
+                            cropper.destroy();
+                        }
+
+                        picContainer.css({
+                            "max-width": "500px",
+                            "min-width": "200px",
+                            "min-height": "500px",
+                        });
+
+                        cropper = new Cropper(image, options);
+                        //profilePic.removeClass('default-pic');
+
+                    } else {
+                        window.alert('Please choose an image file.');
                     }
-
-                    image.classList.remove("hidden");
-                    image.src = uploadedImageURL = URL.createObjectURL(file);
-
-                    if (cropper) {
-                        cropper.destroy();
-                    }
-
-                    picContainer.css({
-                        "max-width": "500px",
-                        "min-width": "200px",
-                        "min-height": "500px",
-                    });
-
-                    cropper = new Cropper(image, options);
-                    //profilePic.removeClass('default-pic');
-
-                } else {
-                    window.alert('Please choose an image file.');
                 }
-            }
-        };
+            };
+        }
     } else {
         picInputEl.disabled = true;
         picInputEl.parentNode.className += ' disabled';

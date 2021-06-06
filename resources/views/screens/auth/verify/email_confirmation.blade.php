@@ -11,8 +11,8 @@
 
                 <div class="white-box mx-auto col-lg-6 col-md-6 p-4">
 
-                    <h1 style="text-align: center;">Your email has been verified!</h1>
-                    <p style="text-align: center;">You are now able to access the full content of the website.</p>
+                    <h1 class="txt-center">Your email has been verified!</h1>
+                    <p class="txt-center">You are now able to access the full content of the website.</p>
 
                 </div>
 

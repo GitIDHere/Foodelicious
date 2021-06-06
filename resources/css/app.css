@@ -2399,7 +2399,16 @@ form#profile-details-form #profile-desc + .word_counter > p {
   background: #f7f7f7;
 }
 
+.txt-center {
+  text-align: center;
+}
+
+.bg-grey {
+  background: #f9f9f9;
+}
+
 .search-box {
+  background-color: #FFFFFF;
   margin-bottom: 40px;
   border: 1px solid #b2b2b2;
   border-radius: 5px;
@@ -2518,14 +2527,17 @@ form#profile-details-form #profile-desc + .word_counter > p {
   margin-bottom: 10px;
 }
 
-.cooking-step-container {
+.cooking-steps-container {
+  background: #f9f9f9;
+}
+.cooking-steps-container .cooking-step-container {
   margin-bottom: 10px;
 }
-.cooking-step-container .button-container {
+.cooking-steps-container .cooking-step-container .button-container {
   background: #eceef1;
   padding: 10px;
 }
-.cooking-step-container .button-container .btn {
+.cooking-steps-container .cooking-step-container .button-container .btn {
   background-color: #40ba37;
   color: #ffffff;
   font-size: 14px;
@@ -2533,20 +2545,21 @@ form#profile-details-form #profile-desc + .word_counter > p {
   display: inline-block;
   margin-right: 10px;
 }
-.cooking-step-container .button-container .btn.btn-red {
+.cooking-steps-container .cooking-step-container .button-container .btn.btn-red {
   background-color: #cd4833;
 }
-.cooking-step-container .button-container .btn:last-child {
+.cooking-steps-container .cooking-step-container .button-container .btn:last-child {
   margin-right: auto;
 }
 
 .tagify--outside.tags-container {
+  background: #f9f9f9;
   border: none;
 }
 .tagify--outside.tags-container .tagify__input {
   margin: 0 0 5px;
   border-radius: 0.25rem;
-  background: #f7f7f7;
+  background: #FFFFFF;
   border: 1px solid #ced4da;
 }
 .tagify--outside.tags-container tag {

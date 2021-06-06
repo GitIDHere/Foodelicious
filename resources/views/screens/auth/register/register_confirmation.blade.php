@@ -11,8 +11,8 @@
 
                 <div class="mx-auto white-box col-lg-6 col-md-12 pt-4 pb-4">
 
-                    <h2 style="text-align: center;">Thank you for registering!</h2>
-                    <h3 style="text-align: center;">Please check your email to verify your account</h3>
+                    <h2 class="txt-center">Thank you for registering!</h2>
+                    <h3 class="txt-center">Please check your email to verify your account</h3>
                 </div>
 
             </div>
