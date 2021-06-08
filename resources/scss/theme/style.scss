@@ -2271,6 +2271,38 @@ form#profile-details-form
     }
 }
 
+.recipe-headline
+{
+
+    .recipe-description
+    {
+        margin-top: 20px;
+
+        p
+        {
+            color: initial;
+            font-size: 1.2em;
+        }
+    }
+}
+
+.recipe-ratings
+{
+    .ratings
+    {
+        i
+        {
+            font-size: 2em;
+            color: $bg-default;
+        }
+    }
+}
+
+
+
+
+
+
 
 
 /*

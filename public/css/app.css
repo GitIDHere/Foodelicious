@@ -4938,6 +4938,19 @@ form#profile-details-form #profile-desc + .word_counter > p {
   --balloon-color: #007bff;
 }
 
+.recipe-headline .recipe-description {
+  margin-top: 20px;
+}
+.recipe-headline .recipe-description p {
+  color: initial;
+  font-size: 1.2em;
+}
+
+.recipe-ratings .ratings i {
+  font-size: 2em;
+  color: #40ba37;
+}
+
 /*
 .hidden {
     display: none;

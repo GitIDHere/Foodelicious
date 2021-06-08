@@ -39,11 +39,13 @@ class RecipeController extends Controller
             'title' => $recipe->title,
             'description' => $recipe->description,
             'ratings' => 100,
+            'servings' => $recipe->servings,
             'cooking_steps' => $recipe->cooking_steps,
-            'date_created' => $recipe->created_at->format('d/m/Y'),
+            'date_created' => $recipe->created_at,
             'utensils' => $recipe->utensils,
-            'cook_time' => $recipe->cook_time,
+            'cook_time' => $recipe->cook_time_formatted,
             'username' => $recipe->userProfile->username,
+            'ingredients' => $recipe->ingredients,
             'photos' => $recipePhotos,
         ];
 
