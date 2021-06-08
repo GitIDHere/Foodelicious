@@ -1,7 +1,7 @@
 $(function()
 {
-    let utensilInput = document.querySelector('#recipe-utensils');
-    let utensilTagify = new Tagify(utensilInput, {
+    var utensilInput = document.querySelector('#recipe-utensils');
+    var utensilTagify = new Tagify(utensilInput, {
         whitelist: ['Knife', 'Non-stick pan', 'Spatula', 'Grater', 'Peeler'],
         dropdown: {
             position: "input",
@@ -11,8 +11,8 @@ $(function()
         originalInputValueFormat: valuesArr => JSON.stringify(valuesArr.map(item => item.value))
     });
 
-    let ingredientInput = document.querySelector('#recipe-ingredients');
-    let ingTagify = new Tagify(ingredientInput, {
+    var ingredientInput = document.querySelector('#recipe-ingredients');
+    var ingTagify = new Tagify(ingredientInput, {
         whitelist: [],
         // This is to convert the tags into json when form is submitted
         //originalInputValueFormat: valuesArr => JSON.stringify(valuesArr.map(item => item.value)),
@@ -25,8 +25,8 @@ $(function()
         },
     });
 
-    let controller = null;
-    let apiCallTimer = null;
+    var controller = null;
+    var apiCallTimer = null;
 
     /**
      * A generic function which helps to generate a Tagify list based on the callback
@@ -34,7 +34,7 @@ $(function()
      * @param tagifyObj
      * @param apiCallback
      */
-    let generateTagList = function(term, tagifyObj, apiCallback)
+    var generateTagList = function(term, tagifyObj, apiCallback)
     {
         clearTimeout(apiCallTimer);
 
@@ -53,7 +53,7 @@ $(function()
                 {
                     if (resp.data !== undefined)
                     {
-                        let itemList = resp.data;
+                        var itemList = resp.data;
 
                         tagifyObj.settings.whitelist.splice(0, itemList.length, ...itemList);
 
@@ -73,7 +73,7 @@ $(function()
 
     var getIngredientList = function(term)
     {
-        let endpoint = APP_URL + 'api/tags/ingredient';
+        var endpoint = APP_URL + 'api/tags/ingredient';
 
         return new Promise(function(resolve, reject){
             $.ajax({

@@ -46,6 +46,14 @@ class Recipe extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function recipeRatings()
+    {
+        return $this->hasMany(RecipeRatings::class, 'recipe_id', 'id');
+    }
+
+    /**
      * @return string
      */
     public function getCookTimeFormattedAttribute()

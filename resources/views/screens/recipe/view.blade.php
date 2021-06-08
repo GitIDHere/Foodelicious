@@ -1,9 +1,5 @@
 @extends('master')
 
-@section('page_scripts')
-
-@endsection
-
 @section('content')
 
     <div class="recipe-post-area section-padding-0-80">
@@ -45,7 +41,7 @@
                     <div class="col-12 col-md-4">
                         <div class="recipe-ratings text-right my-5">
                             <div class="ratings">
-                                <i class="fa fa-heart" aria-hidden="true"> {{$recipe['ratings']}}</i>
+                                <i class="fa fa-heart" aria-hidden="true" data-recipe="{{$recipe['id']}}"> {{$recipe['ratings']}}</i>
                             </div>
                         </div>
                     </div>
@@ -84,6 +80,7 @@
                     </div>
                 </div>
 
+                @auth()
                 <div class="row">
                     <div class="col-12">
                         <div class="contact-form-area">
@@ -109,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-
+                @endauth
             </div>
 
         </div>

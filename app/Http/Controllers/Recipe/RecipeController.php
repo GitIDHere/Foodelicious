@@ -35,10 +35,13 @@ class RecipeController extends Controller
         })
         ->toArray();
 
+        $ratings = $recipe->loadCount('recipeRatings')->recipe_ratings_count;
+
         $pageData = [
+            'id' => $recipe->id,
             'title' => $recipe->title,
             'description' => $recipe->description,
-            'ratings' => 100,
+            'ratings' => $ratings,
             'servings' => $recipe->servings,
             'cooking_steps' => $recipe->cooking_steps,
             'date_created' => $recipe->created_at,
