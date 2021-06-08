@@ -41,7 +41,11 @@
                     <div class="col-12 col-md-4">
                         <div class="recipe-ratings text-right my-5">
                             <div class="ratings">
-                                <i class="fa fa-heart" aria-hidden="true" data-recipe="{{$recipe['id']}}"> {{$recipe['ratings']}}</i>
+                                <form>
+                                    <input type="checkbox" data-recipe="{{$recipe['id']}}" id="toggle-heart" {{$recipe['is_favourited'] ? 'checked' : ''}} />
+                                    <label for="toggle-heart" aria-label="favourite">❤</label>
+                                </form>
+                                <span class="rating">{{$recipe['ratings']}}</span>
                             </div>
                         </div>
                     </div>

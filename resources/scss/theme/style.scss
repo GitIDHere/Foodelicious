@@ -5,6 +5,8 @@
 
 @import 'switch_element';
 
+@import 'favourite_heart';
+
 /* :: 1.0 Import Fonts */
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
@@ -2290,10 +2292,21 @@ form#profile-details-form
 {
     .ratings
     {
-        i
+        text-align: center;
+
+        form
         {
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            font: 1em verdana, sans-serif;
+        }
+
+        span
+        {
+            display: block;
             font-size: 2em;
-            color: $bg-default;
+            font-weight: 400;
         }
     }
 }

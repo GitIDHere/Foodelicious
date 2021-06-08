@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Recipe;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class RecipeController extends Controller
 {
@@ -15,7 +16,7 @@ class RecipeController extends Controller
 
         /**
          * - Photos
-         * - Stars/Thumbs ups
+         * X- Stars/Thumbs ups
          * - Comments
          * X- Ingredients
          * X- Title
@@ -35,7 +36,20 @@ class RecipeController extends Controller
         })
         ->toArray();
 
-        $ratings = $recipe->loadCount('recipeRatings')->recipe_ratings_count;
+        $ratings = $recipe->recipeRatings()->where('rating', 1)->get()->count();
+
+        $isFavourited = false;
+        $user = Auth::user();
+
+        if ($user)
+        {
+            $profile = $user->userProfile;
+
+            // Get the favourite record for the user for this recipe
+            $rating = $profile->recipeRatings()->where('recipe_id', $recipe->id)->first();
+
+            $isFavourited = ($rating ? $rating->rating : false);
+        }
 
         $pageData = [
             'id' => $recipe->id,
@@ -50,6 +64,7 @@ class RecipeController extends Controller
             'username' => $recipe->userProfile->username,
             'ingredients' => $recipe->ingredients,
             'photos' => $recipePhotos,
+            'is_favourited' => $isFavourited
         ];
 
 

@@ -8,6 +8,7 @@ use App\Services\TagService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class RecipeRatingsController extends Controller
 {
@@ -29,8 +30,9 @@ class RecipeRatingsController extends Controller
         $recipeId = $request->get('recipe');
         $recipe = Recipe::where('id', $recipeId)->first();
 
+        $status = 400;
+
         $response = [
-            'status' => 404,
             'date_time' => now()->format('Y-m-d H:i:s')
         ];
 
@@ -45,14 +47,14 @@ class RecipeRatingsController extends Controller
 
                 $this->recipeRatingService->toggleRating($userProfile, $recipe);
 
-                $ratings = $recipe->loadCount('recipeRatings')->recipe_ratings_count;
+                $ratings = $recipe->recipeRatings()->where('rating', 1)->get()->count();
 
-                $response['status'] = 200;
+                $status = 200;
                 $response['ratings'] = $ratings;
             }
         }
 
-        return new JsonResponse($response);
+        return new JsonResponse($response, $status);
     }
 
 

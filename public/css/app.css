@@ -2832,6 +2832,129 @@ template {
   left: 80px;
 }
 
+/**
+ * REF https://css-tricks.com/recreating-the-twitter-heart-animation/
+ */
+[id=toggle-heart] {
+  position: absolute;
+  left: -100vw;
+}
+[id=toggle-heart].checked:checked + label {
+  color: #40ba37;
+  filter: none;
+  will-change: font-size;
+  -webkit-animation: heart 0.7s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+          animation: heart 0.7s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+}
+[id=toggle-heart].checked:checked + label:before, [id=toggle-heart].checked:checked + label:after {
+  -webkit-animation: inherit;
+          animation: inherit;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+}
+[id=toggle-heart].checked:checked + label:before {
+  will-change: transform, border-width, border-color;
+  -webkit-animation-name: bubble;
+          animation-name: bubble;
+}
+[id=toggle-heart].checked:checked + label:after {
+  will-change: opacity, box-shadow;
+  -webkit-animation-name: sparkles;
+          animation-name: sparkles;
+}
+[id=toggle-heart]:focus + label {
+  text-shadow: 0 0 3px white, 0 1px 1px white, 0 -1px 1px white, 1px 0 1px white, -1px 0 1px white;
+}
+
+[for=toggle-heart] {
+  align-self: center;
+  position: relative;
+  color: #888;
+  font-size: 2.7em;
+  filter: grayscale(1);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+[for=toggle-heart]:before, [for=toggle-heart]:after {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  content: "";
+}
+[for=toggle-heart]:before {
+  box-sizing: border-box;
+  margin: -2.25rem;
+  border: solid 2.25rem #e2264d;
+  width: 4.5rem;
+  height: 4.5rem;
+  transform: scale(0);
+}
+[for=toggle-heart]:after {
+  margin: -0.1875rem;
+  width: 0.375rem;
+  height: 0.375rem;
+  box-shadow: 0.3247595264rem -3rem 0 -0.1875rem #ff8080, -0.3247595264rem -2.625rem 0 -0.1875rem #ffed80, 2.5479787002rem -1.6165621836rem 0 -0.1875rem #ffed80, 1.8498233887rem -1.8905679519rem 0 -0.1875rem #a4ff80, 2.8525179434rem 0.9841799289rem 0 -0.1875rem #a4ff80, 2.6314515626rem 0.2675003246rem 0 -0.1875rem #80ffc8, 1.0090529945rem 2.8438144813rem 0 -0.1875rem #80ffc8, 1.431543038rem 2.2241354006rem 0 -0.1875rem #80c8ff, -1.5942494402rem 2.5619987261rem 0 -0.1875rem #80c8ff, -0.8463465923rem 2.5059511559rem 0 -0.1875rem #a480ff, -2.9970495297rem 0.3509456748rem 0 -0.1875rem #a480ff, -2.4869199763rem 0.9007345787rem 0 -0.1875rem #ff80ed, -2.1430101946rem -2.1243766276rem 0 -0.1875rem #ff80ed, -2.2547918943rem -1.3827535079rem 0 -0.1875rem #ff8080;
+}
+
+@-webkit-keyframes heart {
+  0%, 17.5% {
+    font-size: 0;
+  }
+}
+
+@keyframes heart {
+  0%, 17.5% {
+    font-size: 0;
+  }
+}
+@-webkit-keyframes bubble {
+  15% {
+    transform: scale(1);
+    border-color: #cc8ef5;
+    border-width: 2.25rem;
+  }
+  30%, 100% {
+    transform: scale(1);
+    border-color: #cc8ef5;
+    border-width: 0;
+  }
+}
+@keyframes bubble {
+  15% {
+    transform: scale(1);
+    border-color: #cc8ef5;
+    border-width: 2.25rem;
+  }
+  30%, 100% {
+    transform: scale(1);
+    border-color: #cc8ef5;
+    border-width: 0;
+  }
+}
+@-webkit-keyframes sparkles {
+  0%, 20% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+    box-shadow: 0.3247595264rem -2.4375rem 0 0rem #ff8080, -0.3247595264rem -2.0625rem 0 0rem #ffed80, 2.1081984913rem -1.26584917rem 0 0rem #ffed80, 1.4100431798rem -1.5398549383rem 0 0rem #a4ff80, 2.3041209928rem 0.8590119036rem 0 0rem #a4ff80, 2.083054612rem 0.1423322992rem 0 0rem #80ffc8, 0.7649933912rem 2.3370194931rem 0 0rem #80ffc8, 1.1874834348rem 1.7173404124rem 0 0rem #80c8ff, -1.350189837rem 2.0552037379rem 0 0rem #80c8ff, -0.6022869891rem 1.9991561677rem 0 0rem #a480ff, -2.4486525791rem 0.2257776495rem 0 0rem #a480ff, -1.9385230257rem 0.7755665533rem 0 0rem #ff80ed, -1.7032299857rem -1.773663614rem 0 0rem #ff80ed, -1.8150116854rem -1.0320404943rem 0 0rem #ff8080;
+  }
+}
+@keyframes sparkles {
+  0%, 20% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+    box-shadow: 0.3247595264rem -2.4375rem 0 0rem #ff8080, -0.3247595264rem -2.0625rem 0 0rem #ffed80, 2.1081984913rem -1.26584917rem 0 0rem #ffed80, 1.4100431798rem -1.5398549383rem 0 0rem #a4ff80, 2.3041209928rem 0.8590119036rem 0 0rem #a4ff80, 2.083054612rem 0.1423322992rem 0 0rem #80ffc8, 0.7649933912rem 2.3370194931rem 0 0rem #80ffc8, 1.1874834348rem 1.7173404124rem 0 0rem #80c8ff, -1.350189837rem 2.0552037379rem 0 0rem #80c8ff, -0.6022869891rem 1.9991561677rem 0 0rem #a480ff, -2.4486525791rem 0.2257776495rem 0 0rem #a480ff, -1.9385230257rem 0.7755665533rem 0 0rem #ff80ed, -1.7032299857rem -1.773663614rem 0 0rem #ff80ed, -1.8150116854rem -1.0320404943rem 0 0rem #ff8080;
+  }
+}
 /* :: 1.0 Import Fonts */
 /* :: 3.0 Base CSS */
 * {
@@ -4946,9 +5069,19 @@ form#profile-details-form #profile-desc + .word_counter > p {
   font-size: 1.2em;
 }
 
-.recipe-ratings .ratings i {
+.recipe-ratings .ratings {
+  text-align: center;
+}
+.recipe-ratings .ratings form {
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  font: 1em verdana, sans-serif;
+}
+.recipe-ratings .ratings span {
+  display: block;
   font-size: 2em;
-  color: #40ba37;
+  font-weight: 400;
 }
 
 /*
