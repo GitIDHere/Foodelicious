@@ -36,7 +36,7 @@ class RecipeController extends Controller
         })
         ->toArray();
 
-        $ratings = $recipe->recipeRatings()->where('rating', 1)->get()->count();
+        $favouriteCount = $recipe->recipeFavourites()->where('is_favourited', 1)->get()->count();
 
         $isFavourited = false;
         $user = Auth::user();
@@ -46,16 +46,16 @@ class RecipeController extends Controller
             $profile = $user->userProfile;
 
             // Get the favourite record for the user for this recipe
-            $rating = $profile->recipeRatings()->where('recipe_id', $recipe->id)->first();
+            $favourites = $profile->recipeFavourites()->where('recipe_id', $recipe->id)->first();
 
-            $isFavourited = ($rating ? $rating->rating : false);
+            $isFavourited = ($favourites && $favourites->is_favourited ?: false);
         }
 
         $pageData = [
             'id' => $recipe->id,
             'title' => $recipe->title,
             'description' => $recipe->description,
-            'ratings' => $ratings,
+            'favourites' => $favouriteCount,
             'servings' => $recipe->servings,
             'cooking_steps' => $recipe->cooking_steps,
             'date_created' => $recipe->created_at,

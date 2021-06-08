@@ -37,15 +37,15 @@
                         </div>
                     </div>
 
-                    <!-- RATING --->
+                    <!-- FAVOURITING --->
                     <div class="col-12 col-md-4">
-                        <div class="recipe-ratings text-right my-5">
-                            <div class="ratings">
+                        <div class="recipe-favourites text-right my-5">
+                            <div class="favourites">
                                 <form>
                                     <input type="checkbox" data-recipe="{{$recipe['id']}}" id="toggle-heart" {{$recipe['is_favourited'] ? 'checked' : ''}} />
                                     <label for="toggle-heart" aria-label="favourite">❤</label>
                                 </form>
-                                <span class="rating">{{$recipe['ratings']}}</span>
+                                <span class="favourite">{{$recipe['favourites']}}</span>
                             </div>
                         </div>
                     </div>

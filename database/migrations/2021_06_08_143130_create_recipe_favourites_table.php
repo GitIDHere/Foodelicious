@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRecipeRatingsTable extends Migration
+class CreateRecipeFavouritesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateRecipeRatingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('recipe_ratings', function (Blueprint $table) {
+        Schema::create('recipe_favourites', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_profile_id');
             $table->unsignedBigInteger('recipe_id');
-            $table->tinyInteger('rating');
+            $table->tinyInteger('is_favourited');
             $table->timestamps();
 
             $table
@@ -43,6 +43,6 @@ class CreateRecipeRatingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recipe_ratings');
+        Schema::dropIfExists('recipe_favourites');
     }
 }

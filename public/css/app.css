@@ -5069,16 +5069,16 @@ form#profile-details-form #profile-desc + .word_counter > p {
   font-size: 1.2em;
 }
 
-.recipe-ratings .ratings {
+.recipe-favourites .favourites {
   text-align: center;
 }
-.recipe-ratings .ratings form {
+.recipe-favourites .favourites form {
   height: 30px;
   display: flex;
   justify-content: center;
   font: 1em verdana, sans-serif;
 }
-.recipe-ratings .ratings span {
+.recipe-favourites .favourites span {
   display: block;
   font-size: 2em;
   font-weight: 400;

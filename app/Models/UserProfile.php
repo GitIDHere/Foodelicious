@@ -48,9 +48,9 @@ class UserProfile extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function recipeRatings()
+    public function recipeFavourites()
     {
-        return $this->hasMany(RecipeRatings::class, 'user_profile_id', 'id');
+        return $this->hasMany(RecipeFavourites::class, 'user_profile_id', 'id');
     }
 
     /**

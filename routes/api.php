@@ -11,5 +11,5 @@ Route::middleware(['throttle:50,1'])->prefix('tags')->group(function()
 
 Route::middleware(['throttle:50,1', 'auth:sanctum'])->prefix('recipe')->group(function()
 {
-    Route::post('rating', [APIControllers\RecipeRatingsController::class, 'toggleRating']);
+    Route::post('favourite', [APIControllers\RecipeFavouriteController::class, 'toggleFavourite']);
 });

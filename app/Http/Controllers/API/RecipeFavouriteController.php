@@ -3,25 +3,25 @@
 use App\Http\Controllers\Controller;
 use App\Models\Ingredient;
 use App\Models\Recipe;
-use App\Services\RecipeRatingService;
+use App\Services\RecipeFavouriteService;
 use App\Services\TagService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
-class RecipeRatingsController extends Controller
+class RecipeFavouriteController extends Controller
 {
 
-    private $recipeRatingService;
+    private $recipeFavouriteService;
 
-    public function __construct(RecipeRatingService $recipeRatingService)
+    public function __construct(RecipeFavouriteService $recipeFavouriteService)
     {
-        $this->recipeRatingService = $recipeRatingService;
+        $this->recipeFavouriteService = $recipeFavouriteService;
     }
 
 
-    public function toggleRating(Request $request)
+    public function toggleFavourite(Request $request)
     {
         $validated = $request->validate([
             'recipe' => 'integer|exists:recipes,id',
@@ -45,12 +45,12 @@ class RecipeRatingsController extends Controller
                 $user = Auth::user();
                 $userProfile = $user->userProfile;
 
-                $this->recipeRatingService->toggleRating($userProfile, $recipe);
+                $this->recipeFavouriteService->favourite($userProfile, $recipe);
 
-                $ratings = $recipe->recipeRatings()->where('rating', 1)->get()->count();
+                $favourites = $recipe->recipeFavourites()->where('is_favourited', 1)->get()->count();
 
                 $status = 200;
-                $response['ratings'] = $ratings;
+                $response['favourites'] = $favourites;
             }
         }
 

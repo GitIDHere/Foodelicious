@@ -361,11 +361,11 @@ $(function()
 
 $(function()
 {
-    $('.recipe-ratings > .ratings input#toggle-heart').on('click', function(e)
+    $('.recipe-favourites > .favourites input#toggle-heart').on('click', function(e)
     {
         $(this).removeClass('checked');
 
-        var endpoint = APP_URL + 'api/recipe/rating';
+        var endpoint = APP_URL + 'api/recipe/favourite';
         var recipeId = $(this).attr('data-recipe');
 
         if (recipeId !== undefined)
@@ -385,13 +385,13 @@ $(function()
                     .done(function(resp)
                     {
                         // Update the current rating number
-                        if (resp.ratings !== undefined)
+                        if (resp.favourites !== undefined)
                         {
                             // Animate the heart
                             $('input#toggle-heart').addClass('checked');
 
                             // Update the counter
-                            $('.ratings .rating').text(resp.ratings);
+                            $('.favourites .favourite').text(resp.favourites);
                         }
                     })
                     ;
