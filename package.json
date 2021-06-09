@@ -21,6 +21,7 @@
         "@yaireo/tagify": "^3.22.1",
         "bootstrap": "^4.6.0",
         "cropperjs": "^1.5.11",
-        "jquery": "^3.5.1"
+        "jquery": "^3.5.1",
+        "toastr": "^2.1.4"
     }
 }

@@ -23,7 +23,7 @@
 
                 <div class="row">
 
-                    <div class="col-12 col-md-8">
+                    <div class="col-10">
                         <div class="recipe-headline my-5">
                             <span>{{date('F j, Y', strtotime($recipe['date_created']))}}</span>
                             <h2>{{$recipe['title']}}</h2>
@@ -38,7 +38,7 @@
                     </div>
 
                     <!-- FAVOURITING --->
-                    <div class="col-12 col-md-4">
+                    <div class="col-2">
                         <div class="recipe-favourites text-right my-5">
                             <div class="favourites">
                                 <form>
@@ -52,8 +52,9 @@
 
                 </div>
 
-                <div class="row">
-                    <div class="col-12 col-lg-8">
+                <div class="row recipe-info-container">
+
+                    <div class="col-12 col-lg-8 prep-directions">
                         @foreach ($recipe['cooking_steps'] as $index => $cookingStep)
                             <div class="single-preparation-step d-flex">
                                 <h4>{{sprintf('%02d', $index)}}.</h4>
@@ -63,7 +64,7 @@
                     </div>
 
                     <!-- Ingredients -->
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-4 ingredient-list">
                         <div class="ingredients">
                             <h4>Ingredients</h4>
                             @foreach ($recipe['ingredients'] as $index => $ingredient)
@@ -74,6 +75,7 @@
                             @endforeach
                         </div>
                     </div>
+
                 </div>
 
                 <div class="row">

@@ -17,6 +17,7 @@
 @import '../css/plugins/owl.carousel.min.css';
 @import '../css/plugins/tagify.min.css';
 @import '../css/plugins/balloon.min.css';
+@import "~toastr/build/toastr.min.css";
 @import "~cropperjs/dist/cropper.min.css";
 html {
   line-height: 1.15;
@@ -2276,6 +2277,28 @@ h1 {
   padding-left: 30px;
 }
 
+#toast-container {
+  --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+#toast-container .toast {
+  box-shadow: none;
+  opacity: 1;
+}
+#toast-container .toast:hover {
+  box-shadow: 0 0 5px #000;
+}
+#toast-container .toast-message {
+  font-size: 1.1em;
+}
+#toast-container > .toast-info {
+  background-color: #40ba37;
+  background-image: none !important;
+}
+#toast-container > .toast-warning {
+  background-color: #ff4e28;
+}
+
 .notification-bar {
   background: #40ba37;
 }
@@ -2729,6 +2752,31 @@ form#profile-details-form #profile-desc + .word_counter > p {
   display: block;
   font-size: 2em;
   font-weight: 400;
+  color: #9b9b9b;
+}
+
+@media (max-width: 992px) {
+  .recipe-content-area .recipe-info-container {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+  }
+  .recipe-content-area .recipe-info-container .prep-directions {
+    -webkit-box-ordinal-group: 2;
+    -moz-box-ordinal-group: 2;
+    -ms-flex-order: 2;
+    -webkit-order: 2;
+    order: 2;
+  }
+  .recipe-content-area .recipe-info-container .ingredient-list {
+    -webkit-box-ordinal-group: 1;
+    -moz-box-ordinal-group: 1;
+    -ms-flex-order: 1;
+    -webkit-order: 1;
+    order: 1;
+  }
 }
 
 /*

@@ -394,6 +394,9 @@ $(function()
                             $('.favourites .favourite').text(resp.favourites);
                         }
                     })
+                    .fail(function(){
+                        toastr.warning('Problem favouriting recipe');
+                    })
                     ;
                 });
             });
