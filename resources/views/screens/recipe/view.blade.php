@@ -1,9 +1,5 @@
 @extends('master')
 
-@section('page_scripts')
-
-@endsection
-
 @section('content')
 
     <div class="recipe-post-area section-padding-0-80">
@@ -27,7 +23,7 @@
 
                 <div class="row">
 
-                    <div class="col-12 col-md-8">
+                    <div class="col-10">
                         <div class="recipe-headline my-5">
                             <span>{{date('F j, Y', strtotime($recipe['date_created']))}}</span>
                             <h2>{{$recipe['title']}}</h2>
@@ -41,19 +37,24 @@
                         </div>
                     </div>
 
-                    <!-- RATING --->
-                    <div class="col-12 col-md-4">
-                        <div class="recipe-ratings text-right my-5">
-                            <div class="ratings">
-                                <i class="fa fa-heart" aria-hidden="true"> {{$recipe['ratings']}}</i>
+                    <!-- FAVOURITING --->
+                    <div class="col-2">
+                        <div class="recipe-favourites text-right my-5">
+                            <div class="favourites">
+                                <form>
+                                    <input type="checkbox" data-recipe="{{$recipe['id']}}" id="toggle-heart" {{$recipe['is_favourited'] ? 'checked' : ''}} />
+                                    <label for="toggle-heart" aria-label="favourite">❤</label>
+                                </form>
+                                <span class="favourite">{{$recipe['favourites']}}</span>
                             </div>
                         </div>
                     </div>
 
                 </div>
 
-                <div class="row">
-                    <div class="col-12 col-lg-8">
+                <div class="row recipe-info-container">
+
+                    <div class="col-12 col-lg-8 prep-directions">
                         @foreach ($recipe['cooking_steps'] as $index => $cookingStep)
                             <div class="single-preparation-step d-flex">
                                 <h4>{{sprintf('%02d', $index)}}.</h4>
@@ -63,7 +64,7 @@
                     </div>
 
                     <!-- Ingredients -->
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-4 ingredient-list">
                         <div class="ingredients">
                             <h4>Ingredients</h4>
                             @foreach ($recipe['ingredients'] as $index => $ingredient)
@@ -74,6 +75,7 @@
                             @endforeach
                         </div>
                     </div>
+
                 </div>
 
                 <div class="row">
@@ -84,6 +86,7 @@
                     </div>
                 </div>
 
+                @auth()
                 <div class="row">
                     <div class="col-12">
                         <div class="contact-form-area">
@@ -109,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-
+                @endauth
             </div>
 
         </div>

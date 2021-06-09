@@ -1,18 +1,15 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\API as APIControllers;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+Route::middleware(['throttle:50,1'])->prefix('tags')->group(function()
+{
+    Route::get('ingredient', [APIControllers\TagListController::class, 'ingredientList']);
+});
 
-require_once ('paths/api/tag_lists.php');
+
+Route::middleware(['throttle:50,1', 'auth:sanctum'])->prefix('recipe')->group(function()
+{
+    Route::post('favourite', [APIControllers\RecipeFavouriteController::class, 'toggleFavourite']);
+});
