@@ -1,11 +1,39 @@
 <?php namespace App\Services;
 
 use App\Models\Recipe;
+use App\Models\RecipeComments;
 use App\Models\RecipeFavourites;
 use App\Models\UserProfile;
+use Illuminate\Support\Facades\Log;
 
-class RecipeFavouriteService
+class RecipeViewService
 {
+
+    /**
+     * @param UserProfile $userProfile
+     * @param Recipe $recipe
+     * @param $recipeComment
+     * @return bool
+     */
+    public function saveComment(UserProfile $userProfile, Recipe $recipe, $recipeComment)
+    {
+        // Make sure the user hasn't already commented on this recipe
+        $existingComment = $userProfile->recipeComments()->where('recipe_id', $recipe->id)->first();
+
+        if (empty($existingComment))
+        {
+            $comment = RecipeComments::create([
+                'user_profile_id' => $userProfile->id,
+                'recipe_id' => $recipe->id,
+                'comment' => $recipeComment
+            ]);
+
+            return (bool)$comment;
+        }
+
+        return false;
+    }
+
 
     /**
      * @param UserProfile $userProfile

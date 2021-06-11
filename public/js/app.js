@@ -4984,7 +4984,6 @@ __webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/ind
 __webpack_require__(/*! bootstrap/dist/js/bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 
 toastr.options = {
-  "timeOut": "15000000",
   "showMethod": "slideDown",
   "hideMethod": "slideUp",
   "positionClass": "toast-bottom-center"

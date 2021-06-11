@@ -13,7 +13,6 @@ require('bootstrap/dist/js/bootstrap');
 
 
 toastr.options = {
-    "timeOut": "15000000",
     "showMethod": "slideDown",
     "hideMethod": "slideUp",
     "positionClass": "toast-bottom-center",

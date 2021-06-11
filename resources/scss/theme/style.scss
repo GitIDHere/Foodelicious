@@ -1703,10 +1703,14 @@ h1
     --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
 
+    text-align: center;
+
     .toast
     {
         box-shadow: none;
         opacity: 1;
+        display: inline-block;
+        width: auto !important;
 
         &:hover{
             box-shadow: 0 0 5px #000;
@@ -1721,7 +1725,6 @@ h1
     & > .toast-info
     {
         background-color: $bg-default;
-        background-image: none !important;
     }
 
     & > .toast-warning
@@ -1809,6 +1812,10 @@ h1
 .green-circle
 {
     border: 1px solid $bg-default;
+}
+
+.section-heading {
+    margin-bottom: 20px;
 }
 
 form label
@@ -2388,7 +2395,14 @@ form#profile-details-form
 
 
 
-
+.contact-form-area
+{
+    .form-control
+    {
+        font-style: initial;
+        font-size: 1.1em;
+    }
+}
 
 /*
 .hidden {

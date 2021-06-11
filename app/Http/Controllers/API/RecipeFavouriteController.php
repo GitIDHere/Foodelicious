@@ -1,10 +1,8 @@
 <?php namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Ingredient;
 use App\Models\Recipe;
-use App\Services\RecipeFavouriteService;
-use App\Services\TagService;
+use App\Services\RecipeViewService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,11 +11,12 @@ use Illuminate\Support\Facades\Log;
 class RecipeFavouriteController extends Controller
 {
 
-    private $recipeFavouriteService;
+    private $recipeViewService;
 
-    public function __construct(RecipeFavouriteService $recipeFavouriteService)
+
+    public function __construct(RecipeViewService $recipeViewService)
     {
-        $this->recipeFavouriteService = $recipeFavouriteService;
+        $this->recipeViewService = $recipeViewService;
     }
 
 
@@ -28,7 +27,8 @@ class RecipeFavouriteController extends Controller
         ]);
 
         $recipeId = $request->get('recipe');
-        $recipe = Recipe::where('id', $recipeId)->first();
+
+        $recipe = Recipe::find($recipeId);
 
         $status = 400;
 
@@ -45,7 +45,7 @@ class RecipeFavouriteController extends Controller
                 $user = Auth::user();
                 $userProfile = $user->userProfile;
 
-                $this->recipeFavouriteService->favourite($userProfile, $recipe);
+                $this->recipeViewService->favourite($userProfile, $recipe);
 
                 $favourites = $recipe->recipeFavourites()->where('is_favourited', 1)->get()->count();
 
@@ -56,18 +56,5 @@ class RecipeFavouriteController extends Controller
 
         return new JsonResponse($response, $status);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

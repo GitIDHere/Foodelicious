@@ -4633,10 +4633,13 @@ h1 {
 #toast-container {
   --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  text-align: center;
 }
 #toast-container .toast {
   box-shadow: none;
   opacity: 1;
+  display: inline-block;
+  width: auto !important;
 }
 #toast-container .toast:hover {
   box-shadow: 0 0 5px #000;
@@ -4646,7 +4649,6 @@ h1 {
 }
 #toast-container > .toast-info {
   background-color: #40ba37;
-  background-image: none !important;
 }
 #toast-container > .toast-warning {
   background-color: #ff4e28;
@@ -4714,6 +4716,10 @@ h1 {
 
 .green-circle {
   border: 1px solid #40ba37;
+}
+
+.section-heading {
+  margin-bottom: 20px;
 }
 
 form label {
@@ -5118,6 +5124,11 @@ form#profile-details-form #profile-desc + .word_counter > p {
   .recipe-content-area .recipe-info-container .ingredient-list {
     order: 1;
   }
+}
+
+.contact-form-area .form-control {
+  font-style: initial;
+  font-size: 1.1em;
 }
 
 /*

@@ -4,7 +4,7 @@ $(function()
     {
         $(this).removeClass('checked');
 
-        var endpoint = APP_URL + 'api/recipe/favourite';
+        var favouriteAPIEndpoint = APP_URL + 'api/recipe/favourite';
         var recipeId = $(this).attr('data-recipe');
 
         if (recipeId !== undefined)
@@ -13,7 +13,7 @@ $(function()
             {
                 new Promise(function(resolve, reject){
                     $.ajax({
-                        url : endpoint,
+                        url : favouriteAPIEndpoint,
                         type: "POST",
                         accept: 'application/json',
                         data: {'recipe': recipeId},
@@ -33,8 +33,14 @@ $(function()
                             $('.favourites .favourite').text(resp.favourites);
                         }
                     })
-                    .fail(function(){
-                        toastr.warning('Problem favouriting recipe');
+                    .fail(function(resp){
+
+                        if (resp.status === 401) {
+                            toastr.warning('Please register and login');
+                        }
+                        else {
+                            toastr.warning('Problem favouriting recipe');
+                        }
                     })
                     ;
                 });

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRecipeFavouritesTable extends Migration
+class CreateRecipeCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateRecipeFavouritesTable extends Migration
      */
     public function up()
     {
-        Schema::create('recipe_favourites', function (Blueprint $table) {
+        Schema::create('recipe_comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_profile_id')->constrained('user_profiles');
             $table->foreignId('recipe_id')->constrained('recipes');
-            $table->tinyInteger('is_favourited');
+            $table->foreignId('user_profile_id')->constrained('user_profiles');
+            $table->text('comment');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateRecipeFavouritesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recipe_favourites');
+        Schema::dropIfExists('recipe_comments');
     }
 }

@@ -64,7 +64,8 @@ class RecipeController extends Controller
             'username' => $recipe->userProfile->username,
             'ingredients' => $recipe->ingredients,
             'photos' => $recipePhotos,
-            'is_favourited' => $isFavourited
+            'is_favourited' => $isFavourited,
+            'is_published' => $recipe->is_published
         ];
 
 

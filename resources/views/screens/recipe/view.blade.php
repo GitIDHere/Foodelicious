@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="recipe-post-area section-padding-0-80">
+    <div class="recipe-post-area">
 
         <!-- recipe Slider -->
         <div class="container">
@@ -37,19 +37,20 @@
                         </div>
                     </div>
 
-                    <!-- FAVOURITING --->
-                    <div class="col-2">
-                        <div class="recipe-favourites text-right my-5">
-                            <div class="favourites">
-                                <form>
-                                    <input type="checkbox" data-recipe="{{$recipe['id']}}" id="toggle-heart" {{$recipe['is_favourited'] ? 'checked' : ''}} />
-                                    <label for="toggle-heart" aria-label="favourite">❤</label>
-                                </form>
-                                <span class="favourite">{{$recipe['favourites']}}</span>
+                    @if($recipe['is_published'])
+                        <!-- FAVOURITING --->
+                        <div class="col-2">
+                            <div class="recipe-favourites text-right my-5">
+                                <div class="favourites">
+                                    <form>
+                                        <input type="checkbox" data-recipe="{{$recipe['id']}}" id="toggle-heart" {{$recipe['is_favourited'] ? 'checked' : ''}} />
+                                        <label for="toggle-heart" aria-label="favourite">❤</label>
+                                    </form>
+                                    <span class="favourite">{{$recipe['favourites']}}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
+                    @endif
                 </div>
 
                 <div class="row recipe-info-container">
@@ -78,40 +79,36 @@
 
                 </div>
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-heading text-left">
-                            <h3>Leave a comment</h3>
-                        </div>
-                    </div>
-                </div>
-
                 @auth()
-                <div class="row">
-                    <div class="col-12">
-                        <div class="contact-form-area">
-                            <form action="#" method="post">
-                                <div class="row">
-                                    <div class="col-12 col-lg-6">
-                                        <input type="text" class="form-control" id="name" placeholder="Name">
-                                    </div>
-                                    <div class="col-12 col-lg-6">
-                                        <input type="email" class="form-control" id="email" placeholder="E-mail">
-                                    </div>
-                                    <div class="col-12">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    </div>
-                                    <div class="col-12">
-                                        <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn delicious-btn mt-30" type="submit">Post Comments</button>
-                                    </div>
+                    @if($recipe['is_published'])
+                        <div class="row pb-5">
+
+                            <div class="col-12">
+                                <div class="section-heading text-left">
+                                    <h3>Leave a comment</h3>
                                 </div>
-                            </form>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="contact-form-area">
+
+                                    <form action="#" method="post" id="recipe-comment" data-recipe="{{$recipe['id']}}">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <textarea name="comment" class="form-control" id="comment" cols="30" rows="10" placeholder="Comment"></textarea>
+                                                <div class="word_counter" data-link="comment" data-char-limit="500"></div>
+                                            </div>
+                                            <div class="col-12">
+                                                <button class="btn delicious-btn mt-30 right" type="submit">Post Comments</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
-                </div>
+                        @endif
                 @endauth
             </div>
 

@@ -12,4 +12,6 @@ Route::middleware(['throttle:50,1'])->prefix('tags')->group(function()
 Route::middleware(['throttle:50,1', 'auth:sanctum'])->prefix('recipe')->group(function()
 {
     Route::post('favourite', [APIControllers\RecipeFavouriteController::class, 'toggleFavourite']);
+
+    Route::post('comment', [APIControllers\RecipeCommentController::class, 'saveComment']);
 });
