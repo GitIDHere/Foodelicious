@@ -2,8 +2,8 @@
 @if(isset($comments))
     <div id="comments" class="slidetxt mb-5">
 
-        @if (session()->has('comment-delete'))
-            <div class="render-toast info">{{session('comment-delete')}}</div>
+        @if (session()->has('comment-toast'))
+            <div class="render-toast info">{{session('comment-toast')}}</div>
         @endif
 
         <h3 class="overview"><a href="#" class=""><i class="fa fa-comment"></i> {{$comments['total'] .' '. \Illuminate\Support\Str::plural('comment', $comments['total'])}}</a></h3>

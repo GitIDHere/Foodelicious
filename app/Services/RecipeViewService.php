@@ -53,7 +53,7 @@ class RecipeViewService
             $comment = RecipeComments::create([
                 'user_profile_id' => $userProfile->id,
                 'recipe_id' => $recipe->id,
-                'comment' => $recipeComment
+                'comment' => removeTags($recipeComment)
             ]);
 
             return (bool)$comment;

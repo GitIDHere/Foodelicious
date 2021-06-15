@@ -49,7 +49,7 @@ class RecipeCommentController extends Controller
 
             if ($isDeleted) {
                 $status = 204;
-                $request->session()->flash('comment-delete', 'Comment successfully deleted');
+                $request->session()->flash('comment-toast', 'Comment successfully deleted');
             }
 
         } catch (\Exception $exception) {
@@ -84,6 +84,7 @@ class RecipeCommentController extends Controller
 
             if ($isCommentSaved) {
                 $status = 201;
+                $request->session()->flash('comment-toast', 'Comment successfully posted');
             }
             else {
                 $status = 409;

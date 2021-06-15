@@ -175,7 +175,6 @@ class RecipeService
         $payload['comments'] = $commentList;
         $payload['total'] = count($comments);
         $payload['pager'] = $pager;
-        $payload['has_commented'] = $pager;
 
         return $payload;
     }

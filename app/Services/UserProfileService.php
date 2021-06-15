@@ -48,7 +48,7 @@ class UserProfileService
     {
         if ($userProfile instanceof UserProfile)
         {
-            $userProfile->update(['description' => strip_tags($description)]);
+            $userProfile->update(['description' => removeTags($description)]);
         }
 
         return true;

@@ -28,14 +28,11 @@ $(function()
                 })
                     .done(function(resp, textStatus)
                     {
-                        console.log(textStatus);
                         // Update the current rating number
                         if (textStatus === 'success')
                         {
-                            //Remove all text from comments
-                            $(commentTxtarea).val('');
-
-                            toastr.info('Comment posted!');
+                            window.location.href = '#comments';
+                            location.reload();
                         }
                     })
                     .fail(function(resp)

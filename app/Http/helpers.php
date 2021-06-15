@@ -52,6 +52,15 @@ if (! function_exists('randUsername'))
     }
 }
 
+if (! function_exists('removeTags'))
+{
+    function removeTags($content)
+    {
+        $strippedContent = preg_replace("/(?:<|&lt;)\/?([a-zA-Z]+) *[^<\/]*?(?:>|&gt;)/", "", $content);
+        return $strippedContent;
+    }
+}
+
 if (! function_exists('randEmail'))
 {
     function randEmail()
