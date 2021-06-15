@@ -21,13 +21,18 @@ class RecipeController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @param Recipe $recipe
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function showRecipe(Request $request, Recipe $recipe)
     {
 
         /**
          * - Photos
          * X- Stars/Thumbs ups
-         * - Comments
+         * X- Comments
          * X- Ingredients
          * X- Title
          * X- Cooking steps
@@ -85,9 +90,5 @@ class RecipeController extends Controller
             'comments' => $recipeComments
         ]);
     }
-
-
-
-
 
 }

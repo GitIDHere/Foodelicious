@@ -1796,7 +1796,22 @@ h1
 
         span
         {
-            display:block;
+            display:inline-block;
+
+            &.comment-delete > i
+            {
+                padding: 6px 8px;
+                background: #f12c2c;
+                border-radius: 3px;
+                color: $white;
+                font-size: 1.2em;
+
+                &:hover
+                {
+                    cursor: pointer;
+                }
+            }
+
         }
     }
 
@@ -2059,6 +2074,10 @@ h3
         color: white;
         transition: initial;
     }
+}
+
+.render-toast {
+    display: none;
 }
 
 .sidebar

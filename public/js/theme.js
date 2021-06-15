@@ -183,6 +183,54 @@ $(function()
 
 });
 
+$(function()
+{
+    var deleteComment = function(recipeId, commentId)
+    {
+        var deleteCommentEndpoint = APP_URL + 'api/recipe/comment';
+
+        new Promise(function(resolve, reject)
+        {
+            $.ajax({
+                url : deleteCommentEndpoint,
+                type: "DELETE",
+                accept: 'application/json',
+                data: {
+                    'comment': commentId,
+                    'recipe': recipeId
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+                .done(function(resp)
+                {
+                    location.reload();
+                })
+                .fail(function(resp)
+                {
+                    toastr.warning('Error deleting comment');
+                })
+            ;
+        });
+    }
+
+   $('.comment-delete i').on('click', function()
+   {
+       var deleteBtn = $(this);
+
+       var recipeId = deleteBtn.attr('data-recipe');
+       var commentId = deleteBtn.attr('data-comment');
+
+       if (confirm("Delete your comment?"))
+       {
+           deleteComment(recipeId, commentId);
+       }
+
+       return false;
+   });
+});
+
 (function ($) {
     'use strict';
 
@@ -306,11 +354,30 @@ $(function()
         });
     }
 
+    // Grey bar show/hide toggle
     $('.slidetxt h3 a').click(function() {
         $(this).closest('.slidetxt').find('.slidetxtinner').slideToggle();
         $(this).toggleClass('open');
         return false;
     });
+
+    var toastEl = $('.render-toast');
+    if (toastEl !== undefined && toastEl.length > 0)
+    {
+        $(toastEl).hide();
+
+        var toastTxt = $(toastEl).text();
+
+        switch(true)
+        {
+            case toastEl.hasClass('info'):
+                toastr.info(toastTxt);
+                break;
+            case toastEl.hasClass('warning'):
+                toastr.warning(toastTxt);
+                break;
+        }
+    }
 
     // :: 9.0 nice Select Active Code
     if ($.fn.niceSelect) {
@@ -469,7 +536,7 @@ $(function()
                             toastr.warning('Please login');
                         }
                         else {
-                            toastr.warning('Problem favouriting recipe');
+                            toastr.warning('Error favouriting recipe');
                         }
                     })
                     ;

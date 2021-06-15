@@ -121,11 +121,30 @@
         });
     }
 
+    // Grey bar show/hide toggle
     $('.slidetxt h3 a').click(function() {
         $(this).closest('.slidetxt').find('.slidetxtinner').slideToggle();
         $(this).toggleClass('open');
         return false;
     });
+
+    var toastEl = $('.render-toast');
+    if (toastEl !== undefined && toastEl.length > 0)
+    {
+        $(toastEl).hide();
+
+        var toastTxt = $(toastEl).text();
+
+        switch(true)
+        {
+            case toastEl.hasClass('info'):
+                toastr.info(toastTxt);
+                break;
+            case toastEl.hasClass('warning'):
+                toastr.warning(toastTxt);
+                break;
+        }
+    }
 
     // :: 9.0 nice Select Active Code
     if ($.fn.niceSelect) {

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RecipeCommentRequest;
+use App\Models\AppLog;
 use App\Models\Recipe;
 use App\Services\RecipeViewService;
 use Illuminate\Http\JsonResponse;
@@ -22,6 +23,42 @@ class RecipeCommentController extends Controller
         $this->recipeViewService = $recipeViewService;
     }
 
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function deleteComment(Request $request)
+    {
+        $validated = $request->validate([
+            'recipe' => 'integer|exists:recipes,id',
+            'comment' => 'integer|exists:recipe_comments,id',
+        ]);
+
+        try
+        {
+            $status = 500;
+
+            $recipeId = $request->get('recipe');
+            $commentId = $request->get('comment');
+
+            $user = Auth::user();
+            $userProfile = $user->userProfile;
+
+            $isDeleted = $this->recipeViewService->deleteComment($userProfile, $recipeId, $commentId);
+
+            if ($isDeleted) {
+                $status = 204;
+                $request->session()->flash('comment-delete', 'Comment successfully deleted');
+            }
+
+        } catch (\Exception $exception) {
+            AppLog::createLog($request, AppLog::TYPE_EXCEPTION, $exception);
+        }
+
+        return new JsonResponse(null, $status);
+    }
+
     /**
      * @param RecipeCommentRequest $request
      * @return JsonResponse
@@ -30,7 +67,7 @@ class RecipeCommentController extends Controller
     {
         try
         {
-            $status = 400;
+            $status = 500;
             $response = [
                 'date_time' => now()->format('Y-m-d H:i:s')
             ];

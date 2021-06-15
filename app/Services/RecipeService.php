@@ -167,7 +167,8 @@ class RecipeService
                 'username' => $username,
                 'allow_delete' => $allowDelete,
                 'date' => $comment->created_at->format('d/m/Y'),
-                'comment' => $comment->comment
+                'comment' => $comment->comment,
+                'recipe_id' => $comment->recipe_id,
             ];
         });
 

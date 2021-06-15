@@ -2351,7 +2351,17 @@ h1 {
   font-weight: 600;
 }
 .comment .comment-info span {
-  display: block;
+  display: inline-block;
+}
+.comment .comment-info span.comment-delete > i {
+  padding: 6px 8px;
+  background: #f12c2c;
+  border-radius: 3px;
+  color: #FFFFFF;
+  font-size: 1.2em;
+}
+.comment .comment-info span.comment-delete > i:hover {
+  cursor: pointer;
 }
 .comment p {
   color: #000;
@@ -2549,6 +2559,10 @@ h3 {
 .btn-small:hover {
   color: white;
   transition: initial;
+}
+
+.render-toast {
+  display: none;
 }
 
 .sidebar ul li.active {

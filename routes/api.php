@@ -14,4 +14,6 @@ Route::middleware(['throttle:50,1', 'auth:sanctum'])->prefix('recipe')->group(fu
     Route::post('favourite', [APIControllers\RecipeFavouriteController::class, 'toggleFavourite']);
 
     Route::post('comment', [APIControllers\RecipeCommentController::class, 'saveComment']);
+
+    Route::delete('comment', [APIControllers\RecipeCommentController::class, 'deleteComment']);
 });

@@ -39,7 +39,7 @@ $(function()
                             toastr.warning('Please login');
                         }
                         else {
-                            toastr.warning('Problem favouriting recipe');
+                            toastr.warning('Error favouriting recipe');
                         }
                     })
                     ;

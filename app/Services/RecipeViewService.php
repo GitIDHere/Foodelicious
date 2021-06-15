@@ -4,10 +4,38 @@ use App\Models\Recipe;
 use App\Models\RecipeComments;
 use App\Models\RecipeFavourites;
 use App\Models\UserProfile;
-use Illuminate\Support\Facades\Log;
 
 class RecipeViewService
 {
+
+    /**
+     * @param UserProfile $userProfile
+     * @param $recipeId
+     * @param $commentId
+     * @return bool|mixed|null
+     */
+    public function deleteComment(UserProfile $userProfile, $recipeId, $commentId)
+    {
+        // Get the user's comments for this recipe
+        // Checks that the comment is linked to the recipe
+        $comments = $userProfile->recipeComments()->where('recipe_id', $recipeId)->first();
+
+        // There aren't any comments to delete
+        if (empty($comments)) {
+            return false;
+        }
+
+        // Check that the comment belongs to the user
+        $comment = $comments->where('id', $commentId)->first();
+
+        if ($comment)
+        {
+            // Delete comment
+            return $comment->delete();
+        }
+
+        return false;
+    }
 
     /**
      * @param UserProfile $userProfile

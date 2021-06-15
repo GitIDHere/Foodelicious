@@ -28,9 +28,9 @@ class AppLog extends Model
     /**
      * @param Request $request
      * @param $type
-     * @param $message
+     * @param $payload
      */
-    public static function createLog(Request $request, $type, $message)
+    public static function createLog(Request $request, $type, $payload)
     {
         $httpReferrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
         $ip = $request->getClientIp();
@@ -38,6 +38,23 @@ class AppLog extends Model
 
         if(empty($httpReferrer)) {
             $httpReferrer = $request->getPathInfo();
+        }
+
+        $message = '';
+
+        if ($payload instanceof \Exception)
+        {
+            $message = json_encode([
+                $payload->getTraceAsString(),
+                $payload->getLine(),
+                $payload->getMessage()
+            ]);
+        }
+        else if (is_array($payload)) {
+            $message = json_encode($payload);
+        }
+        else if (is_string($payload)) {
+            $message = $payload;
         }
 
         self::create([
