@@ -121,6 +121,12 @@
         });
     }
 
+    $('.slidetxt h3 a').click(function() {
+        $(this).closest('.slidetxt').find('.slidetxtinner').slideToggle();
+        $(this).toggleClass('open');
+        return false;
+    });
+
     // :: 9.0 nice Select Active Code
     if ($.fn.niceSelect) {
         $('select').niceSelect();

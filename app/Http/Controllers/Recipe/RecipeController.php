@@ -3,12 +3,22 @@
 namespace App\Http\Controllers\Recipe;
 
 use App\Models\Recipe;
+use App\Services\RecipeService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class RecipeController extends Controller
 {
+    /**
+     * @var RecipeService
+     */
+    private $recipeService;
+
+    public function __construct(RecipeService $recipeService)
+    {
+        $this->recipeService = $recipeService;
+    }
 
 
     public function showRecipe(Request $request, Recipe $recipe)
@@ -51,6 +61,8 @@ class RecipeController extends Controller
             $isFavourited = ($favourites && $favourites->is_favourited ?: false);
         }
 
+        $recipeComments = $this->recipeService->getComments($recipe);
+
         $pageData = [
             'id' => $recipe->id,
             'title' => $recipe->title,
@@ -68,9 +80,9 @@ class RecipeController extends Controller
             'is_published' => $recipe->is_published
         ];
 
-
         return view('screens.recipe.view', [
-            'recipe' => $pageData
+            'recipe' => $pageData,
+            'comments' => $recipeComments
         ]);
     }
 

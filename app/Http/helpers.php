@@ -73,15 +73,15 @@ if (! function_exists('collectionPaginate'))
      * @param $pageSize
      * @return mixed
      */
-    function collectionPaginate(Collection $results, $pageSize)
+    function collectionPaginate(Collection $results, $pageSize, $pageName = 'page')
     {
-        $page = Paginator::resolveCurrentPage('page');
+        $page = Paginator::resolveCurrentPage($pageName);
 
         $total = $results->count();
 
         return paginator($results->forPage($page, $pageSize), $total, $pageSize, $page, [
             'path' => Paginator::resolveCurrentPath(),
-            'pageName' => 'page',
+            'pageName' => $pageName,
         ]);
     }
 }

@@ -36,7 +36,7 @@ $(function()
                     .fail(function(resp){
 
                         if (resp.status === 401) {
-                            toastr.warning('Please register and login');
+                            toastr.warning('Please login');
                         }
                         else {
                             toastr.warning('Problem favouriting recipe');

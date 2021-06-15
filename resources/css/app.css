@@ -2277,6 +2277,125 @@ h1 {
   padding-left: 30px;
 }
 
+.slidetxt {
+  background-color: #fff;
+  margin-bottom: 15px;
+}
+.slidetxt h3 {
+  position: relative;
+  color: #F39321;
+  font-weight: 400;
+  padding: 0px 0px 0px 0px;
+  background-color: #EBEBE9;
+  margin-bottom: 0;
+}
+.slidetxt h3 a {
+  position: relative;
+  display: block;
+  padding: 22px 24px 22px 25px;
+  color: #575756 !important;
+  text-decoration: none;
+  font-size: 0.8em;
+}
+.slidetxt h3 a i {
+  width: 25px;
+  font-size: 1.3em;
+  color: #40ba37;
+  display: inline-block;
+  margin-right: 5px;
+}
+.slidetxt h3 a.open:after {
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+.slidetxt h3 a:before {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 56px;
+  height: 50px;
+  background: url("/img/core-img/slidetxt-h3-bg.png") bottom right no-repeat #EBEBE9;
+  background-size: cover;
+  background-position: bottom right;
+}
+.slidetxt h3 a:after {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 22px;
+  bottom: 6px;
+  right: 12px;
+  background: url("/img/core-img/grey_arrow.png") 0 0 no-repeat;
+  background-size: 13px 22px;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(45deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.comment {
+  padding: 15px;
+  border-bottom: 1px solid #bfbfbf;
+}
+.comment .comment-info {
+  margin-bottom: 10px;
+  color: #9b9b9b;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+.comment .comment-info span {
+  display: block;
+}
+.comment p {
+  color: #000;
+  line-height: 1.8em;
+  font-size: 1.1em;
+  margin-bottom: 0;
+}
+@media (max-width: 576px) {
+  .comment p {
+    font-size: 1em;
+  }
+}
+
+.num-pager {
+  text-align: right;
+  margin: 10px 0;
+}
+.num-pager .page-btn {
+  display: inline-block;
+  padding: 5px 20px;
+  border: 1px solid #40ba37;
+  font-size: 1.2em;
+  margin-top: 3px;
+}
+.num-pager span.page-btn {
+  cursor: default;
+  color: #ffffff;
+  background: #40ba37;
+}
+.num-pager p {
+  display: block;
+}
+
+.warning {
+  padding: 15px;
+  border: 2px dashed #b13a28;
+  text-align: center;
+}
+.warning p {
+  margin: 0;
+  font-size: 1.2em;
+  color: #000;
+}
+
 #toast-container {
   --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;

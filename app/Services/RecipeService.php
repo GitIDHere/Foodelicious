@@ -6,6 +6,7 @@ use App\Models\File;
 use App\Models\Recipe;
 use App\Models\UserProfile;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class RecipeService
@@ -17,6 +18,7 @@ class RecipeService
      */
     private $recipeItemsPerPage = 10;
 
+    private $commentsPerPage = 5;
 
     public function __construct(RecipePhotoService $recipePhotoService)
     {
@@ -120,6 +122,61 @@ class RecipeService
             'recipe_list' => $recipeList,
             'pager' => $pager
         ];
+    }
+
+    /**
+     * @param Recipe $recipe
+     * @return array
+     */
+    public function getComments(Recipe $recipe)
+    {
+        $payload = [
+            'comments' => [],
+            'total' => 0,
+            'pager' => null,
+            'has_commented' => false
+        ];
+
+        $user = Auth::user();
+
+        if (!$user) return $payload;
+
+        $userProfile = $user->userProfile;
+
+        $userComment = $userProfile->recipeComments()->where('recipe_id', $recipe->id)->first();
+        $payload['has_commented'] = (!empty($userComment));
+
+        $comments = $recipe->recipeComments->sortByDesc('created_at');
+
+        $pager = collectionPaginate($comments, $this->commentsPerPage, 'comment-page');
+
+        // Get the items out of the pager
+        $pagerItems = collect($pager->items);
+
+        $commentList = $pagerItems->map(function($comment) use ($userProfile)
+        {
+            $commentUserProfile = $comment->userProfile;
+
+            $username = $commentUserProfile->username;
+
+            // If this comment belongs to the user viewing it.
+            $allowDelete = ($userProfile->id == $comment->userProfile->id);
+
+            return [
+                'id' => $comment->id,
+                'username' => $username,
+                'allow_delete' => $allowDelete,
+                'date' => $comment->created_at->format('d/m/Y'),
+                'comment' => $comment->comment
+            ];
+        });
+
+        $payload['comments'] = $commentList;
+        $payload['total'] = count($comments);
+        $payload['pager'] = $pager;
+        $payload['has_commented'] = $pager;
+
+        return $payload;
     }
 
 }

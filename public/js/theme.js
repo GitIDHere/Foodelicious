@@ -306,6 +306,12 @@ $(function()
         });
     }
 
+    $('.slidetxt h3 a').click(function() {
+        $(this).closest('.slidetxt').find('.slidetxtinner').slideToggle();
+        $(this).toggleClass('open');
+        return false;
+    });
+
     // :: 9.0 nice Select Active Code
     if ($.fn.niceSelect) {
         $('select').niceSelect();
@@ -460,7 +466,7 @@ $(function()
                     .fail(function(resp){
 
                         if (resp.status === 401) {
-                            toastr.warning('Please register and login');
+                            toastr.warning('Please login');
                         }
                         else {
                             toastr.warning('Problem favouriting recipe');

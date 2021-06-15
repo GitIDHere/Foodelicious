@@ -80,8 +80,13 @@
                 </div>
 
                 @auth()
+                    @include('screens.recipe._comments')
+
                     @if($recipe['is_published'])
+
                         <div class="row pb-5">
+
+                        @if ($comments['has_commented'] == false)
 
                             <div class="col-12">
                                 <div class="section-heading text-left">
@@ -107,9 +112,23 @@
                                 </div>
                             </div>
 
-                        </div>
+                        @else
+                            <div class="col-12">
+                                <div class="warning">
+                                    <p>You have already commented</p>
+                                </div>
+                            </div>
                         @endif
+                        </div>
+
+                    @endif
                 @endauth
+
+                @guest
+                    <div class="col-12">
+                        <a class="btn-small mb-5" href="{{route('login.show')}}">Login to comment</a>
+                    </div>
+                @endguest
             </div>
 
         </div>
