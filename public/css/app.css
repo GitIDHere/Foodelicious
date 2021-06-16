@@ -2790,7 +2790,6 @@ template {
 
 .switch.switch-bootstrap + .lable::before {
   font-family: inherit;
-  content: "Private";
   box-shadow: none;
   border-width: 0;
   font-size: 16px;
@@ -2819,7 +2818,6 @@ template {
 }
 
 .switch.switch-bootstrap:checked + .lable::before {
-  content: "Public";
   text-indent: 12px;
   color: #FFF;
   border-color: #b7d3e5;
@@ -2831,6 +2829,22 @@ template {
 
 .switch.switch-bootstrap:checked + .lable::after {
   left: 80px;
+}
+
+.switch.switch-bootstrap.public-private + .lable::before {
+  content: "Private";
+}
+
+.switch.switch-bootstrap.public-private:checked + .lable::before {
+  content: "Public";
+}
+
+.switch.switch-bootstrap.yes-no + .lable::before {
+  content: "No";
+}
+
+.switch.switch-bootstrap.yes-no:checked + .lable::before {
+  content: "Yes";
 }
 
 /**

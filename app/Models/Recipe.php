@@ -19,8 +19,7 @@ class Recipe extends Model
         'cook_time',
         'servings',
         'utensils',
-        'ingredients',
-        'is_published'
+        'ingredients'
     ];
 
     protected $guarded = [
@@ -59,6 +58,30 @@ class Recipe extends Model
     public function recipeComments()
     {
         return $this->hasMany(RecipeComments::class, 'recipe_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function recipeMetadata()
+    {
+        return $this->hasOne(RecipeMetadata::class,'recipe_id', 'id');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsPublishedAttribute()
+    {
+        return $this->recipeMetaData->is_published;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEnableCommentsAttribute()
+    {
+        return $this->recipeMetaData->enable_comments;
     }
 
     /**

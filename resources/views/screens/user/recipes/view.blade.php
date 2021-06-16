@@ -211,20 +211,40 @@
                                         />
                                     </div>
 
-                                    <div class="input-container">
-                                        <label class="label-switch switch-primary">
-                                            <span class="d-block mb-2">Recipe visibility</span>
-                                            <input
-                                                type="checkbox"
-                                                class="switch switch-bootstrap status"
-                                                name="is_published" id="is_published"
-                                                value="1"
-                                            @if(isset($data))
-                                                {{$data['is_published'] ? 'checked' : ''}}
-                                                @endif
-                                            >
-                                            <span class="lable"></span>
-                                        </label>
+                                    <div class="input-container row">
+
+                                        <div class="col-12 col-lg-3">
+                                            <label class="label-switch switch-primary">
+                                                <span class="d-block mb-2">Recipe visibility</span>
+                                                <input
+                                                    type="checkbox"
+                                                    class="switch switch-bootstrap status public-private"
+                                                    name="is_published" id="is_published"
+                                                    value="1"
+                                                @if(isset($data))
+                                                    {{$data['is_published'] ? 'checked' : ''}}
+                                                    @endif
+                                                >
+                                                <span class="lable"></span>
+                                            </label>
+                                        </div>
+
+                                        <div class="col-12 col-lg-3">
+                                            <label class="label-switch switch-primary">
+                                                <span class="d-block mb-2">Allow comments?</span>
+                                                <input
+                                                    type="checkbox"
+                                                    class="switch switch-bootstrap status yes-no"
+                                                    name="enable_comments" id="enable_comments"
+                                                    value="1"
+                                                @if(isset($data))
+                                                    {{$data['enable_comments'] ? 'checked' : ''}}
+                                                    @endif
+                                                >
+                                                <span class="lable"></span>
+                                            </label>
+                                        </div>
+
                                     </div>
 
                                     <div class="input-container">

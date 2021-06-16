@@ -110,6 +110,7 @@ class UserRecipeController extends Controller
             }
 
             $recipeFields['is_published'] = $request->get('is_published') ? 1 : 0;
+            $recipeFields['enable_comments'] = $request->get('enable_comments') ? 1 : 0;
 
             $recipe = $this->recipeService->saveRecipe($userProfile, $recipe, $recipeFields, $savePhotos);
 
@@ -171,6 +172,7 @@ class UserRecipeController extends Controller
                 'ingredients' => $ingredientsCSV,
                 'photos' => $recipePhotos->toArray(),
                 'is_published' => $recipe->is_published,
+                'enable_comments' => $recipe->enable_comments,
             ];
 
             return view('screens.user.recipes.view', ['data' => $recipeData, 'recipe' => $recipe]);

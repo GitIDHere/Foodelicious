@@ -24,7 +24,6 @@ class CreateRecipesTable extends Migration
             $table->smallInteger('servings');
             $table->json('utensils');
             $table->json('ingredients');
-            $table->tinyInteger('is_published');
             $table->timestamps();
 
             $table

@@ -82,7 +82,8 @@ class RecipeController extends Controller
             'ingredients' => $recipe->ingredients,
             'photos' => $recipePhotos,
             'is_favourited' => $isFavourited,
-            'is_published' => $recipe->is_published
+            'is_published' => $recipe->is_published,
+            'enable_comments' => $recipe->enable_comments
         ];
 
         return view('screens.recipe.view', [

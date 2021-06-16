@@ -53,7 +53,7 @@
                     @endif
                 </div>
 
-                <div class="row recipe-info-container">
+                <div class="row recipe-info-container mb-5">
 
                     <div class="col-12 col-lg-8 prep-directions">
                         @foreach ($recipe['cooking_steps'] as $index => $cookingStep)
@@ -80,9 +80,10 @@
                 </div>
 
                 @auth()
-                    @include('screens.recipe._comments')
 
-                    @if($recipe['is_published'])
+                    @if ($recipe['is_published'] && $recipe['enable_comments'])
+
+                        @include('screens.recipe._comments')
 
                         <div class="row pb-5">
 
@@ -126,7 +127,7 @@
 
                 @guest
                     <div class="col-12">
-                        <a class="btn-small mb-5" href="{{route('login.show')}}">Login to comment</a>
+                        <a class="btn-small" href="{{route('login.show')}}">Login to comment</a>
                     </div>
                 @endguest
             </div>

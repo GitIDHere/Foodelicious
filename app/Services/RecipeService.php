@@ -41,10 +41,12 @@ class RecipeService
         if ($isUserRecipe) {
             // Update the recipe
             $recipe->fill($recipeData)->save();
+            $recipe->recipeMetadata->fill($recipeData)->save();
         }
         else {
             // Create new recipe
             $recipe = $userProfile->recipes()->create($recipeData);
+            $recipe->recipeMetadata()->create($recipeData);
         }
 
         if ($recipe)
