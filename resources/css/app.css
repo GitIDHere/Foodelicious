@@ -2771,6 +2771,8 @@ form#profile-details-form #profile-desc + .word_counter > p {
   display: block;
   margin-top: 5px;
   font-size: 1.13em;
+  font-family: "Open Sans", serif;
+  font-weight: 600;
 }
 .recipe-list li .content-container .recipe-info .icon-container:after {
   content: "";
@@ -2781,6 +2783,10 @@ form#profile-details-form #profile-desc + .word_counter > p {
   .recipe-list li .content-container .recipe-info .icon-container {
     display: none;
   }
+}
+
+.owl-stage {
+  background: #e8e8e8;
 }
 
 .input-container {

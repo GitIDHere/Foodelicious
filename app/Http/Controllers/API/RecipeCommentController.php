@@ -45,7 +45,9 @@ class RecipeCommentController extends Controller
             $user = Auth::user();
             $userProfile = $user->userProfile;
 
-            $isDeleted = $this->recipeViewService->deleteComment($userProfile, $recipeId, $commentId);
+            $recipe = Recipe::find($recipeId);
+
+            $isDeleted = $this->recipeViewService->deleteComment($userProfile, $recipe, $commentId);
 
             if ($isDeleted) {
                 $status = 204;
@@ -85,9 +87,6 @@ class RecipeCommentController extends Controller
             if ($isCommentSaved) {
                 $status = 201;
                 $request->session()->flash('comment-toast', 'Comment successfully posted');
-            }
-            else {
-                $status = 409;
             }
         }
         catch (\Exception $exception) {

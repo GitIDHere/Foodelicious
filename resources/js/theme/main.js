@@ -94,6 +94,9 @@
             dots: true,
             autoplay: true,
             autoplayTimeout: 5000,
+            itemsDesktop : [250,1],
+            autoHeight: true,
+            center: true,
             smartSpeed: 1000
         });
     }

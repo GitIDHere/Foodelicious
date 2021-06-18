@@ -2345,6 +2345,8 @@ form#profile-details-form
                         display: block;
                         margin-top: 5px;
                         font-size: 1.13em;
+                        font-family: "Open Sans", serif;
+                        font-weight: 600;
                     }
 
                     &:after
@@ -2363,6 +2365,11 @@ form#profile-details-form
             }
         }
     }
+}
+
+.owl-stage
+{
+    background: #e8e8e8;
 }
 
 

@@ -32,11 +32,23 @@
 
                                 @if (isset($recipe))
                                     {{ Breadcrumbs::render('edit_recipe', $recipe)}}
-                                    <h2 class="mt-0">Edit Recipe</h2>
                                 @else
                                     {{ Breadcrumbs::render('new_recipe') }}
-                                    <h2 class="mt-0">New Recipe</h2>
                                 @endif
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        @if (isset($recipe))
+                                            <h2 class="mt-0">Edit Recipe</h2>
+                                        @else
+                                            <h2 class="mt-0">New Recipe</h2>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-6 clearfix">
+                                        <a class="btn-small right" target="_blank" href="{{route('recipe.preview', ['recipe' => $recipe, 'recipe_title' => $data['title']])}}">Preview recipe</a>
+                                    </div>
+                                </div>
 
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
@@ -258,8 +270,6 @@
                         </div>
 
                     </div>
-
-
 
                 </div>
 

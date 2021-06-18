@@ -37,15 +37,7 @@ $(function()
                     })
                     .fail(function(resp)
                     {
-                        if(resp.status === 409)
-                        {
-                            // Show toast
-                            toastr.warning('You have already commented on this recipe.');
-                        }
-                        else {
-                            // Show toast
-                            toastr.warning('Error posting comment');
-                        }
+                        toastr.warning('Error posting comment');
                     })
                 ;
             });

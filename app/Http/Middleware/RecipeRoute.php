@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class RecipeRoute
 {
+    /**
+     * Check if the recipe is published and the title in the URL matches the title of the recipe.
+     *
+     * @param Request $request
+     * @param Closure $next
+     * @return \Illuminate\Http\RedirectResponse|mixed
+     */
     public function handle(Request $request, Closure $next)
     {
         $hasRecipeRoute = $request->route()->hasParameter('recipe');

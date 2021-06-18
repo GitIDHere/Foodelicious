@@ -14,11 +14,11 @@ class RecipeViewService
      * @param $commentId
      * @return bool|mixed|null
      */
-    public function deleteComment(UserProfile $userProfile, $recipeId, $commentId)
+    public function deleteComment(UserProfile $userProfile, Recipe $recipe, $commentId)
     {
         // Get the user's comments for this recipe
         // Checks that the comment is linked to the recipe
-        $comments = $userProfile->recipeComments()->where('recipe_id', $recipeId)->first();
+        $comments = $userProfile->recipeComments()->where('recipe_id', $recipe->id)->first();
 
         // There aren't any comments to delete
         if (empty($comments)) {
@@ -28,7 +28,7 @@ class RecipeViewService
         // Check that the comment belongs to the user
         $comment = $comments->where('id', $commentId)->first();
 
-        if ($comment)
+        if ($recipe->is_published && $comment)
         {
             // Delete comment
             return $comment->delete();
@@ -48,7 +48,7 @@ class RecipeViewService
         // Make sure the user hasn't already commented on this recipe
         $existingComment = $userProfile->recipeComments()->where('recipe_id', $recipe->id)->first();
 
-        if (empty($existingComment))
+        if ($recipe->is_published && empty($existingComment))
         {
             $comment = RecipeComments::create([
                 'user_profile_id' => $userProfile->id,
@@ -72,7 +72,7 @@ class RecipeViewService
         // Get the current rating
         $favourite = $userProfile->recipeFavourites()->where('recipe_id', $recipe->id)->first();
 
-        if (empty($favourite))
+        if ($recipe->is_published && empty($favourite))
         {
             // If not found, then create
             $favourite = RecipeFavourites::create([

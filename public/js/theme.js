@@ -159,15 +159,7 @@ $(function()
                     })
                     .fail(function(resp)
                     {
-                        if(resp.status === 409)
-                        {
-                            // Show toast
-                            toastr.warning('You have already commented on this recipe.');
-                        }
-                        else {
-                            // Show toast
-                            toastr.warning('Error posting comment');
-                        }
+                        toastr.warning('Error posting comment');
                     })
                 ;
             });
@@ -324,6 +316,9 @@ $(function()
             dots: true,
             autoplay: true,
             autoplayTimeout: 5000,
+            itemsDesktop : [250,1],
+            autoHeight: true,
+            center: true,
             smartSpeed: 1000
         });
     }

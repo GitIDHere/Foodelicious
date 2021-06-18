@@ -10,7 +10,7 @@
                 <div class="col-12">
                     <div class="recipe-slider owl-carousel">
                         @foreach($recipe['photos'] as $photo)
-                            <img src="{{$photo}}" alt="">
+                            <img src="{{$photo}}" class="mx-auto" style="width: 680px;" alt="">
                         @endforeach
                     </div>
                 </div>
@@ -23,10 +23,13 @@
 
                 <div class="row">
 
-                    <div class="col-10">
+                    <div class="mt-4 recipe-headline col-12">
+                        <span>{{date('F j, Y', strtotime($recipe['date_created']))}}</span>
+                        <h2>{{$recipe['title']}}</h2>
+                    </div>
+
+                    <div class="col-11 col-lg-8">
                         <div class="recipe-headline my-5">
-                            <span>{{date('F j, Y', strtotime($recipe['date_created']))}}</span>
-                            <h2>{{$recipe['title']}}</h2>
                             <div class="recipe-duration">
                                 <h6>Cook: {{$recipe['cook_time']}}</h6>
                                 <h6>Yields: {{$recipe['servings']}} Servings</h6>
@@ -37,9 +40,9 @@
                         </div>
                     </div>
 
-                    @if($recipe['is_published'])
+                    @if($recipe['is_preview'] || $recipe['is_published'])
                         <!-- FAVOURITING --->
-                        <div class="col-2">
+                        <div class="col-1 pl-0">
                             <div class="recipe-favourites text-right my-5">
                                 <div class="favourites">
                                     <form>
@@ -81,7 +84,7 @@
 
                 @auth()
 
-                    @if ($recipe['is_published'] && $recipe['enable_comments'])
+                    @if ($recipe['is_preview'] || ($recipe['is_published'] && $recipe['enable_comments']))
 
                         @include('screens.recipe._comments')
 
@@ -126,7 +129,7 @@
                 @endauth
 
                 @guest
-                    <div class="col-12">
+                    <div class="col-12 mb-5 clearfix">
                         <a class="btn-small" href="{{route('login.show')}}">Login to comment</a>
                     </div>
                 @endguest

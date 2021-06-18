@@ -110,13 +110,15 @@ class RecipeService
                 $thumbnail = asset($recipePhoto->thumbnail_path);
             }
 
+            $favouriteCount = $recipe->recipeFavourites()->where('is_favourited', 1)->get()->count();
+
             return [
                 'id' => $recipe->id,
                 'title' => $recipe->title,
                 'img_url' => $imgURL,
                 'thumbnail' => $thumbnail,
                 'date_created' => $recipe->created_at->format('d/m/Y'),
-                'total_favourites' => 0,
+                'total_favourites' => $favouriteCount,
             ];
         });
 
@@ -125,6 +127,70 @@ class RecipeService
             'pager' => $pager
         ];
     }
+
+
+    /**
+     * @param Recipe $recipe
+     * @param UserProfile|null $userProfile
+     * @return array
+     */
+    public function getRecipeData(Recipe $recipe, UserProfile $userProfile = null)
+    {
+        /**
+         * - Photos
+         * X- Stars/Thumbs ups
+         * X- Comments
+         * X- Ingredients
+         * X- Title
+         * X- Cooking steps
+         * X- Date created
+         * X- Utensils
+         * X- Description
+         * X- Cook time
+         * X- User details (username)
+         *  - View user profile. Only the public recipes
+         */
+
+
+        $recipePhotos = $recipe->files->map(function($file)
+        {
+            return asset($file->public_path);
+        })->toArray();
+
+        $favouriteCount = $recipe->recipeFavourites()->where('is_favourited', 1)->get()->count();
+
+        $isFavourited = false;
+
+        // Get the favourite record for the user for this recipe
+        if ($userProfile)
+        {
+            // Check if this recipe belongs to the user
+            if ($userProfile->recipes->contains($recipe->id))
+            {
+                $favourites = $userProfile->recipeFavourites()->where('recipe_id', $recipe->id)->first();
+                $isFavourited = ($favourites && $favourites->is_favourited ?: false);
+            }
+        }
+
+        return [
+            'id' => $recipe->id,
+            'title' => $recipe->title,
+            'description' => $recipe->description,
+            'favourites' => $favouriteCount,
+            'servings' => $recipe->servings,
+            'cooking_steps' => $recipe->cooking_steps,
+            'date_created' => $recipe->created_at,
+            'utensils' => $recipe->utensils,
+            'cook_time' => $recipe->cook_time_formatted,
+            'username' => $recipe->userProfile->username,
+            'ingredients' => $recipe->ingredients,
+            'photos' => $recipePhotos,
+            'is_favourited' => $isFavourited,
+            'is_published' => $recipe->is_published,
+            'enable_comments' => $recipe->enable_comments
+        ];
+    }
+
 
     /**
      * @param Recipe $recipe

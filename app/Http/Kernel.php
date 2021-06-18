@@ -94,6 +94,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         'user.routes' => \App\Http\Middleware\UserRoute::class,
+        'user.recipe' => \App\Http\Middleware\UserRecipe::class,
         'url.parameters' => \App\Http\Middleware\URLParameters::class,
         'user.email.verify' => \App\Http\Middleware\EmailMustBeVerified::class,
         'recipe.route' => \App\Http\Middleware\RecipeRoute::class,
