@@ -4,6 +4,16 @@
 
     <div class="recipe-post-area">
 
+        @if (isset($recipe['is_preview']) && $recipe['is_preview'])
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="preview-banner">This is a preview of your recipe</p>
+                    </div>
+                </div>
+            </div>
+        @endif
+
         <!-- recipe Slider -->
         <div class="container">
             <div class="row">
@@ -40,7 +50,7 @@
                         </div>
                     </div>
 
-                    @if($recipe['is_preview'] || $recipe['is_published'])
+                    @if((isset($recipe['is_preview']) && $recipe['is_preview']) || $recipe['is_published'])
                         <!-- FAVOURITING --->
                         <div class="col-1 pl-0">
                             <div class="recipe-favourites text-right my-5">
@@ -84,7 +94,7 @@
 
                 @auth()
 
-                    @if ($recipe['is_preview'] || ($recipe['is_published'] && $recipe['enable_comments']))
+                    @if ((isset($recipe['is_preview']) && $recipe['is_preview']) || ($recipe['is_published'] && $recipe['enable_comments']))
 
                         @include('screens.recipe._comments')
 

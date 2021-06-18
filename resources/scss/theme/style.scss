@@ -1682,14 +1682,127 @@ textarea:focus {
 
 /* Features Area */
 
+h1,h2,h3
+{
+    width: 100%;
+    display: block;
+    margin: 15px 0;
+}
+
+h2
+{
+    font-size: 1.7em;
+}
+
+h3
+{
+    font-size: 1.5em;
+}
 
 h1
 {
     font-size:2.3em;
 }
 
+.txt-center
+{
+    text-align: center;
+}
 
-.single-feature-area {
+.bg-grey
+{
+    background: $light-grey;
+}
+
+.right
+{
+    float: right;
+}
+
+.clear
+{
+    clear: both;
+}
+
+.red
+{
+    color: $red;
+}
+
+.render-toast
+{
+    display: none;
+}
+
+img#profile_pic
+{
+    width: 200px;
+    border-radius: 100%;
+}
+
+.green-circle
+{
+    border: 1px solid $bg-default;
+}
+
+.section-heading
+{
+    margin-bottom: 20px;
+}
+
+.owl-stage
+{
+    background: #e8e8e8;
+}
+
+a.btn
+{
+    background-color: #40ba37;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+form label
+{
+    font-weight: 600;
+    font-size: 1.2em;
+    margin-bottom:15px;
+}
+
+.txt-area
+{
+    height: 225px;
+
+    &:focus
+    {
+        background: $input-bg;
+    }
+}
+
+.preview-banner
+{
+    padding: 10px;
+    background: $bg-default;
+    text-align: center;
+    color: $white;
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.white-box
+{
+    background: $white-color;
+    border-radius: 7px;
+
+    @include media-responsive($screen-xs) {
+        border-radius: 0;
+    }
+}
+
+.single-feature-area
+{
     position: relative;
     z-index: 1;
     h5 {
@@ -1698,20 +1811,226 @@ h1
     }
 }
 
+.btn-tile
+{
+    margin: 10px;
+
+    span
+    {
+        font-size: 1.2em;
+        text-transform: capitalize;
+    }
+
+    i
+    {
+        margin-bottom:10px;
+        font-size: 2.2em;
+        display: block;
+    }
+}
+
+.btn-small
+{
+    background-color: #40ba37;
+    color: #ffffff;
+    border-left: 3px solid #1c8314;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+
+    &:hover
+    {
+        color: white;
+        transition: initial;
+    }
+}
+
+.light-bg-overlay
+{
+    position: relative;
+    z-index: 2;
+    background-position: center center;
+    background-size: cover;
+
+    &::after {
+        background-color: rgba(10, 12, 18, 0.14);
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        content: "";
+    }
+}
+
+.warning
+{
+    padding: 15px;
+    border: 2px dashed $dark-red;
+    text-align: center;
+
+    p
+    {
+        margin: 0;
+        font-size: 1.2em;
+        color: #000;
+    }
+}
+
+.input-container
+{
+    margin: 25px 0;
+
+    label
+    {
+        display: block;
+        margin-bottom: 10px;
+    }
+}
+
+.recipe-headline
+{
+    .recipe-description
+    {
+        margin-top: 20px;
+
+        p
+        {
+            color: initial;
+            font-size: 1.2em;
+        }
+    }
+}
+
+.contact-form-area
+{
+    .form-control
+    {
+        font-style: initial;
+        font-size: 1.1em;
+    }
+}
+
+.recipe-favourites
+{
+    .favourites
+    {
+        text-align: center;
+
+        form
+        {
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            font: 1em verdana, sans-serif;
+        }
+
+        span
+        {
+            display: block;
+            font-size: 2em;
+            font-weight: 400;
+            color: $text-color;
+        }
+    }
+}
+
+.hint
+{
+    i
+    {
+        color: #007bff;
+        position: relative;
+
+        span[aria-label]
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 15px;
+            height: 15px;
+            display: inline-block;
+        }
+
+        .hint-tooltip
+        {
+            --balloon-font-size: 0.95rem;
+            line-height: 21px;
+            --balloon-color: #007bff;
+        }
+    }
+}
+
+.notification-bar
+{
+    background: $bg-default;
+
+    h1,h2,h3,h4 {
+        font-size: 1.2rem !important;
+        color: white !important;
+    }
+
+    input[type="submit"].link
+    {
+        background: none;
+        border: none;
+        text-decoration: underline;
+        font-size: 1.2rem !important;
+        color: white !important;
+        vertical-align: top;
+        margin: 0 5px 8px 5px;
+        font-weight: 600;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.recipe-content-area
+{
+    @include media-responsive ($screen-md)
+    {
+        .recipe-info-container
+        {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+
+            .prep-directions
+            {
+                -webkit-box-ordinal-group: 2;
+                -moz-box-ordinal-group: 2;
+                -ms-flex-order: 2;
+                -webkit-order: 2;
+                order: 2;
+            }
+
+            .ingredient-list
+            {
+                -webkit-box-ordinal-group: 1;
+                -moz-box-ordinal-group: 1;
+                -ms-flex-order: 1;
+                -webkit-order: 1;
+                order: 1;
+            }
+        }
+    }
+}
+
+// The grey bar for the comments
 .slidetxt
 {
     background-color:#fff;
     margin-bottom:15px;
 
-    .slidetxtinner
-    {
-
-    }
-
     h3
     {
         position:relative;
-        color:#F39321;
         font-weight:400;
         padding:0px 0px 0px 0px;
         background-color:#EBEBE9;
@@ -1781,7 +2100,6 @@ h1
     }
 }
 
-
 .comment
 {
     padding: 15px;
@@ -1822,7 +2140,8 @@ h1
         font-size: 1.1em;
         margin-bottom: 0;
 
-        @include media-responsive($screen-xs) {
+        @include media-responsive($screen-xs)
+        {
             font-size: 1em;
         }
     }
@@ -1833,7 +2152,8 @@ h1
     text-align: right;
     margin: 10px 0;
 
-    .page-btn {
+    .page-btn
+    {
         display: inline-block;
         padding: 5px 20px;
         border: 1px solid $bg-default;
@@ -1841,243 +2161,17 @@ h1
         margin-top: 3px;
     }
 
-    span.page-btn {
+    span.page-btn
+    {
         cursor: default;
         color: $white-color;
         background: $bg-default;
     }
 
-    p {
-        display: block;
-    }
-}
-
-.warning
-{
-    padding: 15px;
-    border: 2px dashed $dark-red;
-    text-align: center;
-
     p
     {
-        margin: 0;
-        font-size: 1.2em;
-        color: #000;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-#toast-container
-{
-    --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-    --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-
-    text-align: center;
-
-    .toast
-    {
-        box-shadow: none;
-        opacity: 1;
-        display: inline-block;
-        width: auto !important;
-
-        &:hover{
-            box-shadow: 0 0 5px #000;
-        }
-    }
-
-    .toast-message
-    {
-        font-size: 1.1em;
-    }
-
-    & > .toast-info
-    {
-        background-color: $bg-default;
-    }
-
-    & > .toast-warning
-    {
-        background-color: $alert-color;
-    }
-
-}
-
-
-
-
-
-
-.notification-bar
-{
-    background: $bg-default;
-
-    h1,h2,h3,h4 {
-        font-size: 1.2rem !important;
-        color: white !important;
-    }
-
-    input[type="submit"].link
-    {
-        background: none;
-        border: none;
-        text-decoration: underline;
-        font-size: 1.2rem !important;
-        color: white !important;
-        vertical-align: top;
-        margin: 0 5px 8px 5px;
-        font-weight: 600;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-}
-
-
-.white-box
-{
-    background: $white-color;
-    border-radius: 7px;
-
-    @include media-responsive($screen-xs) {
-        border-radius: 0;
-    }
-}
-
-.light-bg-overlay
-{
-    position: relative;
-    z-index: 2;
-    background-position: center center;
-    background-size: cover;
-
-    &::after {
-        background-color: rgba(10, 12, 18, 0.14);
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        content: "";
-    }
-}
-
-.right
-{
-    float: right;
-}
-
-.clear
-{
-    clear: both;
-}
-
-.red {
-    color: $red;
-}
-
-.green-circle
-{
-    border: 1px solid $bg-default;
-}
-
-.section-heading {
-    margin-bottom: 20px;
-}
-
-form label
-{
-    font-weight: 600;
-    font-size: 1.2em;
-    margin-bottom:15px;
-}
-
-img#profile_pic
-{
-    width: 200px;
-    border-radius: 100%;
-}
-
-a.btn
-{
-    background-color: #40ba37;
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-h1,h2,h3
-{
-    width: 100%;
-    display: block;
-    margin: 15px 0;
-}
-
-h1
-{
-    font-size: 2em;
-}
-
-h2
-{
-    font-size: 1.7em;
-}
-
-h3
-{
-    font-size: 1.5em;
-}
-
-.btn-tile
-{
-    margin: 10px;
-
-    span
-    {
-        font-size: 1.2em;
-        text-transform: capitalize;
-    }
-
-    i
-    {
-        margin-bottom:10px;
-        font-size: 2.2em;
         display: block;
     }
-}
-
-.btn-small
-{
-    background-color: #40ba37;
-    color: #ffffff;
-    border-left: 3px solid #1c8314;
-    padding: 15px;
-    font-size: 14px;
-    font-weight: 600;
-    display: inline-block;
-
-    &:hover
-    {
-        color: white;
-        transition: initial;
-    }
-}
-
-.render-toast {
-    display: none;
 }
 
 .sidebar
@@ -2108,7 +2202,6 @@ h3
         }
     }
 }
-
 
 .breadcrumb
 {
@@ -2143,6 +2236,47 @@ h3
                         display: none;
                     }
                 }
+            }
+        }
+    }
+}
+
+.search-box
+{
+    background-color: $white;
+    margin-bottom: 40px;
+    border: 1px solid $faint-grey;
+    border-radius: 5px;
+    padding: 5px;
+
+    form
+    {
+        button
+        {
+            width: 5%;
+            background: none;
+            border: none;
+            padding: 7px;
+            border-right: 1px solid $faint-grey;
+
+            @include media-responsive($screen-md)
+            {
+                width: 8%;
+            }
+
+            &:hover
+            {
+                cursor: pointer;
+            }
+        }
+
+        input
+        {
+            width: 94%;
+            padding: 7px;
+            border: none;
+            @include media-responsive($screen-md) {
+                width: 89%;
             }
         }
     }
@@ -2205,67 +2339,6 @@ form#profile-details-form
     {
         font-size: 1.2em;
     }
-}
-
-.txt-area
-{
-    height: 225px;
-
-    &:focus
-    {
-        background: $input-bg;
-    }
-}
-
-.txt-center{
-    text-align: center;
-}
-
-.bg-grey
-{
-    background: $light-grey;
-}
-
-.search-box
-{
-    background-color: $white;
-    margin-bottom: 40px;
-    border: 1px solid $faint-grey;
-    border-radius: 5px;
-    padding: 5px;
-
-    form
-    {
-        button
-        {
-            width: 5%;
-            background: none;
-            border: none;
-            padding: 7px;
-            border-right: 1px solid $faint-grey;
-
-            @include media-responsive($screen-md)
-            {
-                width: 8%;
-            }
-
-            &:hover
-            {
-                cursor: pointer;
-            }
-        }
-
-        input
-        {
-            width: 94%;
-            padding: 7px;
-            border: none;
-            @include media-responsive($screen-md) {
-                width: 89%;
-            }
-        }
-    }
-
 }
 
 .recipe-list
@@ -2367,23 +2440,6 @@ form#profile-details-form
     }
 }
 
-.owl-stage
-{
-    background: #e8e8e8;
-}
-
-
-.input-container
-{
-    margin: 25px 0;
-
-    label
-    {
-        display: block;
-        margin-bottom: 10px;
-    }
-}
-
 .cooking-steps-container
 {
     background: $light-grey;
@@ -2418,7 +2474,41 @@ form#profile-details-form
             }
         }
     }
+}
 
+#toast-container
+{
+    --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+
+    text-align: center;
+
+    .toast
+    {
+        box-shadow: none;
+        opacity: 1;
+        display: inline-block;
+        width: auto !important;
+
+        &:hover{
+            box-shadow: 0 0 5px #000;
+        }
+    }
+
+    .toast-message
+    {
+        font-size: 1.1em;
+    }
+
+    & > .toast-info
+    {
+        background-color: $bg-default;
+    }
+
+    & > .toast-warning
+    {
+        background-color: $alert-color;
+    }
 }
 
 .tagify--outside.tags-container
@@ -2482,117 +2572,6 @@ form#profile-details-form
 .tagify--outside.tagify--focus .tagify__input{
     transition:0s;
     border-color: var(--tags-focus-border-color);
-}
-
-
-.hint
-{
-    i
-    {
-        color: #007bff;
-        position: relative;
-
-        span[aria-label]
-        {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 15px;
-            height: 15px;
-            display: inline-block;
-        }
-
-        .hint-tooltip
-        {
-            --balloon-font-size: 0.95rem;
-            line-height: 21px;
-            --balloon-color: #007bff;
-        }
-    }
-}
-
-.recipe-headline
-{
-
-    .recipe-description
-    {
-        margin-top: 20px;
-
-        p
-        {
-            color: initial;
-            font-size: 1.2em;
-        }
-    }
-}
-
-.recipe-favourites
-{
-    .favourites
-    {
-        text-align: center;
-
-        form
-        {
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            font: 1em verdana, sans-serif;
-        }
-
-        span
-        {
-            display: block;
-            font-size: 2em;
-            font-weight: 400;
-            color: $text-color;
-        }
-    }
-}
-
-
-.recipe-content-area
-{
-    @include media-responsive ($screen-md)
-    {
-        .recipe-info-container
-        {
-            display: -webkit-box;
-            display: -moz-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex;
-
-            .prep-directions
-            {
-                -webkit-box-ordinal-group: 2;
-                -moz-box-ordinal-group: 2;
-                -ms-flex-order: 2;
-                -webkit-order: 2;
-                order: 2;
-            }
-
-            .ingredient-list
-            {
-                -webkit-box-ordinal-group: 1;
-                -moz-box-ordinal-group: 1;
-                -ms-flex-order: 1;
-                -webkit-order: 1;
-                order: 1;
-            }
-        }
-    }
-}
-
-
-
-.contact-form-area
-{
-    .form-control
-    {
-        font-style: initial;
-        font-size: 1.1em;
-    }
 }
 
 /*
