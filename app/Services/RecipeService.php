@@ -5,8 +5,10 @@ namespace App\Services;
 use App\Models\File;
 use App\Models\Recipe;
 use App\Models\UserProfile;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class RecipeService
@@ -26,14 +28,12 @@ class RecipeService
     }
 
     /**
-     * @param $userProfile
-     * @param $recipe
+     * @param UserProfile $userProfile
+     * @param Recipe $recipe
      * @param $recipeData
-     * @param $savePhotos
      * @return mixed|null
-     * @throws \Exception
      */
-    public function saveRecipe($userProfile, $recipe, $recipeData, $savePhotos)
+    public function saveRecipe(UserProfile $userProfile, Recipe $recipe, $recipeData)
     {
         // Check $recipe is already attached to the user
         $isUserRecipe = $userProfile->recipes->contains($recipe);
@@ -49,9 +49,22 @@ class RecipeService
             $recipe->recipeMetadata()->create($recipeData);
         }
 
-        if ($recipe)
+        return $recipe;
+    }
+
+    /**
+     * @param Recipe $recipe
+     * @param array $photos
+     * @return array
+     * @throws \Exception
+     */
+    public function savePhotos(Recipe $recipe, $photos = [])
+    {
+        $fileIds = [];
+
+        if ($recipe->files->count() < $this->recipePhotoService->getMaxFileUploads())
         {
-            $savedFiles = $this->recipePhotoService->savePhotos($savePhotos);
+            $savedFiles = $this->recipePhotoService->savePhotos($photos);
 
             if ($savedFiles->isNotEmpty())
             {
@@ -61,22 +74,40 @@ class RecipeService
                 });
 
                 $recipe->files()->attach($savedFiles);
-            }
 
-            return $recipe;
+                $fileIds = $savedFiles->map(function($file){
+                   return $file->id;
+                });
+            }
         }
 
-        return null;
+        return $fileIds;
     }
 
+
     /**
-     * @param $recipe
-     * @param $photosToDeleteIds
+     * @param Recipe $recipe
+     * @param $photoIds
      * @throws \Exception
      */
-    public function deletePhotos($recipe, $photosToDeleteIds)
+    public function deletePhotos(Recipe $recipe, $photoIds)
     {
-        $this->recipePhotoService->deletePhotos($recipe, $photosToDeleteIds);
+        /** @var Collection $recipePhotos */
+        $recipePhotos = $recipe->files;
+
+        if ($photoIds instanceof \Illuminate\Support\Collection) {
+            $photoIds = collect($photoIds);
+        }
+
+        $photoIds->each(function($val, $index) use ($recipePhotos, $photoIds)
+        {
+            // Check if the recipe has this file ID
+            if ($recipePhotos->containsStrict('id', (int) $val) === false){
+                unset($photoIds[$index]);
+            }
+        });
+
+        return $this->recipePhotoService->deletePhotos($recipe, $photoIds);
     }
 
 

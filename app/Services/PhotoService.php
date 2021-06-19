@@ -83,6 +83,10 @@ class PhotoService
 
         $visibility = $this->getVisibility();
 
+        if (is_array($files) == false) {
+            $files = [$files];
+        }
+
         foreach($files as $fileIndex => $file)
         {
             // Check that the mime type is allowed

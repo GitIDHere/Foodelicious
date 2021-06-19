@@ -18,6 +18,8 @@
 @import '../css/plugins/tagify.min.css';
 @import '../css/plugins/balloon.min.css';
 @import "~toastr/build/toastr.min.css";
+@import "../css/plugins/dropzone.min.css";
+@import "../css/plugins/basic.min.css";
 @import "~cropperjs/dist/cropper.min.css";
 html {
   line-height: 1.15;
@@ -2365,6 +2367,28 @@ form label {
   font-size: 1.3em;
   font-weight: 600;
   margin-bottom: 10px;
+}
+
+/**
+ * Hide the default Dropzone error message popup
+ */
+.dropzone {
+  border: none;
+  border-left: 3px solid #40ba37;
+}
+.dropzone form {
+  display: none;
+}
+.dropzone .dz-message {
+  font-size: 1.3em;
+  font-weight: 500;
+}
+.dropzone .dz-error-message {
+  display: none !important;
+}
+.dropzone .dz-error-mark svg {
+  background: #b13a28;
+  border-radius: 100%;
 }
 
 .white-box {

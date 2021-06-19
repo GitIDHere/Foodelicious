@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models;
 use Illuminate\Filesystem\FilesystemAdapter;
+use Illuminate\Support\Collection;
 
 class RecipePhotoService extends PhotoService
 {
@@ -21,6 +22,11 @@ class RecipePhotoService extends PhotoService
      * @var int
      */
     protected $thumbnailHeight = 150;
+
+    /**
+     * @var int
+     */
+    protected $maxFileUploads = 4;
 
     /**
      * @param string $visibility
@@ -41,12 +47,14 @@ class RecipePhotoService extends PhotoService
 
     /**
      * @param Models\Recipe $recipe
-     * @param [] $photoIds
+     * @param Collection $photoIds
      * @throws \Exception
      */
-    public function deletePhotos($recipe, $photoIds)
+    public function deletePhotos(Models\Recipe $recipe, Collection $photoIds)
     {
-        if ($recipe instanceof Models\Recipe && !empty($photoIds))
+        $success = false;
+
+        if ($recipe instanceof Models\Recipe && $photoIds->isEmpty() == false)
         {
             if (!is_array($photoIds)) {
                 $photoIds = [$photoIds];
@@ -61,7 +69,18 @@ class RecipePhotoService extends PhotoService
             {
                 $this->deletePhotoFromDrive($recipe, $recipeImgFile);
             }
+
+            $success = true;
         }
+
+        return $success;
     }
 
+    /**
+     * @return int
+     */
+    public function getMaxFileUploads()
+    {
+        return $this->maxFileUploads;
+    }
 }

@@ -24,6 +24,9 @@
 
 @import "~toastr/build/toastr.min.css";
 
+@import "../css/plugins/dropzone.min.css";
+@import "../css/plugins/basic.min.css";
+
 /* :: 3.0 Base CSS */
 
 * {
@@ -1790,6 +1793,39 @@ form label
     font-weight: 600;
     margin-bottom: 10px;
 }
+
+
+/**
+ * Hide the default Dropzone error message popup
+ */
+.dropzone
+{
+    border: none;
+    border-left: 3px solid $bg-default;
+
+    form {
+        display: none;
+    }
+
+    .dz-message
+    {
+        font-size: 1.3em;
+        font-weight: 500;
+    }
+
+    .dz-error-message {
+        display: none !important;
+    }
+
+    .dz-error-mark
+    {
+        svg {
+            background: $dark-red;
+            border-radius: 100%;
+        }
+    }
+}
+
 
 .white-box
 {

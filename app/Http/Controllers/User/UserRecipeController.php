@@ -112,12 +112,10 @@ class UserRecipeController extends Controller
             $recipeFields['is_published'] = $request->get('is_published') ? 1 : 0;
             $recipeFields['enable_comments'] = $request->get('enable_comments') ? 1 : 0;
 
-            $recipe = $this->recipeService->saveRecipe($userProfile, $recipe, $recipeFields, $savePhotos);
+            $recipe = $this->recipeService->saveRecipe($userProfile, $recipe, $recipeFields);
 
             if ($recipe)
             {
-                $this->recipeService->deletePhotos($recipe, $photosToDeleteIds);
-
                 // Dispatch event
                 RecipeCreated::dispatch($recipe);
 
