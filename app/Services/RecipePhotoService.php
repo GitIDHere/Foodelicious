@@ -82,6 +82,9 @@ class RecipePhotoService extends PhotoService
             foreach ($recipeImgFiles as $recipeImgFile)
             {
                 $this->deletePhotoFromDrive($recipeImgFile, $recipe);
+
+                // Delete the File row
+                $recipeImgFile->delete();
             }
 
             $success = true;
@@ -108,7 +111,7 @@ class RecipePhotoService extends PhotoService
                 // Make sure that the files being removed are the ones in the session
                 if ($cachedPhotos->contains($file->id))
                 {
-                    if ($file->isAttachedToRelation() === false)
+                    if ($file->is_attached == false)
                     {
                         $this->deletePhotoFromDrive($file);
 
@@ -132,23 +135,20 @@ class RecipePhotoService extends PhotoService
         // Get existing collection
         $cachedPhotos = $this->getCachedPhotos($recipeUUID);
 
-        $photos->each(function($photo) use ($cachedPhotos, &$fileIds)
+        $savedPhotos = $this->savePhotos($photos);
+
+        if ($savedPhotos->isNotEmpty())
         {
-            $savedPhoto = $this->savePhotos($photo);
-
-            if ($savedPhoto->isNotEmpty())
+            $savedPhotos->each(function($photo) use ($cachedPhotos, &$fileIds)
             {
-                $savedPhoto = $savedPhoto->first();
+                $this->makeThumbnail($photo->path);
 
-                $this->makeThumbnail($savedPhoto->path);
-
-
-                $fileIds[] = $savedPhoto->id;
+                $fileIds[] = $photo->id;
 
                 // Add the file ID to the session cache
-                $cachedPhotos->add($savedPhoto->id);
-            }
-        });
+                $cachedPhotos->add($photo->id);
+            });
+        }
 
         $this->storeCachedPhotos($recipeUUID, $cachedPhotos);
 
@@ -173,12 +173,14 @@ class RecipePhotoService extends PhotoService
 
             if ($savedPhotos->isNotEmpty())
             {
+                $recipe->files()->attach($savedPhotos);
+
                 $savedPhotos->each(function($photo)
                 {
                     $this->makeThumbnail($photo->path);
-                });
 
-                $recipe->files()->attach($savedPhotos);
+                    $photo->update(['is_attached' => true]);
+                });
 
                 $fileIds = $savedPhotos->map(function($file){
                     return $file->id;

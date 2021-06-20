@@ -64,6 +64,9 @@ class UserProfileService
         if (is_object($profilePic))
         {
             $this->profilePhotoService->deletePhotoFromDrive($profilePic, $userProfile);
+
+            // Delete the File row
+            $profilePic->delete();
         }
     }
 

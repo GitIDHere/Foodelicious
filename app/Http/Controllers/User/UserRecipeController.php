@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Classes\DBCleaner;
 use App\Events\RecipeCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RecipeCreateRequest;

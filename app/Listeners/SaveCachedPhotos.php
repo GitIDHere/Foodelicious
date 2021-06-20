@@ -38,6 +38,7 @@ class SaveCachedPhotos
             $photos->each(function($photo) use ($recipe)
             {
                 $recipe->files()->attach($photo);
+                $photo->update(['is_attached' => true]);
             });
         }
         catch (\Exception $exception) {

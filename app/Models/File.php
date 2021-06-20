@@ -11,7 +11,8 @@ class File extends Model
 
     protected $fillable = [
         'name',
-        'path'
+        'path',
+        'is_attached'
     ];
 
 
@@ -40,22 +41,6 @@ class File extends Model
        return 'storage/thumbnails/'.$this->path;
     }
 
-    /**
-     * @return bool
-     */
-    public function isAttachedToRelation()
-    {
-        $isAttached = false;
-
-        switch (true) {
-            case $this->userProfile()->exists():
-            case $this->recipe()->exists():
-                $isAttached = true;
-                break;
-        }
-
-        return $isAttached;
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOneThrough

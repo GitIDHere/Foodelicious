@@ -279,6 +279,9 @@ class PhotoService
         {
             // Remove the table link
             $model->files()->detach($picFile->id);
+
+            $picFile->is_attached = 0;
+            $picFile->save();
         }
 
         $public = self::VISIBILITY_PUBLIC;
