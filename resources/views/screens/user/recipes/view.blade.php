@@ -12,6 +12,8 @@
             if (empty(old('utensils')) && isset($data)) {
                 $utensils = $data['utensils'];
             }
+
+            $uuid = Str::uuid();
         @endphp
 
         <div class="container">
@@ -71,7 +73,7 @@
                                         action="{{route('user.recipes.save.submit', ['recipe' => $recipe])}}"
                                     @else
                                         action="{{route('user.recipes.create.submit')}}"
-                                        data-recipe="{{ Str::uuid()}}"
+                                        data-recipe="{{ $uuid }}"
                                     @endif
                                     enctype="multipart/form-data">
 
@@ -271,6 +273,8 @@
                                         </div>
 
                                     </div>
+
+                                    <input type="hidden" name="uuid" value="{{$uuid}}"/>
 
                                     <div class="input-container">
                                         <input id="recipe-form-submit" type="submit" value="Save" class="btn delicious-btn right" />

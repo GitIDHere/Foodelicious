@@ -35,6 +35,7 @@ class RecipeCreateRequest extends FormRequest
             'ingredients' => 'required|json',
             'is_published' => 'integer|between:0,1',
             'enable_comments' => 'integer|between:0,1',
+            'uuid' => 'required|uuid'
         ];
     }
 

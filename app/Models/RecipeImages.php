@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class RecipeImages extends Pivot
 {
     use HasFactory;
+
+    protected $table = 'recipe_images';
 }

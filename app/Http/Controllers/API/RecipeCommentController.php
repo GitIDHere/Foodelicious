@@ -55,7 +55,7 @@ class RecipeCommentController extends Controller
             }
 
         } catch (\Exception $exception) {
-            AppLog::createLog($request, AppLog::TYPE_EXCEPTION, $exception);
+            AppLog::createLog(AppLog::TYPE_EXCEPTION, $exception, $request);
         }
 
         return new JsonResponse(null, $status);

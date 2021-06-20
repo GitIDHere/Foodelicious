@@ -226,10 +226,15 @@ window.Dropzone.default.autoDiscover = false;
 $(function()
 {
     var recipeId = $('#recipe-form').attr('data-recipe');
-    var photoEndpoint = APP_URL + 'api/'+recipeId+'/photos';
+
+    var endpoint = APP_URL + 'api/';
+    if (isNaN(recipeId)) {
+        endpoint += 'recipe/create/';
+    }
+    endpoint += recipeId + '/photos';
 
     $("#recipe_dropzone").dropzone({
-        url: photoEndpoint,
+        url: endpoint,
         uploadMultiple: false,
         autoDiscover: false,
         paramName: "photos", // The name that will be used to transfer the file
@@ -247,7 +252,7 @@ $(function()
         removedfile: function (file)
         {
             $.ajax({
-                url : photoEndpoint,
+                url : endpoint,
                 type: "DELETE",
                 accept: 'application/json',
                 data: {"id": file.id},

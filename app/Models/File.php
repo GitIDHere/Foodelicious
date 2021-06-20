@@ -41,19 +41,50 @@ class File extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return bool
      */
-    public function recipe()
+    public function isAttachedToRelation()
     {
-        return $this->belongsTo(Recipe::class);
+        $isAttached = false;
+
+        switch (true) {
+            case $this->userProfile()->exists():
+            case $this->recipe()->exists():
+                $isAttached = true;
+                break;
+        }
+
+        return $isAttached;
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasOneThrough
+     */
+    public function recipe()
+    {
+        return $this->hasOneThrough(
+            Recipe::class,
+            RecipeImages::class,
+            'file_id',
+            'id',
+            '',
+            'recipe_id'
+        );
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOneThrough
      */
     public function userProfile()
     {
-        return $this->belongsTo(UserProfile::class);
+        return $this->hasOneThrough(
+            UserProfile::class,
+            UserProfileImages::class,
+            'file_id',
+            'id',
+            '',
+            'user_profile_id'
+        );
     }
 
 }

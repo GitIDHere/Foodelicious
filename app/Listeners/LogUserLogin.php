@@ -27,7 +27,7 @@ class LogUserLogin
         if ($user) {
             $request = Request();
             $msg = 'User logged in: '.$user->id;
-            AppLog::createLog($request, AppLog::TYPE_CUSTOM, $msg);
+            AppLog::createLog(AppLog::TYPE_CUSTOM, $msg, $request);
         }
     }
 }

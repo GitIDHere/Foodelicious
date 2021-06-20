@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Http\File;
 use App\Models\File as AppFile;
-use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 
 class PhotoService
@@ -72,20 +72,15 @@ class PhotoService
 
 
     /**
-     * @param UploadedFile[] $files
+     * @param $files
      * @param array $customNames
      * @return Eloquent\Collection
-     * @throws \Exception
      */
-    public function savePhotos($files, $customNames = [])
+    public function savePhotos(Collection $files, $customNames = [])
     {
         $savedFiles = new Eloquent\Collection();
 
         $visibility = $this->getVisibility();
-
-        if (is_array($files) == false) {
-            $files = [$files];
-        }
 
         foreach($files as $fileIndex => $file)
         {
@@ -278,18 +273,18 @@ class PhotoService
      * @param Eloquent\Model $model
      * @param AppFile $picFile
      */
-    public function deletePhotoFromDrive(Eloquent\Model $model, \App\Models\File $picFile)
+    public function deletePhotoFromDrive(\App\Models\File $picFile, Eloquent\Model $model = null)
     {
         if ($model instanceof Eloquent\Model)
         {
-            $public = self::VISIBILITY_PUBLIC;
-
             // Remove the table link
             $model->files()->detach($picFile->id);
-
-            // Delete the file from the directory
-            $this->drive->delete($public . '/' . $picFile->path);
         }
+
+        $public = self::VISIBILITY_PUBLIC;
+
+        // Delete the file from the directory
+        $this->drive->delete($public . '/' . $picFile->path);
     }
 
 }

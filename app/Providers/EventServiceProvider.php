@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Events\EmailUpdateEvent;
+use App\Events\RecipeCreated;
 use App\Events\UserLogin;
 use App\Listeners\AppLogListener;
 use App\Listeners\LogUserLogin;
 use App\Listeners\PasswordResetListener;
+use App\Listeners\SaveCachedPhotos;
 use App\Listeners\UserEventSubscriber;
 use App\Listeners\UserVerifiedListener;
 use Illuminate\Auth\Events\PasswordReset;
@@ -24,6 +26,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        RecipeCreated::class => [
+            SaveCachedPhotos::class
+        ],
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],

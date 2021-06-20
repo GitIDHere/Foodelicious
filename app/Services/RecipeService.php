@@ -13,19 +13,15 @@ use Illuminate\Support\Facades\Storage;
 
 class RecipeService
 {
-    private $recipePhotoService;
-
     /**
      * @var int
      */
     private $recipeItemsPerPage = 10;
 
+    /**
+     * @var int
+     */
     private $commentsPerPage = 5;
-
-    public function __construct(RecipePhotoService $recipePhotoService)
-    {
-        $this->recipePhotoService = $recipePhotoService;
-    }
 
     /**
      * @param UserProfile $userProfile
@@ -51,65 +47,6 @@ class RecipeService
 
         return $recipe;
     }
-
-    /**
-     * @param Recipe $recipe
-     * @param array $photos
-     * @return array
-     * @throws \Exception
-     */
-    public function savePhotos(Recipe $recipe, $photos = [])
-    {
-        $fileIds = [];
-
-        if ($recipe->files->count() < $this->recipePhotoService->getMaxFileUploads())
-        {
-            $savedFiles = $this->recipePhotoService->savePhotos($photos);
-
-            if ($savedFiles->isNotEmpty())
-            {
-                $savedFiles->each(function($file)
-                {
-                    $this->recipePhotoService->makeThumbnail($file->path);
-                });
-
-                $recipe->files()->attach($savedFiles);
-
-                $fileIds = $savedFiles->map(function($file){
-                   return $file->id;
-                });
-            }
-        }
-
-        return $fileIds;
-    }
-
-
-    /**
-     * @param Recipe $recipe
-     * @param $photoIds
-     * @throws \Exception
-     */
-    public function deletePhotos(Recipe $recipe, $photoIds)
-    {
-        /** @var Collection $recipePhotos */
-        $recipePhotos = $recipe->files;
-
-        if ($photoIds instanceof \Illuminate\Support\Collection) {
-            $photoIds = collect($photoIds);
-        }
-
-        $photoIds->each(function($val, $index) use ($recipePhotos, $photoIds)
-        {
-            // Check if the recipe has this file ID
-            if ($recipePhotos->containsStrict('id', (int) $val) === false){
-                unset($photoIds[$index]);
-            }
-        });
-
-        return $this->recipePhotoService->deletePhotos($recipe, $photoIds);
-    }
-
 
     /**
      * @param UserProfile $userProfile
