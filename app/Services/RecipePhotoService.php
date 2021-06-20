@@ -64,9 +64,15 @@ class RecipePhotoService extends PhotoService
 
         if ($recipe instanceof Models\Recipe && $photoIds->isEmpty() == false)
         {
-            if (!is_array($photoIds)) {
-                $photoIds = [$photoIds];
-            }
+            $recipePhotos = $recipe->files;
+
+            $photoIds->each(function($val, $index) use ($recipePhotos, $photoIds)
+            {
+                // Check if the recipe has this file ID
+                if ($recipePhotos->containsStrict('id', (int) $val) === false){
+                    unset($photoIds[$index]);
+                }
+            });
 
             $recipeImgFiles = Models\File::findOrFail($photoIds);
 
@@ -181,28 +187,6 @@ class RecipePhotoService extends PhotoService
         }
 
         return $fileIds;
-    }
-
-    /**
-     * @param Recipe $recipe
-     * @param $photoIds
-     * @return bool
-     * @throws \Exception
-     */
-    public function deleteRecipePhotos(Recipe $recipe, Collection $photoIds)
-    {
-        /** @var \Illuminate\Database\Eloquent\Collection $recipePhotos */
-        $recipePhotos = $recipe->files;
-
-        $photoIds->each(function($val, $index) use ($recipePhotos, $photoIds)
-        {
-            // Check if the recipe has this file ID
-            if ($recipePhotos->containsStrict('id', (int) $val) === false){
-                unset($photoIds[$index]);
-            }
-        });
-
-        return $this->deletePhotos($recipe, $photoIds);
     }
 
     /**

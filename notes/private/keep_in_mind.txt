@@ -1,0 +1,59 @@
+-------------
+
+To set configuration values at runtime, pass an array to the config helper:
+config(['app.timezone' => 'America/Chicago']);
+
+-------------
+
+You should cache all of your configuration files into a single file using the `config:cache` Artisan command
+This will combine all of the configuration options for your application into a single file which can be quickly loaded by the framework.
+
+-------------
+
+Service providers are responsible for bootstrapping all of the framework's various components, such as the database, queue, validation, and routing components.
+
+-------------
+
+Middleware provide a convenient mechanism for filtering or examining HTTP requests entering your application.
+
+-------------
+
+If the request passes through all of the matched route's assigned middleware, the route or controller method will be executed 
+and the response returned by the route or controller method will be sent back through the route's chain of middleware.
+
+-------------
+
+We can register a binding using the bind method, passing the class or interface name that we wish to register along with a closure that returns an instance of the class:
+
+-------------
+
+SERVICE PROVIDERS
+
+Within the register method, you should only bind things into the service container. 
+You should never attempt to register any event listeners, routes, or any other piece of functionality within the register method.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

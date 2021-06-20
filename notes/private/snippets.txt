@@ -1,0 +1,61 @@
+    let deleteSelectedText = function() 
+    {
+        if (window.getSelection) {
+            // Mozilla
+            var selection = window.getSelection();
+            if (selection.rangeCount > 0) {
+                window.getSelection().deleteFromDocument();
+                window.getSelection().removeAllRanges();
+            }
+        } else if (document.selection) {
+            
+            // Internet Explorer
+            var ranges = document.selection.createRangeCollection();
+            for (var i = 0; i < ranges.length; i++) {
+                ranges[i].text = "";
+            }
+        }
+    };
+    
+    cookTimeField.on('keydown', (e) => {
+        
+        let inputField = $(e.target);
+        
+        let keyNum = Number(e.which);
+
+        //console.log(inputField);
+        
+        /**
+         * Num pad: 0:96 - 9:105
+         * - KeyNum: 0:48 - 9:57
+         * - If backspace then replace with 0
+         * - Prevent pasting
+         */
+        
+        if ( (keyNum >= 96 && keyNum <= 105) || (keyNum >= 48 && keyNum <= 57) ) 
+        {
+            // Check how many 
+            //console.log(cookTimeField.val());
+            
+            
+            
+            
+        }
+        // Backspace
+        else if(keyNum === 8) 
+        {
+            if ( (window.getSelection && window.getSelection().rangeCount > 0) || document.selection)
+            {
+                console.log( window.getSelection().rangeCount);
+                deleteSelectedText();    
+            }
+            else {
+                let txt = inputField.val();
+                txt.slice(0, -1);
+                //console.log(txt);
+                inputField.text(txt);
+            }
+        } else{
+            e.preventDefault();
+        }
+    });

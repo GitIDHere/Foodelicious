@@ -38,7 +38,7 @@ class PhotoService
     /**
      * @var string
      */
-    private $thumbnailPath = 'thumb';
+    private $thumbnailPath = 'thumbnails';
 
     /**
      * @var string
@@ -285,6 +285,9 @@ class PhotoService
 
         // Delete the file from the directory
         $this->drive->delete($public . '/' . $picFile->path);
+
+        // Delete thumbnails
+        $this->drive->delete($public . '/thumbnails/' . $picFile->path);
     }
 
 }

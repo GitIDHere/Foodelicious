@@ -31,7 +31,7 @@ class RecipePhotoUploadController extends Controller
     public function deletePhotos(Request $request, Recipe $recipe)
     {
         $photoId = $request->get('id');
-        $success = $this->recipePhotoService->deleteRecipePhotos($recipe, collect($photoId));
+        $success = $this->recipePhotoService->deletePhotos($recipe, collect($photoId));
 
         $status = ($success ? 204 : 500);
 

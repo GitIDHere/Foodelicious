@@ -37,7 +37,7 @@ class File extends Model
      */
     public function getThumbnailPathAttribute()
     {
-       return 'storage/thumb/'.$this->path;
+       return 'storage/thumbnails/'.$this->path;
     }
 
     /**
