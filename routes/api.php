@@ -48,6 +48,10 @@ Route::middleware(['throttle:50,2', 'auth:sanctum'])
     Route::delete('photos', [APIControllers\RecipePhotoUploadController::class, 'deletePhotos'])
         ->middleware(['user.recipe'])
     ;
+
+    // api/{recipe}/photos
+    Route::get('photos', [APIControllers\RecipePhotoUploadController::class, 'getRecipePhotos'])
+        ->middleware(['user.recipe']);
 });
 
 /**

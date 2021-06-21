@@ -27,6 +27,45 @@ $(function()
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
+        init: function()
+        {
+            if (isNaN(recipeId) === false)
+            {
+                var dz = this;
+
+                $.ajax({
+                    url : APP_URL + 'api/' +  recipeId + '/photos',
+                    type: "GET",
+                    accept: 'application/json',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                })
+                .done(function(resp, textStatus)
+                {
+                    $(resp).each(function(index, photoInfo)
+                    {
+                        var photo = {
+                            size: photoInfo.size,
+                            name: photoInfo.filename,
+                            url: photoInfo.path,
+                            id: photoInfo.id
+                        };
+
+                        dz.emit("addedfile", photo);
+                        dz.emit("thumbnail", photo, photoInfo.thumbnail_path);
+                        dz.emit("complete", photo);
+                        dz.files.push(photo);
+                    })
+                })
+                .fail(function(resp, sds)
+                {
+                    toastr.warning('Error loading recipe photos');
+                });
+
+
+            }
+        },
         removedfile: function (file)
         {
             $.ajax({

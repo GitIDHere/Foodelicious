@@ -7,7 +7,6 @@ use App\Services\RecipePhotoService;
 use Illuminate\Http\Request;
 use App\Models\Recipe;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Log;
 
 class RecipePhotoUploadController extends Controller
 {
@@ -26,6 +25,35 @@ class RecipePhotoUploadController extends Controller
      * @param Request $request
      * @param Recipe $recipe
      * @return JsonResponse
+     */
+    public function getRecipePhotos(Request $request, Recipe $recipe)
+    {
+        $photoData = $recipe->files->map(function($photo)
+        {
+            $photoInfo = [
+                'id' => $photo->id,
+                'filename' => $photo->name,
+                'path' => asset($photo->public_path),
+                'thumbnail_path' => asset($photo->thumbnail_path)
+            ];
+
+            try {
+                $photoInfo['size'] = filesize($photo->public_path);
+            }
+            catch (\Exception $exception) {
+                $photoInfo['size'] = 0;
+            }
+
+            return $photoInfo;
+        });
+
+        return new JsonResponse($photoData, 200);
+    }
+
+    /**
+     * @param Request $request
+     * @param Recipe $recipe
+     * @return JsonResponse
      * @throws \Exception
      */
     public function deletePhotos(Request $request, Recipe $recipe)
@@ -37,7 +65,6 @@ class RecipePhotoUploadController extends Controller
 
         return new JsonResponse(null, $status);
     }
-
 
     /**
      * @param Request $request

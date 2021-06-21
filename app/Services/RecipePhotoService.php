@@ -3,9 +3,7 @@
 namespace App\Services;
 
 use App\Models;
-use Illuminate\Http\Request;
 use App\Models\Recipe;
-use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
