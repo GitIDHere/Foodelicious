@@ -79,6 +79,7 @@ class RecipeService
             }
 
             $favouriteCount = $recipe->recipeFavourites()->where('is_favourited', 1)->get()->count();
+            $commentCount = $recipe->recipeComments()->get()->count();
 
             return [
                 'id' => $recipe->id,
@@ -87,6 +88,7 @@ class RecipeService
                 'thumbnail' => $thumbnail,
                 'date_created' => $recipe->created_at->format('d/m/Y'),
                 'total_favourites' => $favouriteCount,
+                'total_comments' => $commentCount,
             ];
         });
 
@@ -104,22 +106,6 @@ class RecipeService
      */
     public function getRecipeData(Recipe $recipe, UserProfile $userProfile = null)
     {
-        /**
-         * - Photos
-         * X- Stars/Thumbs ups
-         * X- Comments
-         * X- Ingredients
-         * X- Title
-         * X- Cooking steps
-         * X- Date created
-         * X- Utensils
-         * X- Description
-         * X- Cook time
-         * X- User details (username)
-         *  - View user profile. Only the public recipes
-         */
-
-
         $recipePhotos = $recipe->files->map(function($file)
         {
             return asset($file->public_path);

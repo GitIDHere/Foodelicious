@@ -67,10 +67,15 @@
                                                                         <span class="title">{{$recipe['title']}}</span>
                                                                     </a>
 
-                                                                    <span class="icon-container">
-                                    <span class="icon">&nbsp;</span>
-                                    <span class="text">{{$recipe['total_favourites']}}</span>
-                                </span>
+                                                                    <span class="icons">
+                                                                        <span class="icon heart">
+                                                                            <span class="text">{{$recipe['total_favourites']}}</span>
+                                                                        </span>
+
+                                                                        <span class="icon comment">
+                                                                            <span class="text">{{$recipe['total_comments']}}</span>
+                                                                        </span>
+                                                                    </span>
 
                                                                 </div>
                                                             </div>

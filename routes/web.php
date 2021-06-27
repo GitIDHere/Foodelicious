@@ -18,4 +18,4 @@ require_once('paths/web/user/user_recipes.php');
 
 require_once ('paths/web/user/security.php');
 
-require_once('paths/web/user/recipes.php');
+require_once('paths/web/recipes.php');

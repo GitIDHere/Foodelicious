@@ -2136,49 +2136,52 @@ form label
     }
 }
 
-.comment
+#comments
 {
-    padding: 15px;
-    border-bottom: 1px solid #bfbfbf;
-
-    .comment-info
+    .comment
     {
-        margin-bottom: 10px;
-        color: $text-color;
-        font-size: 1.1em;
-        font-weight: 600;
+        padding: 15px;
+        border-bottom: 1px solid #bfbfbf;
 
-        span
+        .comment-info
         {
-            display:inline-block;
+            margin-bottom: 10px;
+            color: $text-color;
+            font-size: 1.1em;
+            font-weight: 600;
 
-            &.comment-delete > i
+            span
             {
-                padding: 6px 8px;
-                background: #f12c2c;
-                border-radius: 3px;
-                color: $white;
-                font-size: 1.2em;
+                display:inline-block;
 
-                &:hover
+                &.comment-delete > i
                 {
-                    cursor: pointer;
+                    padding: 6px 8px;
+                    background: #f12c2c;
+                    border-radius: 3px;
+                    color: $white;
+                    font-size: 1.2em;
+
+                    &:hover
+                    {
+                        cursor: pointer;
+                    }
                 }
+
             }
-
         }
-    }
 
-    p
-    {
-        color: #000;
-        line-height: 1.8em;
-        font-size: 1.1em;
-        margin-bottom: 0;
-
-        @include media-responsive($screen-xs)
+        p
         {
-            font-size: 1em;
+            color: #000;
+            line-height: 1.8em;
+            font-size: 1.1em;
+            margin-bottom: 0;
+
+            @include media-responsive($screen-xs)
+            {
+                font-size: 1em;
+            }
         }
     }
 }
@@ -2436,7 +2439,7 @@ form#profile-details-form
                     }
                 }
 
-                .icon-container
+                .icons
                 {
                     text-align: center;
                     display: inline-block;
@@ -2445,24 +2448,34 @@ form#profile-details-form
                     .icon {
                         width:25px;
                         height: 25px;
-                        display: block;
-                        background: url("/img/core-img/heart-green-full.svg") no-repeat center center;
-                    }
+                        display: inline-block;
+                        margin-right: 10px;
 
-                    .text
-                    {
-                        display: block;
-                        margin-top: 5px;
-                        font-size: 1.13em;
-                        font-family: "Open Sans", serif;
-                        font-weight: 600;
-                    }
+                        &.heart:before {
+                            background: url("/img/core-img/heart-green-full.svg") no-repeat center center;
+                        }
 
-                    &:after
-                    {
-                        content: "";
-                        display: block;
-                        clear: both;
+                        &.comment:before{
+                            background: url("/img/core-img/comment.svg") no-repeat center center;
+                        }
+
+                        &:before
+                        {
+                            content: "";
+                            display: block;
+                            margin: 0 auto;
+                            width: 25px;
+                            height: 25px;
+                            background-size: 25px;
+                        }
+
+                        .text
+                        {
+                            display: block;
+                            font-size: 1.13em;
+                            font-family: "Open Sans", serif;
+                            font-weight: 600;
+                        }
                     }
 
                     @include media-responsive ($screen-sm)

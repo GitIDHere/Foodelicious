@@ -2627,37 +2627,37 @@ form label {
   transform: rotate(90deg);
 }
 
-.comment {
+#comments .comment {
   padding: 15px;
   border-bottom: 1px solid #bfbfbf;
 }
-.comment .comment-info {
+#comments .comment .comment-info {
   margin-bottom: 10px;
   color: #9b9b9b;
   font-size: 1.1em;
   font-weight: 600;
 }
-.comment .comment-info span {
+#comments .comment .comment-info span {
   display: inline-block;
 }
-.comment .comment-info span.comment-delete > i {
+#comments .comment .comment-info span.comment-delete > i {
   padding: 6px 8px;
   background: #f12c2c;
   border-radius: 3px;
   color: #FFFFFF;
   font-size: 1.2em;
 }
-.comment .comment-info span.comment-delete > i:hover {
+#comments .comment .comment-info span.comment-delete > i:hover {
   cursor: pointer;
 }
-.comment p {
+#comments .comment p {
   color: #000;
   line-height: 1.8em;
   font-size: 1.1em;
   margin-bottom: 0;
 }
 @media (max-width: 576px) {
-  .comment p {
+  #comments .comment p {
     font-size: 1em;
   }
 }
@@ -2844,31 +2844,39 @@ form#profile-details-form #profile-desc + .word_counter > p {
     min-height: 100px;
   }
 }
-.recipe-list li .content-container .recipe-info .icon-container {
+.recipe-list li .content-container .recipe-info .icons {
   text-align: center;
   display: inline-block;
   margin-top: 10px;
 }
-.recipe-list li .content-container .recipe-info .icon-container .icon {
+.recipe-list li .content-container .recipe-info .icons .icon {
   width: 25px;
   height: 25px;
-  display: block;
+  display: inline-block;
+  margin-right: 10px;
+}
+.recipe-list li .content-container .recipe-info .icons .icon.heart:before {
   background: url("/img/core-img/heart-green-full.svg") no-repeat center center;
 }
-.recipe-list li .content-container .recipe-info .icon-container .text {
+.recipe-list li .content-container .recipe-info .icons .icon.comment:before {
+  background: url("/img/core-img/comment.svg") no-repeat center center;
+}
+.recipe-list li .content-container .recipe-info .icons .icon:before {
+  content: "";
   display: block;
-  margin-top: 5px;
+  margin: 0 auto;
+  width: 25px;
+  height: 25px;
+  background-size: 25px;
+}
+.recipe-list li .content-container .recipe-info .icons .icon .text {
+  display: block;
   font-size: 1.13em;
   font-family: "Open Sans", serif;
   font-weight: 600;
 }
-.recipe-list li .content-container .recipe-info .icon-container:after {
-  content: "";
-  display: block;
-  clear: both;
-}
 @media (max-width: 768px) {
-  .recipe-list li .content-container .recipe-info .icon-container {
+  .recipe-list li .content-container .recipe-info .icons {
     display: none;
   }
 }
