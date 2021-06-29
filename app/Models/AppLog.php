@@ -30,14 +30,20 @@ class AppLog extends Model
      * @param $type
      * @param $payload
      */
-    public static function createLog(Request $request, $type, $payload)
+    public static function createLog($type, $payload, Request $request = null)
     {
-        $httpReferrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
-        $ip = $request->getClientIp();
-        $ua = $request->userAgent();
+        $ip = $ua = $httpReferrer = null;
 
-        if(empty($httpReferrer)) {
-            $httpReferrer = $request->getPathInfo();
+        if ($request instanceof Request)
+        {
+            $httpReferrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
+
+            $ip = $request->getClientIp();
+            $ua = $request->userAgent();
+
+            if(empty($httpReferrer)) {
+                $httpReferrer = $request->getPathInfo();
+            }
         }
 
         $message = '';

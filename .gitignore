@@ -12,6 +12,5 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .idea/
-notes/private
 .git/
 resources/scss/.sass-cache

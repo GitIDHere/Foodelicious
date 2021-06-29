@@ -85,6 +85,17 @@ class Recipe extends Model
     }
 
     /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopePublic($query)
+    {
+        return $query
+            ->join('recipe_metadata', 'recipe_id', '=', 'recipes.id')
+            ->where('is_published', 1);
+    }
+
+    /**
      * @return string
      */
     public function getCookTimeFormattedAttribute()
@@ -127,11 +138,6 @@ class Recipe extends Model
         array_unshift($utensils,"");
         unset($utensils[0]);
         return$utensils;
-    }
-
-    public function scopePublic($query)
-    {
-        return $query->where('is_published', 1);
     }
 
 }

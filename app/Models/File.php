@@ -11,7 +11,8 @@ class File extends Model
 
     protected $fillable = [
         'name',
-        'path'
+        'path',
+        'is_attached'
     ];
 
 
@@ -37,23 +38,38 @@ class File extends Model
      */
     public function getThumbnailPathAttribute()
     {
-       return 'storage/thumb/'.$this->path;
+       return 'storage/thumbnails/'.$this->path;
     }
 
+
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasOneThrough
      */
     public function recipe()
     {
-        return $this->belongsTo(Recipe::class);
+        return $this->hasOneThrough(
+            Recipe::class,
+            RecipeImages::class,
+            'file_id',
+            'id',
+            '',
+            'recipe_id'
+        );
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasOneThrough
      */
     public function userProfile()
     {
-        return $this->belongsTo(UserProfile::class);
+        return $this->hasOneThrough(
+            UserProfile::class,
+            UserProfileImages::class,
+            'file_id',
+            'id',
+            '',
+            'user_profile_id'
+        );
     }
 
 }

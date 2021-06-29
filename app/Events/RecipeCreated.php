@@ -12,16 +12,41 @@ class RecipeCreated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    /**
+     * @var Recipe
+     */
     private $recipe;
+
+    /**
+     * @var string
+     */
+    private $uuid;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Recipe $recipe)
+    public function __construct($uuid, Recipe $recipe)
     {
+        $this->uuid = $uuid;
         $this->recipe = $recipe;
+    }
+
+    /**
+     * @return Recipe
+     */
+    public function getRecipe()
+    {
+        return $this->recipe;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUUID()
+    {
+        return $this->uuid;
     }
 
     /**

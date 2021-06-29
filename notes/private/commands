@@ -1,0 +1,45 @@
+$user = Auth::user();
+
+// Delete current tokens for rating a recipe
+$user->tokens()->where('name', $this->ratingTokenName)->delete();
+
+// Issue a new token for rating a recipe
+//$user->createToken($this->ratingTokenName, ['recipe:rate'])->plainTextToken;
+
+
+------------------------------------------------------------------------------------------
+
+$up->recipeRatings()->where('recipe_id', $recipe->id)->first();
+
+------------------------------------------------------------------------------------------
+
+https://stackoverflow.com/a/29051041
+var files = $('#my-dropzone').get(0).dropzone.getAcceptedFiles();
+
+------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

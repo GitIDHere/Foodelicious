@@ -7,7 +7,6 @@ Route::prefix('{username}')
     ->middleware(['auth', 'url.parameters', 'user.routes'])
     ->group(function()
     {
-
         /**
          * Show the profile page
          */
@@ -28,6 +27,13 @@ Route::prefix('{username}')
         Route::post('details/update', [Controllers\UserProfileController::class, 'updateProfileDetails'])
             ->name('user.profile.details.update')
         ;
-
     })
 ;
+
+Route::prefix('{username}')
+    ->group(function()
+    {
+        Route::get('public/recipes', [Controllers\UserProfileController::class, 'showPublicRecipeList'])
+            ->name('user.profile.public.recipe_list')
+        ;
+    });

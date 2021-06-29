@@ -5,7 +5,7 @@ use \App\Http\Controllers\User as Controllers;
 
 Route::prefix('{username}/account-security')
     ->middleware(['auth', 'url.parameters', 'user.routes'])
-    ->group(function() 
+    ->group(function()
     {
         /**
          * Show a list of options available for the user
@@ -15,7 +15,7 @@ Route::prefix('{username}/account-security')
         })
             ->name('user.security.view')
         ;
-    
+
         /**
          * Show a form for the user to update their email
          */
@@ -23,8 +23,8 @@ Route::prefix('{username}/account-security')
             return view('screens.user.security.email');
         })
             ->name('user.security.email.view')
-        ;   
-        
+        ;
+
         /**
          * Handle the request for updating a user's email
          */
@@ -32,7 +32,7 @@ Route::prefix('{username}/account-security')
             ->middleware(['user.verified'])
             ->name('user.security.email.submit')
         ;
-    
+
         /**
          * Show page to update password
          */
@@ -41,7 +41,7 @@ Route::prefix('{username}/account-security')
         })
             ->name('user.security.password.view')
         ;
-    
+
         /**
          * Handle request to update password
          */
@@ -49,6 +49,6 @@ Route::prefix('{username}/account-security')
             ->middleware(['user.verified'])
             ->name('user.security.password.submit')
         ;
-    
+
     })
 ;

@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Classes\DBCleaner;
 use App\Events\RecipeCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RecipeCreateRequest;
 use App\Models\File;
 use App\Models\Recipe;
 use App\Models\User;
+use App\Services\RecipePhotoService;
 use App\Services\RecipeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 
 class UserRecipeController extends Controller
@@ -96,14 +97,7 @@ class UserRecipeController extends Controller
 
         if ($userProfile)
         {
-            $savePhotos = [];
-
-            if ($request->files->has('photos')) {
-                $paramPhotos = $request->files->all();
-                $savePhotos = $paramPhotos['photos'];
-            }
-
-            $photosToDeleteIds = $request->input('delete_photos');
+            $uuid = $request->input('uuid');
 
             if (is_array($recipeFields['cooking_steps'])) {
                 $recipeFields['cooking_steps'] = json_encode($recipeFields['cooking_steps']);
@@ -112,14 +106,12 @@ class UserRecipeController extends Controller
             $recipeFields['is_published'] = $request->get('is_published') ? 1 : 0;
             $recipeFields['enable_comments'] = $request->get('enable_comments') ? 1 : 0;
 
-            $recipe = $this->recipeService->saveRecipe($userProfile, $recipe, $recipeFields, $savePhotos);
+            $recipe = $this->recipeService->saveRecipe($userProfile, $recipe, $recipeFields);
 
             if ($recipe)
             {
-                $this->recipeService->deletePhotos($recipe, $photosToDeleteIds);
-
                 // Dispatch event
-                RecipeCreated::dispatch($recipe);
+                RecipeCreated::dispatch($uuid, $recipe);
 
                 return redirect()->route('user.recipes.list')->with(['success' => 'Recipe added!']);
             }
@@ -144,6 +136,9 @@ class UserRecipeController extends Controller
         /** @var User $user */
         $user = Auth::user();
         $isUserRecipe = $user->userProfile->recipes->contains($recipe);
+
+        // Remove any temp photo IDs from the session
+        $request->session()->forget(RecipePhotoService::TEMP_PHOTO_SESSION_KEY);
 
         if ($isUserRecipe)
         {

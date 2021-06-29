@@ -33,12 +33,21 @@ class RecipeCreateRequest extends FormRequest
             'servings' => 'required|numeric|max:50',
             'utensils' => 'required|json',
             'ingredients' => 'required|json',
-            'photos' => 'nullable',
-            'photos.*' => 'mimes:jpeg,jpg,png|max:2048',
-            'delete_photos' => 'nullable',
-            'delete_photos.*' => 'numeric|integer|distinct',
             'is_published' => 'integer|between:0,1',
             'enable_comments' => 'integer|between:0,1',
+            'uuid' => 'required|uuid'
+        ];
+    }
+
+    /**
+     * @return string[]
+     */
+    public function messages()
+    {
+        return [
+            'cook_time.min' => 'Please select a cook time',
+            'cook_time.max' => 'Please select a cook time',
+            'cook_time.servings' => 'Maximum of 50 servings allowed',
         ];
     }
 }

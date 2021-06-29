@@ -8,6 +8,8 @@ Tagify = require('@yaireo/tagify/dist/jQuery.tagify.min');
 global.Cropper = require('cropperjs/dist/cropper.min');
 
 toastr = require('toastr/toastr');
+window.Dropzone = require('dropzone/src/dropzone');
+
 require('@popperjs/core');
 require('bootstrap/dist/js/bootstrap');
 

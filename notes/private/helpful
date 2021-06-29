@@ -1,0 +1,43 @@
+git stash --include-untracked
+
+What's the difference between Laravel's @yield and @include?
+https://stackoverflow.com/questions/41916127/whats-the-difference-between-laravels-yield-and-include
+
+Binding Interfaces To Implementations
+https://laravel.com/docs/8.x/container#binding-interfaces-to-implementations
+
+
+Contextual Binding - Sometimes you may have two classes that utilize the same interface, but you wish to inject different implementations into each class.
+https://laravel.com/docs/8.x/container#contextual-binding
+
+
+
+php artisan migrate:refresh --seed
+
+- When you start to allow you to migrate the DB. I think its complaining about MYSQL
+Schema::defaultStringLength(191);
+
+
+
+- Throttle - rate limit
+The first value the number of allowed requests, and with the second the time window the counter is going to be valid.
+
+
+
+watch the file changes for app.scss
+ npm run watch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

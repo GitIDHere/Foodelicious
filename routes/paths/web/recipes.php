@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Recipe as Controllers;
 
-Route::prefix('recipes')
+Route::prefix('recipe')
     ->group(function()
     {
         /*

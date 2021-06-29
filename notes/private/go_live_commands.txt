@@ -1,0 +1,15 @@
+php artisan storage:link
+
+
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+
+- Create thumbnail/recipe director?
+
+- Set the live domain in env for:
+    SANCTUM_STATEFUL_DOMAINS
+
+- Check that the recipe rating is working
+    - https://laravel.com/docs/8.x/sanctum#spa-authentication
+
+- replace all the images
+

@@ -5,35 +5,31 @@ namespace App\Services;
 use App\Models\File;
 use App\Models\Recipe;
 use App\Models\UserProfile;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class RecipeService
 {
-    private $recipePhotoService;
-
     /**
      * @var int
      */
     private $recipeItemsPerPage = 10;
 
+    /**
+     * @var int
+     */
     private $commentsPerPage = 5;
 
-    public function __construct(RecipePhotoService $recipePhotoService)
-    {
-        $this->recipePhotoService = $recipePhotoService;
-    }
-
     /**
-     * @param $userProfile
-     * @param $recipe
+     * @param UserProfile $userProfile
+     * @param Recipe $recipe
      * @param $recipeData
-     * @param $savePhotos
      * @return mixed|null
-     * @throws \Exception
      */
-    public function saveRecipe($userProfile, $recipe, $recipeData, $savePhotos)
+    public function saveRecipe(UserProfile $userProfile, Recipe $recipe, $recipeData)
     {
         // Check $recipe is already attached to the user
         $isUserRecipe = $userProfile->recipes->contains($recipe);
@@ -49,46 +45,37 @@ class RecipeService
             $recipe->recipeMetadata()->create($recipeData);
         }
 
-        if ($recipe)
-        {
-            $savedFiles = $this->recipePhotoService->savePhotos($savePhotos);
-
-            if ($savedFiles->isNotEmpty())
-            {
-                $savedFiles->each(function($file)
-                {
-                    $this->recipePhotoService->makeThumbnail($file->path);
-                });
-
-                $recipe->files()->attach($savedFiles);
-            }
-
-            return $recipe;
-        }
-
-        return null;
+        return $recipe;
     }
 
     /**
-     * @param $recipe
-     * @param $photosToDeleteIds
-     * @throws \Exception
+     * @param UserProfile $userProfile
+     * @return array
      */
-    public function deletePhotos($recipe, $photosToDeleteIds)
+    public function getPublicRecipeList(UserProfile $userProfile)
     {
-        $this->recipePhotoService->deletePhotos($recipe, $photosToDeleteIds);
+        $userRecipes = $userProfile->recipes()->public()->get()->sortByDesc('created_at');
+        return $this->generateRecipeList($userRecipes);
     }
 
+    /**
+     * @param UserProfile $userProfile
+     * @param null $searchTerm
+     * @return array
+     */
+    public function getRecipeList(UserProfile $userProfile, $searchTerm = null)
+    {
+        $userRecipes = $userProfile->recipes->sortByDesc('created_at');
+        return $this->generateRecipeList($userRecipes, $searchTerm);
+    }
 
     /**
      * @param UserProfile $userProfile
      * @param string|null $searchTerm
      * @return array
      */
-    public function getRecipeList(UserProfile $userProfile, $searchTerm = null)
+    private function generateRecipeList(Collection $recipes, $searchTerm = null)
     {
-        $recipes = $userProfile->recipes->sortByDesc('created_at');
-
         $recipeList = $recipes->filter(function($recipe) use ($searchTerm)
         {
             // If the search term is empty, then include the recipe, because we aren't searching
@@ -111,6 +98,7 @@ class RecipeService
             }
 
             $favouriteCount = $recipe->recipeFavourites()->where('is_favourited', 1)->get()->count();
+            $commentCount = $recipe->recipeComments()->get()->count();
 
             return [
                 'id' => $recipe->id,
@@ -119,6 +107,7 @@ class RecipeService
                 'thumbnail' => $thumbnail,
                 'date_created' => $recipe->created_at->format('d/m/Y'),
                 'total_favourites' => $favouriteCount,
+                'total_comments' => $commentCount,
             ];
         });
 
@@ -136,22 +125,6 @@ class RecipeService
      */
     public function getRecipeData(Recipe $recipe, UserProfile $userProfile = null)
     {
-        /**
-         * - Photos
-         * X- Stars/Thumbs ups
-         * X- Comments
-         * X- Ingredients
-         * X- Title
-         * X- Cooking steps
-         * X- Date created
-         * X- Utensils
-         * X- Description
-         * X- Cook time
-         * X- User details (username)
-         *  - View user profile. Only the public recipes
-         */
-
-
         $recipePhotos = $recipe->files->map(function($file)
         {
             return asset($file->public_path);
@@ -164,12 +137,16 @@ class RecipeService
         // Get the favourite record for the user for this recipe
         if ($userProfile)
         {
-            // Check if this recipe belongs to the user
-            if ($userProfile->recipes->contains($recipe->id))
-            {
-                $favourites = $userProfile->recipeFavourites()->where('recipe_id', $recipe->id)->first();
-                $isFavourited = ($favourites && $favourites->is_favourited ?: false);
-            }
+            // Is this recipe favourited by the user viewing the recipe?
+            $favourite = $userProfile->recipeFavourites()->where('recipe_id', $recipe->id)->first();
+            $isFavourited = ($favourite && $favourite->is_favourited == 1 ?: false);
+        }
+
+        $profilePic = null;
+        $recipeUser = $recipe->userProfile;
+
+        if ($recipeUser) {
+            $profilePic = $recipeUser->files->first();
         }
 
         return [
@@ -182,12 +159,15 @@ class RecipeService
             'date_created' => $recipe->created_at,
             'utensils' => $recipe->utensils,
             'cook_time' => $recipe->cook_time_formatted,
-            'username' => $recipe->userProfile->username,
             'ingredients' => $recipe->ingredients,
             'photos' => $recipePhotos,
             'is_favourited' => $isFavourited,
             'is_published' => $recipe->is_published,
-            'enable_comments' => $recipe->enable_comments
+            'enable_comments' => $recipe->enable_comments,
+            'user' => [
+                'username' => $recipe->userProfile->username,
+                'profile_pic' => (is_object($profilePic) ? asset($profilePic->public_path) : null)
+            ]
         ];
     }
 

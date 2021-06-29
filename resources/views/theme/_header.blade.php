@@ -28,21 +28,8 @@
         <div class="container h-100">
             <div class="row h-100 align-items-center justify-content-between">
 
-                <!-- Breaking News -->
-                <div class="col-12 col-sm-6">
-                    <div class="breaking-news">
-                        <div id="breakingNewsTicker" class="ticker">
-                            <ul>
-                                <li>Hello World!</li>
-                                <li>Welcome to Colorlib Family.</li>
-                                <li>Hello Delicious!</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Login/Logout/Profile -->
-                <div class="col-12 col-sm-6">
+                <div class="col-12 col-sm-12">
                     <div class="top-social-info text-right">
                         @auth
                             <a href="{{route('user.profile.view')}}">Profile</a>

@@ -12,6 +12,8 @@
             if (empty(old('utensils')) && isset($data)) {
                 $utensils = $data['utensils'];
             }
+
+            $uuid = Str::uuid();
         @endphp
 
         <div class="container">
@@ -45,9 +47,12 @@
                                         @endif
                                     </div>
 
-                                    <div class="col-6 clearfix">
-                                        <a class="btn-small right" target="_blank" href="{{route('recipe.preview', ['recipe' => $recipe, 'recipe_title' => $data['title']])}}">Preview recipe</a>
-                                    </div>
+                                    @if (isset($recipe))
+                                        <div class="col-6 clearfix">
+                                            <a class="btn-small right" target="_blank" href="{{route('recipe.preview', ['recipe' => $recipe, 'recipe_title' => $data['title']])}}">Preview recipe</a>
+                                        </div>
+                                    @endif
+
                                 </div>
 
                                 @if ($errors->any())
@@ -63,7 +68,13 @@
                                 <form
                                     id="recipe-form"
                                     method="POST"
-                                    action="{{ (isset($data) ? route('user.recipes.save.submit', ['recipe' => $recipe]) : route('user.recipes.create.submit') ) }}"
+                                    @if(isset($recipe))
+                                        data-recipe="{{$recipe->id}}"
+                                        action="{{route('user.recipes.save.submit', ['recipe' => $recipe])}}"
+                                    @else
+                                        action="{{route('user.recipes.create.submit')}}"
+                                        data-recipe="{{ $uuid }}"
+                                    @endif
                                     enctype="multipart/form-data">
 
                                     @csrf
@@ -207,8 +218,12 @@
                                     </div>
 
                                     <div class="input-container">
+
                                         <label for="recipe-photos" class="block">Recipe photos</label>
-                                        <input id="recipe-photos" type="file" name="photos[]" multiple="multiple" accept=".jpg,.png,.jpeg"/>
+                                        <div id="recipe_dropzone" class="dropzone"></div>
+
+                                        <div class="fallback"></div>
+
                                     </div>
 
                                     <div class="input-container">
@@ -259,8 +274,10 @@
 
                                     </div>
 
+                                    <input type="hidden" name="uuid" value="{{$uuid}}"/>
+
                                     <div class="input-container">
-                                        <input type="submit" value="Save" class="btn delicious-btn right" />
+                                        <input id="recipe-form-submit" type="submit" value="Save" class="btn delicious-btn right" />
                                     </div>
 
                                 </form>

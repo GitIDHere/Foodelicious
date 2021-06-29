@@ -4978,6 +4978,7 @@ __webpack_require__.g.jQuery = window.$ = __webpack_require__(/*! jquery */ "./n
 Tagify = __webpack_require__(/*! @yaireo/tagify/dist/jQuery.tagify.min */ "./node_modules/@yaireo/tagify/dist/jQuery.tagify.min.js");
 __webpack_require__.g.Cropper = __webpack_require__(/*! cropperjs/dist/cropper.min */ "./node_modules/cropperjs/dist/cropper.min.js");
 toastr = __webpack_require__(/*! toastr/toastr */ "./node_modules/toastr/toastr.js");
+window.Dropzone = __webpack_require__(/*! dropzone/src/dropzone */ "./node_modules/dropzone/src/dropzone.js");
 
 __webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/index.js");
 
@@ -9480,6 +9481,3240 @@ window.axios.defaults.withCredentials = true;
  * Date: 2021-02-17T11:53:27.572Z
  */
 !function(t,e){ true?module.exports=e():0}(this,function(){"use strict";function e(t){return(e="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function n(t,e){for(var i=0;i<e.length;i++){var a=e[i];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(t,a.key,a)}}function i(e,t){var i,a=Object.keys(e);return Object.getOwnPropertySymbols&&(i=Object.getOwnPropertySymbols(e),t&&(i=i.filter(function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable})),a.push.apply(a,i)),a}function B(a){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{};t%2?i(Object(n),!0).forEach(function(t){var e,i;e=a,t=n[i=t],i in e?Object.defineProperty(e,i,{value:t,enumerable:!0,configurable:!0,writable:!0}):e[i]=t}):Object.getOwnPropertyDescriptors?Object.defineProperties(a,Object.getOwnPropertyDescriptors(n)):i(Object(n)).forEach(function(t){Object.defineProperty(a,t,Object.getOwnPropertyDescriptor(n,t))})}return a}function T(t){return function(t){if(Array.isArray(t))return a(t)}(t)||function(t){if("undefined"!=typeof Symbol&&Symbol.iterator in Object(t))return Array.from(t)}(t)||function(t,e){if(!t)return;if("string"==typeof t)return a(t,e);var i=Object.prototype.toString.call(t).slice(8,-1);"Object"===i&&t.constructor&&(i=t.constructor.name);if("Map"===i||"Set"===i)return Array.from(t);if("Arguments"===i||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(i))return a(t,e)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function a(t,e){(null==e||e>t.length)&&(e=t.length);for(var i=0,a=new Array(e);i<e;i++)a[i]=t[i];return a}var t="undefined"!=typeof window&&void 0!==window.document,h=t?window:{},o=!(!t||!h.document.documentElement)&&"ontouchstart"in h.document.documentElement,r=t&&"PointerEvent"in h,c="cropper",k="all",O="crop",E="move",W="zoom",H="e",N="w",L="s",z="n",Y="ne",X="nw",R="se",S="sw",s="".concat(c,"-crop"),d="".concat(c,"-disabled"),A="".concat(c,"-hidden"),l="".concat(c,"-hide"),p="".concat(c,"-invisible"),m="".concat(c,"-modal"),u="".concat(c,"-move"),g="".concat(c,"Action"),f="".concat(c,"Preview"),v="crop",w="move",b="none",y="crop",x="cropend",M="cropmove",C="cropstart",D="dblclick",j=r?"pointerdown":o?"touchstart":"mousedown",I=r?"pointermove":o?"touchmove":"mousemove",P=r?"pointerup pointercancel":o?"touchend touchcancel":"mouseup",U="zoom",q="image/jpeg",$=/^e|w|s|n|se|sw|ne|nw|all|crop|move|zoom$/,Q=/^data:/,K=/^data:image\/jpeg;base64,/,Z=/^img|canvas$/i,G={viewMode:0,dragMode:v,initialAspectRatio:NaN,aspectRatio:NaN,data:null,preview:"",responsive:!0,restore:!0,checkCrossOrigin:!0,checkOrientation:!0,modal:!0,guides:!0,center:!0,highlight:!0,background:!0,autoCrop:!0,autoCropArea:.8,movable:!0,rotatable:!0,scalable:!0,zoomable:!0,zoomOnTouch:!0,zoomOnWheel:!0,wheelZoomRatio:.1,cropBoxMovable:!0,cropBoxResizable:!0,toggleDragModeOnDblclick:!0,minCanvasWidth:0,minCanvasHeight:0,minCropBoxWidth:0,minCropBoxHeight:0,minContainerWidth:200,minContainerHeight:100,ready:null,cropstart:null,cropmove:null,cropend:null,crop:null,zoom:null},V=Number.isNaN||h.isNaN;function F(t){return"number"==typeof t&&!V(t)}var J=function(t){return 0<t&&t<1/0};function _(t){return void 0===t}function tt(t){return"object"===e(t)&&null!==t}var et=Object.prototype.hasOwnProperty;function it(t){if(!tt(t))return!1;try{var e=t.constructor,i=e.prototype;return e&&i&&et.call(i,"isPrototypeOf")}catch(t){return!1}}function at(t){return"function"==typeof t}var nt=Array.prototype.slice;function ot(t){return Array.from?Array.from(t):nt.call(t)}function ht(i,a){return i&&at(a)&&(Array.isArray(i)||F(i.length)?ot(i).forEach(function(t,e){a.call(i,t,e,i)}):tt(i)&&Object.keys(i).forEach(function(t){a.call(i,i[t],t,i)})),i}var rt=Object.assign||function(i){for(var t=arguments.length,e=new Array(1<t?t-1:0),a=1;a<t;a++)e[a-1]=arguments[a];return tt(i)&&0<e.length&&e.forEach(function(e){tt(e)&&Object.keys(e).forEach(function(t){i[t]=e[t]})}),i},st=/\.\d*(?:0|9){12}\d*$/;function ct(t,e){e=1<arguments.length&&void 0!==e?e:1e11;return st.test(t)?Math.round(t*e)/e:t}var dt=/^width|height|left|top|marginLeft|marginTop$/;function lt(t,e){var i=t.style;ht(e,function(t,e){dt.test(e)&&F(t)&&(t="".concat(t,"px")),i[e]=t})}function pt(t,e){var i;e&&(F(t.length)?ht(t,function(t){pt(t,e)}):t.classList?t.classList.add(e):(i=t.className.trim())?i.indexOf(e)<0&&(t.className="".concat(i," ").concat(e)):t.className=e)}function mt(t,e){e&&(F(t.length)?ht(t,function(t){mt(t,e)}):t.classList?t.classList.remove(e):0<=t.className.indexOf(e)&&(t.className=t.className.replace(e,"")))}function ut(t,e,i){e&&(F(t.length)?ht(t,function(t){ut(t,e,i)}):(i?pt:mt)(t,e))}var gt=/([a-z\d])([A-Z])/g;function ft(t){return t.replace(gt,"$1-$2").toLowerCase()}function vt(t,e){return tt(t[e])?t[e]:t.dataset?t.dataset[e]:t.getAttribute("data-".concat(ft(e)))}function wt(t,e,i){tt(i)?t[e]=i:t.dataset?t.dataset[e]=i:t.setAttribute("data-".concat(ft(e)),i)}var bt,yt,xt=/\s\s*/,Mt=(yt=!1,t&&(bt=!1,At=function(){},It=Object.defineProperty({},"once",{get:function(){return yt=!0,bt},set:function(t){bt=t}}),h.addEventListener("test",At,It),h.removeEventListener("test",At,It)),yt);function Ct(i,t,a,e){var n=3<arguments.length&&void 0!==e?e:{},o=a;t.trim().split(xt).forEach(function(t){var e;Mt||(e=i.listeners)&&e[t]&&e[t][a]&&(o=e[t][a],delete e[t][a],0===Object.keys(e[t]).length&&delete e[t],0===Object.keys(e).length&&delete i.listeners),i.removeEventListener(t,o,n)})}function Dt(o,t,h,e){var r=3<arguments.length&&void 0!==e?e:{},s=h;t.trim().split(xt).forEach(function(a){var t,n;r.once&&!Mt&&(t=o.listeners,s=function(){delete n[a][h],o.removeEventListener(a,s,r);for(var t=arguments.length,e=new Array(t),i=0;i<t;i++)e[i]=arguments[i];h.apply(o,e)},(n=void 0===t?{}:t)[a]||(n[a]={}),n[a][h]&&o.removeEventListener(a,n[a][h],r),n[a][h]=s,o.listeners=n),o.addEventListener(a,s,r)})}function Bt(t,e,i){var a;return at(Event)&&at(CustomEvent)?a=new CustomEvent(e,{detail:i,bubbles:!0,cancelable:!0}):(a=document.createEvent("CustomEvent")).initCustomEvent(e,!0,!0,i),t.dispatchEvent(a)}function kt(t){t=t.getBoundingClientRect();return{left:t.left+(window.pageXOffset-document.documentElement.clientLeft),top:t.top+(window.pageYOffset-document.documentElement.clientTop)}}var Ot=h.location,Tt=/^(\w+:)\/\/([^:/?#]*):?(\d*)/i;function Et(t){t=t.match(Tt);return null!==t&&(t[1]!==Ot.protocol||t[2]!==Ot.hostname||t[3]!==Ot.port)}function Wt(t){var e="timestamp=".concat((new Date).getTime());return t+(-1===t.indexOf("?")?"?":"&")+e}function Ht(t){var e=t.rotate,i=t.scaleX,a=t.scaleY,n=t.translateX,o=t.translateY,t=[];F(n)&&0!==n&&t.push("translateX(".concat(n,"px)")),F(o)&&0!==o&&t.push("translateY(".concat(o,"px)")),F(e)&&0!==e&&t.push("rotate(".concat(e,"deg)")),F(i)&&1!==i&&t.push("scaleX(".concat(i,")")),F(a)&&1!==a&&t.push("scaleY(".concat(a,")"));t=t.length?t.join(" "):"none";return{WebkitTransform:t,msTransform:t,transform:t}}function Nt(t,e){var i=t.pageX,a=t.pageY,t={endX:i,endY:a};return e?t:B({startX:i,startY:a},t)}function Lt(t,e){var i=t.aspectRatio,a=t.height,n=t.width,o=1<arguments.length&&void 0!==e?e:"contain",h=J(n),t=J(a);return h&&t?(e=a*i,"contain"===o&&n<e||"cover"===o&&e<n?a=n/i:n=a*i):h?a=n/i:t&&(n=a*i),{width:n,height:a}}var zt=String.fromCharCode;var Yt=/^data:.*,/;function Xt(t){var e,i,a,n,o,h,r=new DataView(t);try{if(255===r.getUint8(0)&&216===r.getUint8(1))for(var s=r.byteLength,c=2;c+1<s;){if(255===r.getUint8(c)&&225===r.getUint8(c+1)){i=c;break}c+=1}if(i&&(n=i+10,"Exif"===function(t,e,i){var a="";i+=e;for(var n=e;n<i;n+=1)a+=zt(t.getUint8(n));return a}(r,i+4,4)&&(!(h=18761===(o=r.getUint16(n)))&&19789!==o||42!==r.getUint16(n+2,h)||8<=(o=r.getUint32(n+4,h))&&(a=n+o))),a)for(var d,l=r.getUint16(a,h),p=0;p<l;p+=1)if(d=a+12*p+2,274===r.getUint16(d,h)){d+=8,e=r.getUint16(d,h),r.setUint16(d,1,h);break}}catch(t){e=1}return e}var Rt={render:function(){this.initContainer(),this.initCanvas(),this.initCropBox(),this.renderCanvas(),this.cropped&&this.renderCropBox()},initContainer:function(){var t=this.element,e=this.options,i=this.container,a=this.cropper,n=Number(e.minContainerWidth),e=Number(e.minContainerHeight);pt(a,A),mt(t,A);e={width:Math.max(i.offsetWidth,0<=n?n:200),height:Math.max(i.offsetHeight,0<=e?e:100)};lt(a,{width:(this.containerData=e).width,height:e.height}),pt(t,A),mt(a,A)},initCanvas:function(){var t=this.containerData,e=this.imageData,i=this.options.viewMode,a=Math.abs(e.rotate)%180==90,n=a?e.naturalHeight:e.naturalWidth,o=a?e.naturalWidth:e.naturalHeight,h=n/o,a=t.width,e=t.height;t.height*h>t.width?3===i?a=t.height*h:e=t.width/h:3===i?e=t.width/h:a=t.height*h;e={aspectRatio:h,naturalWidth:n,naturalHeight:o,width:a,height:e};this.canvasData=e,this.limited=1===i||2===i,this.limitCanvas(!0,!0),e.width=Math.min(Math.max(e.width,e.minWidth),e.maxWidth),e.height=Math.min(Math.max(e.height,e.minHeight),e.maxHeight),e.left=(t.width-e.width)/2,e.top=(t.height-e.height)/2,e.oldLeft=e.left,e.oldTop=e.top,this.initialCanvasData=rt({},e)},limitCanvas:function(t,e){var i,a=this.options,n=this.containerData,o=this.canvasData,h=this.cropBoxData,r=a.viewMode,s=o.aspectRatio,c=this.cropped&&h;t&&(t=Number(a.minCanvasWidth)||0,i=Number(a.minCanvasHeight)||0,1<r?(t=Math.max(t,n.width),i=Math.max(i,n.height),3===r&&(t<i*s?t=i*s:i=t/s)):0<r&&(t?t=Math.max(t,c?h.width:0):i?i=Math.max(i,c?h.height:0):c&&((t=h.width)<(i=h.height)*s?t=i*s:i=t/s)),t=(s=Lt({aspectRatio:s,width:t,height:i})).width,i=s.height,o.minWidth=t,o.minHeight=i,o.maxWidth=1/0,o.maxHeight=1/0),e&&((c?0:1)<r?(i=n.width-o.width,e=n.height-o.height,o.minLeft=Math.min(0,i),o.minTop=Math.min(0,e),o.maxLeft=Math.max(0,i),o.maxTop=Math.max(0,e),c&&this.limited&&(o.minLeft=Math.min(h.left,h.left+(h.width-o.width)),o.minTop=Math.min(h.top,h.top+(h.height-o.height)),o.maxLeft=h.left,o.maxTop=h.top,2===r&&(o.width>=n.width&&(o.minLeft=Math.min(0,i),o.maxLeft=Math.max(0,i)),o.height>=n.height&&(o.minTop=Math.min(0,e),o.maxTop=Math.max(0,e))))):(o.minLeft=-o.width,o.minTop=-o.height,o.maxLeft=n.width,o.maxTop=n.height))},renderCanvas:function(t,e){var i,a,n=this.canvasData,o=this.imageData;e&&(i=(a=function(t){var e=t.width,i=t.height,a=t.degree;if(90==(a=Math.abs(a)%180))return{width:i,height:e};var n=a%90*Math.PI/180,o=Math.sin(n),t=Math.cos(n),n=e*t+i*o,t=e*o+i*t;return 90<a?{width:t,height:n}:{width:n,height:t}}({width:o.naturalWidth*Math.abs(o.scaleX||1),height:o.naturalHeight*Math.abs(o.scaleY||1),degree:o.rotate||0})).width,e=a.height,o=n.width*(i/n.naturalWidth),a=n.height*(e/n.naturalHeight),n.left-=(o-n.width)/2,n.top-=(a-n.height)/2,n.width=o,n.height=a,n.aspectRatio=i/e,n.naturalWidth=i,n.naturalHeight=e,this.limitCanvas(!0,!1)),(n.width>n.maxWidth||n.width<n.minWidth)&&(n.left=n.oldLeft),(n.height>n.maxHeight||n.height<n.minHeight)&&(n.top=n.oldTop),n.width=Math.min(Math.max(n.width,n.minWidth),n.maxWidth),n.height=Math.min(Math.max(n.height,n.minHeight),n.maxHeight),this.limitCanvas(!1,!0),n.left=Math.min(Math.max(n.left,n.minLeft),n.maxLeft),n.top=Math.min(Math.max(n.top,n.minTop),n.maxTop),n.oldLeft=n.left,n.oldTop=n.top,lt(this.canvas,rt({width:n.width,height:n.height},Ht({translateX:n.left,translateY:n.top}))),this.renderImage(t),this.cropped&&this.limited&&this.limitCropBox(!0,!0)},renderImage:function(t){var e=this.canvasData,i=this.imageData,a=i.naturalWidth*(e.width/e.naturalWidth),n=i.naturalHeight*(e.height/e.naturalHeight);rt(i,{width:a,height:n,left:(e.width-a)/2,top:(e.height-n)/2}),lt(this.image,rt({width:i.width,height:i.height},Ht(rt({translateX:i.left,translateY:i.top},i)))),t&&this.output()},initCropBox:function(){var t=this.options,e=this.canvasData,i=t.aspectRatio||t.initialAspectRatio,a=Number(t.autoCropArea)||.8,t={width:e.width,height:e.height};i&&(e.height*i>e.width?t.height=t.width/i:t.width=t.height*i),this.cropBoxData=t,this.limitCropBox(!0,!0),t.width=Math.min(Math.max(t.width,t.minWidth),t.maxWidth),t.height=Math.min(Math.max(t.height,t.minHeight),t.maxHeight),t.width=Math.max(t.minWidth,t.width*a),t.height=Math.max(t.minHeight,t.height*a),t.left=e.left+(e.width-t.width)/2,t.top=e.top+(e.height-t.height)/2,t.oldLeft=t.left,t.oldTop=t.top,this.initialCropBoxData=rt({},t)},limitCropBox:function(t,e){var i,a,n=this.options,o=this.containerData,h=this.canvasData,r=this.cropBoxData,s=this.limited,c=n.aspectRatio;t&&(i=Number(n.minCropBoxWidth)||0,a=Number(n.minCropBoxHeight)||0,t=s?Math.min(o.width,h.width,h.width+h.left,o.width-h.left):o.width,n=s?Math.min(o.height,h.height,h.height+h.top,o.height-h.top):o.height,i=Math.min(i,o.width),a=Math.min(a,o.height),c&&(i&&a?i<a*c?a=i/c:i=a*c:i?a=i/c:a&&(i=a*c),t<n*c?n=t/c:t=n*c),r.minWidth=Math.min(i,t),r.minHeight=Math.min(a,n),r.maxWidth=t,r.maxHeight=n),e&&(s?(r.minLeft=Math.max(0,h.left),r.minTop=Math.max(0,h.top),r.maxLeft=Math.min(o.width,h.left+h.width)-r.width,r.maxTop=Math.min(o.height,h.top+h.height)-r.height):(r.minLeft=0,r.minTop=0,r.maxLeft=o.width-r.width,r.maxTop=o.height-r.height))},renderCropBox:function(){var t=this.options,e=this.containerData,i=this.cropBoxData;(i.width>i.maxWidth||i.width<i.minWidth)&&(i.left=i.oldLeft),(i.height>i.maxHeight||i.height<i.minHeight)&&(i.top=i.oldTop),i.width=Math.min(Math.max(i.width,i.minWidth),i.maxWidth),i.height=Math.min(Math.max(i.height,i.minHeight),i.maxHeight),this.limitCropBox(!1,!0),i.left=Math.min(Math.max(i.left,i.minLeft),i.maxLeft),i.top=Math.min(Math.max(i.top,i.minTop),i.maxTop),i.oldLeft=i.left,i.oldTop=i.top,t.movable&&t.cropBoxMovable&&wt(this.face,g,i.width>=e.width&&i.height>=e.height?E:k),lt(this.cropBox,rt({width:i.width,height:i.height},Ht({translateX:i.left,translateY:i.top}))),this.cropped&&this.limited&&this.limitCanvas(!0,!0),this.disabled||this.output()},output:function(){this.preview(),Bt(this.element,y,this.getData())}},St={initPreview:function(){var t=this.element,i=this.crossOrigin,e=this.options.preview,a=i?this.crossOriginUrl:this.url,n=t.alt||"The image to preview",o=document.createElement("img");i&&(o.crossOrigin=i),o.src=a,o.alt=n,this.viewBox.appendChild(o),this.viewBoxImage=o,e&&("string"==typeof(o=e)?o=t.ownerDocument.querySelectorAll(e):e.querySelector&&(o=[e]),ht(this.previews=o,function(t){var e=document.createElement("img");wt(t,f,{width:t.offsetWidth,height:t.offsetHeight,html:t.innerHTML}),i&&(e.crossOrigin=i),e.src=a,e.alt=n,e.style.cssText='display:block;width:100%;height:auto;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;image-orientation:0deg!important;"',t.innerHTML="",t.appendChild(e)}))},resetPreview:function(){ht(this.previews,function(t){var e=vt(t,f);lt(t,{width:e.width,height:e.height}),t.innerHTML=e.html,function(e,i){if(tt(e[i]))try{delete e[i]}catch(t){e[i]=void 0}else if(e.dataset)try{delete e.dataset[i]}catch(t){e.dataset[i]=void 0}else e.removeAttribute("data-".concat(ft(i)))}(t,f)})},preview:function(){var h=this.imageData,t=this.canvasData,e=this.cropBoxData,r=e.width,s=e.height,c=h.width,d=h.height,l=e.left-t.left-h.left,p=e.top-t.top-h.top;this.cropped&&!this.disabled&&(lt(this.viewBoxImage,rt({width:c,height:d},Ht(rt({translateX:-l,translateY:-p},h)))),ht(this.previews,function(t){var e=vt(t,f),i=e.width,a=e.height,n=i,o=a,e=1;r&&(o=s*(e=i/r)),s&&a<o&&(n=r*(e=a/s),o=a),lt(t,{width:n,height:o}),lt(t.getElementsByTagName("img")[0],rt({width:c*e,height:d*e},Ht(rt({translateX:-l*e,translateY:-p*e},h))))}))}},r={bind:function(){var t=this.element,e=this.options,i=this.cropper;at(e.cropstart)&&Dt(t,C,e.cropstart),at(e.cropmove)&&Dt(t,M,e.cropmove),at(e.cropend)&&Dt(t,x,e.cropend),at(e.crop)&&Dt(t,y,e.crop),at(e.zoom)&&Dt(t,U,e.zoom),Dt(i,j,this.onCropStart=this.cropStart.bind(this)),e.zoomable&&e.zoomOnWheel&&Dt(i,"wheel",this.onWheel=this.wheel.bind(this),{passive:!1,capture:!0}),e.toggleDragModeOnDblclick&&Dt(i,D,this.onDblclick=this.dblclick.bind(this)),Dt(t.ownerDocument,I,this.onCropMove=this.cropMove.bind(this)),Dt(t.ownerDocument,P,this.onCropEnd=this.cropEnd.bind(this)),e.responsive&&Dt(window,"resize",this.onResize=this.resize.bind(this))},unbind:function(){var t=this.element,e=this.options,i=this.cropper;at(e.cropstart)&&Ct(t,C,e.cropstart),at(e.cropmove)&&Ct(t,M,e.cropmove),at(e.cropend)&&Ct(t,x,e.cropend),at(e.crop)&&Ct(t,y,e.crop),at(e.zoom)&&Ct(t,U,e.zoom),Ct(i,j,this.onCropStart),e.zoomable&&e.zoomOnWheel&&Ct(i,"wheel",this.onWheel,{passive:!1,capture:!0}),e.toggleDragModeOnDblclick&&Ct(i,D,this.onDblclick),Ct(t.ownerDocument,I,this.onCropMove),Ct(t.ownerDocument,P,this.onCropEnd),e.responsive&&Ct(window,"resize",this.onResize)}},o={resize:function(){var t,e,i,a,n,o;this.disabled||(t=this.options,e=this.container,i=this.containerData,1==(a=e.offsetWidth/i.width)&&e.offsetHeight===i.height||(t.restore&&(n=this.getCanvasData(),o=this.getCropBoxData()),this.render(),t.restore&&(this.setCanvasData(ht(n,function(t,e){n[e]=t*a})),this.setCropBoxData(ht(o,function(t,e){o[e]=t*a})))))},dblclick:function(){var t,e;this.disabled||this.options.dragMode===b||this.setDragMode((t=this.dragBox,e=s,(t.classList?t.classList.contains(e):-1<t.className.indexOf(e))?w:v))},wheel:function(t){var e=this,i=Number(this.options.wheelZoomRatio)||.1,a=1;this.disabled||(t.preventDefault(),this.wheeling||(this.wheeling=!0,setTimeout(function(){e.wheeling=!1},50),t.deltaY?a=0<t.deltaY?1:-1:t.wheelDelta?a=-t.wheelDelta/120:t.detail&&(a=0<t.detail?1:-1),this.zoom(-a*i,t)))},cropStart:function(t){var e,i=t.buttons,a=t.button;this.disabled||("mousedown"===t.type||"pointerdown"===t.type&&"mouse"===t.pointerType)&&(F(i)&&1!==i||F(a)&&0!==a||t.ctrlKey)||(a=this.options,e=this.pointers,t.changedTouches?ht(t.changedTouches,function(t){e[t.identifier]=Nt(t)}):e[t.pointerId||0]=Nt(t),a=1<Object.keys(e).length&&a.zoomable&&a.zoomOnTouch?W:vt(t.target,g),$.test(a)&&!1!==Bt(this.element,C,{originalEvent:t,action:a})&&(t.preventDefault(),this.action=a,this.cropping=!1,a===O&&(this.cropping=!0,pt(this.dragBox,m))))},cropMove:function(t){var e,i=this.action;!this.disabled&&i&&(e=this.pointers,t.preventDefault(),!1!==Bt(this.element,M,{originalEvent:t,action:i})&&(t.changedTouches?ht(t.changedTouches,function(t){rt(e[t.identifier]||{},Nt(t,!0))}):rt(e[t.pointerId||0]||{},Nt(t,!0)),this.change(t)))},cropEnd:function(t){var e,i;this.disabled||(e=this.action,i=this.pointers,t.changedTouches?ht(t.changedTouches,function(t){delete i[t.identifier]}):delete i[t.pointerId||0],e&&(t.preventDefault(),Object.keys(i).length||(this.action=""),this.cropping&&(this.cropping=!1,ut(this.dragBox,m,this.cropped&&this.options.modal)),Bt(this.element,x,{originalEvent:t,action:e})))}},t={change:function(t){var e=this.options,i=this.canvasData,a=this.containerData,n=this.cropBoxData,o=this.pointers,h=this.action,r=e.aspectRatio,s=n.left,c=n.top,d=n.width,l=n.height,p=s+d,m=c+l,u=0,g=0,f=a.width,v=a.height,w=!0;!r&&t.shiftKey&&(r=d&&l?d/l:1),this.limited&&(u=n.minLeft,g=n.minTop,f=u+Math.min(a.width,i.width,i.left+i.width),v=g+Math.min(a.height,i.height,i.top+i.height));function b(t){switch(t){case H:p+D.x>f&&(D.x=f-p);break;case N:s+D.x<u&&(D.x=u-s);break;case z:c+D.y<g&&(D.y=g-c);break;case L:m+D.y>v&&(D.y=v-m)}}var y,x,M,C=o[Object.keys(o)[0]],D={x:C.endX-C.startX,y:C.endY-C.startY};switch(h){case k:s+=D.x,c+=D.y;break;case H:if(0<=D.x&&(f<=p||r&&(c<=g||v<=m))){w=!1;break}b(H),(d+=D.x)<0&&(h=N,s-=d=-d),r&&(l=d/r,c+=(n.height-l)/2);break;case z:if(D.y<=0&&(c<=g||r&&(s<=u||f<=p))){w=!1;break}b(z),l-=D.y,c+=D.y,l<0&&(h=L,c-=l=-l),r&&(d=l*r,s+=(n.width-d)/2);break;case N:if(D.x<=0&&(s<=u||r&&(c<=g||v<=m))){w=!1;break}b(N),d-=D.x,s+=D.x,d<0&&(h=H,s-=d=-d),r&&(l=d/r,c+=(n.height-l)/2);break;case L:if(0<=D.y&&(v<=m||r&&(s<=u||f<=p))){w=!1;break}b(L),(l+=D.y)<0&&(h=z,c-=l=-l),r&&(d=l*r,s+=(n.width-d)/2);break;case Y:if(r){if(D.y<=0&&(c<=g||f<=p)){w=!1;break}b(z),l-=D.y,c+=D.y,d=l*r}else b(z),b(H),!(0<=D.x)||p<f?d+=D.x:D.y<=0&&c<=g&&(w=!1),D.y<=0&&!(g<c)||(l-=D.y,c+=D.y);d<0&&l<0?(h=S,c-=l=-l,s-=d=-d):d<0?(h=X,s-=d=-d):l<0&&(h=R,c-=l=-l);break;case X:if(r){if(D.y<=0&&(c<=g||s<=u)){w=!1;break}b(z),l-=D.y,c+=D.y,d=l*r,s+=n.width-d}else b(z),b(N),!(D.x<=0)||u<s?(d-=D.x,s+=D.x):D.y<=0&&c<=g&&(w=!1),D.y<=0&&!(g<c)||(l-=D.y,c+=D.y);d<0&&l<0?(h=R,c-=l=-l,s-=d=-d):d<0?(h=Y,s-=d=-d):l<0&&(h=S,c-=l=-l);break;case S:if(r){if(D.x<=0&&(s<=u||v<=m)){w=!1;break}b(N),d-=D.x,s+=D.x,l=d/r}else b(L),b(N),!(D.x<=0)||u<s?(d-=D.x,s+=D.x):0<=D.y&&v<=m&&(w=!1),0<=D.y&&!(m<v)||(l+=D.y);d<0&&l<0?(h=Y,c-=l=-l,s-=d=-d):d<0?(h=R,s-=d=-d):l<0&&(h=X,c-=l=-l);break;case R:if(r){if(0<=D.x&&(f<=p||v<=m)){w=!1;break}b(H),l=(d+=D.x)/r}else b(L),b(H),!(0<=D.x)||p<f?d+=D.x:0<=D.y&&v<=m&&(w=!1),0<=D.y&&!(m<v)||(l+=D.y);d<0&&l<0?(h=X,c-=l=-l,s-=d=-d):d<0?(h=S,s-=d=-d):l<0&&(h=Y,c-=l=-l);break;case E:this.move(D.x,D.y),w=!1;break;case W:this.zoom((x=B({},y=o),M=0,ht(y,function(n,t){delete x[t],ht(x,function(t){var e=Math.abs(n.startX-t.startX),i=Math.abs(n.startY-t.startY),a=Math.abs(n.endX-t.endX),t=Math.abs(n.endY-t.endY),i=Math.sqrt(e*e+i*i),i=(Math.sqrt(a*a+t*t)-i)/i;Math.abs(i)>Math.abs(M)&&(M=i)})}),M),t),w=!1;break;case O:if(!D.x||!D.y){w=!1;break}y=kt(this.cropper),s=C.startX-y.left,c=C.startY-y.top,d=n.minWidth,l=n.minHeight,0<D.x?h=0<D.y?R:Y:D.x<0&&(s-=d,h=0<D.y?S:X),D.y<0&&(c-=l),this.cropped||(mt(this.cropBox,A),this.cropped=!0,this.limited&&this.limitCropBox(!0,!0))}w&&(n.width=d,n.height=l,n.left=s,n.top=c,this.action=h,this.renderCropBox()),ht(o,function(t){t.startX=t.endX,t.startY=t.endY})}},At={crop:function(){return!this.ready||this.cropped||this.disabled||(this.cropped=!0,this.limitCropBox(!0,!0),this.options.modal&&pt(this.dragBox,m),mt(this.cropBox,A),this.setCropBoxData(this.initialCropBoxData)),this},reset:function(){return this.ready&&!this.disabled&&(this.imageData=rt({},this.initialImageData),this.canvasData=rt({},this.initialCanvasData),this.cropBoxData=rt({},this.initialCropBoxData),this.renderCanvas(),this.cropped&&this.renderCropBox()),this},clear:function(){return this.cropped&&!this.disabled&&(rt(this.cropBoxData,{left:0,top:0,width:0,height:0}),this.cropped=!1,this.renderCropBox(),this.limitCanvas(!0,!0),this.renderCanvas(),mt(this.dragBox,m),pt(this.cropBox,A)),this},replace:function(e){var t=1<arguments.length&&void 0!==arguments[1]&&arguments[1];return!this.disabled&&e&&(this.isImg&&(this.element.src=e),t?(this.url=e,this.image.src=e,this.ready&&(this.viewBoxImage.src=e,ht(this.previews,function(t){t.getElementsByTagName("img")[0].src=e}))):(this.isImg&&(this.replaced=!0),this.options.data=null,this.uncreate(),this.load(e))),this},enable:function(){return this.ready&&this.disabled&&(this.disabled=!1,mt(this.cropper,d)),this},disable:function(){return this.ready&&!this.disabled&&(this.disabled=!0,pt(this.cropper,d)),this},destroy:function(){var t=this.element;return t[c]&&(t[c]=void 0,this.isImg&&this.replaced&&(t.src=this.originalUrl),this.uncreate()),this},move:function(t){var e=1<arguments.length&&void 0!==arguments[1]?arguments[1]:t,i=this.canvasData,a=i.left,i=i.top;return this.moveTo(_(t)?t:a+Number(t),_(e)?e:i+Number(e))},moveTo:function(t){var e=1<arguments.length&&void 0!==arguments[1]?arguments[1]:t,i=this.canvasData,a=!1;return t=Number(t),e=Number(e),this.ready&&!this.disabled&&this.options.movable&&(F(t)&&(i.left=t,a=!0),F(e)&&(i.top=e,a=!0),a&&this.renderCanvas(!0)),this},zoom:function(t,e){var i=this.canvasData;return t=(t=Number(t))<0?1/(1-t):1+t,this.zoomTo(i.width*t/i.naturalWidth,null,e)},zoomTo:function(t,e,i){var a,n,o,h=this.options,r=this.canvasData,s=r.width,c=r.height,d=r.naturalWidth,l=r.naturalHeight;if(0<=(t=Number(t))&&this.ready&&!this.disabled&&h.zoomable){h=d*t,l=l*t;if(!1===Bt(this.element,U,{ratio:t,oldRatio:s/d,originalEvent:i}))return this;i?(t=this.pointers,d=kt(this.cropper),i=t&&Object.keys(t).length?(o=n=a=0,ht(t,function(t){var e=t.startX,t=t.startY;a+=e,n+=t,o+=1}),{pageX:a/=o,pageY:n/=o}):{pageX:i.pageX,pageY:i.pageY},r.left-=(h-s)*((i.pageX-d.left-r.left)/s),r.top-=(l-c)*((i.pageY-d.top-r.top)/c)):it(e)&&F(e.x)&&F(e.y)?(r.left-=(h-s)*((e.x-r.left)/s),r.top-=(l-c)*((e.y-r.top)/c)):(r.left-=(h-s)/2,r.top-=(l-c)/2),r.width=h,r.height=l,this.renderCanvas(!0)}return this},rotate:function(t){return this.rotateTo((this.imageData.rotate||0)+Number(t))},rotateTo:function(t){return F(t=Number(t))&&this.ready&&!this.disabled&&this.options.rotatable&&(this.imageData.rotate=t%360,this.renderCanvas(!0,!0)),this},scaleX:function(t){var e=this.imageData.scaleY;return this.scale(t,F(e)?e:1)},scaleY:function(t){var e=this.imageData.scaleX;return this.scale(F(e)?e:1,t)},scale:function(t){var e=1<arguments.length&&void 0!==arguments[1]?arguments[1]:t,i=this.imageData,a=!1;return t=Number(t),e=Number(e),this.ready&&!this.disabled&&this.options.scalable&&(F(t)&&(i.scaleX=t,a=!0),F(e)&&(i.scaleY=e,a=!0),a&&this.renderCanvas(!0,!0)),this},getData:function(){var i,a,t=0<arguments.length&&void 0!==arguments[0]&&arguments[0],e=this.options,n=this.imageData,o=this.canvasData,h=this.cropBoxData;return this.ready&&this.cropped?(i={x:h.left-o.left,y:h.top-o.top,width:h.width,height:h.height},a=n.width/n.naturalWidth,ht(i,function(t,e){i[e]=t/a}),t&&(h=Math.round(i.y+i.height),t=Math.round(i.x+i.width),i.x=Math.round(i.x),i.y=Math.round(i.y),i.width=t-i.x,i.height=h-i.y)):i={x:0,y:0,width:0,height:0},e.rotatable&&(i.rotate=n.rotate||0),e.scalable&&(i.scaleX=n.scaleX||1,i.scaleY=n.scaleY||1),i},setData:function(t){var e,i=this.options,a=this.imageData,n=this.canvasData,o={};return this.ready&&!this.disabled&&it(t)&&(e=!1,i.rotatable&&F(t.rotate)&&t.rotate!==a.rotate&&(a.rotate=t.rotate,e=!0),i.scalable&&(F(t.scaleX)&&t.scaleX!==a.scaleX&&(a.scaleX=t.scaleX,e=!0),F(t.scaleY)&&t.scaleY!==a.scaleY&&(a.scaleY=t.scaleY,e=!0)),e&&this.renderCanvas(!0,!0),a=a.width/a.naturalWidth,F(t.x)&&(o.left=t.x*a+n.left),F(t.y)&&(o.top=t.y*a+n.top),F(t.width)&&(o.width=t.width*a),F(t.height)&&(o.height=t.height*a),this.setCropBoxData(o)),this},getContainerData:function(){return this.ready?rt({},this.containerData):{}},getImageData:function(){return this.sized?rt({},this.imageData):{}},getCanvasData:function(){var e=this.canvasData,i={};return this.ready&&ht(["left","top","width","height","naturalWidth","naturalHeight"],function(t){i[t]=e[t]}),i},setCanvasData:function(t){var e=this.canvasData,i=e.aspectRatio;return this.ready&&!this.disabled&&it(t)&&(F(t.left)&&(e.left=t.left),F(t.top)&&(e.top=t.top),F(t.width)?(e.width=t.width,e.height=t.width/i):F(t.height)&&(e.height=t.height,e.width=t.height*i),this.renderCanvas(!0)),this},getCropBoxData:function(){var t,e=this.cropBoxData;return(t=this.ready&&this.cropped?{left:e.left,top:e.top,width:e.width,height:e.height}:t)||{}},setCropBoxData:function(t){var e,i,a=this.cropBoxData,n=this.options.aspectRatio;return this.ready&&this.cropped&&!this.disabled&&it(t)&&(F(t.left)&&(a.left=t.left),F(t.top)&&(a.top=t.top),F(t.width)&&t.width!==a.width&&(e=!0,a.width=t.width),F(t.height)&&t.height!==a.height&&(i=!0,a.height=t.height),n&&(e?a.height=a.width/n:i&&(a.width=a.height*n)),this.renderCropBox()),this},getCroppedCanvas:function(){var t=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{};if(!this.ready||!window.HTMLCanvasElement)return null;var e,i,a,n,o,h,r,s,c,d,l,p,m,u=this.canvasData,h=(w=this.image,e=this.imageData,i=u,y=t,a=e.aspectRatio,n=e.naturalWidth,b=e.naturalHeight,o=void 0===(m=e.rotate)?0:m,h=void 0===(v=e.scaleX)?1:v,g=void 0===(l=e.scaleY)?1:l,r=i.aspectRatio,s=i.naturalWidth,c=i.naturalHeight,d=void 0===(p=y.fillColor)?"transparent":p,x=y.imageSmoothingEnabled,f=void 0===x||x,v=void 0===(m=y.imageSmoothingQuality)?"low":m,e=y.maxWidth,l=void 0===e?1/0:e,i=y.maxHeight,p=void 0===i?1/0:i,m=void 0===(x=y.minWidth)?0:x,e=y.minHeight,i=void 0===e?0:e,y=(x=document.createElement("canvas")).getContext("2d"),e=Lt({aspectRatio:r,width:l,height:p}),r=Lt({aspectRatio:r,width:m,height:i},"cover"),s=Math.min(e.width,Math.max(r.width,s)),c=Math.min(e.height,Math.max(r.height,c)),p=Lt({aspectRatio:a,width:l,height:p}),i=Lt({aspectRatio:a,width:m,height:i},"cover"),n=Math.min(p.width,Math.max(i.width,n)),b=Math.min(p.height,Math.max(i.height,b)),b=[-n/2,-b/2,n,b],x.width=ct(s),x.height=ct(c),y.fillStyle=d,y.fillRect(0,0,s,c),y.save(),y.translate(s/2,c/2),y.rotate(o*Math.PI/180),y.scale(h,g),y.imageSmoothingEnabled=f,y.imageSmoothingQuality=v,y.drawImage.apply(y,[w].concat(T(b.map(function(t){return Math.floor(ct(t))})))),y.restore(),x);if(!this.cropped)return h;var g=this.getData(),f=g.x,v=g.y,w=g.width,b=g.height,y=h.width/Math.floor(u.naturalWidth);1!=y&&(f*=y,v*=y,w*=y,b*=y);var x=w/b,g=Lt({aspectRatio:x,width:t.maxWidth||1/0,height:t.maxHeight||1/0}),u=Lt({aspectRatio:x,width:t.minWidth||0,height:t.minHeight||0},"cover"),x=Lt({aspectRatio:x,width:t.width||(1!=y?h.width:w),height:t.height||(1!=y?h.height:b)}),y=x.width,x=x.height,y=Math.min(g.width,Math.max(u.width,y)),x=Math.min(g.height,Math.max(u.height,x)),g=document.createElement("canvas"),u=g.getContext("2d");g.width=ct(y),g.height=ct(x),u.fillStyle=t.fillColor||"transparent",u.fillRect(0,0,y,x);x=t.imageSmoothingEnabled,x=void 0===x||x,t=t.imageSmoothingQuality;u.imageSmoothingEnabled=x,t&&(u.imageSmoothingQuality=t);var M,C,D,B,k,x=h.width,t=h.height,f=f,v=v;f<=-w||x<f?B=C=M=f=0:f<=0?(C=-f,f=0,B=M=Math.min(x,w+f)):f<=x&&(C=0,B=M=Math.min(w,x-f)),M<=0||v<=-b||t<v?k=D=O=v=0:v<=0?(D=-v,v=0,k=O=Math.min(t,b+v)):v<=t&&(D=0,k=O=Math.min(b,t-v));var O=[f,v,M,O];return 0<B&&0<k&&(w=y/w,O.push(C*w,D*w,B*w,k*w)),u.drawImage.apply(u,[h].concat(T(O.map(function(t){return Math.floor(ct(t))})))),g},setAspectRatio:function(t){var e=this.options;return this.disabled||_(t)||(e.aspectRatio=Math.max(0,t)||NaN,this.ready&&(this.initCropBox(),this.cropped&&this.renderCropBox())),this},setDragMode:function(t){var e,i,a=this.options,n=this.dragBox,o=this.face;return this.ready&&!this.disabled&&(e=t===v,i=a.movable&&t===w,t=e||i?t:b,a.dragMode=t,wt(n,g,t),ut(n,s,e),ut(n,u,i),a.cropBoxMovable||(wt(o,g,t),ut(o,s,e),ut(o,u,i))),this}},jt=h.Cropper,It=function(){function i(t){var e=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{};if(!function(t){if(!(t instanceof i))throw new TypeError("Cannot call a class as a function")}(this),!t||!Z.test(t.tagName))throw new Error("The first argument is required and must be an <img> or <canvas> element.");this.element=t,this.options=rt({},G,it(e)&&e),this.cropped=!1,this.disabled=!1,this.pointers={},this.ready=!1,this.reloading=!1,this.replaced=!1,this.sized=!1,this.sizing=!1,this.init()}var t,e,a;return t=i,a=[{key:"noConflict",value:function(){return window.Cropper=jt,i}},{key:"setDefaults",value:function(t){rt(G,it(t)&&t)}}],(e=[{key:"init",value:function(){var t,e=this.element,i=e.tagName.toLowerCase();if(!e[c]){if(e[c]=this,"img"===i){if(this.isImg=!0,t=e.getAttribute("src")||"",!(this.originalUrl=t))return;t=e.src}else"canvas"===i&&window.HTMLCanvasElement&&(t=e.toDataURL());this.load(t)}}},{key:"load",value:function(t){var e,i,a,n,o,h,r=this;t&&(this.url=t,this.imageData={},e=this.element,(i=this.options).rotatable||i.scalable||(i.checkOrientation=!1),i.checkOrientation&&window.ArrayBuffer?Q.test(t)?K.test(t)?this.read((h=(h=t).replace(Yt,""),a=atob(h),h=new ArrayBuffer(a.length),ht(n=new Uint8Array(h),function(t,e){n[e]=a.charCodeAt(e)}),h)):this.clone():(o=new XMLHttpRequest,h=this.clone.bind(this),this.reloading=!0,(this.xhr=o).onabort=h,o.onerror=h,o.ontimeout=h,o.onprogress=function(){o.getResponseHeader("content-type")!==q&&o.abort()},o.onload=function(){r.read(o.response)},o.onloadend=function(){r.reloading=!1,r.xhr=null},i.checkCrossOrigin&&Et(t)&&e.crossOrigin&&(t=Wt(t)),o.open("GET",t,!0),o.responseType="arraybuffer",o.withCredentials="use-credentials"===e.crossOrigin,o.send()):this.clone())}},{key:"read",value:function(t){var e=this.options,i=this.imageData,a=Xt(t),n=0,o=1,h=1;1<a&&(this.url=function(t,e){for(var i=[],a=new Uint8Array(t);0<a.length;)i.push(zt.apply(null,ot(a.subarray(0,8192)))),a=a.subarray(8192);return"data:".concat(e,";base64,").concat(btoa(i.join("")))}(t,q),n=(a=function(t){var e=0,i=1,a=1;switch(t){case 2:i=-1;break;case 3:e=-180;break;case 4:a=-1;break;case 5:e=90,a=-1;break;case 6:e=90;break;case 7:e=90,i=-1;break;case 8:e=-90}return{rotate:e,scaleX:i,scaleY:a}}(a)).rotate,o=a.scaleX,h=a.scaleY),e.rotatable&&(i.rotate=n),e.scalable&&(i.scaleX=o,i.scaleY=h),this.clone()}},{key:"clone",value:function(){var t=this.element,e=this.url,i=t.crossOrigin,a=e;this.options.checkCrossOrigin&&Et(e)&&(i=i||"anonymous",a=Wt(e)),this.crossOrigin=i,this.crossOriginUrl=a;var n=document.createElement("img");i&&(n.crossOrigin=i),n.src=a||e,n.alt=t.alt||"The image to crop",(this.image=n).onload=this.start.bind(this),n.onerror=this.stop.bind(this),pt(n,l),t.parentNode.insertBefore(n,t.nextSibling)}},{key:"start",value:function(){var i=this,t=this.image;t.onload=null,t.onerror=null,this.sizing=!0;function e(t,e){rt(i.imageData,{naturalWidth:t,naturalHeight:e,aspectRatio:t/e}),i.initialImageData=rt({},i.imageData),i.sizing=!1,i.sized=!0,i.build()}var a,n,o=h.navigator&&/(?:iPad|iPhone|iPod).*?AppleWebKit/i.test(h.navigator.userAgent);!t.naturalWidth||o?(a=document.createElement("img"),n=document.body||document.documentElement,(this.sizingImage=a).onload=function(){e(a.width,a.height),o||n.removeChild(a)},a.src=t.src,o||(a.style.cssText="left:0;max-height:none!important;max-width:none!important;min-height:0!important;min-width:0!important;opacity:0;position:absolute;top:0;z-index:-1;",n.appendChild(a))):e(t.naturalWidth,t.naturalHeight)}},{key:"stop",value:function(){var t=this.image;t.onload=null,t.onerror=null,t.parentNode.removeChild(t),this.image=null}},{key:"build",value:function(){var t,e,i,a,n,o,h,r,s;this.sized&&!this.ready&&(t=this.element,e=this.options,i=this.image,a=t.parentNode,(s=document.createElement("div")).innerHTML='<div class="cropper-container" touch-action="none"><div class="cropper-wrap-box"><div class="cropper-canvas"></div></div><div class="cropper-drag-box"></div><div class="cropper-crop-box"><span class="cropper-view-box"></span><span class="cropper-dashed dashed-h"></span><span class="cropper-dashed dashed-v"></span><span class="cropper-center"></span><span class="cropper-face"></span><span class="cropper-line line-e" data-cropper-action="e"></span><span class="cropper-line line-n" data-cropper-action="n"></span><span class="cropper-line line-w" data-cropper-action="w"></span><span class="cropper-line line-s" data-cropper-action="s"></span><span class="cropper-point point-e" data-cropper-action="e"></span><span class="cropper-point point-n" data-cropper-action="n"></span><span class="cropper-point point-w" data-cropper-action="w"></span><span class="cropper-point point-s" data-cropper-action="s"></span><span class="cropper-point point-ne" data-cropper-action="ne"></span><span class="cropper-point point-nw" data-cropper-action="nw"></span><span class="cropper-point point-sw" data-cropper-action="sw"></span><span class="cropper-point point-se" data-cropper-action="se"></span></div></div>',o=(n=s.querySelector(".".concat(c,"-container"))).querySelector(".".concat(c,"-canvas")),h=n.querySelector(".".concat(c,"-drag-box")),s=(r=n.querySelector(".".concat(c,"-crop-box"))).querySelector(".".concat(c,"-face")),this.container=a,this.cropper=n,this.canvas=o,this.dragBox=h,this.cropBox=r,this.viewBox=n.querySelector(".".concat(c,"-view-box")),this.face=s,o.appendChild(i),pt(t,A),a.insertBefore(n,t.nextSibling),this.isImg||mt(i,l),this.initPreview(),this.bind(),e.initialAspectRatio=Math.max(0,e.initialAspectRatio)||NaN,e.aspectRatio=Math.max(0,e.aspectRatio)||NaN,e.viewMode=Math.max(0,Math.min(3,Math.round(e.viewMode)))||0,pt(r,A),e.guides||pt(r.getElementsByClassName("".concat(c,"-dashed")),A),e.center||pt(r.getElementsByClassName("".concat(c,"-center")),A),e.background&&pt(n,"".concat(c,"-bg")),e.highlight||pt(s,p),e.cropBoxMovable&&(pt(s,u),wt(s,g,k)),e.cropBoxResizable||(pt(r.getElementsByClassName("".concat(c,"-line")),A),pt(r.getElementsByClassName("".concat(c,"-point")),A)),this.render(),this.ready=!0,this.setDragMode(e.dragMode),e.autoCrop&&this.crop(),this.setData(e.data),at(e.ready)&&Dt(t,"ready",e.ready,{once:!0}),Bt(t,"ready"))}},{key:"unbuild",value:function(){this.ready&&(this.ready=!1,this.unbind(),this.resetPreview(),this.cropper.parentNode.removeChild(this.cropper),mt(this.element,A))}},{key:"uncreate",value:function(){this.ready?(this.unbuild(),this.ready=!1,this.cropped=!1):this.sizing?(this.sizingImage.onload=null,this.sizing=!1,this.sized=!1):this.reloading?(this.xhr.onabort=null,this.xhr.abort()):this.image&&this.stop()}}])&&n(t.prototype,e),a&&n(t,a),i}();return rt(It.prototype,Rt,St,r,o,t,At),It});
+
+/***/ }),
+
+/***/ "./node_modules/dropzone/src/dropzone.js":
+/*!***********************************************!*\
+  !*** ./node_modules/dropzone/src/dropzone.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Dropzone),
+/* harmony export */   "Dropzone": () => (/* binding */ Dropzone)
+/* harmony export */ });
+/* harmony import */ var _emitter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./emitter.js */ "./node_modules/dropzone/src/emitter.js");
+/* harmony import */ var _options_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./options.js */ "./node_modules/dropzone/src/options.js");
+/* provided dependency */ var jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+
+
+class Dropzone extends _emitter_js__WEBPACK_IMPORTED_MODULE_0__.default {
+  static initClass() {
+    // Exposing the emitter class, mainly for tests
+    this.prototype.Emitter = _emitter_js__WEBPACK_IMPORTED_MODULE_0__.default;
+
+    /*
+     This is a list of all available events you can register on a dropzone object.
+
+     You can register an event handler like this:
+
+     dropzone.on("dragEnter", function() { });
+
+     */
+    this.prototype.events = [
+      "drop",
+      "dragstart",
+      "dragend",
+      "dragenter",
+      "dragover",
+      "dragleave",
+      "addedfile",
+      "addedfiles",
+      "removedfile",
+      "thumbnail",
+      "error",
+      "errormultiple",
+      "processing",
+      "processingmultiple",
+      "uploadprogress",
+      "totaluploadprogress",
+      "sending",
+      "sendingmultiple",
+      "success",
+      "successmultiple",
+      "canceled",
+      "canceledmultiple",
+      "complete",
+      "completemultiple",
+      "reset",
+      "maxfilesexceeded",
+      "maxfilesreached",
+      "queuecomplete",
+    ];
+
+    this.prototype._thumbnailQueue = [];
+    this.prototype._processingThumbnail = false;
+  }
+
+  // global utility
+  static extend(target, ...objects) {
+    for (let object of objects) {
+      for (let key in object) {
+        let val = object[key];
+        target[key] = val;
+      }
+    }
+    return target;
+  }
+
+  constructor(el, options) {
+    super();
+    let fallback, left;
+    this.element = el;
+    // For backwards compatibility since the version was in the prototype previously
+    this.version = Dropzone.version;
+
+    this.clickableElements = [];
+    this.listeners = [];
+    this.files = []; // All files
+
+    if (typeof this.element === "string") {
+      this.element = document.querySelector(this.element);
+    }
+
+    // Not checking if instance of HTMLElement or Element since IE9 is extremely weird.
+    if (!this.element || this.element.nodeType == null) {
+      throw new Error("Invalid dropzone element.");
+    }
+
+    if (this.element.dropzone) {
+      throw new Error("Dropzone already attached.");
+    }
+
+    // Now add this dropzone to the instances.
+    Dropzone.instances.push(this);
+
+    // Put the dropzone inside the element itself.
+    this.element.dropzone = this;
+
+    let elementOptions =
+      (left = Dropzone.optionsForElement(this.element)) != null ? left : {};
+
+    this.options = Dropzone.extend(
+      {},
+      _options_js__WEBPACK_IMPORTED_MODULE_1__.default,
+      elementOptions,
+      options != null ? options : {}
+    );
+
+    this.options.previewTemplate = this.options.previewTemplate.replace(
+      /\n*/g,
+      ""
+    );
+
+    // If the browser failed, just call the fallback and leave
+    if (this.options.forceFallback || !Dropzone.isBrowserSupported()) {
+      return this.options.fallback.call(this);
+    }
+
+    // @options.url = @element.getAttribute "action" unless @options.url?
+    if (this.options.url == null) {
+      this.options.url = this.element.getAttribute("action");
+    }
+
+    if (!this.options.url) {
+      throw new Error("No URL provided.");
+    }
+
+    if (this.options.acceptedFiles && this.options.acceptedMimeTypes) {
+      throw new Error(
+        "You can't provide both 'acceptedFiles' and 'acceptedMimeTypes'. 'acceptedMimeTypes' is deprecated."
+      );
+    }
+
+    if (this.options.uploadMultiple && this.options.chunking) {
+      throw new Error("You cannot set both: uploadMultiple and chunking.");
+    }
+
+    // Backwards compatibility
+    if (this.options.acceptedMimeTypes) {
+      this.options.acceptedFiles = this.options.acceptedMimeTypes;
+      delete this.options.acceptedMimeTypes;
+    }
+
+    // Backwards compatibility
+    if (this.options.renameFilename != null) {
+      this.options.renameFile = (file) =>
+        this.options.renameFilename.call(this, file.name, file);
+    }
+
+    if (typeof this.options.method === "string") {
+      this.options.method = this.options.method.toUpperCase();
+    }
+
+    if ((fallback = this.getExistingFallback()) && fallback.parentNode) {
+      // Remove the fallback
+      fallback.parentNode.removeChild(fallback);
+    }
+
+    // Display previews in the previewsContainer element or the Dropzone element unless explicitly set to false
+    if (this.options.previewsContainer !== false) {
+      if (this.options.previewsContainer) {
+        this.previewsContainer = Dropzone.getElement(
+          this.options.previewsContainer,
+          "previewsContainer"
+        );
+      } else {
+        this.previewsContainer = this.element;
+      }
+    }
+
+    if (this.options.clickable) {
+      if (this.options.clickable === true) {
+        this.clickableElements = [this.element];
+      } else {
+        this.clickableElements = Dropzone.getElements(
+          this.options.clickable,
+          "clickable"
+        );
+      }
+    }
+
+    this.init();
+  }
+
+  // Returns all files that have been accepted
+  getAcceptedFiles() {
+    return this.files.filter((file) => file.accepted).map((file) => file);
+  }
+
+  // Returns all files that have been rejected
+  // Not sure when that's going to be useful, but added for completeness.
+  getRejectedFiles() {
+    return this.files.filter((file) => !file.accepted).map((file) => file);
+  }
+
+  getFilesWithStatus(status) {
+    return this.files
+      .filter((file) => file.status === status)
+      .map((file) => file);
+  }
+
+  // Returns all files that are in the queue
+  getQueuedFiles() {
+    return this.getFilesWithStatus(Dropzone.QUEUED);
+  }
+
+  getUploadingFiles() {
+    return this.getFilesWithStatus(Dropzone.UPLOADING);
+  }
+
+  getAddedFiles() {
+    return this.getFilesWithStatus(Dropzone.ADDED);
+  }
+
+  // Files that are either queued or uploading
+  getActiveFiles() {
+    return this.files
+      .filter(
+        (file) =>
+          file.status === Dropzone.UPLOADING || file.status === Dropzone.QUEUED
+      )
+      .map((file) => file);
+  }
+
+  // The function that gets called when Dropzone is initialized. You
+  // can (and should) setup event listeners inside this function.
+  init() {
+    // In case it isn't set already
+    if (this.element.tagName === "form") {
+      this.element.setAttribute("enctype", "multipart/form-data");
+    }
+
+    if (
+      this.element.classList.contains("dropzone") &&
+      !this.element.querySelector(".dz-message")
+    ) {
+      this.element.appendChild(
+        Dropzone.createElement(
+          `<div class="dz-default dz-message"><button class="dz-button" type="button">${this.options.dictDefaultMessage}</button></div>`
+        )
+      );
+    }
+
+    if (this.clickableElements.length) {
+      let setupHiddenFileInput = () => {
+        if (this.hiddenFileInput) {
+          this.hiddenFileInput.parentNode.removeChild(this.hiddenFileInput);
+        }
+        this.hiddenFileInput = document.createElement("input");
+        this.hiddenFileInput.setAttribute("type", "file");
+        if (this.options.maxFiles === null || this.options.maxFiles > 1) {
+          this.hiddenFileInput.setAttribute("multiple", "multiple");
+        }
+        this.hiddenFileInput.className = "dz-hidden-input";
+
+        if (this.options.acceptedFiles !== null) {
+          this.hiddenFileInput.setAttribute(
+            "accept",
+            this.options.acceptedFiles
+          );
+        }
+        if (this.options.capture !== null) {
+          this.hiddenFileInput.setAttribute("capture", this.options.capture);
+        }
+
+        // Making sure that no one can "tab" into this field.
+        this.hiddenFileInput.setAttribute("tabindex", "-1");
+
+        // Not setting `display="none"` because some browsers don't accept clicks
+        // on elements that aren't displayed.
+        this.hiddenFileInput.style.visibility = "hidden";
+        this.hiddenFileInput.style.position = "absolute";
+        this.hiddenFileInput.style.top = "0";
+        this.hiddenFileInput.style.left = "0";
+        this.hiddenFileInput.style.height = "0";
+        this.hiddenFileInput.style.width = "0";
+        Dropzone.getElement(
+          this.options.hiddenInputContainer,
+          "hiddenInputContainer"
+        ).appendChild(this.hiddenFileInput);
+        this.hiddenFileInput.addEventListener("change", () => {
+          let { files } = this.hiddenFileInput;
+          if (files.length) {
+            for (let file of files) {
+              this.addFile(file);
+            }
+          }
+          this.emit("addedfiles", files);
+          setupHiddenFileInput();
+        });
+      };
+      setupHiddenFileInput();
+    }
+
+    this.URL = window.URL !== null ? window.URL : window.webkitURL;
+
+    // Setup all event listeners on the Dropzone object itself.
+    // They're not in @setupEventListeners() because they shouldn't be removed
+    // again when the dropzone gets disabled.
+    for (let eventName of this.events) {
+      this.on(eventName, this.options[eventName]);
+    }
+
+    this.on("uploadprogress", () => this.updateTotalUploadProgress());
+
+    this.on("removedfile", () => this.updateTotalUploadProgress());
+
+    this.on("canceled", (file) => this.emit("complete", file));
+
+    // Emit a `queuecomplete` event if all files finished uploading.
+    this.on("complete", (file) => {
+      if (
+        this.getAddedFiles().length === 0 &&
+        this.getUploadingFiles().length === 0 &&
+        this.getQueuedFiles().length === 0
+      ) {
+        // This needs to be deferred so that `queuecomplete` really triggers after `complete`
+        return setTimeout(() => this.emit("queuecomplete"), 0);
+      }
+    });
+
+    const containsFiles = function (e) {
+      if (e.dataTransfer.types) {
+        // Because e.dataTransfer.types is an Object in
+        // IE, we need to iterate like this instead of
+        // using e.dataTransfer.types.some()
+        for (var i = 0; i < e.dataTransfer.types.length; i++) {
+          if (e.dataTransfer.types[i] === "Files") return true;
+        }
+      }
+      return false;
+    };
+
+    let noPropagation = function (e) {
+      // If there are no files, we don't want to stop
+      // propagation so we don't interfere with other
+      // drag and drop behaviour.
+      if (!containsFiles(e)) return;
+      e.stopPropagation();
+      if (e.preventDefault) {
+        return e.preventDefault();
+      } else {
+        return (e.returnValue = false);
+      }
+    };
+
+    // Create the listeners
+    this.listeners = [
+      {
+        element: this.element,
+        events: {
+          dragstart: (e) => {
+            return this.emit("dragstart", e);
+          },
+          dragenter: (e) => {
+            noPropagation(e);
+            return this.emit("dragenter", e);
+          },
+          dragover: (e) => {
+            // Makes it possible to drag files from chrome's download bar
+            // http://stackoverflow.com/questions/19526430/drag-and-drop-file-uploads-from-chrome-downloads-bar
+            // Try is required to prevent bug in Internet Explorer 11 (SCRIPT65535 exception)
+            let efct;
+            try {
+              efct = e.dataTransfer.effectAllowed;
+            } catch (error) {}
+            e.dataTransfer.dropEffect =
+              "move" === efct || "linkMove" === efct ? "move" : "copy";
+
+            noPropagation(e);
+            return this.emit("dragover", e);
+          },
+          dragleave: (e) => {
+            return this.emit("dragleave", e);
+          },
+          drop: (e) => {
+            noPropagation(e);
+            return this.drop(e);
+          },
+          dragend: (e) => {
+            return this.emit("dragend", e);
+          },
+        },
+
+        // This is disabled right now, because the browsers don't implement it properly.
+        // "paste": (e) =>
+        //   noPropagation e
+        //   @paste e
+      },
+    ];
+
+    this.clickableElements.forEach((clickableElement) => {
+      return this.listeners.push({
+        element: clickableElement,
+        events: {
+          click: (evt) => {
+            // Only the actual dropzone or the message element should trigger file selection
+            if (
+              clickableElement !== this.element ||
+              evt.target === this.element ||
+              Dropzone.elementInside(
+                evt.target,
+                this.element.querySelector(".dz-message")
+              )
+            ) {
+              this.hiddenFileInput.click(); // Forward the click
+            }
+            return true;
+          },
+        },
+      });
+    });
+
+    this.enable();
+
+    return this.options.init.call(this);
+  }
+
+  // Not fully tested yet
+  destroy() {
+    this.disable();
+    this.removeAllFiles(true);
+    if (
+      this.hiddenFileInput != null ? this.hiddenFileInput.parentNode : undefined
+    ) {
+      this.hiddenFileInput.parentNode.removeChild(this.hiddenFileInput);
+      this.hiddenFileInput = null;
+    }
+    delete this.element.dropzone;
+    return Dropzone.instances.splice(Dropzone.instances.indexOf(this), 1);
+  }
+
+  updateTotalUploadProgress() {
+    let totalUploadProgress;
+    let totalBytesSent = 0;
+    let totalBytes = 0;
+
+    let activeFiles = this.getActiveFiles();
+
+    if (activeFiles.length) {
+      for (let file of this.getActiveFiles()) {
+        totalBytesSent += file.upload.bytesSent;
+        totalBytes += file.upload.total;
+      }
+      totalUploadProgress = (100 * totalBytesSent) / totalBytes;
+    } else {
+      totalUploadProgress = 100;
+    }
+
+    return this.emit(
+      "totaluploadprogress",
+      totalUploadProgress,
+      totalBytes,
+      totalBytesSent
+    );
+  }
+
+  // @options.paramName can be a function taking one parameter rather than a string.
+  // A parameter name for a file is obtained simply by calling this with an index number.
+  _getParamName(n) {
+    if (typeof this.options.paramName === "function") {
+      return this.options.paramName(n);
+    } else {
+      return `${this.options.paramName}${
+        this.options.uploadMultiple ? `[${n}]` : ""
+      }`;
+    }
+  }
+
+  // If @options.renameFile is a function,
+  // the function will be used to rename the file.name before appending it to the formData
+  _renameFile(file) {
+    if (typeof this.options.renameFile !== "function") {
+      return file.name;
+    }
+    return this.options.renameFile(file);
+  }
+
+  // Returns a form that can be used as fallback if the browser does not support DragnDrop
+  //
+  // If the dropzone is already a form, only the input field and button are returned. Otherwise a complete form element is provided.
+  // This code has to pass in IE7 :(
+  getFallbackForm() {
+    let existingFallback, form;
+    if ((existingFallback = this.getExistingFallback())) {
+      return existingFallback;
+    }
+
+    let fieldsString = '<div class="dz-fallback">';
+    if (this.options.dictFallbackText) {
+      fieldsString += `<p>${this.options.dictFallbackText}</p>`;
+    }
+    fieldsString += `<input type="file" name="${this._getParamName(0)}" ${
+      this.options.uploadMultiple ? 'multiple="multiple"' : undefined
+    } /><input type="submit" value="Upload!"></div>`;
+
+    let fields = Dropzone.createElement(fieldsString);
+    if (this.element.tagName !== "FORM") {
+      form = Dropzone.createElement(
+        `<form action="${this.options.url}" enctype="multipart/form-data" method="${this.options.method}"></form>`
+      );
+      form.appendChild(fields);
+    } else {
+      // Make sure that the enctype and method attributes are set properly
+      this.element.setAttribute("enctype", "multipart/form-data");
+      this.element.setAttribute("method", this.options.method);
+    }
+    return form != null ? form : fields;
+  }
+
+  // Returns the fallback elements if they exist already
+  //
+  // This code has to pass in IE7 :(
+  getExistingFallback() {
+    let getFallback = function (elements) {
+      for (let el of elements) {
+        if (/(^| )fallback($| )/.test(el.className)) {
+          return el;
+        }
+      }
+    };
+
+    for (let tagName of ["div", "form"]) {
+      var fallback;
+      if (
+        (fallback = getFallback(this.element.getElementsByTagName(tagName)))
+      ) {
+        return fallback;
+      }
+    }
+  }
+
+  // Activates all listeners stored in @listeners
+  setupEventListeners() {
+    return this.listeners.map((elementListeners) =>
+      (() => {
+        let result = [];
+        for (let event in elementListeners.events) {
+          let listener = elementListeners.events[event];
+          result.push(
+            elementListeners.element.addEventListener(event, listener, false)
+          );
+        }
+        return result;
+      })()
+    );
+  }
+
+  // Deactivates all listeners stored in @listeners
+  removeEventListeners() {
+    return this.listeners.map((elementListeners) =>
+      (() => {
+        let result = [];
+        for (let event in elementListeners.events) {
+          let listener = elementListeners.events[event];
+          result.push(
+            elementListeners.element.removeEventListener(event, listener, false)
+          );
+        }
+        return result;
+      })()
+    );
+  }
+
+  // Removes all event listeners and cancels all files in the queue or being processed.
+  disable() {
+    this.clickableElements.forEach((element) =>
+      element.classList.remove("dz-clickable")
+    );
+    this.removeEventListeners();
+    this.disabled = true;
+
+    return this.files.map((file) => this.cancelUpload(file));
+  }
+
+  enable() {
+    delete this.disabled;
+    this.clickableElements.forEach((element) =>
+      element.classList.add("dz-clickable")
+    );
+    return this.setupEventListeners();
+  }
+
+  // Returns a nicely formatted filesize
+  filesize(size) {
+    let selectedSize = 0;
+    let selectedUnit = "b";
+
+    if (size > 0) {
+      let units = ["tb", "gb", "mb", "kb", "b"];
+
+      for (let i = 0; i < units.length; i++) {
+        let unit = units[i];
+        let cutoff = Math.pow(this.options.filesizeBase, 4 - i) / 10;
+
+        if (size >= cutoff) {
+          selectedSize = size / Math.pow(this.options.filesizeBase, 4 - i);
+          selectedUnit = unit;
+          break;
+        }
+      }
+
+      selectedSize = Math.round(10 * selectedSize) / 10; // Cutting of digits
+    }
+
+    return `<strong>${selectedSize}</strong> ${this.options.dictFileSizeUnits[selectedUnit]}`;
+  }
+
+  // Adds or removes the `dz-max-files-reached` class from the form.
+  _updateMaxFilesReachedClass() {
+    if (
+      this.options.maxFiles != null &&
+      this.getAcceptedFiles().length >= this.options.maxFiles
+    ) {
+      if (this.getAcceptedFiles().length === this.options.maxFiles) {
+        this.emit("maxfilesreached", this.files);
+      }
+      return this.element.classList.add("dz-max-files-reached");
+    } else {
+      return this.element.classList.remove("dz-max-files-reached");
+    }
+  }
+
+  drop(e) {
+    if (!e.dataTransfer) {
+      return;
+    }
+    this.emit("drop", e);
+
+    // Convert the FileList to an Array
+    // This is necessary for IE11
+    let files = [];
+    for (let i = 0; i < e.dataTransfer.files.length; i++) {
+      files[i] = e.dataTransfer.files[i];
+    }
+
+    // Even if it's a folder, files.length will contain the folders.
+    if (files.length) {
+      let { items } = e.dataTransfer;
+      if (items && items.length && items[0].webkitGetAsEntry != null) {
+        // The browser supports dropping of folders, so handle items instead of files
+        this._addFilesFromItems(items);
+      } else {
+        this.handleFiles(files);
+      }
+    }
+
+    this.emit("addedfiles", files);
+  }
+
+  paste(e) {
+    if (
+      __guard__(e != null ? e.clipboardData : undefined, (x) => x.items) == null
+    ) {
+      return;
+    }
+
+    this.emit("paste", e);
+    let { items } = e.clipboardData;
+
+    if (items.length) {
+      return this._addFilesFromItems(items);
+    }
+  }
+
+  handleFiles(files) {
+    for (let file of files) {
+      this.addFile(file);
+    }
+  }
+
+  // When a folder is dropped (or files are pasted), items must be handled
+  // instead of files.
+  _addFilesFromItems(items) {
+    return (() => {
+      let result = [];
+      for (let item of items) {
+        var entry;
+        if (
+          item.webkitGetAsEntry != null &&
+          (entry = item.webkitGetAsEntry())
+        ) {
+          if (entry.isFile) {
+            result.push(this.addFile(item.getAsFile()));
+          } else if (entry.isDirectory) {
+            // Append all files from that directory to files
+            result.push(this._addFilesFromDirectory(entry, entry.name));
+          } else {
+            result.push(undefined);
+          }
+        } else if (item.getAsFile != null) {
+          if (item.kind == null || item.kind === "file") {
+            result.push(this.addFile(item.getAsFile()));
+          } else {
+            result.push(undefined);
+          }
+        } else {
+          result.push(undefined);
+        }
+      }
+      return result;
+    })();
+  }
+
+  // Goes through the directory, and adds each file it finds recursively
+  _addFilesFromDirectory(directory, path) {
+    let dirReader = directory.createReader();
+
+    let errorHandler = (error) =>
+      __guardMethod__(console, "log", (o) => o.log(error));
+
+    var readEntries = () => {
+      return dirReader.readEntries((entries) => {
+        if (entries.length > 0) {
+          for (let entry of entries) {
+            if (entry.isFile) {
+              entry.file((file) => {
+                if (
+                  this.options.ignoreHiddenFiles &&
+                  file.name.substring(0, 1) === "."
+                ) {
+                  return;
+                }
+                file.fullPath = `${path}/${file.name}`;
+                return this.addFile(file);
+              });
+            } else if (entry.isDirectory) {
+              this._addFilesFromDirectory(entry, `${path}/${entry.name}`);
+            }
+          }
+
+          // Recursively call readEntries() again, since browser only handle
+          // the first 100 entries.
+          // See: https://developer.mozilla.org/en-US/docs/Web/API/DirectoryReader#readEntries
+          readEntries();
+        }
+        return null;
+      }, errorHandler);
+    };
+
+    return readEntries();
+  }
+
+  // If `done()` is called without argument the file is accepted
+  // If you call it with an error message, the file is rejected
+  // (This allows for asynchronous validation)
+  //
+  // This function checks the filesize, and if the file.type passes the
+  // `acceptedFiles` check.
+  accept(file, done) {
+    if (
+      this.options.maxFilesize &&
+      file.size > this.options.maxFilesize * 1024 * 1024
+    ) {
+      done(
+        this.options.dictFileTooBig
+          .replace("{{filesize}}", Math.round(file.size / 1024 / 10.24) / 100)
+          .replace("{{maxFilesize}}", this.options.maxFilesize)
+      );
+    } else if (!Dropzone.isValidFile(file, this.options.acceptedFiles)) {
+      done(this.options.dictInvalidFileType);
+    } else if (
+      this.options.maxFiles != null &&
+      this.getAcceptedFiles().length >= this.options.maxFiles
+    ) {
+      done(
+        this.options.dictMaxFilesExceeded.replace(
+          "{{maxFiles}}",
+          this.options.maxFiles
+        )
+      );
+      this.emit("maxfilesexceeded", file);
+    } else {
+      this.options.accept.call(this, file, done);
+    }
+  }
+
+  addFile(file) {
+    file.upload = {
+      uuid: Dropzone.uuidv4(),
+      progress: 0,
+      // Setting the total upload size to file.size for the beginning
+      // It's actual different than the size to be transmitted.
+      total: file.size,
+      bytesSent: 0,
+      filename: this._renameFile(file),
+      // Not setting chunking information here, because the acutal data — and
+      // thus the chunks — might change if `options.transformFile` is set
+      // and does something to the data.
+    };
+    this.files.push(file);
+
+    file.status = Dropzone.ADDED;
+
+    this.emit("addedfile", file);
+
+    this._enqueueThumbnail(file);
+
+    this.accept(file, (error) => {
+      if (error) {
+        file.accepted = false;
+        this._errorProcessing([file], error); // Will set the file.status
+      } else {
+        file.accepted = true;
+        if (this.options.autoQueue) {
+          this.enqueueFile(file);
+        } // Will set .accepted = true
+      }
+      this._updateMaxFilesReachedClass();
+    });
+  }
+
+  // Wrapper for enqueueFile
+  enqueueFiles(files) {
+    for (let file of files) {
+      this.enqueueFile(file);
+    }
+    return null;
+  }
+
+  enqueueFile(file) {
+    if (file.status === Dropzone.ADDED && file.accepted === true) {
+      file.status = Dropzone.QUEUED;
+      if (this.options.autoProcessQueue) {
+        return setTimeout(() => this.processQueue(), 0); // Deferring the call
+      }
+    } else {
+      throw new Error(
+        "This file can't be queued because it has already been processed or was rejected."
+      );
+    }
+  }
+
+  _enqueueThumbnail(file) {
+    if (
+      this.options.createImageThumbnails &&
+      file.type.match(/image.*/) &&
+      file.size <= this.options.maxThumbnailFilesize * 1024 * 1024
+    ) {
+      this._thumbnailQueue.push(file);
+      return setTimeout(() => this._processThumbnailQueue(), 0); // Deferring the call
+    }
+  }
+
+  _processThumbnailQueue() {
+    if (this._processingThumbnail || this._thumbnailQueue.length === 0) {
+      return;
+    }
+
+    this._processingThumbnail = true;
+    let file = this._thumbnailQueue.shift();
+    return this.createThumbnail(
+      file,
+      this.options.thumbnailWidth,
+      this.options.thumbnailHeight,
+      this.options.thumbnailMethod,
+      true,
+      (dataUrl) => {
+        this.emit("thumbnail", file, dataUrl);
+        this._processingThumbnail = false;
+        return this._processThumbnailQueue();
+      }
+    );
+  }
+
+  // Can be called by the user to remove a file
+  removeFile(file) {
+    if (file.status === Dropzone.UPLOADING) {
+      this.cancelUpload(file);
+    }
+    this.files = without(this.files, file);
+
+    this.emit("removedfile", file);
+    if (this.files.length === 0) {
+      return this.emit("reset");
+    }
+  }
+
+  // Removes all files that aren't currently processed from the list
+  removeAllFiles(cancelIfNecessary) {
+    // Create a copy of files since removeFile() changes the @files array.
+    if (cancelIfNecessary == null) {
+      cancelIfNecessary = false;
+    }
+    for (let file of this.files.slice()) {
+      if (file.status !== Dropzone.UPLOADING || cancelIfNecessary) {
+        this.removeFile(file);
+      }
+    }
+    return null;
+  }
+
+  // Resizes an image before it gets sent to the server. This function is the default behavior of
+  // `options.transformFile` if `resizeWidth` or `resizeHeight` are set. The callback is invoked with
+  // the resized blob.
+  resizeImage(file, width, height, resizeMethod, callback) {
+    return this.createThumbnail(
+      file,
+      width,
+      height,
+      resizeMethod,
+      true,
+      (dataUrl, canvas) => {
+        if (canvas == null) {
+          // The image has not been resized
+          return callback(file);
+        } else {
+          let { resizeMimeType } = this.options;
+          if (resizeMimeType == null) {
+            resizeMimeType = file.type;
+          }
+          let resizedDataURL = canvas.toDataURL(
+            resizeMimeType,
+            this.options.resizeQuality
+          );
+          if (
+            resizeMimeType === "image/jpeg" ||
+            resizeMimeType === "image/jpg"
+          ) {
+            // Now add the original EXIF information
+            resizedDataURL = ExifRestore.restore(file.dataURL, resizedDataURL);
+          }
+          return callback(Dropzone.dataURItoBlob(resizedDataURL));
+        }
+      }
+    );
+  }
+
+  createThumbnail(file, width, height, resizeMethod, fixOrientation, callback) {
+    let fileReader = new FileReader();
+
+    fileReader.onload = () => {
+      file.dataURL = fileReader.result;
+
+      // Don't bother creating a thumbnail for SVG images since they're vector
+      if (file.type === "image/svg+xml") {
+        if (callback != null) {
+          callback(fileReader.result);
+        }
+        return;
+      }
+
+      this.createThumbnailFromUrl(
+        file,
+        width,
+        height,
+        resizeMethod,
+        fixOrientation,
+        callback
+      );
+    };
+
+    fileReader.readAsDataURL(file);
+  }
+
+  // `mockFile` needs to have these attributes:
+  //
+  //     { name: 'name', size: 12345, imageUrl: '' }
+  //
+  // `callback` will be invoked when the image has been downloaded and displayed.
+  // `crossOrigin` will be added to the `img` tag when accessing the file.
+  displayExistingFile(
+    mockFile,
+    imageUrl,
+    callback,
+    crossOrigin,
+    resizeThumbnail = true
+  ) {
+    this.emit("addedfile", mockFile);
+    this.emit("complete", mockFile);
+
+    if (!resizeThumbnail) {
+      this.emit("thumbnail", mockFile, imageUrl);
+      if (callback) callback();
+    } else {
+      let onDone = (thumbnail) => {
+        this.emit("thumbnail", mockFile, thumbnail);
+        if (callback) callback();
+      };
+      mockFile.dataURL = imageUrl;
+
+      this.createThumbnailFromUrl(
+        mockFile,
+        this.options.thumbnailWidth,
+        this.options.thumbnailHeight,
+        this.options.resizeMethod,
+        this.options.fixOrientation,
+        onDone,
+        crossOrigin
+      );
+    }
+  }
+
+  createThumbnailFromUrl(
+    file,
+    width,
+    height,
+    resizeMethod,
+    fixOrientation,
+    callback,
+    crossOrigin
+  ) {
+    // Not using `new Image` here because of a bug in latest Chrome versions.
+    // See https://github.com/enyo/dropzone/pull/226
+    let img = document.createElement("img");
+
+    if (crossOrigin) {
+      img.crossOrigin = crossOrigin;
+    }
+
+    // fixOrientation is not needed anymore with browsers handling imageOrientation
+    fixOrientation =
+      getComputedStyle(document.body)["imageOrientation"] == "from-image"
+        ? false
+        : fixOrientation;
+
+    img.onload = () => {
+      let loadExif = (callback) => callback(1);
+      if (typeof EXIF !== "undefined" && EXIF !== null && fixOrientation) {
+        loadExif = (callback) =>
+          EXIF.getData(img, function () {
+            return callback(EXIF.getTag(this, "Orientation"));
+          });
+      }
+
+      return loadExif((orientation) => {
+        file.width = img.width;
+        file.height = img.height;
+
+        let resizeInfo = this.options.resize.call(
+          this,
+          file,
+          width,
+          height,
+          resizeMethod
+        );
+
+        let canvas = document.createElement("canvas");
+        let ctx = canvas.getContext("2d");
+
+        canvas.width = resizeInfo.trgWidth;
+        canvas.height = resizeInfo.trgHeight;
+
+        if (orientation > 4) {
+          canvas.width = resizeInfo.trgHeight;
+          canvas.height = resizeInfo.trgWidth;
+        }
+
+        switch (orientation) {
+          case 2:
+            // horizontal flip
+            ctx.translate(canvas.width, 0);
+            ctx.scale(-1, 1);
+            break;
+          case 3:
+            // 180° rotate left
+            ctx.translate(canvas.width, canvas.height);
+            ctx.rotate(Math.PI);
+            break;
+          case 4:
+            // vertical flip
+            ctx.translate(0, canvas.height);
+            ctx.scale(1, -1);
+            break;
+          case 5:
+            // vertical flip + 90 rotate right
+            ctx.rotate(0.5 * Math.PI);
+            ctx.scale(1, -1);
+            break;
+          case 6:
+            // 90° rotate right
+            ctx.rotate(0.5 * Math.PI);
+            ctx.translate(0, -canvas.width);
+            break;
+          case 7:
+            // horizontal flip + 90 rotate right
+            ctx.rotate(0.5 * Math.PI);
+            ctx.translate(canvas.height, -canvas.width);
+            ctx.scale(-1, 1);
+            break;
+          case 8:
+            // 90° rotate left
+            ctx.rotate(-0.5 * Math.PI);
+            ctx.translate(-canvas.height, 0);
+            break;
+        }
+
+        // This is a bugfix for iOS' scaling bug.
+        drawImageIOSFix(
+          ctx,
+          img,
+          resizeInfo.srcX != null ? resizeInfo.srcX : 0,
+          resizeInfo.srcY != null ? resizeInfo.srcY : 0,
+          resizeInfo.srcWidth,
+          resizeInfo.srcHeight,
+          resizeInfo.trgX != null ? resizeInfo.trgX : 0,
+          resizeInfo.trgY != null ? resizeInfo.trgY : 0,
+          resizeInfo.trgWidth,
+          resizeInfo.trgHeight
+        );
+
+        let thumbnail = canvas.toDataURL("image/png");
+
+        if (callback != null) {
+          return callback(thumbnail, canvas);
+        }
+      });
+    };
+
+    if (callback != null) {
+      img.onerror = callback;
+    }
+
+    return (img.src = file.dataURL);
+  }
+
+  // Goes through the queue and processes files if there aren't too many already.
+  processQueue() {
+    let { parallelUploads } = this.options;
+    let processingLength = this.getUploadingFiles().length;
+    let i = processingLength;
+
+    // There are already at least as many files uploading than should be
+    if (processingLength >= parallelUploads) {
+      return;
+    }
+
+    let queuedFiles = this.getQueuedFiles();
+
+    if (!(queuedFiles.length > 0)) {
+      return;
+    }
+
+    if (this.options.uploadMultiple) {
+      // The files should be uploaded in one request
+      return this.processFiles(
+        queuedFiles.slice(0, parallelUploads - processingLength)
+      );
+    } else {
+      while (i < parallelUploads) {
+        if (!queuedFiles.length) {
+          return;
+        } // Nothing left to process
+        this.processFile(queuedFiles.shift());
+        i++;
+      }
+    }
+  }
+
+  // Wrapper for `processFiles`
+  processFile(file) {
+    return this.processFiles([file]);
+  }
+
+  // Loads the file, then calls finishedLoading()
+  processFiles(files) {
+    for (let file of files) {
+      file.processing = true; // Backwards compatibility
+      file.status = Dropzone.UPLOADING;
+
+      this.emit("processing", file);
+    }
+
+    if (this.options.uploadMultiple) {
+      this.emit("processingmultiple", files);
+    }
+
+    return this.uploadFiles(files);
+  }
+
+  _getFilesWithXhr(xhr) {
+    let files;
+    return (files = this.files
+      .filter((file) => file.xhr === xhr)
+      .map((file) => file));
+  }
+
+  // Cancels the file upload and sets the status to CANCELED
+  // **if** the file is actually being uploaded.
+  // If it's still in the queue, the file is being removed from it and the status
+  // set to CANCELED.
+  cancelUpload(file) {
+    if (file.status === Dropzone.UPLOADING) {
+      let groupedFiles = this._getFilesWithXhr(file.xhr);
+      for (let groupedFile of groupedFiles) {
+        groupedFile.status = Dropzone.CANCELED;
+      }
+      if (typeof file.xhr !== "undefined") {
+        file.xhr.abort();
+      }
+      for (let groupedFile of groupedFiles) {
+        this.emit("canceled", groupedFile);
+      }
+      if (this.options.uploadMultiple) {
+        this.emit("canceledmultiple", groupedFiles);
+      }
+    } else if (
+      file.status === Dropzone.ADDED ||
+      file.status === Dropzone.QUEUED
+    ) {
+      file.status = Dropzone.CANCELED;
+      this.emit("canceled", file);
+      if (this.options.uploadMultiple) {
+        this.emit("canceledmultiple", [file]);
+      }
+    }
+
+    if (this.options.autoProcessQueue) {
+      return this.processQueue();
+    }
+  }
+
+  resolveOption(option, ...args) {
+    if (typeof option === "function") {
+      return option.apply(this, args);
+    }
+    return option;
+  }
+
+  uploadFile(file) {
+    return this.uploadFiles([file]);
+  }
+
+  uploadFiles(files) {
+    this._transformFiles(files, (transformedFiles) => {
+      if (this.options.chunking) {
+        // Chunking is not allowed to be used with `uploadMultiple` so we know
+        // that there is only __one__file.
+        let transformedFile = transformedFiles[0];
+        files[0].upload.chunked =
+          this.options.chunking &&
+          (this.options.forceChunking ||
+            transformedFile.size > this.options.chunkSize);
+        files[0].upload.totalChunkCount = Math.ceil(
+          transformedFile.size / this.options.chunkSize
+        );
+      }
+
+      if (files[0].upload.chunked) {
+        // This file should be sent in chunks!
+
+        // If the chunking option is set, we **know** that there can only be **one** file, since
+        // uploadMultiple is not allowed with this option.
+        let file = files[0];
+        let transformedFile = transformedFiles[0];
+        let startedChunkCount = 0;
+
+        file.upload.chunks = [];
+
+        let handleNextChunk = () => {
+          let chunkIndex = 0;
+
+          // Find the next item in file.upload.chunks that is not defined yet.
+          while (file.upload.chunks[chunkIndex] !== undefined) {
+            chunkIndex++;
+          }
+
+          // This means, that all chunks have already been started.
+          if (chunkIndex >= file.upload.totalChunkCount) return;
+
+          startedChunkCount++;
+
+          let start = chunkIndex * this.options.chunkSize;
+          let end = Math.min(
+            start + this.options.chunkSize,
+            transformedFile.size
+          );
+
+          let dataBlock = {
+            name: this._getParamName(0),
+            data: transformedFile.webkitSlice
+              ? transformedFile.webkitSlice(start, end)
+              : transformedFile.slice(start, end),
+            filename: file.upload.filename,
+            chunkIndex: chunkIndex,
+          };
+
+          file.upload.chunks[chunkIndex] = {
+            file: file,
+            index: chunkIndex,
+            dataBlock: dataBlock, // In case we want to retry.
+            status: Dropzone.UPLOADING,
+            progress: 0,
+            retries: 0, // The number of times this block has been retried.
+          };
+
+          this._uploadData(files, [dataBlock]);
+        };
+
+        file.upload.finishedChunkUpload = (chunk, response) => {
+          let allFinished = true;
+          chunk.status = Dropzone.SUCCESS;
+
+          // Clear the data from the chunk
+          chunk.dataBlock = null;
+          // Leaving this reference to xhr intact here will cause memory leaks in some browsers
+          chunk.xhr = null;
+
+          for (let i = 0; i < file.upload.totalChunkCount; i++) {
+            if (file.upload.chunks[i] === undefined) {
+              return handleNextChunk();
+            }
+            if (file.upload.chunks[i].status !== Dropzone.SUCCESS) {
+              allFinished = false;
+            }
+          }
+
+          if (allFinished) {
+            this.options.chunksUploaded(file, () => {
+              this._finished(files, response, null);
+            });
+          }
+        };
+
+        if (this.options.parallelChunkUploads) {
+          for (let i = 0; i < file.upload.totalChunkCount; i++) {
+            handleNextChunk();
+          }
+        } else {
+          handleNextChunk();
+        }
+      } else {
+        let dataBlocks = [];
+        for (let i = 0; i < files.length; i++) {
+          dataBlocks[i] = {
+            name: this._getParamName(i),
+            data: transformedFiles[i],
+            filename: files[i].upload.filename,
+          };
+        }
+        this._uploadData(files, dataBlocks);
+      }
+    });
+  }
+
+  /// Returns the right chunk for given file and xhr
+  _getChunk(file, xhr) {
+    for (let i = 0; i < file.upload.totalChunkCount; i++) {
+      if (
+        file.upload.chunks[i] !== undefined &&
+        file.upload.chunks[i].xhr === xhr
+      ) {
+        return file.upload.chunks[i];
+      }
+    }
+  }
+
+  // This function actually uploads the file(s) to the server.
+  // If dataBlocks contains the actual data to upload (meaning, that this could either be transformed
+  // files, or individual chunks for chunked upload).
+  _uploadData(files, dataBlocks) {
+    let xhr = new XMLHttpRequest();
+
+    // Put the xhr object in the file objects to be able to reference it later.
+    for (let file of files) {
+      file.xhr = xhr;
+    }
+    if (files[0].upload.chunked) {
+      // Put the xhr object in the right chunk object, so it can be associated later, and found with _getChunk
+      files[0].upload.chunks[dataBlocks[0].chunkIndex].xhr = xhr;
+    }
+
+    let method = this.resolveOption(this.options.method, files);
+    let url = this.resolveOption(this.options.url, files);
+    xhr.open(method, url, true);
+
+    // Setting the timeout after open because of IE11 issue: https://gitlab.com/meno/dropzone/issues/8
+    let timeout = this.resolveOption(this.options.timeout, files);
+    if (timeout) xhr.timeout = this.resolveOption(this.options.timeout, files);
+
+    // Has to be after `.open()`. See https://github.com/enyo/dropzone/issues/179
+    xhr.withCredentials = !!this.options.withCredentials;
+
+    xhr.onload = (e) => {
+      this._finishedUploading(files, xhr, e);
+    };
+
+    xhr.ontimeout = () => {
+      this._handleUploadError(
+        files,
+        xhr,
+        `Request timedout after ${this.options.timeout / 1000} seconds`
+      );
+    };
+
+    xhr.onerror = () => {
+      this._handleUploadError(files, xhr);
+    };
+
+    // Some browsers do not have the .upload property
+    let progressObj = xhr.upload != null ? xhr.upload : xhr;
+    progressObj.onprogress = (e) =>
+      this._updateFilesUploadProgress(files, xhr, e);
+
+    let headers = {
+      Accept: "application/json",
+      "Cache-Control": "no-cache",
+      "X-Requested-With": "XMLHttpRequest",
+    };
+
+    if (this.options.headers) {
+      Dropzone.extend(headers, this.options.headers);
+    }
+
+    for (let headerName in headers) {
+      let headerValue = headers[headerName];
+      if (headerValue) {
+        xhr.setRequestHeader(headerName, headerValue);
+      }
+    }
+
+    let formData = new FormData();
+
+    // Adding all @options parameters
+    if (this.options.params) {
+      let additionalParams = this.options.params;
+      if (typeof additionalParams === "function") {
+        additionalParams = additionalParams.call(
+          this,
+          files,
+          xhr,
+          files[0].upload.chunked ? this._getChunk(files[0], xhr) : null
+        );
+      }
+
+      for (let key in additionalParams) {
+        let value = additionalParams[key];
+        if (Array.isArray(value)) {
+          // The additional parameter contains an array,
+          // so lets iterate over it to attach each value
+          // individually.
+          for (let i = 0; i < value.length; i++) {
+            formData.append(key, value[i]);
+          }
+        } else {
+          formData.append(key, value);
+        }
+      }
+    }
+
+    // Let the user add additional data if necessary
+    for (let file of files) {
+      this.emit("sending", file, xhr, formData);
+    }
+    if (this.options.uploadMultiple) {
+      this.emit("sendingmultiple", files, xhr, formData);
+    }
+
+    this._addFormElementData(formData);
+
+    // Finally add the files
+    // Has to be last because some servers (eg: S3) expect the file to be the last parameter
+    for (let i = 0; i < dataBlocks.length; i++) {
+      let dataBlock = dataBlocks[i];
+      formData.append(dataBlock.name, dataBlock.data, dataBlock.filename);
+    }
+
+    this.submitRequest(xhr, formData, files);
+  }
+
+  // Transforms all files with this.options.transformFile and invokes done with the transformed files when done.
+  _transformFiles(files, done) {
+    let transformedFiles = [];
+    // Clumsy way of handling asynchronous calls, until I get to add a proper Future library.
+    let doneCounter = 0;
+    for (let i = 0; i < files.length; i++) {
+      this.options.transformFile.call(this, files[i], (transformedFile) => {
+        transformedFiles[i] = transformedFile;
+        if (++doneCounter === files.length) {
+          done(transformedFiles);
+        }
+      });
+    }
+  }
+
+  // Takes care of adding other input elements of the form to the AJAX request
+  _addFormElementData(formData) {
+    // Take care of other input elements
+    if (this.element.tagName === "FORM") {
+      for (let input of this.element.querySelectorAll(
+        "input, textarea, select, button"
+      )) {
+        let inputName = input.getAttribute("name");
+        let inputType = input.getAttribute("type");
+        if (inputType) inputType = inputType.toLowerCase();
+
+        // If the input doesn't have a name, we can't use it.
+        if (typeof inputName === "undefined" || inputName === null) continue;
+
+        if (input.tagName === "SELECT" && input.hasAttribute("multiple")) {
+          // Possibly multiple values
+          for (let option of input.options) {
+            if (option.selected) {
+              formData.append(inputName, option.value);
+            }
+          }
+        } else if (
+          !inputType ||
+          (inputType !== "checkbox" && inputType !== "radio") ||
+          input.checked
+        ) {
+          formData.append(inputName, input.value);
+        }
+      }
+    }
+  }
+
+  // Invoked when there is new progress information about given files.
+  // If e is not provided, it is assumed that the upload is finished.
+  _updateFilesUploadProgress(files, xhr, e) {
+    if (!files[0].upload.chunked) {
+      // Handle file uploads without chunking
+      for (let file of files) {
+        if (
+          file.upload.total &&
+          file.upload.bytesSent &&
+          file.upload.bytesSent == file.upload.total
+        ) {
+          // If both, the `total` and `bytesSent` have already been set, and
+          // they are equal (meaning progress is at 100%), we can skip this
+          // file, since an upload progress shouldn't go down.
+          continue;
+        }
+
+        if (e) {
+          file.upload.progress = (100 * e.loaded) / e.total;
+          file.upload.total = e.total;
+          file.upload.bytesSent = e.loaded;
+        } else {
+          // No event, so we're at 100%
+          file.upload.progress = 100;
+          file.upload.bytesSent = file.upload.total;
+        }
+
+        this.emit(
+          "uploadprogress",
+          file,
+          file.upload.progress,
+          file.upload.bytesSent
+        );
+      }
+    } else {
+      // Handle chunked file uploads
+
+      // Chunked upload is not compatible with uploading multiple files in one
+      // request, so we know there's only one file.
+      let file = files[0];
+
+      // Since this is a chunked upload, we need to update the appropriate chunk
+      // progress.
+      let chunk = this._getChunk(file, xhr);
+
+      if (e) {
+        chunk.progress = (100 * e.loaded) / e.total;
+        chunk.total = e.total;
+        chunk.bytesSent = e.loaded;
+      } else {
+        // No event, so we're at 100%
+        chunk.progress = 100;
+        chunk.bytesSent = chunk.total;
+      }
+
+      // Now tally the *file* upload progress from its individual chunks
+      file.upload.progress = 0;
+      file.upload.total = 0;
+      file.upload.bytesSent = 0;
+      for (let i = 0; i < file.upload.totalChunkCount; i++) {
+        if (
+          file.upload.chunks[i] &&
+          typeof file.upload.chunks[i].progress !== "undefined"
+        ) {
+          file.upload.progress += file.upload.chunks[i].progress;
+          file.upload.total += file.upload.chunks[i].total;
+          file.upload.bytesSent += file.upload.chunks[i].bytesSent;
+        }
+      }
+      // Since the process is a percentage, we need to divide by the amount of
+      // chunks we've used.
+      file.upload.progress = file.upload.progress / file.upload.totalChunkCount;
+
+      this.emit(
+        "uploadprogress",
+        file,
+        file.upload.progress,
+        file.upload.bytesSent
+      );
+    }
+  }
+
+  _finishedUploading(files, xhr, e) {
+    let response;
+
+    if (files[0].status === Dropzone.CANCELED) {
+      return;
+    }
+
+    if (xhr.readyState !== 4) {
+      return;
+    }
+
+    if (xhr.responseType !== "arraybuffer" && xhr.responseType !== "blob") {
+      response = xhr.responseText;
+
+      if (
+        xhr.getResponseHeader("content-type") &&
+        ~xhr.getResponseHeader("content-type").indexOf("application/json")
+      ) {
+        try {
+          response = JSON.parse(response);
+        } catch (error) {
+          e = error;
+          response = "Invalid JSON response from server.";
+        }
+      }
+    }
+
+    this._updateFilesUploadProgress(files, xhr);
+
+    if (!(200 <= xhr.status && xhr.status < 300)) {
+      this._handleUploadError(files, xhr, response);
+    } else {
+      if (files[0].upload.chunked) {
+        files[0].upload.finishedChunkUpload(
+          this._getChunk(files[0], xhr),
+          response
+        );
+      } else {
+        this._finished(files, response, e);
+      }
+    }
+  }
+
+  _handleUploadError(files, xhr, response) {
+    if (files[0].status === Dropzone.CANCELED) {
+      return;
+    }
+
+    if (files[0].upload.chunked && this.options.retryChunks) {
+      let chunk = this._getChunk(files[0], xhr);
+      if (chunk.retries++ < this.options.retryChunksLimit) {
+        this._uploadData(files, [chunk.dataBlock]);
+        return;
+      } else {
+        console.warn("Retried this chunk too often. Giving up.");
+      }
+    }
+
+    this._errorProcessing(
+      files,
+      response ||
+        this.options.dictResponseError.replace("{{statusCode}}", xhr.status),
+      xhr
+    );
+  }
+
+  submitRequest(xhr, formData, files) {
+    if (xhr.readyState != 1) {
+      console.warn(
+        "Cannot send this request because the XMLHttpRequest.readyState is not OPENED."
+      );
+      return;
+    }
+    xhr.send(formData);
+  }
+
+  // Called internally when processing is finished.
+  // Individual callbacks have to be called in the appropriate sections.
+  _finished(files, responseText, e) {
+    for (let file of files) {
+      file.status = Dropzone.SUCCESS;
+      this.emit("success", file, responseText, e);
+      this.emit("complete", file);
+    }
+    if (this.options.uploadMultiple) {
+      this.emit("successmultiple", files, responseText, e);
+      this.emit("completemultiple", files);
+    }
+
+    if (this.options.autoProcessQueue) {
+      return this.processQueue();
+    }
+  }
+
+  // Called internally when processing is finished.
+  // Individual callbacks have to be called in the appropriate sections.
+  _errorProcessing(files, message, xhr) {
+    for (let file of files) {
+      file.status = Dropzone.ERROR;
+      this.emit("error", file, message, xhr);
+      this.emit("complete", file);
+    }
+    if (this.options.uploadMultiple) {
+      this.emit("errormultiple", files, message, xhr);
+      this.emit("completemultiple", files);
+    }
+
+    if (this.options.autoProcessQueue) {
+      return this.processQueue();
+    }
+  }
+
+  static uuidv4() {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+      /[xy]/g,
+      function (c) {
+        let r = (Math.random() * 16) | 0,
+          v = c === "x" ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+      }
+    );
+  }
+}
+Dropzone.initClass();
+
+Dropzone.version = "dev";
+
+// This is a map of options for your different dropzones. Add configurations
+// to this object for your different dropzone elemens.
+//
+// Example:
+//
+//     Dropzone.options.myDropzoneElementId = { maxFilesize: 1 };
+//
+// To disable autoDiscover for a specific element, you can set `false` as an option:
+//
+//     Dropzone.options.myDisabledElementId = false;
+//
+// And in html:
+//
+//     <form action="/upload" id="my-dropzone-element-id" class="dropzone"></form>
+Dropzone.options = {};
+
+// Returns the options for an element or undefined if none available.
+Dropzone.optionsForElement = function (element) {
+  // Get the `Dropzone.options.elementId` for this element if it exists
+  if (element.getAttribute("id")) {
+    return Dropzone.options[camelize(element.getAttribute("id"))];
+  } else {
+    return undefined;
+  }
+};
+
+// Holds a list of all dropzone instances
+Dropzone.instances = [];
+
+// Returns the dropzone for given element if any
+Dropzone.forElement = function (element) {
+  if (typeof element === "string") {
+    element = document.querySelector(element);
+  }
+  if ((element != null ? element.dropzone : undefined) == null) {
+    throw new Error(
+      "No Dropzone found for given element. This is probably because you're trying to access it before Dropzone had the time to initialize. Use the `init` option to setup any additional observers on your Dropzone."
+    );
+  }
+  return element.dropzone;
+};
+
+// Set to false if you don't want Dropzone to automatically find and attach to .dropzone elements.
+Dropzone.autoDiscover = true;
+
+// Looks for all .dropzone elements and creates a dropzone for them
+Dropzone.discover = function () {
+  let dropzones;
+  if (document.querySelectorAll) {
+    dropzones = document.querySelectorAll(".dropzone");
+  } else {
+    dropzones = [];
+    // IE :(
+    let checkElements = (elements) =>
+      (() => {
+        let result = [];
+        for (let el of elements) {
+          if (/(^| )dropzone($| )/.test(el.className)) {
+            result.push(dropzones.push(el));
+          } else {
+            result.push(undefined);
+          }
+        }
+        return result;
+      })();
+    checkElements(document.getElementsByTagName("div"));
+    checkElements(document.getElementsByTagName("form"));
+  }
+
+  return (() => {
+    let result = [];
+    for (let dropzone of dropzones) {
+      // Create a dropzone unless auto discover has been disabled for specific element
+      if (Dropzone.optionsForElement(dropzone) !== false) {
+        result.push(new Dropzone(dropzone));
+      } else {
+        result.push(undefined);
+      }
+    }
+    return result;
+  })();
+};
+
+// Some browsers support drag and drog functionality, but not correctly.
+//
+// So I created a blocklist of userAgents. Yes, yes. Browser sniffing, I know.
+// But what to do when browsers *theoretically* support an API, but crash
+// when using it.
+//
+// This is a list of regular expressions tested against navigator.userAgent
+//
+// ** It should only be used on browser that *do* support the API, but
+// incorrectly **
+Dropzone.blockedBrowsers = [
+  // The mac os and windows phone version of opera 12 seems to have a problem with the File drag'n'drop API.
+  /opera.*(Macintosh|Windows Phone).*version\/12/i,
+];
+
+// Checks if the browser is supported
+Dropzone.isBrowserSupported = function () {
+  let capableBrowser = true;
+
+  if (
+    window.File &&
+    window.FileReader &&
+    window.FileList &&
+    window.Blob &&
+    window.FormData &&
+    document.querySelector
+  ) {
+    if (!("classList" in document.createElement("a"))) {
+      capableBrowser = false;
+    } else {
+      if (Dropzone.blacklistedBrowsers !== undefined) {
+        // Since this has been renamed, this makes sure we don't break older
+        // configuration.
+        Dropzone.blockedBrowsers = Dropzone.blacklistedBrowsers;
+      }
+      // The browser supports the API, but may be blocked.
+      for (let regex of Dropzone.blockedBrowsers) {
+        if (regex.test(navigator.userAgent)) {
+          capableBrowser = false;
+          continue;
+        }
+      }
+    }
+  } else {
+    capableBrowser = false;
+  }
+
+  return capableBrowser;
+};
+
+Dropzone.dataURItoBlob = function (dataURI) {
+  // convert base64 to raw binary data held in a string
+  // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+  let byteString = atob(dataURI.split(",")[1]);
+
+  // separate out the mime component
+  let mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
+
+  // write the bytes of the string to an ArrayBuffer
+  let ab = new ArrayBuffer(byteString.length);
+  let ia = new Uint8Array(ab);
+  for (
+    let i = 0, end = byteString.length, asc = 0 <= end;
+    asc ? i <= end : i >= end;
+    asc ? i++ : i--
+  ) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+
+  // write the ArrayBuffer to a blob
+  return new Blob([ab], { type: mimeString });
+};
+
+// Returns an array without the rejected item
+const without = (list, rejectedItem) =>
+  list.filter((item) => item !== rejectedItem).map((item) => item);
+
+// abc-def_ghi -> abcDefGhi
+const camelize = (str) =>
+  str.replace(/[\-_](\w)/g, (match) => match.charAt(1).toUpperCase());
+
+// Creates an element from string
+Dropzone.createElement = function (string) {
+  let div = document.createElement("div");
+  div.innerHTML = string;
+  return div.childNodes[0];
+};
+
+// Tests if given element is inside (or simply is) the container
+Dropzone.elementInside = function (element, container) {
+  if (element === container) {
+    return true;
+  } // Coffeescript doesn't support do/while loops
+  while ((element = element.parentNode)) {
+    if (element === container) {
+      return true;
+    }
+  }
+  return false;
+};
+
+Dropzone.getElement = function (el, name) {
+  let element;
+  if (typeof el === "string") {
+    element = document.querySelector(el);
+  } else if (el.nodeType != null) {
+    element = el;
+  }
+  if (element == null) {
+    throw new Error(
+      `Invalid \`${name}\` option provided. Please provide a CSS selector or a plain HTML element.`
+    );
+  }
+  return element;
+};
+
+Dropzone.getElements = function (els, name) {
+  let el, elements;
+  if (els instanceof Array) {
+    elements = [];
+    try {
+      for (el of els) {
+        elements.push(this.getElement(el, name));
+      }
+    } catch (e) {
+      elements = null;
+    }
+  } else if (typeof els === "string") {
+    elements = [];
+    for (el of document.querySelectorAll(els)) {
+      elements.push(el);
+    }
+  } else if (els.nodeType != null) {
+    elements = [els];
+  }
+
+  if (elements == null || !elements.length) {
+    throw new Error(
+      `Invalid \`${name}\` option provided. Please provide a CSS selector, a plain HTML element or a list of those.`
+    );
+  }
+
+  return elements;
+};
+
+// Asks the user the question and calls accepted or rejected accordingly
+//
+// The default implementation just uses `window.confirm` and then calls the
+// appropriate callback.
+Dropzone.confirm = function (question, accepted, rejected) {
+  if (window.confirm(question)) {
+    return accepted();
+  } else if (rejected != null) {
+    return rejected();
+  }
+};
+
+// Validates the mime type like this:
+//
+// https://developer.mozilla.org/en-US/docs/HTML/Element/input#attr-accept
+Dropzone.isValidFile = function (file, acceptedFiles) {
+  if (!acceptedFiles) {
+    return true;
+  } // If there are no accepted mime types, it's OK
+  acceptedFiles = acceptedFiles.split(",");
+
+  let mimeType = file.type;
+  let baseMimeType = mimeType.replace(/\/.*$/, "");
+
+  for (let validType of acceptedFiles) {
+    validType = validType.trim();
+    if (validType.charAt(0) === ".") {
+      if (
+        file.name
+          .toLowerCase()
+          .indexOf(
+            validType.toLowerCase(),
+            file.name.length - validType.length
+          ) !== -1
+      ) {
+        return true;
+      }
+    } else if (/\/\*$/.test(validType)) {
+      // This is something like a image/* mime type
+      if (baseMimeType === validType.replace(/\/.*$/, "")) {
+        return true;
+      }
+    } else {
+      if (mimeType === validType) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+};
+
+// Augment jQuery
+if (typeof jQuery !== "undefined" && jQuery !== null) {
+  jQuery.fn.dropzone = function (options) {
+    return this.each(function () {
+      return new Dropzone(this, options);
+    });
+  };
+}
+
+// Dropzone file status codes
+Dropzone.ADDED = "added";
+
+Dropzone.QUEUED = "queued";
+// For backwards compatibility. Now, if a file is accepted, it's either queued
+// or uploading.
+Dropzone.ACCEPTED = Dropzone.QUEUED;
+
+Dropzone.UPLOADING = "uploading";
+Dropzone.PROCESSING = Dropzone.UPLOADING; // alias
+
+Dropzone.CANCELED = "canceled";
+Dropzone.ERROR = "error";
+Dropzone.SUCCESS = "success";
+
+/*
+
+ Bugfix for iOS 6 and 7
+ Source: http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
+ based on the work of https://github.com/stomita/ios-imagefile-megapixel
+
+ */
+
+// Detecting vertical squash in loaded image.
+// Fixes a bug which squash image vertically while drawing into canvas for some images.
+// This is a bug in iOS6 devices. This function from https://github.com/stomita/ios-imagefile-megapixel
+let detectVerticalSquash = function (img) {
+  let iw = img.naturalWidth;
+  let ih = img.naturalHeight;
+  let canvas = document.createElement("canvas");
+  canvas.width = 1;
+  canvas.height = ih;
+  let ctx = canvas.getContext("2d");
+  ctx.drawImage(img, 0, 0);
+  let { data } = ctx.getImageData(1, 0, 1, ih);
+
+  // search image edge pixel position in case it is squashed vertically.
+  let sy = 0;
+  let ey = ih;
+  let py = ih;
+  while (py > sy) {
+    let alpha = data[(py - 1) * 4 + 3];
+
+    if (alpha === 0) {
+      ey = py;
+    } else {
+      sy = py;
+    }
+
+    py = (ey + sy) >> 1;
+  }
+  let ratio = py / ih;
+
+  if (ratio === 0) {
+    return 1;
+  } else {
+    return ratio;
+  }
+};
+
+// A replacement for context.drawImage
+// (args are for source and destination).
+var drawImageIOSFix = function (ctx, img, sx, sy, sw, sh, dx, dy, dw, dh) {
+  let vertSquashRatio = detectVerticalSquash(img);
+  return ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh / vertSquashRatio);
+};
+
+// Based on MinifyJpeg
+// Source: http://www.perry.cz/files/ExifRestorer.js
+// http://elicon.blog57.fc2.com/blog-entry-206.html
+class ExifRestore {
+  static initClass() {
+    this.KEY_STR =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+  }
+
+  static encode64(input) {
+    let output = "";
+    let chr1 = undefined;
+    let chr2 = undefined;
+    let chr3 = "";
+    let enc1 = undefined;
+    let enc2 = undefined;
+    let enc3 = undefined;
+    let enc4 = "";
+    let i = 0;
+    while (true) {
+      chr1 = input[i++];
+      chr2 = input[i++];
+      chr3 = input[i++];
+      enc1 = chr1 >> 2;
+      enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+      enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+      enc4 = chr3 & 63;
+      if (isNaN(chr2)) {
+        enc3 = enc4 = 64;
+      } else if (isNaN(chr3)) {
+        enc4 = 64;
+      }
+      output =
+        output +
+        this.KEY_STR.charAt(enc1) +
+        this.KEY_STR.charAt(enc2) +
+        this.KEY_STR.charAt(enc3) +
+        this.KEY_STR.charAt(enc4);
+      chr1 = chr2 = chr3 = "";
+      enc1 = enc2 = enc3 = enc4 = "";
+      if (!(i < input.length)) {
+        break;
+      }
+    }
+    return output;
+  }
+
+  static restore(origFileBase64, resizedFileBase64) {
+    if (!origFileBase64.match("data:image/jpeg;base64,")) {
+      return resizedFileBase64;
+    }
+    let rawImage = this.decode64(
+      origFileBase64.replace("data:image/jpeg;base64,", "")
+    );
+    let segments = this.slice2Segments(rawImage);
+    let image = this.exifManipulation(resizedFileBase64, segments);
+    return `data:image/jpeg;base64,${this.encode64(image)}`;
+  }
+
+  static exifManipulation(resizedFileBase64, segments) {
+    let exifArray = this.getExifArray(segments);
+    let newImageArray = this.insertExif(resizedFileBase64, exifArray);
+    let aBuffer = new Uint8Array(newImageArray);
+    return aBuffer;
+  }
+
+  static getExifArray(segments) {
+    let seg = undefined;
+    let x = 0;
+    while (x < segments.length) {
+      seg = segments[x];
+      if ((seg[0] === 255) & (seg[1] === 225)) {
+        return seg;
+      }
+      x++;
+    }
+    return [];
+  }
+
+  static insertExif(resizedFileBase64, exifArray) {
+    let imageData = resizedFileBase64.replace("data:image/jpeg;base64,", "");
+    let buf = this.decode64(imageData);
+    let separatePoint = buf.indexOf(255, 3);
+    let mae = buf.slice(0, separatePoint);
+    let ato = buf.slice(separatePoint);
+    let array = mae;
+    array = array.concat(exifArray);
+    array = array.concat(ato);
+    return array;
+  }
+
+  static slice2Segments(rawImageArray) {
+    let head = 0;
+    let segments = [];
+    while (true) {
+      var length;
+      if ((rawImageArray[head] === 255) & (rawImageArray[head + 1] === 218)) {
+        break;
+      }
+      if ((rawImageArray[head] === 255) & (rawImageArray[head + 1] === 216)) {
+        head += 2;
+      } else {
+        length = rawImageArray[head + 2] * 256 + rawImageArray[head + 3];
+        let endPoint = head + length + 2;
+        let seg = rawImageArray.slice(head, endPoint);
+        segments.push(seg);
+        head = endPoint;
+      }
+      if (head > rawImageArray.length) {
+        break;
+      }
+    }
+    return segments;
+  }
+
+  static decode64(input) {
+    let output = "";
+    let chr1 = undefined;
+    let chr2 = undefined;
+    let chr3 = "";
+    let enc1 = undefined;
+    let enc2 = undefined;
+    let enc3 = undefined;
+    let enc4 = "";
+    let i = 0;
+    let buf = [];
+    // remove all characters that are not A-Z, a-z, 0-9, +, /, or =
+    let base64test = /[^A-Za-z0-9\+\/\=]/g;
+    if (base64test.exec(input)) {
+      console.warn(
+        "There were invalid base64 characters in the input text.\nValid base64 characters are A-Z, a-z, 0-9, '+', '/',and '='\nExpect errors in decoding."
+      );
+    }
+    input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+    while (true) {
+      enc1 = this.KEY_STR.indexOf(input.charAt(i++));
+      enc2 = this.KEY_STR.indexOf(input.charAt(i++));
+      enc3 = this.KEY_STR.indexOf(input.charAt(i++));
+      enc4 = this.KEY_STR.indexOf(input.charAt(i++));
+      chr1 = (enc1 << 2) | (enc2 >> 4);
+      chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+      chr3 = ((enc3 & 3) << 6) | enc4;
+      buf.push(chr1);
+      if (enc3 !== 64) {
+        buf.push(chr2);
+      }
+      if (enc4 !== 64) {
+        buf.push(chr3);
+      }
+      chr1 = chr2 = chr3 = "";
+      enc1 = enc2 = enc3 = enc4 = "";
+      if (!(i < input.length)) {
+        break;
+      }
+    }
+    return buf;
+  }
+}
+ExifRestore.initClass();
+
+/*
+ * contentloaded.js
+ *
+ * Author: Diego Perini (diego.perini at gmail.com)
+ * Summary: cross-browser wrapper for DOMContentLoaded
+ * Updated: 20101020
+ * License: MIT
+ * Version: 1.2
+ *
+ * URL:
+ * http://javascript.nwbox.com/ContentLoaded/
+ * http://javascript.nwbox.com/ContentLoaded/MIT-LICENSE
+ */
+
+// @win window reference
+// @fn function reference
+let contentLoaded = function (win, fn) {
+  let done = false;
+  let top = true;
+  let doc = win.document;
+  let root = doc.documentElement;
+  let add = doc.addEventListener ? "addEventListener" : "attachEvent";
+  let rem = doc.addEventListener ? "removeEventListener" : "detachEvent";
+  let pre = doc.addEventListener ? "" : "on";
+  var init = function (e) {
+    if (e.type === "readystatechange" && doc.readyState !== "complete") {
+      return;
+    }
+    (e.type === "load" ? win : doc)[rem](pre + e.type, init, false);
+    if (!done && (done = true)) {
+      return fn.call(win, e.type || e);
+    }
+  };
+
+  var poll = function () {
+    try {
+      root.doScroll("left");
+    } catch (e) {
+      setTimeout(poll, 50);
+      return;
+    }
+    return init("poll");
+  };
+
+  if (doc.readyState !== "complete") {
+    if (doc.createEventObject && root.doScroll) {
+      try {
+        top = !win.frameElement;
+      } catch (error) {}
+      if (top) {
+        poll();
+      }
+    }
+    doc[add](pre + "DOMContentLoaded", init, false);
+    doc[add](pre + "readystatechange", init, false);
+    return win[add](pre + "load", init, false);
+  }
+};
+
+// As a single function to be able to write tests.
+Dropzone._autoDiscoverFunction = function () {
+  if (Dropzone.autoDiscover) {
+    return Dropzone.discover();
+  }
+};
+contentLoaded(window, Dropzone._autoDiscoverFunction);
+
+function __guard__(value, transform) {
+  return typeof value !== "undefined" && value !== null
+    ? transform(value)
+    : undefined;
+}
+function __guardMethod__(obj, methodName, transform) {
+  if (
+    typeof obj !== "undefined" &&
+    obj !== null &&
+    typeof obj[methodName] === "function"
+  ) {
+    return transform(obj, methodName);
+  } else {
+    return undefined;
+  }
+}
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/dropzone/src/emitter.js":
+/*!**********************************************!*\
+  !*** ./node_modules/dropzone/src/emitter.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Emitter)
+/* harmony export */ });
+// The Emitter class provides the ability to call `.on()` on Dropzone to listen
+// to events.
+// It is strongly based on component's emitter class, and I removed the
+// functionality because of the dependency hell with different frameworks.
+class Emitter {
+  // Add an event listener for given event
+  on(event, fn) {
+    this._callbacks = this._callbacks || {};
+    // Create namespace for this event
+    if (!this._callbacks[event]) {
+      this._callbacks[event] = [];
+    }
+    this._callbacks[event].push(fn);
+    return this;
+  }
+
+  emit(event, ...args) {
+    this._callbacks = this._callbacks || {};
+    let callbacks = this._callbacks[event];
+
+    if (callbacks) {
+      for (let callback of callbacks) {
+        callback.apply(this, args);
+      }
+    }
+    // trigger a corresponding DOM event
+    if (this.element) {
+      this.element.dispatchEvent(
+        this.makeEvent("dropzone:" + event, { args: args })
+      );
+    }
+    return this;
+  }
+
+  makeEvent(eventName, detail) {
+    let params = { bubbles: true, cancelable: true, detail: detail };
+
+    if (typeof window.CustomEvent === "function") {
+      return new CustomEvent(eventName, params);
+    } else {
+      // IE 11 support
+      // https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
+      var evt = document.createEvent("CustomEvent");
+      evt.initCustomEvent(
+        eventName,
+        params.bubbles,
+        params.cancelable,
+        params.detail
+      );
+      return evt;
+    }
+  }
+
+  // Remove event listener for given event. If fn is not provided, all event
+  // listeners for that event will be removed. If neither is provided, all
+  // event listeners will be removed.
+  off(event, fn) {
+    if (!this._callbacks || arguments.length === 0) {
+      this._callbacks = {};
+      return this;
+    }
+
+    // specific event
+    let callbacks = this._callbacks[event];
+    if (!callbacks) {
+      return this;
+    }
+
+    // remove all handlers
+    if (arguments.length === 1) {
+      delete this._callbacks[event];
+      return this;
+    }
+
+    // remove specific handler
+    for (let i = 0; i < callbacks.length; i++) {
+      let callback = callbacks[i];
+      if (callback === fn) {
+        callbacks.splice(i, 1);
+        break;
+      }
+    }
+
+    return this;
+  }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/dropzone/src/options.js":
+/*!**********************************************!*\
+  !*** ./node_modules/dropzone/src/options.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _dropzone_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dropzone.js */ "./node_modules/dropzone/src/dropzone.js");
+/* harmony import */ var _preview_template_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./preview-template.html */ "./node_modules/dropzone/src/preview-template.html");
+/* harmony import */ var _preview_template_html__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_preview_template_html__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+let defaultOptions = {
+  /**
+   * Has to be specified on elements other than form (or when the form
+   * doesn't have an `action` attribute). You can also
+   * provide a function that will be called with `files` and
+   * must return the url (since `v3.12.0`)
+   */
+  url: null,
+
+  /**
+   * Can be changed to `"put"` if necessary. You can also provide a function
+   * that will be called with `files` and must return the method (since `v3.12.0`).
+   */
+  method: "post",
+
+  /**
+   * Will be set on the XHRequest.
+   */
+  withCredentials: false,
+
+  /**
+   * The timeout for the XHR requests in milliseconds (since `v4.4.0`).
+   * If set to null or 0, no timeout is going to be set.
+   */
+  timeout: null,
+
+  /**
+   * How many file uploads to process in parallel (See the
+   * Enqueuing file uploads documentation section for more info)
+   */
+  parallelUploads: 2,
+
+  /**
+   * Whether to send multiple files in one request. If
+   * this it set to true, then the fallback file input element will
+   * have the `multiple` attribute as well. This option will
+   * also trigger additional events (like `processingmultiple`). See the events
+   * documentation section for more information.
+   */
+  uploadMultiple: false,
+
+  /**
+   * Whether you want files to be uploaded in chunks to your server. This can't be
+   * used in combination with `uploadMultiple`.
+   *
+   * See [chunksUploaded](#config-chunksUploaded) for the callback to finalise an upload.
+   */
+  chunking: false,
+
+  /**
+   * If `chunking` is enabled, this defines whether **every** file should be chunked,
+   * even if the file size is below chunkSize. This means, that the additional chunk
+   * form data will be submitted and the `chunksUploaded` callback will be invoked.
+   */
+  forceChunking: false,
+
+  /**
+   * If `chunking` is `true`, then this defines the chunk size in bytes.
+   */
+  chunkSize: 2000000,
+
+  /**
+   * If `true`, the individual chunks of a file are being uploaded simultaneously.
+   */
+  parallelChunkUploads: false,
+
+  /**
+   * Whether a chunk should be retried if it fails.
+   */
+  retryChunks: false,
+
+  /**
+   * If `retryChunks` is true, how many times should it be retried.
+   */
+  retryChunksLimit: 3,
+
+  /**
+   * The maximum filesize (in bytes) that is allowed to be uploaded.
+   */
+  maxFilesize: 256,
+
+  /**
+   * The name of the file param that gets transferred.
+   * **NOTE**: If you have the option  `uploadMultiple` set to `true`, then
+   * Dropzone will append `[]` to the name.
+   */
+  paramName: "file",
+
+  /**
+   * Whether thumbnails for images should be generated
+   */
+  createImageThumbnails: true,
+
+  /**
+   * In MB. When the filename exceeds this limit, the thumbnail will not be generated.
+   */
+  maxThumbnailFilesize: 10,
+
+  /**
+   * If `null`, the ratio of the image will be used to calculate it.
+   */
+  thumbnailWidth: 120,
+
+  /**
+   * The same as `thumbnailWidth`. If both are null, images will not be resized.
+   */
+  thumbnailHeight: 120,
+
+  /**
+   * How the images should be scaled down in case both, `thumbnailWidth` and `thumbnailHeight` are provided.
+   * Can be either `contain` or `crop`.
+   */
+  thumbnailMethod: "crop",
+
+  /**
+   * If set, images will be resized to these dimensions before being **uploaded**.
+   * If only one, `resizeWidth` **or** `resizeHeight` is provided, the original aspect
+   * ratio of the file will be preserved.
+   *
+   * The `options.transformFile` function uses these options, so if the `transformFile` function
+   * is overridden, these options don't do anything.
+   */
+  resizeWidth: null,
+
+  /**
+   * See `resizeWidth`.
+   */
+  resizeHeight: null,
+
+  /**
+   * The mime type of the resized image (before it gets uploaded to the server).
+   * If `null` the original mime type will be used. To force jpeg, for example, use `image/jpeg`.
+   * See `resizeWidth` for more information.
+   */
+  resizeMimeType: null,
+
+  /**
+   * The quality of the resized images. See `resizeWidth`.
+   */
+  resizeQuality: 0.8,
+
+  /**
+   * How the images should be scaled down in case both, `resizeWidth` and `resizeHeight` are provided.
+   * Can be either `contain` or `crop`.
+   */
+  resizeMethod: "contain",
+
+  /**
+   * The base that is used to calculate the **displayed** filesize. You can
+   * change this to 1024 if you would rather display kibibytes, mebibytes,
+   * etc... 1024 is technically incorrect, because `1024 bytes` are `1 kibibyte`
+   * not `1 kilobyte`. You can change this to `1024` if you don't care about
+   * validity.
+   */
+  filesizeBase: 1000,
+
+  /**
+   * If not `null` defines how many files this Dropzone handles. If it exceeds,
+   * the event `maxfilesexceeded` will be called. The dropzone element gets the
+   * class `dz-max-files-reached` accordingly so you can provide visual
+   * feedback.
+   */
+  maxFiles: null,
+
+  /**
+   * An optional object to send additional headers to the server. Eg:
+   * `{ "My-Awesome-Header": "header value" }`
+   */
+  headers: null,
+
+  /**
+   * If `true`, the dropzone element itself will be clickable, if `false`
+   * nothing will be clickable.
+   *
+   * You can also pass an HTML element, a CSS selector (for multiple elements)
+   * or an array of those. In that case, all of those elements will trigger an
+   * upload when clicked.
+   */
+  clickable: true,
+
+  /**
+   * Whether hidden files in directories should be ignored.
+   */
+  ignoreHiddenFiles: true,
+
+  /**
+   * The default implementation of `accept` checks the file's mime type or
+   * extension against this list. This is a comma separated list of mime
+   * types or file extensions.
+   *
+   * Eg.: `image/*,application/pdf,.psd`
+   *
+   * If the Dropzone is `clickable` this option will also be used as
+   * [`accept`](https://developer.mozilla.org/en-US/docs/HTML/Element/input#attr-accept)
+   * parameter on the hidden file input as well.
+   */
+  acceptedFiles: null,
+
+  /**
+   * **Deprecated!**
+   * Use acceptedFiles instead.
+   */
+  acceptedMimeTypes: null,
+
+  /**
+   * If false, files will be added to the queue but the queue will not be
+   * processed automatically.
+   * This can be useful if you need some additional user input before sending
+   * files (or if you want want all files sent at once).
+   * If you're ready to send the file simply call `myDropzone.processQueue()`.
+   *
+   * See the [enqueuing file uploads](#enqueuing-file-uploads) documentation
+   * section for more information.
+   */
+  autoProcessQueue: true,
+
+  /**
+   * If false, files added to the dropzone will not be queued by default.
+   * You'll have to call `enqueueFile(file)` manually.
+   */
+  autoQueue: true,
+
+  /**
+   * If `true`, this will add a link to every file preview to remove or cancel (if
+   * already uploading) the file. The `dictCancelUpload`, `dictCancelUploadConfirmation`
+   * and `dictRemoveFile` options are used for the wording.
+   */
+  addRemoveLinks: false,
+
+  /**
+   * Defines where to display the file previews – if `null` the
+   * Dropzone element itself is used. Can be a plain `HTMLElement` or a CSS
+   * selector. The element should have the `dropzone-previews` class so
+   * the previews are displayed properly.
+   */
+  previewsContainer: null,
+
+  /**
+   * Set this to `true` if you don't want previews to be shown.
+   */
+  disablePreviews: false,
+
+  /**
+   * This is the element the hidden input field (which is used when clicking on the
+   * dropzone to trigger file selection) will be appended to. This might
+   * be important in case you use frameworks to switch the content of your page.
+   *
+   * Can be a selector string, or an element directly.
+   */
+  hiddenInputContainer: "body",
+
+  /**
+   * If null, no capture type will be specified
+   * If camera, mobile devices will skip the file selection and choose camera
+   * If microphone, mobile devices will skip the file selection and choose the microphone
+   * If camcorder, mobile devices will skip the file selection and choose the camera in video mode
+   * On apple devices multiple must be set to false.  AcceptedFiles may need to
+   * be set to an appropriate mime type (e.g. "image/*", "audio/*", or "video/*").
+   */
+  capture: null,
+
+  /**
+   * **Deprecated**. Use `renameFile` instead.
+   */
+  renameFilename: null,
+
+  /**
+   * A function that is invoked before the file is uploaded to the server and renames the file.
+   * This function gets the `File` as argument and can use the `file.name`. The actual name of the
+   * file that gets used during the upload can be accessed through `file.upload.filename`.
+   */
+  renameFile: null,
+
+  /**
+   * If `true` the fallback will be forced. This is very useful to test your server
+   * implementations first and make sure that everything works as
+   * expected without dropzone if you experience problems, and to test
+   * how your fallbacks will look.
+   */
+  forceFallback: false,
+
+  /**
+   * The text used before any files are dropped.
+   */
+  dictDefaultMessage: "Drop files here to upload",
+
+  /**
+   * The text that replaces the default message text it the browser is not supported.
+   */
+  dictFallbackMessage:
+    "Your browser does not support drag'n'drop file uploads.",
+
+  /**
+   * The text that will be added before the fallback form.
+   * If you provide a  fallback element yourself, or if this option is `null` this will
+   * be ignored.
+   */
+  dictFallbackText:
+    "Please use the fallback form below to upload your files like in the olden days.",
+
+  /**
+   * If the filesize is too big.
+   * `{{filesize}}` and `{{maxFilesize}}` will be replaced with the respective configuration values.
+   */
+  dictFileTooBig:
+    "File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.",
+
+  /**
+   * If the file doesn't match the file type.
+   */
+  dictInvalidFileType: "You can't upload files of this type.",
+
+  /**
+   * If the server response was invalid.
+   * `{{statusCode}}` will be replaced with the servers status code.
+   */
+  dictResponseError: "Server responded with {{statusCode}} code.",
+
+  /**
+   * If `addRemoveLinks` is true, the text to be used for the cancel upload link.
+   */
+  dictCancelUpload: "Cancel upload",
+
+  /**
+   * The text that is displayed if an upload was manually canceled
+   */
+  dictUploadCanceled: "Upload canceled.",
+
+  /**
+   * If `addRemoveLinks` is true, the text to be used for confirmation when cancelling upload.
+   */
+  dictCancelUploadConfirmation: "Are you sure you want to cancel this upload?",
+
+  /**
+   * If `addRemoveLinks` is true, the text to be used to remove a file.
+   */
+  dictRemoveFile: "Remove file",
+
+  /**
+   * If this is not null, then the user will be prompted before removing a file.
+   */
+  dictRemoveFileConfirmation: null,
+
+  /**
+   * Displayed if `maxFiles` is st and exceeded.
+   * The string `{{maxFiles}}` will be replaced by the configuration value.
+   */
+  dictMaxFilesExceeded: "You can not upload any more files.",
+
+  /**
+   * Allows you to translate the different units. Starting with `tb` for terabytes and going down to
+   * `b` for bytes.
+   */
+  dictFileSizeUnits: { tb: "TB", gb: "GB", mb: "MB", kb: "KB", b: "b" },
+  /**
+   * Called when dropzone initialized
+   * You can add event listeners here
+   */
+  init() {},
+
+  /**
+   * Can be an **object** of additional parameters to transfer to the server, **or** a `Function`
+   * that gets invoked with the `files`, `xhr` and, if it's a chunked upload, `chunk` arguments. In case
+   * of a function, this needs to return a map.
+   *
+   * The default implementation does nothing for normal uploads, but adds relevant information for
+   * chunked uploads.
+   *
+   * This is the same as adding hidden input fields in the form element.
+   */
+  params(files, xhr, chunk) {
+    if (chunk) {
+      return {
+        dzuuid: chunk.file.upload.uuid,
+        dzchunkindex: chunk.index,
+        dztotalfilesize: chunk.file.size,
+        dzchunksize: this.options.chunkSize,
+        dztotalchunkcount: chunk.file.upload.totalChunkCount,
+        dzchunkbyteoffset: chunk.index * this.options.chunkSize,
+      };
+    }
+  },
+
+  /**
+   * A function that gets a [file](https://developer.mozilla.org/en-US/docs/DOM/File)
+   * and a `done` function as parameters.
+   *
+   * If the done function is invoked without arguments, the file is "accepted" and will
+   * be processed. If you pass an error message, the file is rejected, and the error
+   * message will be displayed.
+   * This function will not be called if the file is too big or doesn't match the mime types.
+   */
+  accept(file, done) {
+    return done();
+  },
+
+  /**
+   * The callback that will be invoked when all chunks have been uploaded for a file.
+   * It gets the file for which the chunks have been uploaded as the first parameter,
+   * and the `done` function as second. `done()` needs to be invoked when everything
+   * needed to finish the upload process is done.
+   */
+  chunksUploaded: function (file, done) {
+    done();
+  },
+
+  /**
+   * Gets called when the browser is not supported.
+   * The default implementation shows the fallback input field and adds
+   * a text.
+   */
+  fallback() {
+    // This code should pass in IE7... :(
+    let messageElement;
+    this.element.className = `${this.element.className} dz-browser-not-supported`;
+
+    for (let child of this.element.getElementsByTagName("div")) {
+      if (/(^| )dz-message($| )/.test(child.className)) {
+        messageElement = child;
+        child.className = "dz-message"; // Removes the 'dz-default' class
+        break;
+      }
+    }
+    if (!messageElement) {
+      messageElement = _dropzone_js__WEBPACK_IMPORTED_MODULE_0__.default.createElement(
+        '<div class="dz-message"><span></span></div>'
+      );
+      this.element.appendChild(messageElement);
+    }
+
+    let span = messageElement.getElementsByTagName("span")[0];
+    if (span) {
+      if (span.textContent != null) {
+        span.textContent = this.options.dictFallbackMessage;
+      } else if (span.innerText != null) {
+        span.innerText = this.options.dictFallbackMessage;
+      }
+    }
+
+    return this.element.appendChild(this.getFallbackForm());
+  },
+
+  /**
+   * Gets called to calculate the thumbnail dimensions.
+   *
+   * It gets `file`, `width` and `height` (both may be `null`) as parameters and must return an object containing:
+   *
+   *  - `srcWidth` & `srcHeight` (required)
+   *  - `trgWidth` & `trgHeight` (required)
+   *  - `srcX` & `srcY` (optional, default `0`)
+   *  - `trgX` & `trgY` (optional, default `0`)
+   *
+   * Those values are going to be used by `ctx.drawImage()`.
+   */
+  resize(file, width, height, resizeMethod) {
+    let info = {
+      srcX: 0,
+      srcY: 0,
+      srcWidth: file.width,
+      srcHeight: file.height,
+    };
+
+    let srcRatio = file.width / file.height;
+
+    // Automatically calculate dimensions if not specified
+    if (width == null && height == null) {
+      width = info.srcWidth;
+      height = info.srcHeight;
+    } else if (width == null) {
+      width = height * srcRatio;
+    } else if (height == null) {
+      height = width / srcRatio;
+    }
+
+    // Make sure images aren't upscaled
+    width = Math.min(width, info.srcWidth);
+    height = Math.min(height, info.srcHeight);
+
+    let trgRatio = width / height;
+
+    if (info.srcWidth > width || info.srcHeight > height) {
+      // Image is bigger and needs rescaling
+      if (resizeMethod === "crop") {
+        if (srcRatio > trgRatio) {
+          info.srcHeight = file.height;
+          info.srcWidth = info.srcHeight * trgRatio;
+        } else {
+          info.srcWidth = file.width;
+          info.srcHeight = info.srcWidth / trgRatio;
+        }
+      } else if (resizeMethod === "contain") {
+        // Method 'contain'
+        if (srcRatio > trgRatio) {
+          height = width / srcRatio;
+        } else {
+          width = height * srcRatio;
+        }
+      } else {
+        throw new Error(`Unknown resizeMethod '${resizeMethod}'`);
+      }
+    }
+
+    info.srcX = (file.width - info.srcWidth) / 2;
+    info.srcY = (file.height - info.srcHeight) / 2;
+
+    info.trgWidth = width;
+    info.trgHeight = height;
+
+    return info;
+  },
+
+  /**
+   * Can be used to transform the file (for example, resize an image if necessary).
+   *
+   * The default implementation uses `resizeWidth` and `resizeHeight` (if provided) and resizes
+   * images according to those dimensions.
+   *
+   * Gets the `file` as the first parameter, and a `done()` function as the second, that needs
+   * to be invoked with the file when the transformation is done.
+   */
+  transformFile(file, done) {
+    if (
+      (this.options.resizeWidth || this.options.resizeHeight) &&
+      file.type.match(/image.*/)
+    ) {
+      return this.resizeImage(
+        file,
+        this.options.resizeWidth,
+        this.options.resizeHeight,
+        this.options.resizeMethod,
+        done
+      );
+    } else {
+      return done(file);
+    }
+  },
+
+  /**
+   * A string that contains the template used for each dropped
+   * file. Change it to fulfill your needs but make sure to properly
+   * provide all elements.
+   *
+   * If you want to use an actual HTML element instead of providing a String
+   * as a config option, you could create a div with the id `tpl`,
+   * put the template inside it and provide the element like this:
+   *
+   *     document
+   *       .querySelector('#tpl')
+   *       .innerHTML
+   *
+   */
+  previewTemplate: (_preview_template_html__WEBPACK_IMPORTED_MODULE_1___default()),
+
+  /*
+   Those functions register themselves to the events on init and handle all
+   the user interface specific stuff. Overwriting them won't break the upload
+   but can break the way it's displayed.
+   You can overwrite them if you don't like the default behavior. If you just
+   want to add an additional event handler, register it on the dropzone object
+   and don't overwrite those options.
+   */
+
+  // Those are self explanatory and simply concern the DragnDrop.
+  drop(e) {
+    return this.element.classList.remove("dz-drag-hover");
+  },
+  dragstart(e) {},
+  dragend(e) {
+    return this.element.classList.remove("dz-drag-hover");
+  },
+  dragenter(e) {
+    return this.element.classList.add("dz-drag-hover");
+  },
+  dragover(e) {
+    return this.element.classList.add("dz-drag-hover");
+  },
+  dragleave(e) {
+    return this.element.classList.remove("dz-drag-hover");
+  },
+
+  paste(e) {},
+
+  // Called whenever there are no files left in the dropzone anymore, and the
+  // dropzone should be displayed as if in the initial state.
+  reset() {
+    return this.element.classList.remove("dz-started");
+  },
+
+  // Called when a file is added to the queue
+  // Receives `file`
+  addedfile(file) {
+    if (this.element === this.previewsContainer) {
+      this.element.classList.add("dz-started");
+    }
+
+    if (this.previewsContainer && !this.options.disablePreviews) {
+      file.previewElement = _dropzone_js__WEBPACK_IMPORTED_MODULE_0__.default.createElement(
+        this.options.previewTemplate.trim()
+      );
+      file.previewTemplate = file.previewElement; // Backwards compatibility
+
+      this.previewsContainer.appendChild(file.previewElement);
+      for (var node of file.previewElement.querySelectorAll("[data-dz-name]")) {
+        node.textContent = file.name;
+      }
+      for (node of file.previewElement.querySelectorAll("[data-dz-size]")) {
+        node.innerHTML = this.filesize(file.size);
+      }
+
+      if (this.options.addRemoveLinks) {
+        file._removeLink = _dropzone_js__WEBPACK_IMPORTED_MODULE_0__.default.createElement(
+          `<a class="dz-remove" href="javascript:undefined;" data-dz-remove>${this.options.dictRemoveFile}</a>`
+        );
+        file.previewElement.appendChild(file._removeLink);
+      }
+
+      let removeFileEvent = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (file.status === _dropzone_js__WEBPACK_IMPORTED_MODULE_0__.default.UPLOADING) {
+          return _dropzone_js__WEBPACK_IMPORTED_MODULE_0__.default.confirm(
+            this.options.dictCancelUploadConfirmation,
+            () => this.removeFile(file)
+          );
+        } else {
+          if (this.options.dictRemoveFileConfirmation) {
+            return _dropzone_js__WEBPACK_IMPORTED_MODULE_0__.default.confirm(
+              this.options.dictRemoveFileConfirmation,
+              () => this.removeFile(file)
+            );
+          } else {
+            return this.removeFile(file);
+          }
+        }
+      };
+
+      for (let removeLink of file.previewElement.querySelectorAll(
+        "[data-dz-remove]"
+      )) {
+        removeLink.addEventListener("click", removeFileEvent);
+      }
+    }
+  },
+
+  // Called whenever a file is removed.
+  removedfile(file) {
+    if (file.previewElement != null && file.previewElement.parentNode != null) {
+      file.previewElement.parentNode.removeChild(file.previewElement);
+    }
+    return this._updateMaxFilesReachedClass();
+  },
+
+  // Called when a thumbnail has been generated
+  // Receives `file` and `dataUrl`
+  thumbnail(file, dataUrl) {
+    if (file.previewElement) {
+      file.previewElement.classList.remove("dz-file-preview");
+      for (let thumbnailElement of file.previewElement.querySelectorAll(
+        "[data-dz-thumbnail]"
+      )) {
+        thumbnailElement.alt = file.name;
+        thumbnailElement.src = dataUrl;
+      }
+
+      return setTimeout(
+        () => file.previewElement.classList.add("dz-image-preview"),
+        1
+      );
+    }
+  },
+
+  // Called whenever an error occurs
+  // Receives `file` and `message`
+  error(file, message) {
+    if (file.previewElement) {
+      file.previewElement.classList.add("dz-error");
+      if (typeof message !== "string" && message.error) {
+        message = message.error;
+      }
+      for (let node of file.previewElement.querySelectorAll(
+        "[data-dz-errormessage]"
+      )) {
+        node.textContent = message;
+      }
+    }
+  },
+
+  errormultiple() {},
+
+  // Called when a file gets processed. Since there is a cue, not all added
+  // files are processed immediately.
+  // Receives `file`
+  processing(file) {
+    if (file.previewElement) {
+      file.previewElement.classList.add("dz-processing");
+      if (file._removeLink) {
+        return (file._removeLink.innerHTML = this.options.dictCancelUpload);
+      }
+    }
+  },
+
+  processingmultiple() {},
+
+  // Called whenever the upload progress gets updated.
+  // Receives `file`, `progress` (percentage 0-100) and `bytesSent`.
+  // To get the total number of bytes of the file, use `file.size`
+  uploadprogress(file, progress, bytesSent) {
+    if (file.previewElement) {
+      for (let node of file.previewElement.querySelectorAll(
+        "[data-dz-uploadprogress]"
+      )) {
+        node.nodeName === "PROGRESS"
+          ? (node.value = progress)
+          : (node.style.width = `${progress}%`);
+      }
+    }
+  },
+
+  // Called whenever the total upload progress gets updated.
+  // Called with totalUploadProgress (0-100), totalBytes and totalBytesSent
+  totaluploadprogress() {},
+
+  // Called just before the file is sent. Gets the `xhr` object as second
+  // parameter, so you can modify it (for example to add a CSRF token) and a
+  // `formData` object to add additional information.
+  sending() {},
+
+  sendingmultiple() {},
+
+  // When the complete upload is finished and successful
+  // Receives `file`
+  success(file) {
+    if (file.previewElement) {
+      return file.previewElement.classList.add("dz-success");
+    }
+  },
+
+  successmultiple() {},
+
+  // When the upload is canceled.
+  canceled(file) {
+    return this.emit("error", file, this.options.dictUploadCanceled);
+  },
+
+  canceledmultiple() {},
+
+  // When the upload is finished, either with success or an error.
+  // Receives `file`
+  complete(file) {
+    if (file._removeLink) {
+      file._removeLink.innerHTML = this.options.dictRemoveFile;
+    }
+    if (file.previewElement) {
+      return file.previewElement.classList.add("dz-complete");
+    }
+  },
+
+  completemultiple() {},
+
+  maxfilesexceeded() {},
+
+  maxfilesreached() {},
+
+  queuecomplete() {},
+
+  addedfiles() {},
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (defaultOptions);
+
+
+/***/ }),
+
+/***/ "./node_modules/dropzone/src/preview-template.html":
+/*!*********************************************************!*\
+  !*** ./node_modules/dropzone/src/preview-template.html ***!
+  \*********************************************************/
+/***/ ((module) => {
+
+// Module
+var code = "<div class=\"dz-preview dz-file-preview\">\r\n  <div class=\"dz-image\"><img data-dz-thumbnail /></div>\r\n  <div class=\"dz-details\">\r\n    <div class=\"dz-size\"><span data-dz-size></span></div>\r\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\r\n  </div>\r\n  <div class=\"dz-progress\">\r\n    <span class=\"dz-upload\" data-dz-uploadprogress></span>\r\n  </div>\r\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\r\n  <div class=\"dz-success-mark\">\r\n    <svg\r\n      width=\"54px\"\r\n      height=\"54px\"\r\n      viewBox=\"0 0 54 54\"\r\n      version=\"1.1\"\r\n      xmlns=\"http://www.w3.org/2000/svg\"\r\n      xmlns:xlink=\"http://www.w3.org/1999/xlink\"\r\n    >\r\n      <title>Check</title>\r\n      <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\r\n        <path\r\n          d=\"M23.5,31.8431458 L17.5852419,25.9283877 C16.0248253,24.3679711 13.4910294,24.366835 11.9289322,25.9289322 C10.3700136,27.4878508 10.3665912,30.0234455 11.9283877,31.5852419 L20.4147581,40.0716123 C20.5133999,40.1702541 20.6159315,40.2626649 20.7218615,40.3488435 C22.2835669,41.8725651 24.794234,41.8626202 26.3461564,40.3106978 L43.3106978,23.3461564 C44.8771021,21.7797521 44.8758057,19.2483887 43.3137085,17.6862915 C41.7547899,16.1273729 39.2176035,16.1255422 37.6538436,17.6893022 L23.5,31.8431458 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\"\r\n          stroke-opacity=\"0.198794158\"\r\n          stroke=\"#747474\"\r\n          fill-opacity=\"0.816519475\"\r\n          fill=\"#FFFFFF\"\r\n        ></path>\r\n      </g>\r\n    </svg>\r\n  </div>\r\n  <div class=\"dz-error-mark\">\r\n    <svg\r\n      width=\"54px\"\r\n      height=\"54px\"\r\n      viewBox=\"0 0 54 54\"\r\n      version=\"1.1\"\r\n      xmlns=\"http://www.w3.org/2000/svg\"\r\n      xmlns:xlink=\"http://www.w3.org/1999/xlink\"\r\n    >\r\n      <title>Error</title>\r\n      <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\r\n        <g\r\n          stroke=\"#747474\"\r\n          stroke-opacity=\"0.198794158\"\r\n          fill=\"#FFFFFF\"\r\n          fill-opacity=\"0.816519475\"\r\n        >\r\n          <path\r\n            d=\"M32.6568542,29 L38.3106978,23.3461564 C39.8771021,21.7797521 39.8758057,19.2483887 38.3137085,17.6862915 C36.7547899,16.1273729 34.2176035,16.1255422 32.6538436,17.6893022 L27,23.3431458 L21.3461564,17.6893022 C19.7823965,16.1255422 17.2452101,16.1273729 15.6862915,17.6862915 C14.1241943,19.2483887 14.1228979,21.7797521 15.6893022,23.3461564 L21.3431458,29 L15.6893022,34.6538436 C14.1228979,36.2202479 14.1241943,38.7516113 15.6862915,40.3137085 C17.2452101,41.8726271 19.7823965,41.8744578 21.3461564,40.3106978 L27,34.6568542 L32.6538436,40.3106978 C34.2176035,41.8744578 36.7547899,41.8726271 38.3137085,40.3137085 C39.8758057,38.7516113 39.8771021,36.2202479 38.3106978,34.6538436 L32.6568542,29 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\"\r\n          ></path>\r\n        </g>\r\n      </g>\r\n    </svg>\r\n  </div>\r\n</div>\r\n";
+// Exports
+module.exports = code;
 
 /***/ }),
 

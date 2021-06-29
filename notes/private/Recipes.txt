@@ -1,0 +1,108 @@
+- Integrate the frontend for setting up the JSON fields directions
+- Reload old values for steps
+- Integrate the showing of the cook_time
+- Form validation error is thrown as server error
+- Redirect and show message for custom\HttpNotFoundException
+- Update the photos when up updating recipe
+	- Make sure when you delete/update photo that the image belongs to the recipe first
+- Quick search the recipe list
+- Cook time needs to go to 0
+-----------------------------------------------------
+- Breadcrumbs
+- Create a task to clean out img_tmp
+- Drag and drop photo upload with preview of image
+- Fix populating the fields after failing
+- Add a max limit of images that can be uploaded
+- Populate the list of ingredients. At least 500.
+- Integrate the frontend for showing the uploaded photos in a gallery view. Allowing them to delete the photos via AJAX call? without re-loading the page
+- Integrate CKEditor for the directions
+- Delete photos from existing recipe. Add new when updating and creating
+- Have a different Toolbar for CKE on Profile details update
+
+- Handle Illuminate\Validation\ValidationException The given data was invalid.
+
+- Make sure that only public recipes are viewable to other users
+
+- Count the views of the recipes
+- Favourite recipe
+- Delete recipe
+- Follow profile
+- Public/Private recipe
+- Instagram recipe image slider on homepage
+
+
+
+
+- Log the user in when they register. But don't allow them to create recipe
+
+
+
+
+public/recipes/AO4JgIx03tggJYo2LW78p51BMJp6Yz4F3mO0LoAY.png
+
+
+storage/recipes/AO4JgIx03tggJYo2LW78p51BMJp6Yz4F3mO0LoAY.png
+
+storage/public/recipes/AO4JgIx03tggJYo2LW78p51BMJp6Yz4F3mO0LoAY.png
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- start date
+- end date
+- desc
+- title
+- user_profile_id
+
+
+
+--- Ingredients ---
+- id
+- name
+
+--- Recipe_Ingredients ---
+recipe_id
+ingredient_id
+
+
+
+
+--- Recipe ---
+- user_profile_id
+- Title
+- Description
+- Directions = JSON
+- Cook time
+- servings
+- utensils
+- prep_directions
+
+- Integrate Tags to associate Ingredients with
+- Find a way to send the list of ingredients to the form.
+- Extra: Allow adding new ingredients
+
+- Could save the ings in a column in json. When retrieving them, then get as array.
+- When autocompleting ing, use pre-populated list.
+
+- Create the form to submit recipe
+	- multi select ingredients for now

@@ -24,6 +24,9 @@
 
 @import "~toastr/build/toastr.min.css";
 
+@import "../css/plugins/dropzone.min.css";
+@import "../css/plugins/basic.min.css";
+
 /* :: 3.0 Base CSS */
 
 * {
@@ -715,7 +718,7 @@ textarea:focus {
         width: 40px;
         height: 40px;
         line-height: 40px;
-        color: $white-color;
+        color: $bg-default;
         top: 50%;
         margin-top: -20px;
         left: 4%;
@@ -1171,6 +1174,39 @@ textarea:focus {
     }
 }
 
+.owl-carousel
+{
+    .owl-dots
+    {
+        padding: 15px;
+        text-align: center;
+
+        .owl-dot
+        {
+            display: inline-block;
+
+            &.active
+            {
+                span
+                {
+                    background: $bg-default;
+                }
+            }
+
+            span
+            {
+                background: none repeat scroll 0 0 #869791;
+                border-radius: 20px;
+                display: block;
+                height: 12px;
+                margin: 5px 7px;
+                width: 12px;
+            }
+        }
+    }
+}
+
+
 /* :: 15.0 recipe Area */
 
 .recipe-post-search {
@@ -1205,7 +1241,7 @@ textarea:focus {
         width: 40px;
         height: 40px;
         line-height: 40px;
-        color: $white-color;
+        color: $bg-default;
         top: 50%;
         margin-top: -20px;
         left: 4%;
@@ -1791,6 +1827,39 @@ form label
     margin-bottom: 10px;
 }
 
+
+/**
+ * Hide the default Dropzone error message popup
+ */
+.dropzone
+{
+    border: none;
+    border-left: 3px solid $bg-default;
+
+    form {
+        display: none;
+    }
+
+    .dz-message
+    {
+        font-size: 1.3em;
+        font-weight: 500;
+    }
+
+    .dz-error-message {
+        display: none !important;
+    }
+
+    .dz-error-mark
+    {
+        svg {
+            background: $dark-red;
+            border-radius: 100%;
+        }
+    }
+}
+
+
 .white-box
 {
     background: $white-color;
@@ -1913,29 +1982,7 @@ form label
     }
 }
 
-.recipe-favourites
-{
-    .favourites
-    {
-        text-align: center;
 
-        form
-        {
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            font: 1em verdana, sans-serif;
-        }
-
-        span
-        {
-            display: block;
-            font-size: 2em;
-            font-weight: 400;
-            color: $text-color;
-        }
-    }
-}
 
 .hint
 {
@@ -1991,6 +2038,77 @@ form label
 
 .recipe-content-area
 {
+    .prep-directions
+    {
+        h3
+        {
+            margin: 0;
+            color: #474747;
+            flex: 0 0 60px;
+            max-width: 60px;
+            width: 60px;
+        }
+    }
+
+
+    .ingredients
+    {
+        h2
+        {
+            border-bottom: 2px solid green;
+            padding-bottom: 5px;
+
+            @include media-responsive ($screen-md)
+            {
+                border-bottom: none;
+            }
+        }
+    }
+
+    .profile-pic
+    {
+        display: inline-block;
+        vertical-align: inherit;
+        text-align: center;
+
+        img
+        {
+            width: 75px;
+            height: 75px;
+            margin-bottom: 7px;
+            display: block;
+            border-radius: 100%;
+            background: $bg-gray;
+        }
+
+    }
+
+    .recipe-favourites
+    {
+        display: inline-block;
+
+        .favourites
+        {
+            text-align: center;
+
+            form
+            {
+                height: 30px;
+                display: flex;
+                justify-content: center;
+                font: 1em verdana, sans-serif;
+            }
+
+            span
+            {
+                display: block;
+                font-size: 2em;
+                font-weight: 400;
+                color: $text-color;
+            }
+        }
+    }
+
     @include media-responsive ($screen-md)
     {
         .recipe-info-container
@@ -2100,49 +2218,52 @@ form label
     }
 }
 
-.comment
+#comments
 {
-    padding: 15px;
-    border-bottom: 1px solid #bfbfbf;
-
-    .comment-info
+    .comment
     {
-        margin-bottom: 10px;
-        color: $text-color;
-        font-size: 1.1em;
-        font-weight: 600;
+        padding: 15px;
+        border-bottom: 1px solid #bfbfbf;
 
-        span
+        .comment-info
         {
-            display:inline-block;
+            margin-bottom: 10px;
+            color: $text-color;
+            font-size: 1.1em;
+            font-weight: 600;
 
-            &.comment-delete > i
+            span
             {
-                padding: 6px 8px;
-                background: #f12c2c;
-                border-radius: 3px;
-                color: $white;
-                font-size: 1.2em;
+                display:inline-block;
 
-                &:hover
+                &.comment-delete > i
                 {
-                    cursor: pointer;
+                    padding: 6px 8px;
+                    background: #f12c2c;
+                    border-radius: 3px;
+                    color: $white;
+                    font-size: 1.2em;
+
+                    &:hover
+                    {
+                        cursor: pointer;
+                    }
                 }
+
             }
-
         }
-    }
 
-    p
-    {
-        color: #000;
-        line-height: 1.8em;
-        font-size: 1.1em;
-        margin-bottom: 0;
-
-        @include media-responsive($screen-xs)
+        p
         {
-            font-size: 1em;
+            color: #000;
+            line-height: 1.8em;
+            font-size: 1.1em;
+            margin-bottom: 0;
+
+            @include media-responsive($screen-xs)
+            {
+                font-size: 1em;
+            }
         }
     }
 }
@@ -2400,7 +2521,7 @@ form#profile-details-form
                     }
                 }
 
-                .icon-container
+                .icons
                 {
                     text-align: center;
                     display: inline-block;
@@ -2409,24 +2530,34 @@ form#profile-details-form
                     .icon {
                         width:25px;
                         height: 25px;
-                        display: block;
-                        background: url("/img/core-img/heart-green-full.svg") no-repeat center center;
-                    }
+                        display: inline-block;
+                        margin-right: 10px;
 
-                    .text
-                    {
-                        display: block;
-                        margin-top: 5px;
-                        font-size: 1.13em;
-                        font-family: "Open Sans", serif;
-                        font-weight: 600;
-                    }
+                        &.heart:before {
+                            background: url("/img/core-img/heart-green-full.svg") no-repeat center center;
+                        }
 
-                    &:after
-                    {
-                        content: "";
-                        display: block;
-                        clear: both;
+                        &.comment:before{
+                            background: url("/img/core-img/comment.svg") no-repeat center center;
+                        }
+
+                        &:before
+                        {
+                            content: "";
+                            display: block;
+                            margin: 0 auto;
+                            width: 25px;
+                            height: 25px;
+                            background-size: 25px;
+                        }
+
+                        .text
+                        {
+                            display: block;
+                            font-size: 1.13em;
+                            font-family: "Open Sans", serif;
+                            font-weight: 600;
+                        }
                     }
 
                     @include media-responsive ($screen-sm)
