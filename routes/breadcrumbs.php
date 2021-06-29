@@ -40,6 +40,13 @@ Breadcrumbs::for('edit_recipe', function ($trail, $recipe)
 });
 
 
+// Home > {username} > Recipes
+Breadcrumbs::for('user_public_recipes', function ($trail, $username)
+{
+    $trail->parent('home');
+    $trail->push($username, '');
+    $trail->push('Recipes');
+});
 
 
 

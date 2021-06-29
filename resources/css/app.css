@@ -1289,7 +1289,7 @@ textarea:focus {
   width: 40px;
   height: 40px;
   line-height: 40px;
-  color: #ffffff;
+  color: #40ba37;
   top: 50%;
   margin-top: -20px;
   left: 4%;
@@ -1752,6 +1752,25 @@ textarea:focus {
   color: #40ba37;
 }
 
+.owl-carousel .owl-dots {
+  padding: 15px;
+  text-align: center;
+}
+.owl-carousel .owl-dots .owl-dot {
+  display: inline-block;
+}
+.owl-carousel .owl-dots .owl-dot.active span {
+  background: #40ba37;
+}
+.owl-carousel .owl-dots .owl-dot span {
+  background: none repeat scroll 0 0 #869791;
+  border-radius: 20px;
+  display: block;
+  height: 12px;
+  margin: 5px 7px;
+  width: 12px;
+}
+
 /* :: 15.0 recipe Area */
 .recipe-post-search {
   position: relative;
@@ -1786,7 +1805,7 @@ textarea:focus {
   width: 40px;
   height: 40px;
   line-height: 40px;
-  color: #ffffff;
+  color: #40ba37;
   top: 50%;
   margin-top: -20px;
   left: 4%;
@@ -2486,22 +2505,6 @@ form label {
   font-size: 1.1em;
 }
 
-.recipe-favourites .favourites {
-  text-align: center;
-}
-.recipe-favourites .favourites form {
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  font: 1em verdana, sans-serif;
-}
-.recipe-favourites .favourites span {
-  display: block;
-  font-size: 2em;
-  font-weight: 400;
-  color: #9b9b9b;
-}
-
 .hint i {
   color: #007bff;
   position: relative;
@@ -2541,6 +2544,53 @@ form label {
   cursor: pointer;
 }
 
+.recipe-content-area .prep-directions h3 {
+  margin: 0;
+  color: #474747;
+  flex: 0 0 60px;
+  max-width: 60px;
+  width: 60px;
+}
+.recipe-content-area .ingredients h2 {
+  border-bottom: 2px solid green;
+  padding-bottom: 5px;
+}
+@media (max-width: 992px) {
+  .recipe-content-area .ingredients h2 {
+    border-bottom: none;
+  }
+}
+.recipe-content-area .profile-pic {
+  display: inline-block;
+  vertical-align: inherit;
+  text-align: center;
+}
+.recipe-content-area .profile-pic img {
+  width: 75px;
+  height: 75px;
+  margin-bottom: 7px;
+  display: block;
+  border-radius: 100%;
+  background: #eceef1;
+}
+.recipe-content-area .recipe-favourites {
+  display: inline-block;
+}
+.recipe-content-area .recipe-favourites .favourites {
+  text-align: center;
+}
+.recipe-content-area .recipe-favourites .favourites form {
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  font: 1em verdana, sans-serif;
+}
+.recipe-content-area .recipe-favourites .favourites span {
+  display: block;
+  font-size: 2em;
+  font-weight: 400;
+  color: #9b9b9b;
+}
 @media (max-width: 992px) {
   .recipe-content-area .recipe-info-container {
     display: -webkit-box;

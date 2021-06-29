@@ -50,13 +50,32 @@ class RecipeService
 
     /**
      * @param UserProfile $userProfile
-     * @param string|null $searchTerm
+     * @return array
+     */
+    public function getPublicRecipeList(UserProfile $userProfile)
+    {
+        $userRecipes = $userProfile->recipes()->public()->get()->sortByDesc('created_at');
+        return $this->generateRecipeList($userRecipes);
+    }
+
+    /**
+     * @param UserProfile $userProfile
+     * @param null $searchTerm
      * @return array
      */
     public function getRecipeList(UserProfile $userProfile, $searchTerm = null)
     {
-        $recipes = $userProfile->recipes->sortByDesc('created_at');
+        $userRecipes = $userProfile->recipes->sortByDesc('created_at');
+        return $this->generateRecipeList($userRecipes, $searchTerm);
+    }
 
+    /**
+     * @param UserProfile $userProfile
+     * @param string|null $searchTerm
+     * @return array
+     */
+    private function generateRecipeList(Collection $recipes, $searchTerm = null)
+    {
         $recipeList = $recipes->filter(function($recipe) use ($searchTerm)
         {
             // If the search term is empty, then include the recipe, because we aren't searching
@@ -118,12 +137,16 @@ class RecipeService
         // Get the favourite record for the user for this recipe
         if ($userProfile)
         {
-            // Check if this recipe belongs to the user
-            if ($userProfile->recipes->contains($recipe->id))
-            {
-                $favourites = $userProfile->recipeFavourites()->where('recipe_id', $recipe->id)->first();
-                $isFavourited = ($favourites && $favourites->is_favourited ?: false);
-            }
+            // Is this recipe favourited by the user viewing the recipe?
+            $favourite = $userProfile->recipeFavourites()->where('recipe_id', $recipe->id)->first();
+            $isFavourited = ($favourite && $favourite->is_favourited == 1 ?: false);
+        }
+
+        $profilePic = null;
+        $recipeUser = $recipe->userProfile;
+
+        if ($recipeUser) {
+            $profilePic = $recipeUser->files->first();
         }
 
         return [
@@ -136,12 +159,15 @@ class RecipeService
             'date_created' => $recipe->created_at,
             'utensils' => $recipe->utensils,
             'cook_time' => $recipe->cook_time_formatted,
-            'username' => $recipe->userProfile->username,
             'ingredients' => $recipe->ingredients,
             'photos' => $recipePhotos,
             'is_favourited' => $isFavourited,
             'is_published' => $recipe->is_published,
-            'enable_comments' => $recipe->enable_comments
+            'enable_comments' => $recipe->enable_comments,
+            'user' => [
+                'username' => $recipe->userProfile->username,
+                'profile_pic' => (is_object($profilePic) ? asset($profilePic->public_path) : null)
+            ]
         ];
     }
 

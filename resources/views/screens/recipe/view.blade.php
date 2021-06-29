@@ -35,10 +35,10 @@
 
                     <div class="mt-4 recipe-headline col-12">
                         <span>{{date('F j, Y', strtotime($recipe['date_created']))}}</span>
-                        <h2>{{$recipe['title']}}</h2>
+                        <h1 class="col-8 pl-0 pr-0">{{$recipe['title']}}</h1>
                     </div>
 
-                    <div class="col-11 col-lg-8">
+                    <div class="col-8">
                         <div class="recipe-headline my-5">
                             <div class="recipe-duration">
                                 <h6>Cook: {{$recipe['cook_time']}}</h6>
@@ -51,27 +51,51 @@
                     </div>
 
                     @if((isset($recipe['is_preview']) && $recipe['is_preview']) || $recipe['is_published'])
-                        <!-- FAVOURITING --->
-                        <div class="col-1 pl-0">
-                            <div class="recipe-favourites text-right my-5">
+
+                        <div class="col-4">
+
+                            <div class="col-9 pr-0 pl-0 d-inline-block">
+                                <div class="profile-pic">
+                                    <a href="{{route('user.profile.public.recipe_list', ['username' => $recipe['user']['username']])}}">
+                                        <img src="{{ $recipe['user']['profile_pic'] ?? '/img/core-img/profile_pic_default.png' }}"
+                                             class=" " alt="profile picture" />
+                                    </a>
+                                    <a href="{{route('user.profile.public.recipe_list', ['username' => $recipe['user']['username']])}}">
+                                        <span>{{$recipe['user']['username']}}</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="recipe-favourites col-2 pr-0 pl-0 text-right d-inline-block">
                                 <div class="favourites">
                                     <form>
-                                        <input type="checkbox" data-recipe="{{$recipe['id']}}" id="toggle-heart" {{$recipe['is_favourited'] ? 'checked' : ''}} />
+                                        <input type="checkbox" data-recipe="{{$recipe['id']}}" id="toggle-heart"
+                                               @if ($recipe['is_favourited'])
+                                                class="checked" checked=checked
+                                               @endif
+                                        />
                                         <label for="toggle-heart" aria-label="favourite">❤</label>
                                     </form>
                                     <span class="favourite">{{$recipe['favourites']}}</span>
                                 </div>
                             </div>
+
+
+
+
                         </div>
+
+
                     @endif
                 </div>
 
                 <div class="row recipe-info-container mb-5">
 
                     <div class="col-12 col-lg-8 prep-directions">
+                        <h2>Cooking steps</h2>
                         @foreach ($recipe['cooking_steps'] as $index => $cookingStep)
                             <div class="single-preparation-step d-flex">
-                                <h4>{{sprintf('%02d', $index)}}.</h4>
+                                <h3>{{sprintf('%02d', $index)}}.</h3>
                                 {!! $cookingStep !!}
                             </div>
                         @endforeach
@@ -80,7 +104,7 @@
                     <!-- Ingredients -->
                     <div class="col-12 col-lg-4 ingredient-list">
                         <div class="ingredients">
-                            <h4>Ingredients</h4>
+                            <h2>Ingredients</h2>
                             @foreach ($recipe['ingredients'] as $index => $ingredient)
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="{{'ingredientCB'.$index}}">

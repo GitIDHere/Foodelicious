@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileDetailsRequest;
 use App\Models\File;
 use App\Models\User;
+use App\Models\UserProfile;
 use App\Services\RecipeService;
 use App\Services\UserProfileService;
 use Illuminate\Http\Request;
@@ -21,11 +22,42 @@ class UserProfileController extends Controller
      */
     private $profileService;
 
-    public function __construct(UserProfileService $profileService)
+    /**
+     * @var RecipeService
+     */
+    private $recipeService;
+
+    public function __construct(UserProfileService $profileService, RecipeService $recipeService)
     {
         $this->profileService = $profileService;
+        $this->recipeService = $recipeService;
     }
 
+
+    /**
+     * @param Request $request
+     * @param $username
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function showPublicRecipeList(Request $request, $username)
+    {
+        /** @var UserProfile $profile */
+        $profile = UserProfile::where('username', $username)->get()->first();
+
+        if ($profile)
+        {
+            $recipeList = $this->recipeService->getPublicRecipeList($profile);
+
+            $profileData = $this->profileService->getProfileInfo($profile);
+
+            return view('screens.user.profile.recipes')
+                ->with('username', $profile->username)
+                ->with('recipeList', $recipeList['recipe_list'])
+                ->with('recipeListPager', $recipeList['pager'])
+                ->with('profile', $profileData)
+                ;
+        }
+    }
 
     /**
      * @param Request $request
@@ -40,8 +72,7 @@ class UserProfileController extends Controller
         $profileData = $this->profileService->getProfileInfo($profile);
 
         return view('screens.user.profile.view')
-            ->with('profile', $profileData)
-            ;
+            ->with('profile', $profileData);
     }
 
 

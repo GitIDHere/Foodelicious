@@ -718,7 +718,7 @@ textarea:focus {
         width: 40px;
         height: 40px;
         line-height: 40px;
-        color: $white-color;
+        color: $bg-default;
         top: 50%;
         margin-top: -20px;
         left: 4%;
@@ -1174,6 +1174,39 @@ textarea:focus {
     }
 }
 
+.owl-carousel
+{
+    .owl-dots
+    {
+        padding: 15px;
+        text-align: center;
+
+        .owl-dot
+        {
+            display: inline-block;
+
+            &.active
+            {
+                span
+                {
+                    background: $bg-default;
+                }
+            }
+
+            span
+            {
+                background: none repeat scroll 0 0 #869791;
+                border-radius: 20px;
+                display: block;
+                height: 12px;
+                margin: 5px 7px;
+                width: 12px;
+            }
+        }
+    }
+}
+
+
 /* :: 15.0 recipe Area */
 
 .recipe-post-search {
@@ -1208,7 +1241,7 @@ textarea:focus {
         width: 40px;
         height: 40px;
         line-height: 40px;
-        color: $white-color;
+        color: $bg-default;
         top: 50%;
         margin-top: -20px;
         left: 4%;
@@ -1949,29 +1982,7 @@ form label
     }
 }
 
-.recipe-favourites
-{
-    .favourites
-    {
-        text-align: center;
 
-        form
-        {
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            font: 1em verdana, sans-serif;
-        }
-
-        span
-        {
-            display: block;
-            font-size: 2em;
-            font-weight: 400;
-            color: $text-color;
-        }
-    }
-}
 
 .hint
 {
@@ -2027,6 +2038,77 @@ form label
 
 .recipe-content-area
 {
+    .prep-directions
+    {
+        h3
+        {
+            margin: 0;
+            color: #474747;
+            flex: 0 0 60px;
+            max-width: 60px;
+            width: 60px;
+        }
+    }
+
+
+    .ingredients
+    {
+        h2
+        {
+            border-bottom: 2px solid green;
+            padding-bottom: 5px;
+
+            @include media-responsive ($screen-md)
+            {
+                border-bottom: none;
+            }
+        }
+    }
+
+    .profile-pic
+    {
+        display: inline-block;
+        vertical-align: inherit;
+        text-align: center;
+
+        img
+        {
+            width: 75px;
+            height: 75px;
+            margin-bottom: 7px;
+            display: block;
+            border-radius: 100%;
+            background: $bg-gray;
+        }
+
+    }
+
+    .recipe-favourites
+    {
+        display: inline-block;
+
+        .favourites
+        {
+            text-align: center;
+
+            form
+            {
+                height: 30px;
+                display: flex;
+                justify-content: center;
+                font: 1em verdana, sans-serif;
+            }
+
+            span
+            {
+                display: block;
+                font-size: 2em;
+                font-weight: 400;
+                color: $text-color;
+            }
+        }
+    }
+
     @include media-responsive ($screen-md)
     {
         .recipe-info-container

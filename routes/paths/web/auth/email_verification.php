@@ -31,7 +31,7 @@ Route::get('/email/verify/confirmation', function(){
 ;
 
 /**
- * Show prompt to verify email 
+ * Show prompt to verify email
  */
 Route::get('/email/verify/prompt', function(){
         return view('screens.auth.verify.prompt_verification');

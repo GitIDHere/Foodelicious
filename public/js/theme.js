@@ -338,14 +338,6 @@ $(function()
         });
     });
 
-    // :: 2.0 Newsticker Active Code
-    $.simpleTicker($("#breakingNewsTicker"), {
-        speed: 1250,
-        delay: 3500,
-        easing: 'swing',
-        effectType: 'roll'
-    });
-
     // :: 3.0 Nav Active Code
     if ($.fn.classyNav) {
         $('#deliciousNav').classyNav();
@@ -417,8 +409,6 @@ $(function()
             items: 1,
             margin: 0,
             loop: true,
-            nav: true,
-            navText: ['Prev', 'Next'],
             dots: true,
             autoplay: true,
             autoplayTimeout: 5000,

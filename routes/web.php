@@ -1,21 +1,12 @@
 <?php
 
-require_once ('paths/web/general.php');
+use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers;
 
-require_once ('paths/web/home.php');
+Route::get('/home', [Controllers\HomeController::class, 'showHome'])
+    ->name('home');
 
-require_once ('paths/web/auth/register.php');
 
-require_once ('paths/web/auth/login.php');
-
-require_once ('paths/web/auth/password_reset.php');
-
-require_once ('paths/web/auth/email_verification.php');
-
-require_once ('paths/web/user/profile.php');
-
-require_once('paths/web/user/user_recipes.php');
-
-require_once ('paths/web/user/security.php');
-
-require_once('paths/web/recipes.php');
+Route::get('/404', function(){
+    return view('screens.general.404');
+})->name('404_page');
