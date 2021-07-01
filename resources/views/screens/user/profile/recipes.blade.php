@@ -5,20 +5,17 @@
 
         <div class="row">
 
-            <div class="col-lg-12 col-md-8 pl-md-0">
+            <div class="col-lg-12 pl-md-0">
 
                 <div class="container">
 
                     <div class="row">
 
-                        <div class="pt-3 pb-3 bg-grey col-12">
+                        <div class="pt-3 pb-3 col-12">
 
                             {{ Breadcrumbs::render('user_public_recipes', $username)}}
 
-
-
-
-                            <div class="row display-profile-info">
+                            <div class="row bg-grey display-profile-info mb-4">
 
                                 <div class="col-lg-3 col-md-4 col-sm-12">
                                     <img
@@ -27,49 +24,57 @@
                                 </div>
 
                                 <div class="col-lg-9 col-md-8">
+                                    <h3>{{$username}}</h3>
                                     <p class="desc-long d-none d-lg-block">{{ $profile['description'] ?? '' }}</p>
                                     <p class="desc-short d-none d-lg-none d-md-block">Short {{ $profile['short_description'] ?? '' }}</p>
                                 </div>
 
                             </div>
 
-
                             <div class="container">
 
                                 @if ($recipeList->isNotEmpty())
                                     <div class="row">
+
                                         <div class="col-12">
-                                            <ul class="recipe-list">
+
+                                            <div class="public-recipe-list">
+
                                                 @foreach($recipeList as $recipe)
-                                                    <li>
-                                                        <div class="content-container">
-                                                            <a href="{{route('user.recipes.view', ['recipe' => $recipe['id']])}}">
-                                                                <img src="{{$recipe['thumbnail']}}"  class="thumbnail"  alt="{{$recipe['title']}}"/>
+                                                    <div class="row content-container">
+
+                                                        <a class="col-sm-4 col-xs-12 col-lg-2"
+                                                           href="{{route('recipe.show', ['recipe' => $recipe['id'], 'recipe_title' => $recipe['title_url_formatted']])}}">
+                                                            <img class="mx-auto d-block thumbnail" src="{{$recipe['thumbnail']}}" alt="{{$recipe['title']}}"/>
+                                                        </a>
+
+                                                        <div class="recipe-info col-sm-8 col-xs-12 col-lg-10">
+
+                                                            <a href="{{route('recipe.show', ['recipe' => $recipe['id'], 'recipe_title' => $recipe['title_url_formatted']])}}">
+                                                                <span class="title">{{$recipe['title']}}</span>
                                                             </a>
 
-                                                            <div class="recipe-info">
+                                                            <p class="date-created">{{$recipe['date_created']}}</p>
 
-                                                                <a href="{{route('user.recipes.view', ['recipe' => $recipe['id']])}}">
-                                                                    <span class="title">{{$recipe['title']}}</span>
-                                                                </a>
-
-                                                                <span class="icons">
-                                                                    <span class="icon heart">
-                                                                        <span class="text">{{$recipe['total_favourites']}}</span>
-                                                                    </span>
-
-                                                                    <span class="icon comment">
-                                                                        <span class="text">{{$recipe['total_comments']}}</span>
-                                                                    </span>
+                                                            <span class="icons">
+                                                                <span class="icon heart">
+                                                                    <span class="text">{{$recipe['total_favourites']}}</span>
                                                                 </span>
 
-                                                            </div>
+                                                                <span class="icon comment">
+                                                                    <span class="text">{{$recipe['total_comments']}}</span>
+                                                                </span>
+                                                            </span>
+
                                                         </div>
-                                                    </li>
+                                                    </div>
                                                 @endforeach
-                                            </ul>
+                                            </div>
+
                                             {{ $recipeListPager->links('includes.pagination') }}
+
                                         </div>
+
                                     </div>
                                 @else
                                     <div class="row col-12">

@@ -73,5 +73,52 @@
             @content;
         }
     }
+}
 
+@mixin recipe-list-icons
+{
+    .icons
+    {
+        display: inline-block;
+        margin-top: 10px;
+
+        .icon {
+            width:25px;
+            height: 25px;
+            text-align: center;
+            display: inline-block;
+            margin-right: 10px;
+
+            &.heart:before {
+                background: url("/img/core-img/heart-green-full.svg") no-repeat center center;
+            }
+
+            &.comment:before{
+                background: url("/img/core-img/comment.svg") no-repeat center center;
+            }
+
+            &:before
+            {
+                content: "";
+                display: block;
+                margin: 0 auto;
+                width: 25px;
+                height: 25px;
+                background-size: 25px;
+            }
+
+            .text
+            {
+                display: block;
+                font-size: 1.13em;
+                font-family: "Open Sans", serif;
+                font-weight: 600;
+            }
+        }
+
+        @include media-responsive ($screen-sm)
+        {
+            display: none;
+        }
+    }
 }

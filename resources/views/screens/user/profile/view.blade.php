@@ -20,7 +20,7 @@
 
                                 {{ Breadcrumbs::render('my_profile') }}
 
-                                <div class="row display-profile-info">
+                                <div class="row display-profile-info border-bottom">
 
                                     <div class="col-lg-3 col-md-4 col-sm-12">
                                         <img
@@ -61,7 +61,7 @@
                                             <span>Change email</span>
                                         </a>
 
-                                        <a class="btn btn-tile" href="{{route('user.security.password.view')}}">
+                                        <a class="btn btn-tile  ml-0 ml-sm-3" href="{{route('user.security.password.view')}}">
                                             <i class="fa fa-ellipsis-h"></i>
                                             <span>Change password</span>
                                         </a>

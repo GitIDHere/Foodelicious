@@ -1772,7 +1772,7 @@ h1
 
 img#profile_pic
 {
-    width: 200px;
+    width: 150px;
     border-radius: 100%;
 }
 
@@ -2032,6 +2032,47 @@ form label
 
         &:hover {
             cursor: pointer;
+        }
+    }
+}
+
+.public-recipe-list
+{
+    .content-container
+    {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        //margin: 10px 0;
+        border-bottom: 1px solid #aaa;
+
+        img
+        {
+            //width: 110px;
+            //display: inline-block;
+        }
+
+        .recipe-info
+        {
+            //display: inline-block;
+            vertical-align: top;
+            //margin-left: 15px;
+
+            .title
+            {
+                font-size: 1.3em;
+            }
+
+            p.date-created {
+                margin: 0;
+            }
+
+            @include recipe-list-icons;
+
+            .icons
+            {
+                display: block;
+                text-align: left;
+            }
         }
     }
 }
@@ -2406,8 +2447,12 @@ form label
 
 .display-profile-info
 {
-    border-bottom: 1px solid $faint-grey;
-    height: 250px;
+    padding: 25px 0;
+
+    &.border-bottom
+    {
+        border-bottom: 1px solid $faint-grey;
+    }
 
     @include media-responsive($screen-lg) {
         height: 300px;
@@ -2415,6 +2460,14 @@ form label
 
     @include media-responsive($screen-md) {
         height: auto;
+    }
+
+    @include media-responsive($screen-sm)
+    {
+        h3
+        {
+            text-align:center;
+        }
     }
 
     .btn-small
@@ -2466,7 +2519,7 @@ form#profile-details-form
 {
     width: 100%;
 
-    li
+    .content-container
     {
         width:33%;
         display: inline-block;
@@ -2483,90 +2536,44 @@ form#profile-details-form
             width: 49%;
         }
 
-        .content-container
+
+        @include media-responsive($screen-sm) {
+            min-height: auto;
+            max-height: auto;
+        }
+
+        min-height: 360px;
+        max-height: 360px;
+
+        > a
         {
-            @include media-responsive($screen-sm) {
-                min-height: auto;
-                max-height: auto;
+            display: block;
+
+            .thumbnail
+            {
+                width: 100%;
+                display: block;
             }
+        }
 
-            min-height: 360px;
-            max-height: 360px;
 
-            > a
+        .recipe-info
+        {
+            display: block;
+            padding-top: 10px;
+
+            .title
             {
                 display: block;
+                font-size: 1.2em;
+                min-height: 75px;
 
-                .thumbnail
-                {
-                    width: 100%;
-                    display: block;
+                @include media-responsive($screen-lg) {
+                    min-height: 100px;
                 }
             }
 
-
-            .recipe-info
-            {
-                display: block;
-                padding-top: 10px;
-
-                .title
-                {
-                    display: block;
-                    font-size: 1.2em;
-                    min-height: 75px;
-
-                    @include media-responsive($screen-lg) {
-                        min-height: 100px;
-                    }
-                }
-
-                .icons
-                {
-                    text-align: center;
-                    display: inline-block;
-                    margin-top: 10px;
-
-                    .icon {
-                        width:25px;
-                        height: 25px;
-                        display: inline-block;
-                        margin-right: 10px;
-
-                        &.heart:before {
-                            background: url("/img/core-img/heart-green-full.svg") no-repeat center center;
-                        }
-
-                        &.comment:before{
-                            background: url("/img/core-img/comment.svg") no-repeat center center;
-                        }
-
-                        &:before
-                        {
-                            content: "";
-                            display: block;
-                            margin: 0 auto;
-                            width: 25px;
-                            height: 25px;
-                            background-size: 25px;
-                        }
-
-                        .text
-                        {
-                            display: block;
-                            font-size: 1.13em;
-                            font-family: "Open Sans", serif;
-                            font-weight: 600;
-                        }
-                    }
-
-                    @include media-responsive ($screen-sm)
-                    {
-                        display: none;
-                    }
-                }
-
-            }
+            @include recipe-list-icons;
         }
     }
 }

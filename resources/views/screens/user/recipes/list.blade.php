@@ -53,35 +53,33 @@
                                     @if ($recipeList->isNotEmpty())
                                         <div class="row">
                                             <div class="col-12">
-                                                <ul class="recipe-list">
+                                                <div class="recipe-list">
                                                     @foreach($recipeList as $recipe)
-                                                        <li>
-                                                            <div class="content-container">
+                                                        <div class="content-container">
+                                                            <a href="{{route('user.recipes.view', ['recipe' => $recipe['id']])}}">
+                                                                <img src="{{$recipe['thumbnail']}}"  class="thumbnail"  alt="{{$recipe['title']}}"/>
+                                                            </a>
+
+                                                            <div class="recipe-info">
+
                                                                 <a href="{{route('user.recipes.view', ['recipe' => $recipe['id']])}}">
-                                                                    <img src="{{$recipe['thumbnail']}}"  class="thumbnail"  alt="{{$recipe['title']}}"/>
+                                                                    <span class="title">{{$recipe['title']}}</span>
                                                                 </a>
 
-                                                                <div class="recipe-info">
-
-                                                                    <a href="{{route('user.recipes.view', ['recipe' => $recipe['id']])}}">
-                                                                        <span class="title">{{$recipe['title']}}</span>
-                                                                    </a>
-
-                                                                    <span class="icons">
-                                                                        <span class="icon heart">
-                                                                            <span class="text">{{$recipe['total_favourites']}}</span>
-                                                                        </span>
-
-                                                                        <span class="icon comment">
-                                                                            <span class="text">{{$recipe['total_comments']}}</span>
-                                                                        </span>
+                                                                <span class="icons">
+                                                                    <span class="icon heart">
+                                                                        <span class="text">{{$recipe['total_favourites']}}</span>
                                                                     </span>
 
-                                                                </div>
+                                                                    <span class="icon comment">
+                                                                        <span class="text">{{$recipe['total_comments']}}</span>
+                                                                    </span>
+                                                                </span>
+
                                                             </div>
-                                                        </li>
+                                                        </div>
                                                     @endforeach
-                                                </ul>
+                                                </div>
                                                 {{ $recipeListPager->links('includes.pagination') }}
                                             </div>
                                         </div>

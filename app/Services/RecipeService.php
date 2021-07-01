@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class RecipeService
 {
@@ -103,6 +104,7 @@ class RecipeService
             return [
                 'id' => $recipe->id,
                 'title' => $recipe->title,
+                'title_url_formatted' => Str::replace(' ', '_', $recipe->title),
                 'img_url' => $imgURL,
                 'thumbnail' => $thumbnail,
                 'date_created' => $recipe->created_at->format('d/m/Y'),
