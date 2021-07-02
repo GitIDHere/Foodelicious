@@ -11,7 +11,10 @@ Route::middleware(['throttle:50,1'])
     ->group(function()
 {
     // api/tags/ingredient
-    Route::get('ingredient', [APIControllers\TagListController::class, 'ingredientList']);
+    Route::get('ingredient', [APIControllers\TagListController::class, 'searchIngredients']);
+
+    // api/tags/utensil
+    Route::get('utensil', [APIControllers\TagListController::class, 'searchUtensils']);
 });
 
 

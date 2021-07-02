@@ -114,6 +114,54 @@
         });
     }
 
+    var controller = null;
+    var apiCallTimer = null;
+
+    /**
+    * A generic function which helps to generate a Tagify list based on the callback
+    * @param term
+    * @param tagifyObj
+    * @param apiCallback
+    */
+    $.fn.generateTagList = function(term, tagifyObj, apiCallback)
+    {
+        clearTimeout(apiCallTimer);
+
+        apiCallTimer = setTimeout(function(){
+
+            tagifyObj.settings.whitelist.length = 0;
+
+            // End any existing API calls
+            controller && controller.abort();
+            controller = new AbortController();
+
+            tagifyObj.loading(true).dropdown.hide.call(tagifyObj);
+
+            apiCallback(term)
+                .then(function(resp)
+                {
+                    if (resp.data !== undefined)
+                    {
+                        var itemList = resp.data;
+
+                        tagifyObj.settings.whitelist.splice(0, itemList.length, ...itemList);
+
+                        // render the suggestions dropdown
+                        tagifyObj.loading(false).dropdown.show.call(tagifyObj, term);
+                    }
+                })
+                .catch(function(error)
+                {
+                    // Hide the dropdown list
+                    tagifyObj.loading(false).dropdown.hide.call(tagifyObj);
+                })
+            ;
+
+        }, 400);
+    };
+
+
+
     // Grey bar show/hide toggle
     $('.slidetxt h3 a').click(function() {
         $(this).closest('.slidetxt').find('.slidetxtinner').slideToggle();

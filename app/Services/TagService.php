@@ -17,31 +17,49 @@ class TagService
      * @param $searchTerm
      * @return array
      */
-    public function searchIngredient($searchTerm)
+    public function searchForUtensil($searchTerm)
+    {
+        return $this->searchFile($searchTerm, 'utensils.json');
+    }
+
+    /**
+     * @param $searchTerm
+     * @return array
+     */
+    public function searchForIngredient($searchTerm)
+    {
+        return $this->searchFile($searchTerm, 'ingredients.json');
+    }
+
+
+    /**
+     * @param $searchTerm
+     * @param $fileName
+     * @return array
+     */
+    private function searchFile($searchTerm, $fileName)
     {
         if (!empty($searchTerm) && is_string($searchTerm))
         {
             $baseDir = $this->baseDir;
-            $ingredientJSON = getFileContents($baseDir, 'ingredients.json');
+            $jsonStr = getFileContents($baseDir, $fileName);
 
             $results = [];
 
-            if (!empty($ingredientJSON))
+            if (!empty($jsonStr))
             {
-                $ingredients = json_decode($ingredientJSON);
+                $fileList = json_decode($jsonStr);
 
                 $searchTerm = strtolower($searchTerm);
 
-                $results = Arr::where($ingredients, function($val, $key) use($searchTerm)
+                $results = Arr::where($fileList, function($val, $key) use($searchTerm)
                 {
                     return (stripos(strtolower($val), $searchTerm) !== false);
                 });
 
             }
 
-            $results = array_slice($results, 0, 5);
-
-            return $results;
+            return array_slice($results, 0, 5);
         }
 
         return [];

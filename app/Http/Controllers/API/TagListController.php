@@ -21,11 +21,32 @@ class TagListController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function searchUtensils(Request $request)
+    {
+        $validated = $request->validate([
+            'term' => 'nullable|string|max:150',
+        ]);
+
+        $term = $request->get('term');
+        $utensilList = $this->tagService->searchForUtensil($term);
+
+        return new JsonResponse([
+            'message' => '',
+            'data' => $utensilList,
+            'status' => 200,
+            'date_time' => now()->format('Y-m-d H:i:s')
+        ]);
+    }
+
+    /**
      * Get ingredients by matching term
      * @param Request $request
      * @return JsonResponse
      */
-    public function ingredientList(Request $request)
+    public function searchIngredients(Request $request)
     {
         $validated = $request->validate([
             'term' => 'nullable|string|max:150',
@@ -33,7 +54,7 @@ class TagListController extends Controller
 
         $term = $request->get('term');
 
-        $ingredientList = $this->tagService->searchIngredient($term);
+        $ingredientList = $this->tagService->searchForIngredient($term);
 
         return new JsonResponse([
             'message' => '',
