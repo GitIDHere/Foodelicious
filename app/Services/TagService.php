@@ -1,24 +1,49 @@
-<?php
+<?php namespace App\Services;
 
-namespace App\Services;
+use Illuminate\Support\Arr;
 
 class TagService
 {
+    private $baseDir;
+
+
+    public function __construct()
+    {
+        $this->baseDir = database_path('entries');
+    }
+
+
     /**
-     * @param $term
+     * @param $searchTerm
      * @return array
      */
-    public function getListByTerm($table, $field, $term)
+    public function searchIngredient($searchTerm)
     {
-        if (!empty($term) && is_string($term))
+        if (!empty($searchTerm) && is_string($searchTerm))
         {
-            return $table::where($field, 'LIKE', $term.'%')
-                ->orderBy($field)
-                ->take(5)
-                ->get()
-                ->toArray()
-                ;   
+            $baseDir = $this->baseDir;
+            $ingredientJSON = getFileContents($baseDir, 'ingredients.json');
+
+            $results = [];
+
+            if (!empty($ingredientJSON))
+            {
+                $ingredients = json_decode($ingredientJSON);
+
+                $searchTerm = strtolower($searchTerm);
+
+                $results = Arr::where($ingredients, function($val, $key) use($searchTerm)
+                {
+                    return (stripos(strtolower($val), $searchTerm) !== false);
+                });
+
+            }
+
+            $results = array_slice($results, 0, 5);
+
+            return $results;
         }
+
         return [];
     }
 }

@@ -5,6 +5,19 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 
+
+if (! function_exists('getFileContents'))
+{
+    function getFileContents($filePath, $fileName)
+    {
+        if (file_exists($filePath)){
+            return file_get_contents($filePath . '/' . $fileName);
+        }
+
+        return null;
+    }
+}
+
 if (! function_exists('isDev'))
 {
     function isDev()

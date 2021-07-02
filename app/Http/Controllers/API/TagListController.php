@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Ingredient;
 use App\Services\TagService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -34,16 +33,11 @@ class TagListController extends Controller
 
         $term = $request->get('term');
 
-        $ingredientList = $this->tagService->getListByTerm(Ingredient::class, 'name', $term);
-
-        $list = [];
-        foreach ($ingredientList as $ingredient){
-            $list[] = $ingredient['name'];
-        }
+        $ingredientList = $this->tagService->searchIngredient($term);
 
         return new JsonResponse([
             'message' => '',
-            'data' => $list,
+            'data' => $ingredientList,
             'status' => 200,
             'date_time' => now()->format('Y-m-d H:i:s')
         ]);

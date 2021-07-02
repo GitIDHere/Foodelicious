@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers;
 
-Route::get('/home', [Controllers\HomeController::class, 'showHome'])
-    ->name('home');
+Route::get('/', function () {
+    return view('screens.home');
+})->name('home');
 
 
 Route::get('/404', function(){
