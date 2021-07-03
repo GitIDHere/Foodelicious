@@ -42,7 +42,7 @@ class RecipeController extends Controller
      * @param Recipe $recipe
      * @return \Illuminate\Contracts\View\View
      */
-    public function previewRecipe(Request $request, Recipe $recipe)
+    public function previewRecipe(Request $request, $username, Recipe $recipe)
     {
         $user = Auth::user();
         $userProfile = $user->userProfile;

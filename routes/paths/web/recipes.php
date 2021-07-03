@@ -7,19 +7,11 @@ Route::prefix('recipe')
     ->group(function()
     {
         /*
-         * Show a recipe belonging
+         * Show a recipe
          */
         Route::get('{recipe}/{recipe_title}', [Controllers\RecipeController::class, 'showRecipe'])
             ->middleware(['recipe.route'])
             ->name('recipe.show')
-        ;
-
-        /*
-         * Show a recipe belonging
-         */
-        Route::get('preview/{recipe}/{recipe_title}', [Controllers\RecipeController::class, 'previewRecipe'])
-            ->middleware(['auth', 'user.recipe'])
-            ->name('recipe.preview')
         ;
     })
 ;

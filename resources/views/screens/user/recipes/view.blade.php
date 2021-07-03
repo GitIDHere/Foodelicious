@@ -12,7 +12,6 @@
             if (empty(old('utensils')) && isset($data)) {
                 $utensils = $data['utensils'];
             }
-
             $uuid = Str::uuid();
         @endphp
 
@@ -49,10 +48,10 @@
 
                                     @if (isset($recipe))
                                         <div class="col-6 clearfix">
-                                            <a class="btn-small right" target="_blank" href="{{route('recipe.preview', ['recipe' => $recipe, 'recipe_title' => $data['title']])}}">Preview recipe</a>
+                                            <a class="btn-small right" target="_blank"
+                                               href="{{route('recipe.preview', ['recipe' => $recipe])}}">Preview recipe</a>
                                         </div>
                                     @endif
-
                                 </div>
 
                                 @if ($errors->any())

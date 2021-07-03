@@ -136,7 +136,8 @@ class UserRecipeController extends Controller
     {
         /** @var User $user */
         $user = Auth::user();
-        $isUserRecipe = $user->userProfile->recipes->contains($recipe);
+        $userProfile = $user->userProfile;
+        $isUserRecipe = $userProfile->recipes->contains($recipe);
 
         // Remove any temp photo IDs from the session
         $request->session()->forget(RecipePhotoService::TEMP_PHOTO_SESSION_KEY);
@@ -171,7 +172,11 @@ class UserRecipeController extends Controller
                 'enable_comments' => $recipe->enable_comments,
             ];
 
-            return view('screens.user.recipes.view', ['data' => $recipeData, 'recipe' => $recipe]);
+            return view('screens.user.recipes.view', [
+                'username' => $userProfile->username,
+                'data' => $recipeData,
+                'recipe' => $recipe
+            ]);
         }
         else {
             // The recipe doesn't belong to the user

@@ -17,8 +17,7 @@ Route::prefix('{username}/recipe/favourites')
         /*
          * Search for a favourited recipe
          */
-        Route::post('search', [Controllers\UserFavouriteRecipeController::class, 'searchFavouriteRecipe'])
-            ->prefix('recipes')
+        Route::post('recipes/search', [Controllers\UserFavouriteRecipeController::class, 'searchFavouriteRecipe'])
             ->name('user.recipe.favourites.search.submit')
         ;
     })

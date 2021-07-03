@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\User as Controllers;
+use \App\Http\Controllers\Recipe\RecipeController;
 
 Route::prefix('{username}')
     ->middleware(['auth', 'user.routes', 'url.parameters'])
@@ -17,18 +18,16 @@ Route::prefix('{username}')
         /*
          * Search user's recipe list
          */
-        Route::post('search', [Controllers\UserRecipeController::class, 'searchRecipe'])
-            ->prefix('recipes')
+        Route::post('recipes/search', [Controllers\UserRecipeController::class, 'searchRecipe'])
             ->name('user.recipes.search.submit')
         ;
 
         /*
          * Show a form to create a recipe
          */
-        Route::get('create', function(){
+        Route::get('recipe/create', function(){
             return view('screens.user.recipes.view');
         })
-            ->prefix('recipe')
             ->middleware(['user.verified'])
             ->name('user.recipes.create.view')
         ;
@@ -36,8 +35,7 @@ Route::prefix('{username}')
         /*
          * Show a single recipe
          */
-        Route::get('{recipe}', [Controllers\UserRecipeController::class, 'viewRecipe'])
-            ->prefix('recipe')
+        Route::get('recipe/{recipe}', [Controllers\UserRecipeController::class, 'viewRecipe'])
             ->whereNumber('recipe')
             ->middleware(['user.verified'])
             ->name('user.recipes.view')
@@ -46,8 +44,7 @@ Route::prefix('{username}')
         /*
          * Create a recipe POST request
          */
-        Route::post('create', [Controllers\UserRecipeController::class, 'saveRecipe'])
-            ->prefix('recipe')
+        Route::post('recipe/create', [Controllers\UserRecipeController::class, 'saveRecipe'])
             ->middleware(['user.verified'])
             ->name('user.recipes.create.submit')
         ;
@@ -55,11 +52,19 @@ Route::prefix('{username}')
         /*
          * Save/update a recipe
          */
-        Route::post('{recipe}', [Controllers\UserRecipeController::class, 'saveRecipe'])
-            ->prefix('recipe')
+        Route::post('recipe/{recipe}', [Controllers\UserRecipeController::class, 'saveRecipe'])
             ->whereNumber('recipe')
             ->middleware(['user.verified'])
             ->name('user.recipes.save.submit')
         ;
+
+        /*
+         * Show a recipe belonging
+         */
+        Route::get('preview/recipe/{recipe}', [RecipeController::class, 'previewRecipe'])
+            ->middleware(['user.recipe'])
+            ->name('recipe.preview')
+        ;
+
     })
 ;
