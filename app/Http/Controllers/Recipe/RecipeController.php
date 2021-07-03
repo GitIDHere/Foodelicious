@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Http\Controllers\Recipe;
+<?php namespace App\Http\Controllers\Recipe;
 
 use App\Models\Recipe;
 use App\Services\RecipeService;
@@ -25,6 +23,25 @@ class RecipeController extends Controller
      * @param Recipe $recipe
      * @return \Illuminate\Contracts\View\View
      */
+    public function showRecipe(Request $request, Recipe $recipe)
+    {
+        $user = Auth::user();
+        $userProfile = $user ? $user->userProfile : null;
+
+        $pageData = $this->recipeService->getRecipeData($recipe, $userProfile);
+        $recipeComments = $this->recipeService->getComments($recipe);
+
+        return view('screens.recipe.view', [
+            'recipe' => $pageData,
+            'comments' => $recipeComments
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param Recipe $recipe
+     * @return \Illuminate\Contracts\View\View
+     */
     public function previewRecipe(Request $request, Recipe $recipe)
     {
         $user = Auth::user();
@@ -41,24 +58,4 @@ class RecipeController extends Controller
             'comments' => $recipeComments
         ]);
     }
-
-    /**
-     * @param Request $request
-     * @param Recipe $recipe
-     * @return \Illuminate\Contracts\View\View
-     */
-    public function showRecipe(Request $request, Recipe $recipe)
-    {
-        $user = Auth::user();
-        $userProfile = $user ? $user->userProfile : null;
-
-        $pageData = $this->recipeService->getRecipeData($recipe, $userProfile);
-        $recipeComments = $this->recipeService->getComments($recipe);
-
-        return view('screens.recipe.view', [
-            'recipe' => $pageData,
-            'comments' => $recipeComments
-        ]);
-    }
-
 }

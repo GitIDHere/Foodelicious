@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +52,19 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
 
 
+            /**
+             * Load in all the separate route files
+             */
+//            $routeFiles = File::allFiles(base_path('routes/paths'));
+//
+//            foreach ($routeFiles as $routeFile)
+//            {
+//                Route::middleware('web')
+//                    ->namespace($this->namespace)
+//                    ->group($routeFile->getPathname());
+//            }
+
+
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/paths/web/auth/email_verification.php'));
@@ -78,6 +92,10 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/paths/web/user/user_recipes.php'));
+
+            Route::middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/paths/web/user/recipe_favourites.php'));
 
             Route::middleware('web')
                 ->namespace($this->namespace)

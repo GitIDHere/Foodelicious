@@ -4,7 +4,7 @@
         $routeName = \Request::route()->getName();
         $userProfileRoutes = \Illuminate\Support\Str::contains($routeName, 'user.profile');
         $recipeRoutes = \Illuminate\Support\Str::contains($routeName, 'user.recipes');
-        $favouritesRoutes = \Illuminate\Support\Str::contains($routeName, 'user.favourites');
+        $favouritesRoutes = \Illuminate\Support\Str::contains($routeName, 'user.recipe.favourites');
         @endphp
 
         <li class="{{ ($userProfileRoutes ? 'active' : '') }}">
@@ -16,7 +16,7 @@
         </li>
 
         <li class="{{ ($favouritesRoutes ? 'active' : '') }}">
-            <a href="#">Favourite Recipes</a>
+            <a href="{{route('user.recipe.favourites')}}">Favourite Recipes</a>
         </li>
     </ul>
 </div>

@@ -6,6 +6,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{env('APP_NAME')}}</title>
         @include('includes.styles')
+        <!-- ref: https://stackoverflow.com/a/42969608 -->
+        <script> </script>
     </head>
     <body class="preload">
 

@@ -38,7 +38,6 @@ class UserRecipe
             return redirect()->route('home');
         }
 
-
         return $next($request);
     }
 }

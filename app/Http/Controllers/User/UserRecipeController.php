@@ -11,6 +11,7 @@ use App\Models\Recipe;
 use App\Models\User;
 use App\Services\RecipePhotoService;
 use App\Services\RecipeService;
+use App\Services\UserRecipeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,9 +19,9 @@ use Illuminate\Support\Facades\Auth;
 class UserRecipeController extends Controller
 {
     /**
-     * @var RecipeService
+     * @var UserRecipeService
      */
-    private $recipeService;
+    private $userRecipeService;
 
     /**
      * @var int
@@ -28,9 +29,9 @@ class UserRecipeController extends Controller
     private $recipeItemsPerPage = 10;
 
 
-    public function __construct(RecipeService $recipeService)
+    public function __construct(UserRecipeService $userRecipeService)
     {
-        $this->recipeService = $recipeService;
+        $this->userRecipeService = $userRecipeService;
     }
 
     /**
@@ -42,7 +43,7 @@ class UserRecipeController extends Controller
         $user = Auth::user();
         $profile = $user->userProfile;
 
-        $recipeList = $this->recipeService->getRecipeList($profile);
+        $recipeList = $this->userRecipeService->getRecipeList($profile);
 
         return view('screens.user.recipes.list')
             ->with('recipeList', $recipeList['recipe_list'])
@@ -71,7 +72,7 @@ class UserRecipeController extends Controller
             return redirect()->route('user.recipes.list');
         }
 
-        $recipes = $this->recipeService->getRecipeList($userProfile, $searchTerm);
+        $recipes = $this->userRecipeService->getRecipeList($userProfile, $searchTerm);
 
         return view('screens.user.recipes.list')
             ->with('recipeList', $recipes['recipe_list'])
@@ -106,7 +107,7 @@ class UserRecipeController extends Controller
             $recipeFields['is_published'] = $request->get('is_published') ? 1 : 0;
             $recipeFields['enable_comments'] = $request->get('enable_comments') ? 1 : 0;
 
-            $recipe = $this->recipeService->saveRecipe($userProfile, $recipe, $recipeFields);
+            $recipe = $this->userRecipeService->saveRecipe($userProfile, $recipe, $recipeFields);
 
             if ($recipe)
             {

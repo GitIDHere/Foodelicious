@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\User as Controllers;
 
-Route::middleware(['auth', 'url.parameters', 'user.routes'])
-    ->prefix('{username}')
+Route::prefix('{username}')
+    ->middleware(['auth', 'user.routes', 'url.parameters'])
     ->group(function()
     {
         /*

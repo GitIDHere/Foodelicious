@@ -39,6 +39,13 @@ Breadcrumbs::for('edit_recipe', function ($trail, $recipe)
     $trail->push($shortTitle, route('user.recipes.view', $recipe));
 });
 
+// Home > Favourite recipes
+Breadcrumbs::for('favourite_recipes', function ($trail)
+{
+    $trail->parent('home');
+    $trail->push('Favourite recipes', route('user.recipe.favourites'));
+});
+
 
 // Home > {username} > Recipes
 Breadcrumbs::for('user_public_recipes', function ($trail, $username)

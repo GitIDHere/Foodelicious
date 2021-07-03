@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Http\Controllers\User;
+<?php namespace App\Http\Controllers\User;
 
 use App\Events\UserProfileDetailsUpdates;
 use App\Http\Controllers\Controller;
@@ -10,6 +8,7 @@ use App\Models\User;
 use App\Models\UserProfile;
 use App\Services\RecipeService;
 use App\Services\UserProfileService;
+use App\Services\UserRecipeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -23,21 +22,21 @@ class UserProfileController extends Controller
     private $profileService;
 
     /**
-     * @var RecipeService
+     * @var UserRecipeService
      */
-    private $recipeService;
+    private $userRecipeService;
 
-    public function __construct(UserProfileService $profileService, RecipeService $recipeService)
+    public function __construct(UserProfileService $profileService, UserRecipeService $userRecipeService)
     {
         $this->profileService = $profileService;
-        $this->recipeService = $recipeService;
+        $this->userRecipeService = $userRecipeService;
     }
 
 
     /**
      * @param Request $request
      * @param $username
-     * @return \Illuminate\Contracts\View\View
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
     public function showPublicRecipeList(Request $request, $username)
     {
@@ -46,16 +45,19 @@ class UserProfileController extends Controller
 
         if ($profile)
         {
-            $recipeList = $this->recipeService->getPublicRecipeList($profile);
+            $recipeList = $this->userRecipeService->getPublicRecipeList($profile);
 
             $profileData = $this->profileService->getProfileInfo($profile);
 
-            return view('screens.user.profile.recipes')
+            return view('screens.user.profile.public_recipes')
                 ->with('username', $profile->username)
                 ->with('recipeList', $recipeList['recipe_list'])
                 ->with('recipeListPager', $recipeList['pager'])
                 ->with('profile', $profileData)
                 ;
+        }
+        else {
+            return redirect()->route('home');
         }
     }
 

@@ -18,7 +18,7 @@ Route::prefix('recipe')
          * Show a recipe belonging
          */
         Route::get('preview/{recipe}/{recipe_title}', [Controllers\RecipeController::class, 'previewRecipe'])
-            ->middleware(['user.recipe'])
+            ->middleware(['auth', 'user.recipe'])
             ->name('recipe.preview')
         ;
     })

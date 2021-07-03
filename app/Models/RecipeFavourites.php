@@ -30,4 +30,15 @@ class RecipeFavourites extends Model
     {
         return $this->belongsTo(UserProfile::class);
     }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeFavourited($query)
+    {
+        return $query
+            ->where('is_favourited', 1);
+    }
+
 }
