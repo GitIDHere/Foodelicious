@@ -55,51 +55,50 @@ class RouteServiceProvider extends ServiceProvider
             /**
              * Load in all the separate route files
              */
-//            $routeFiles = File::allFiles(base_path('routes/paths'));
+            $routeFiles = File::allFiles(base_path('routes/paths'));
+
+            foreach ($routeFiles as $routeFile)
+            {
+                Route::middleware('web')
+                    ->namespace($this->namespace)
+                    ->group($routeFile->getPathname());
+            }
+
+//            Route::middleware('web')
+//                ->namespace($this->namespace)
+//                ->group(base_path('routes/paths/web/auth/email_verification.php'));
 //
-//            foreach ($routeFiles as $routeFile)
-//            {
-//                Route::middleware('web')
-//                    ->namespace($this->namespace)
-//                    ->group($routeFile->getPathname());
-//            }
-
-
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/paths/web/auth/email_verification.php'));
-
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/paths/web/auth/login.php'));
-
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/paths/web/auth/password_reset.php'));
-
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/paths/web/auth/register.php'));
-
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/paths/web/user/profile.php'));
-
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/paths/web/user/security.php'));
-
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/paths/web/user/user_recipes.php'));
-
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/paths/web/user/recipe_favourites.php'));
-
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/paths/web/recipes.php'));
+//            Route::middleware('web')
+//                ->namespace($this->namespace)
+//                ->group(base_path('routes/paths/web/auth/login.php'));
+//
+//            Route::middleware('web')
+//                ->namespace($this->namespace)
+//                ->group(base_path('routes/paths/web/auth/password_reset.php'));
+//
+//            Route::middleware('web')
+//                ->namespace($this->namespace)
+//                ->group(base_path('routes/paths/web/auth/register.php'));
+//
+//            Route::middleware('web')
+//                ->namespace($this->namespace)
+//                ->group(base_path('routes/paths/web/user/profile.php'));
+//
+//            Route::middleware('web')
+//                ->namespace($this->namespace)
+//                ->group(base_path('routes/paths/web/user/security.php'));
+//
+//            Route::middleware('web')
+//                ->namespace($this->namespace)
+//                ->group(base_path('routes/paths/web/user/user_recipes.php'));
+//
+//            Route::middleware('web')
+//                ->namespace($this->namespace)
+//                ->group(base_path('routes/paths/web/user/recipe_favourites.php'));
+//
+//            Route::middleware('web')
+//                ->namespace($this->namespace)
+//                ->group(base_path('routes/paths/web/recipes.php'));
         });
     }
 

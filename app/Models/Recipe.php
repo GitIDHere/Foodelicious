@@ -26,6 +26,12 @@ class Recipe extends Model
       'cook_time_formatted'
     ];
 
+    protected $casts = [
+        'cooking_steps' => 'array',
+        'utensils' => 'array',
+        'ingredients' => 'array',
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -110,34 +116,6 @@ class Recipe extends Model
         $formattedCookTimes[] = $cookTimeParts[1] . ' minutes';
 
         return implode(' ', $formattedCookTimes);
-    }
-
-    /**
-     * @param $value
-     * @return mixed
-     */
-    public function getCookingStepsAttribute($value)
-    {
-        $steps = json_decode($value);
-        array_unshift($steps,"");
-        unset($steps[0]);
-        return $steps;
-    }
-
-    public function getUtensilsAttribute($value)
-    {
-        $utensils = json_decode($value);
-        array_unshift($utensils,"");
-        unset($utensils[0]);
-        return$utensils;
-    }
-
-    public function getIngredientsAttribute($value)
-    {
-        $utensils = json_decode($value);
-        array_unshift($utensils,"");
-        unset($utensils[0]);
-        return$utensils;
     }
 
 }

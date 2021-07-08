@@ -61,7 +61,6 @@ class RecipeFactory extends Factory
             'utensils' => $utensils,
             'servings' => $this->faker->numberBetween(1, 10),
             'ingredients' => $ingredients,
-            'is_published' => $this->faker->numberBetween(0, 1),
             'created_at' => $this->faker->unixTime(),
         ];
     }

@@ -353,6 +353,10 @@ template {
   display: none;
 }
 
+@font-face {
+  font-family: heroTitle;
+  src: url("/fonts/heart_maze.ttf");
+}
 .switch {
   opacity: 0;
   position: absolute;
@@ -2386,6 +2390,82 @@ form label {
   font-size: 1.3em;
   font-weight: 600;
   margin-bottom: 10px;
+}
+
+.home-hero {
+  position: relative;
+}
+.home-hero .titles-container {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 9999;
+  text-align: center;
+  height: 220px;
+  margin: auto;
+}
+@media (max-width: 768px) {
+  .home-hero .titles-container {
+    height: 160px;
+  }
+}
+@media (max-width: 576px) {
+  .home-hero .titles-container {
+    height: 100px;
+  }
+}
+.home-hero .titles-container h1 {
+  font-size: 6em;
+  font-family: heroTitle, "Open Sans", sans-serif;
+  color: #FFFFFF;
+}
+@media (max-width: 768px) {
+  .home-hero .titles-container h1 {
+    font-size: 4em;
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 576px) {
+  .home-hero .titles-container h1 {
+    font-size: 2em;
+  }
+}
+.home-hero .titles-container h2 {
+  font-family: heroTitle, "Open Sans", sans-serif;
+  color: #FFFFFF;
+  font-size: 3em;
+}
+@media (max-width: 768px) {
+  .home-hero .titles-container h2 {
+    font-size: 2.5em;
+    margin-top: 0;
+  }
+}
+@media (max-width: 576px) {
+  .home-hero .titles-container h2 {
+    font-size: 1.5em;
+  }
+}
+.home-hero video {
+  width: 100%;
+}
+.home-hero:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 99%;
+  background: rgba(0, 0, 0, 0.5);
+}
+@media (max-width: 576px) {
+  .home-hero:after {
+    height: 97%;
+  }
 }
 
 /**

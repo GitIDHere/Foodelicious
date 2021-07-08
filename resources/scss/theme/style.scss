@@ -1828,6 +1828,88 @@ form label
 }
 
 
+.home-hero
+{
+    position: relative;
+
+    .titles-container
+    {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 9999;
+        text-align: center;
+        height: 220px;
+        margin: auto;
+
+        @include media-responsive($screen-sm) {
+            height: 160px;
+        }
+
+        @include media-responsive($screen-xs) {
+            height: 100px;
+        }
+
+        h1
+        {
+            font-size: 6em;
+            font-family: $homeHeroTitle;
+            color: $white;
+
+            @include media-responsive($screen-sm) {
+                font-size: 4em;
+                margin-bottom: 0;
+            }
+
+            @include media-responsive($screen-xs) {
+                font-size: 2em;
+            }
+        }
+
+        h2
+        {
+            font-family: $homeHeroTitle;
+            color: $white;
+            font-size: 3em;
+
+            @include media-responsive($screen-sm) {
+                font-size: 2.5em;
+                margin-top: 0;
+            }
+
+            @include media-responsive($screen-xs) {
+                font-size: 1.5em;
+            }
+        }
+    }
+
+    video
+    {
+        width: 100%;
+    }
+
+    // Tint over the video
+    &:after
+    {
+        content:"";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 99%;
+        background: rgba(0,0,0,0.5);
+
+        @include media-responsive($screen-xs) {
+            height: 97%;
+        }
+    }
+}
+
+
 /**
  * Hide the default Dropzone error message popup
  */

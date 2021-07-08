@@ -1,2 +1,10 @@
+@font-face {
+    font-family: heroTitle;
+    src: url('/fonts/heart_maze.ttf');
+}
+
+
 // Fonts
 $fonts: 'Open Sans', sans-serif;
+
+$homeHeroTitle: heroTitle, 'Open Sans', sans-serif;
