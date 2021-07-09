@@ -77,7 +77,7 @@
                             <ul>
                                 <li class=""><a href="{{route('home')}}">Home</a></li>
                                 <li><a href="recipe-post.html">Recipies</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="{{route('contact')}}">Contact</a></li>
                             </ul>
 
                         </div>

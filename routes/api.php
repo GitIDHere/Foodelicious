@@ -19,6 +19,18 @@ Route::middleware(['throttle:50,1'])
 
 
 /**
+ * Contact
+ */
+Route::middleware(['throttle:1,10', 'auth:sanctum'])
+    ->prefix('contact')
+    ->group(function()
+    {
+        // api/recipe/comment
+        Route::post('comment', [APIControllers\ContactComment::class, 'saveComment']);
+
+    });
+
+/**
  * Routes to favourite and comment on recipe
  */
 Route::middleware(['throttle:50,2', 'auth:sanctum'])

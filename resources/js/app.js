@@ -3,6 +3,8 @@ require('./bootstrap');
 //window.$ = jQuery;
 global.jQuery = window.$ = require('jquery');
 
+require('snazzy-info-window/dist/snazzy-info-window.min');
+
 Tagify = require('@yaireo/tagify/dist/jQuery.tagify.min');
 
 global.Cropper = require('cropperjs/dist/cropper.min');

@@ -122,45 +122,47 @@ return t=a?function(t){return t&&a(r(t))}:function(t){return t&&r(t)}}function e
 // [End Include All Plugins]
 $(function()
 {
-    var commentAPIEndpoint = APP_URL + 'api/recipe/comment';
+    var contactCommentEndpoint = APP_URL + 'api/contact/comment';
 
-    $('#recipe-comment').on('submit', function(e)
+    $('form#contact').on('submit', function(e)
     {
-        var commentTxtarea = $(this).find('#comment');
-        var comment = commentTxtarea.val();
-        var recipe = $(this).attr('data-recipe');
+        var comment = $(this).find('#comment');
+        var name = $(this).find('#name');
+        var email = $(this).find('#email');
 
         // Send to API endpoint
         axios.get('/sanctum/csrf-cookie').then(response =>
         {
-            var commentData = {
-                'comment': comment,
-                'recipe': Number(recipe)
-            };
-
             new Promise(function(resolve, reject){
                 $.ajax({
-                    url : commentAPIEndpoint,
+                    url : contactCommentEndpoint,
                     type: "POST",
                     accept: 'application/json',
-                    data: commentData,
+                    data: {
+                        'comment': comment.val(),
+                        'name': name.val(),
+                        'email': email.val(),
+                    },
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 })
-                    .done(function(resp, textStatus)
+                .done(function(resp, textStatus)
+                {
+                    // Update the current rating number
+                    if (textStatus === 'success')
                     {
-                        // Update the current rating number
-                        if (textStatus === 'success')
-                        {
-                            window.location.href = '#comments';
-                            location.reload();
-                        }
-                    })
-                    .fail(function(resp)
-                    {
-                        toastr.warning('Error posting comment');
-                    })
+                        comment.val('');
+                        name.val('');
+                        email.val('');
+
+                        toastr.success('Comment has been sent!');
+                    }
+                })
+                .fail(function(resp)
+                {
+                    toastr.warning('Error posting comment');
+                })
                 ;
             });
         });
@@ -168,7 +170,6 @@ $(function()
         e.preventDefault();
 
     });
-
 
 });
 
@@ -325,6 +326,35 @@ $(function()
     });
 
 });
+
+function initMap()
+{
+    // https://snazzymaps.com/explore
+    // https://github.com/atmist/snazzy-info-window
+
+    var mapStyle = [ { "featureType": "all", "elementType": "labels", "stylers": [ { "visibility": "off" } ] }, { "featureType": "poi.park", "elementType": "geometry.fill", "stylers": [ { "color": "#aadd55" } ] }, { "featureType": "road.highway", "elementType": "labels", "stylers": [ { "visibility": "on" } ] }, { "featureType": "road.arterial", "elementType": "labels.text", "stylers": [ { "visibility": "on" } ] }, { "featureType": "road.local", "elementType": "labels.text", "stylers": [ { "visibility": "on" } ] }, { "featureType": "water", "elementType": "geometry.fill", "stylers": [ { "color": "#0099dd" } ] } ]
+
+    // Create the map
+    var map = new google.maps.Map($('.gMap')[0], {
+        zoom: 15,
+        scrollwheel: false,
+        styles: mapStyle,
+        center: new google.maps.LatLng(51.5280422, -0.0070519)
+    });
+
+    var icon = {
+        url: 'img/core-img/map_pin.png', // url
+        scaledSize: new google.maps.Size(40, 50), // scaled size
+        origin: new google.maps.Point(0,0), // origin
+        anchor: new google.maps.Point(0, 0) // anchor
+    };
+
+    var marker = new google.maps.Marker({
+        map: map,
+        icon: icon,
+        position: new google.maps.LatLng(51.5280422, -0.0070519)
+    });
+}
 
 (function ($) {
     'use strict';
@@ -628,6 +658,57 @@ $(function()
         picInputEl.disabled = true;
         picInputEl.parentNode.className += ' disabled';
     }
+
+});
+
+$(function()
+{
+    var commentAPIEndpoint = APP_URL + 'api/recipe/comment';
+
+    $('#recipe-comment').on('submit', function(e)
+    {
+        var commentTxtarea = $(this).find('#comment');
+        var comment = commentTxtarea.val();
+        var recipe = $(this).attr('data-recipe');
+
+        // Send to API endpoint
+        axios.get('/sanctum/csrf-cookie').then(response =>
+        {
+            var commentData = {
+                'comment': comment,
+                'recipe': Number(recipe)
+            };
+
+            new Promise(function(resolve, reject){
+                $.ajax({
+                    url : commentAPIEndpoint,
+                    type: "POST",
+                    accept: 'application/json',
+                    data: commentData,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                })
+                    .done(function(resp, textStatus)
+                    {
+                        // Update the current rating number
+                        if (textStatus === 'success')
+                        {
+                            window.location.href = '#comments';
+                            location.reload();
+                        }
+                    })
+                    .fail(function(resp)
+                    {
+                        toastr.warning('Error posting comment');
+                    })
+                ;
+            });
+        });
+
+        e.preventDefault();
+
+    });
 
 });
 

@@ -23,6 +23,7 @@
         "cropperjs": "^1.5.11",
         "dropzone": "git+https://github.com/dropzone/dropzone.git",
         "jquery": "^3.5.1",
+        "snazzy-info-window": "^1.1.1",
         "toastr": "^2.1.4"
     }
 }
