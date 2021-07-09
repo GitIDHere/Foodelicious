@@ -43,15 +43,15 @@ class RecipeFactory extends Factory
     {
         $cookTimeHours = $this->faker->numberBetween(0, 3);
         $cookTimeMins = $this->getMultipleOf(5, 0, 55);
-        $cookingSteps = json_encode([
+        $cookingSteps = [
             $this->faker->sentence,
             $this->faker->sentence,
             $this->faker->sentence,
             $this->faker->sentence,
             $this->faker->sentence,
-        ]);
-        $ingredients = json_encode($this->faker->words);
-        $utensils = json_encode($this->faker->words);
+        ];
+        $ingredients = $this->faker->words;
+        $utensils = $this->faker->words;
 
         return [
             'title' => $this->faker->word(),

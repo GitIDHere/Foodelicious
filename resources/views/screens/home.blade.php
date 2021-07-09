@@ -1,9 +1,6 @@
 @extends('master')
 
 @section('content')
-    @auth
-        <a href="{{route('user.recipes.create.view')}}">Add recipes</a>
-    @endauth
 
     <div class="container-fluid p-0">
 
@@ -28,6 +25,62 @@
 
     </div>
 
+    <div class="container pt-5 pb-5">
+
+        <div class="row">
+
+            <section class="recipe-list-block col-4">
+                <h2>Recent</h2>
+                <ul>
+                    @foreach($homeData['recent_recipes'] as $recentRecipes)
+                        <li class="recipe-block">
+                            <img src="{{$recentRecipes['thumbnail']}}" alt="" /><div class="info-block">
+                                <a href="{{route('recipe.show', ['recipe' => $recentRecipes['recipe_id'], 'recipe_title' => $recentRecipes['title']])}}">
+                                    <h3 class="mt-0">{{$recentRecipes['title']}}</h3>
+                                </a>
+                                <p>{{$recentRecipes['username']}}</p>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            </section>
+
+            <section class="recipe-list-block col-4">
+                <h2>Top commented</h2>
+                <ul>
+                    @foreach($homeData['most_commented'] as $mostCommented)
+                        <li class="recipe-block">
+                            <img src="{{$mostCommented['thumbnail']}}" alt="" /><div class="info-block">
+                                <a href="{{route('recipe.show', ['recipe' => $mostCommented['recipe_id'], 'recipe_title' => $mostCommented['title']])}}">
+                                    <h3 class="mt-0">{{$mostCommented['title']}}</h3>
+                                </a>
+                                <p>{{$mostCommented['username']}}</p>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            </section>
+
+
+            <section class="recipe-list-block col-4">
+                <h2>Top favourited</h2>
+                <ul>
+                    @foreach($homeData['most_favourited'] as $mostFavourited)
+                        <li class="recipe-block">
+                            <img src="{{$mostFavourited['thumbnail']}}" alt="" /><div class="info-block">
+                                <a href="{{route('recipe.show', ['recipe' => $mostFavourited['recipe_id'], 'recipe_title' => $mostFavourited['title']])}}">
+                                    <h3 class="mt-0">{{$mostFavourited['title']}}</h3>
+                                </a>
+                                <p>{{$mostFavourited['username']}}</p>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            </section>
+
+        </div>
+
+    </div>
     <!-- Most recent -->
 
     <!-- Most favourited this week -->

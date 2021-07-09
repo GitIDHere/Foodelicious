@@ -100,9 +100,9 @@ class UserRecipeController extends Controller
         {
             $uuid = $request->input('uuid');
 
-            if (is_array($recipeFields['cooking_steps'])) {
-                $recipeFields['cooking_steps'] = json_encode($recipeFields['cooking_steps']);
-            }
+//            if (is_array($recipeFields['cooking_steps'])) {
+//                $recipeFields['cooking_steps'] = json_encode($recipeFields['cooking_steps']);
+//            }
 
             $recipeFields['is_published'] = $request->get('is_published') ? 1 : 0;
             $recipeFields['enable_comments'] = $request->get('enable_comments') ? 1 : 0;

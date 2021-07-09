@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\Json;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,9 +28,9 @@ class Recipe extends Model
     ];
 
     protected $casts = [
-        'cooking_steps' => 'array',
-        'utensils' => 'array',
-        'ingredients' => 'array',
+        'cooking_steps' => Json::class,
+        'utensils' => Json::class,
+        'ingredients' => Json::class,
     ];
 
     /**
