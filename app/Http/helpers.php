@@ -157,14 +157,18 @@ if (! function_exists('createImage'))
             $imgcreatefrom = "ImageCreateFromPNG";
         }
 
-        if ($imgt) {
+        if ($imgt)
+        {
             $old_image = $imgcreatefrom($imgPath);
             $new_image = imagecreatetruecolor($targetWidth, $targetHeight);
 
             $white  = imagecolorallocate($new_image,255,255,255);
             imagefilledrectangle($new_image,0,0,$targetWidth-1,$targetHeight-1, $white);
 
-            imagecopyresized($new_image, $old_image, $dest_x, $dest_y, 0, 0, $new_width, $new_height, $original_width, $original_height);
+            /**
+             * - If you want to keep aspect ratio then replace $targetWidth, $targetHeight with $new_width, $new_height
+             */
+            imagecopyresized($new_image, $old_image, 0, 0, 0, 0, $targetWidth, $targetHeight, $original_width, $original_height);
             $imgt($new_image, $ImgDirectory . '/' . $imgName );
         }
     }

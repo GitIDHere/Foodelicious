@@ -17,12 +17,12 @@ class RecipePhotoService extends PhotoService
     /**
      * @var int
      */
-    protected $thumbnailWidth = 150;
+    protected $thumbnailWidth = 250;
 
     /**
      * @var int
      */
-    protected $thumbnailHeight = 150;
+    protected $thumbnailHeight = 187;
 
     /**
      * @var int
