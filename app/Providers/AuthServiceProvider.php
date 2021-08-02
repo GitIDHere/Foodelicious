@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Mail\EmailVerification;
 use App\Services\Auth\PasswordResetService;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Auth\Notifications\VerifyEmail;
@@ -30,13 +31,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        // TODO - Create custom template
-        VerifyEmail::toMailUsing(function ($notifiable, $url) {
-            return (new MailMessage)
-                ->subject('Verify Email Address')
-                ->line('Click the button below to verify your email address.')
-                ->action('Verify Email Address', $url);
-        });
+//        VerifyEmail::toMailUsing(function ($notifiable, $url)
+//        {
+//            return (new MailMessage)
+//                ->subject('Verify Email Address')
+//                ->line('Click the button below to verify your email address.')
+//                ->action('Verify Email Address', $url);
+//        });
 
 
         // Custom password reset URL
